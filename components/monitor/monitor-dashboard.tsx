@@ -46,11 +46,11 @@ const initialServices: ServiceStatus[] = [
   {
     id: "3",
     name: "88code",
-    url: "https://www.88code.org/api",
+    url: "https://www.88code.org",
     status: "online",
     responseTime: 8472,
     lastCheck: "10:00:26",
-    inviteLink: "https://pro.privnode.com/register?aff=hqWu",
+    inviteLink: "https://www.88code.org/register?ref=SH7VWA",
   },
   {
     id: "5",
@@ -64,11 +64,11 @@ const initialServices: ServiceStatus[] = [
   {
     id: "6",
     name: "Agent Router",
-    url: "https://agentrouter.org/register?aff=odTz",
+    url: "https://agentrouter.org",
     status: "online",
     responseTime: 15463,
     lastCheck: "10:00:26",
-    inviteLink: "https://pro.privnode.com/register?aff=hqWu",
+    inviteLink: "https://agentrouter.org/register?aff=odTz",
   },
   {
     id: "7",
@@ -86,7 +86,7 @@ const initialServices: ServiceStatus[] = [
     status: "online",
     responseTime: 217966,
     lastCheck: "10:00:26",
-    inviteLink: "https://pro.privnode.com/register?aff=hqWu",
+    inviteLink: "https://catsapi.com/register?aff=BvgW",
   },
   {
     id: "9",
