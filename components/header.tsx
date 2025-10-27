@@ -33,9 +33,7 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-              <Sparkles className="h-5 w-5 text-accent-foreground" />
-            </div>
+            <Image src='/icon.svg' width="32" height="32" alt='logo' />
             <span className="text-xl font-semibold">AI 接口中转网站</span>
           </Link>
 

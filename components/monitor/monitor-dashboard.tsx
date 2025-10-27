@@ -96,7 +96,16 @@ const initialServices: ServiceStatus[] = [
     responseTime: 213229,
     lastCheck: "10:00:26",
     inviteLink: "https://xgbnaogz.ap-northeast-1.clawcloudrun.com/register?aff=TlOF",
-  }
+  },
+  {
+    id: "10",
+    name: "b4u",
+    url: "https://b4u.qzz.io/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://b4u.qzz.io/",
+  },
 ]
 
 export function MonitorDashboard() {

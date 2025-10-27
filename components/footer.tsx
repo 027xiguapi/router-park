@@ -1,5 +1,5 @@
-import { Sparkles } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -9,9 +9,7 @@ export function Footer() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div>
               <Link href="/" className="mb-4 flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-                  <Sparkles className="h-5 w-5 text-accent-foreground" />
-                </div>
+                <Image src='/icon.svg' width="32" height="32" alt='logo' />
                 <span className="text-xl font-semibold">AI 导航</span>
               </Link>
               <p className="text-sm text-muted-foreground">
