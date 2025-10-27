@@ -26,8 +26,17 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://cjackapi.cjack.top/register?aff=YLld",
   },
   {
+    id: "10",
+    name: "5202030",
+    url: "https://api.5202030.xyz/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "15:20:26",
+    inviteLink: "https://api.5202030.xyz/register?aff=0Ew1",
+  },
+  {
     id: "1",
-    name: "https://api.aioec.tech/",
+    name: "aioec",
     url: "https://api.aioec.tech",
     status: "online",
     responseTime: 30082,
