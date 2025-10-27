@@ -5,6 +5,7 @@ import { StatsCards } from "./stats-cards"
 import { ServiceCard } from "./service-card"
 import type { ServiceStatus } from "./types"
 import { useMonitor } from "@/contexts/monitor-context"
+import { Watermark } from "@/components/watermark"
 
 const initialServices: ServiceStatus[] = [
   {
@@ -142,7 +143,7 @@ export function MonitorDashboard() {
   }, [setRefreshMonitor])
 
   return (
-    <section className="bg-gray-50 py-16 dark:bg-background" id="monitor">
+    <section className="relative bg-gray-50 py-16 dark:bg-background" id="monitor">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h2 className="mb-2 text-3xl font-bold text-gray-900 dark:text-foreground">API 接口监控面板</h2>
@@ -157,6 +158,9 @@ export function MonitorDashboard() {
           ))}
         </div>
       </div>
+
+      {/* 水印放在最上层 */}
+      <Watermark text="routerpark" count={30} opacity={0.05} darkOpacity={0.05} rotate={-25} />
     </section>
   )
 }
