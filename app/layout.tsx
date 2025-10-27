@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { MonitorProvider } from "@/contexts/monitor-context"
 import "./globals.css"
+import { GoogleAnalytics } from '@next/third-parties/google'
 import {Header} from "@/components/header";
 import {Footer} from "@/components/footer";
 
@@ -23,17 +24,22 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-CN" suppressHydrationWarning>
+      <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5878114055897626"
+              crossOrigin="anonymous"></script>
+      </head>
       <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <MonitorProvider>
-            <Header />
-            {children}
-            <Footer />
-          </MonitorProvider>
-        </ThemeProvider>
-        <Analytics />
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <MonitorProvider>
+          <Header/>
+          {children}
+          <Footer/>
+        </MonitorProvider>
+      </ThemeProvider>
+      <Analytics/>
       </body>
-    </html>
+      <GoogleAnalytics gaId="G-PNRXSJMSV6"/>
+      </html>
   )
 }
