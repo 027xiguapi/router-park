@@ -3,7 +3,6 @@ import { MonitorDashboard } from "@/components/monitor/monitor-dashboard"
 import { Features } from "@/components/features"
 import { HowItWorks } from "@/components/how-it-works"
 import { Testimonials } from "@/components/testimonials"
-// import { Pricing } from "@/components/pricing"
 import { FAQ } from "@/components/faq"
 
 export default function Home() {

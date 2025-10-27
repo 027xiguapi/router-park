@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export function Hero() {
   return (
@@ -18,7 +19,6 @@ export function Hero() {
           <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
             更好的价格
             <span className="bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
-              {" "}
               更好的稳定性
             </span>
           </h1>
@@ -30,12 +30,14 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="h-12 gap-2 bg-accent px-8 text-base text-accent-foreground hover:bg-accent/90">
-              查看接口列表
-              <ArrowRight className="h-4 w-4" />
+            <Button size="lg" className="h-12 gap-2 bg-accent px-8 text-base text-accent-foreground hover:bg-accent/90" asChild>
+              <Link href="#monitor">
+                查看接口列表
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 text-base bg-transparent">
-              使用文档
+            <Button size="lg" variant="outline" className="h-12 px-8 text-base bg-transparent" asChild>
+              <Link href="/config-guide">使用文档</Link>
             </Button>
           </div>
 

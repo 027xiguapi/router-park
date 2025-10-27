@@ -50,6 +50,9 @@ export function Header() {
             <Link href="#monitor" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               监控面板
             </Link>
+            <Link href="/config-guide" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              配置指南
+            </Link>
             <Link href="#faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               常见问题
             </Link>
