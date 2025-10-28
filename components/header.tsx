@@ -37,24 +37,21 @@ export function Header() {
             <span className="text-xl font-semibold">AI 接口中转网站</span>
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
-            <Link href="#features" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              功能特性
+          <nav className="hidden items-center gap-6 md:flex">
+            <Link href="/api-monitor" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              API 监控
             </Link>
-            <Link
-              href="#how-it-works"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              使用流程
+            <Link href="/chatgpt-mirrors" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              ChatGPT 镜像
             </Link>
-            <Link href="#monitor" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              监控面板
+            <Link href="/ai-tools" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              大模型接口网关
+            </Link>
+            <Link href="/vpn-recommend" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              VPN 推荐
             </Link>
             <Link href="/config-guide" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               配置指南
-            </Link>
-            <Link href="#faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              常见问题
             </Link>
           </nav>
 
