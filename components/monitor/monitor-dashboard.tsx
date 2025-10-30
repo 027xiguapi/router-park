@@ -116,6 +116,15 @@ const initialServices: ServiceStatus[] = [
     lastCheck: "10:00:26",
     inviteLink: "https://b4u.qzz.io/",
   },
+  {
+    id: "10",
+    name: "aiclaude",
+    url: "https://aiclaude.online/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://aiclaude.online/",
+  },
 ]
 
 export function MonitorDashboard() {
