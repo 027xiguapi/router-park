@@ -50,6 +50,9 @@ export function Header() {
             <Link href="/vpn" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               VPN 推荐
             </Link>
+            <Link href="/keyword-tool" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              关键词工具
+            </Link>
             <Link href="/backlinks" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               外链导航
             </Link>
