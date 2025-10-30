@@ -47,8 +47,11 @@ export function Header() {
             <Link href="/ai-tools" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               大模型接口网关
             </Link>
-            <Link href="/vpn-recommend" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <Link href="/vpn" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               VPN 推荐
+            </Link>
+            <Link href="/backlinks" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              外链导航
             </Link>
             <Link href="/config-guide" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               配置指南
