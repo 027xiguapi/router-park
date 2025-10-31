@@ -19,6 +19,33 @@ const initialServices: ServiceStatus[] = [
   },
   {
     id: "10",
+    name: "gptkey",
+    url: "https://gptkey.eu.org/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://gptkey.eu.org/register?aff=w60d",
+  },
+  {
+    id: "10",
+    name: "evolai",
+    url: "https://www.evolai.cn",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://www.evolai.cn/?inviteCode=AR3AW6SZ",
+  },
+  {
+    id: "10",
+    name: "aicoding",
+    url: "https://aicoding.sh/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://aicoding.sh",
+  },
+  {
+    id: "10",
     name: "cjack",
     url: "https://cjackapi.cjack.top/",
     status: "online",
@@ -134,15 +161,7 @@ const initialServices: ServiceStatus[] = [
     lastCheck: "10:00:26",
     inviteLink: "https://ccode.sale/register?aff=qGr6",
   },
-  {
-    id: "10",
-    name: "aicoding",
-    url: "https://aicoding.sh/",
-    status: "online",
-    responseTime: 213229,
-    lastCheck: "10:00:26",
-    inviteLink: "https://aicoding.sh",
-  },
+  
 ]
 
 export function MonitorDashboard() {
