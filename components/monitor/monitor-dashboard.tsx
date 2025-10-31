@@ -134,6 +134,15 @@ const initialServices: ServiceStatus[] = [
     lastCheck: "10:00:26",
     inviteLink: "https://ccode.sale/register?aff=qGr6",
   },
+  {
+    id: "10",
+    name: "aicoding",
+    url: "https://aicoding.sh/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://aicoding.sh",
+  },
 ]
 
 export function MonitorDashboard() {
