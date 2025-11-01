@@ -18,7 +18,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://api.codemirror.codes/register?aff=Atn3",
   },
   {
-    id: "10",
+    id: "2",
     name: "gptkey",
     url: "https://gptkey.eu.org/",
     status: "online",
@@ -27,7 +27,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://gptkey.eu.org/register?aff=w60d",
   },
   {
-    id: "10",
+    id: "3",
     name: "evolai",
     url: "https://www.evolai.cn",
     status: "online",
@@ -36,7 +36,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://www.evolai.cn/?inviteCode=AR3AW6SZ",
   },
   {
-    id: "10",
+    id: "4",
     name: "aicoding",
     url: "https://aicoding.sh/",
     status: "online",
@@ -45,7 +45,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://aicoding.sh",
   },
   {
-    id: "10",
+    id: "5",
     name: "cjack",
     url: "https://cjackapi.cjack.top/",
     status: "online",
@@ -54,7 +54,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://cjackapi.cjack.top/register?aff=YLld",
   },
   {
-    id: "10",
+    id: "6",
     name: "5202030",
     url: "https://api.5202030.xyz/",
     status: "online",
@@ -63,7 +63,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://api.5202030.xyz/register?aff=0Ew1",
   },
   {
-    id: "1",
+    id: "7",
     name: "aioec",
     url: "https://api.aioec.tech",
     status: "online",
@@ -72,7 +72,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://api.aioec.tech/register?aff=qR6S",
   },
   {
-    id: "2",
+    id: "8",
     name: "privnode",
     url: "https://pro.privnode.com",
     status: "online",
@@ -81,7 +81,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://pro.privnode.com/register?aff=hqWu",
   },
   {
-    id: "3",
+    id: "9",
     name: "88code",
     url: "https://www.88code.org",
     status: "online",
@@ -90,7 +90,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://www.88code.org/register?ref=SH7VWA",
   },
   {
-    id: "5",
+    id: "10",
     name: "七牛云",
     url: "https://portal.qiniu.com/ai-inference/model",
     status: "online",
@@ -99,7 +99,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://s.qiniu.com/aQfmmq",
   },
   {
-    id: "6",
+    id: "11",
     name: "Agent Router",
     url: "https://agentrouter.org",
     status: "online",
@@ -108,7 +108,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://agentrouter.org/register?aff=odTz",
   },
   {
-    id: "7",
+    id: "12",
     name: "Any Router",
     url: "https://q.ouuw.cn",
     status: "online",
@@ -117,7 +117,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://anyrouter.top/register?aff=BMDt",
   },
   {
-    id: "8",
+    id: "13",
     name: "cats",
     url: "https://catsapi.com",
     status: "online",
@@ -126,7 +126,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://catsapi.com/register?aff=BvgW",
   },
   {
-    id: "9",
+    id: "14",
     name: "clawcloudrun",
     url: "https://xgbnaogz.ap-northeast-1.clawcloudrun.com/",
     status: "online",
@@ -135,7 +135,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://xgbnaogz.ap-northeast-1.clawcloudrun.com/register?aff=TlOF",
   },
   {
-    id: "10",
+    id: "15",
     name: "b4u",
     url: "https://b4u.qzz.io/",
     status: "online",
@@ -144,7 +144,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://b4u.qzz.io/",
   },
   {
-    id: "10",
+    id: "16",
     name: "aiclaude",
     url: "https://aiclaude.online/",
     status: "online",
@@ -153,7 +153,7 @@ const initialServices: ServiceStatus[] = [
     inviteLink: "https://aiclaude.online/",
   },
   {
-    id: "10",
+    id: "17",
     name: "ccode",
     url: "https://ccode.sale/",
     status: "online",

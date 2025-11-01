@@ -1,29 +1,58 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { notFound } from 'next/navigation'
+import { hasLocale, NextIntlClientProvider } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "../globals.css"
 import { GoogleAnalytics } from '@next/third-parties/google'
 import {Header} from "@/components/header";
 import {Footer} from "@/components/footer";
+import { locales, routing } from '@/i18n/routing'
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: "AI 接口中转网站 - 统一的大模型接口网关",
-  description: "更好的价格，更好的稳定性，只需要将模型基址替换为中转接口即可使用",
-  generator: "v0.app",
+export function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'zh' },
+    { locale: 'ja' },
+    { locale: 'ko' },
+    { locale: 'es' },
+    { locale: 'fr' },
+    { locale: 'de' },
+    { locale: 'it' },
+    { locale: 'ru' },
+    { locale: 'pt' },
+    { locale: 'ar' },
+    { locale: 'hi' }
+  ]
 }
 
-export default function RootLayout({
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'siteInfo' })
+
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    generator: "v0.app",
+  }
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params
+}: {
   children: React.ReactNode
-}>) {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+  const currentLocale = locales.find((l) => l.code === locale)
+
   return (
-      <html lang="zh-CN" suppressHydrationWarning>
+    <html lang={currentLocale?.code ?? 'en'} dir={currentLocale?.dir || 'ltr'} suppressHydrationWarning>
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5878114055897626"
               crossOrigin="anonymous"></script>
