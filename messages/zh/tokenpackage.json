@@ -1,0 +1,13 @@
+{
+  "tokensLabel": "令牌",
+  "oneTime": "一次性",
+  "trial": {
+    "name": "试用包"
+  },
+  "small": {
+    "name": "小型包"
+  },
+  "medium": {
+    "name": "中型包"
+  }
+}

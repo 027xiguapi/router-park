@@ -1,0 +1,15 @@
+{
+  "modal": {
+    "description": "जारी रखने के लिए साइन इन करें",
+    "triggerText": "साइन इन करें"
+  },
+  "form": {
+    "continueWithGoogle": "Google के साथ जारी रखें",
+    "continueWithGithub": "GitHub के साथ जारी रखें",
+    "orContinueWith": "या के साथ जारी रखें",
+    "emailPlaceholder": "अपना ईमेल पता दर्ज करें",
+    "signInWithEmail": "ईमेल के साथ साइन इन करें"
+  },
+  "signOut": "लॉग आउट",
+  "login": "लॉगिन करें"
+}

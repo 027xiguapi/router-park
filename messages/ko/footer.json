@@ -1,0 +1,16 @@
+{
+  "description": "AI를 통한 대화 강화. LinkAI와 함께 커뮤니케이션의 미래를 경험하세요.",
+  "contact": {
+    "title": "문의하기",
+    "intro": "문의 사항은 다음으로 연락해 주세요.",
+    "email": "contact@yourdomain.com"
+  },
+  "quickLinks": {
+    "title": "빠른 링크",
+    "home": "홈",
+    "aboutUs": "회사 소개",
+    "refundPolicy": "환불 정책",
+    "subscriptionTerms": "구독 약관"
+  },
+  "copyright": " 2024 Cozyai LLC. All rights reserved."
+}

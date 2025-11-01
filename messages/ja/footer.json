@@ -1,0 +1,16 @@
+{
+  "description": "AIで会話に力を与える。LinkAIでコミュニケーションの未来を体験してください。",
+  "contact": {
+    "title": "お問い合わせ",
+    "intro": "お問い合わせは以下まで：",
+    "email": "contact@yourdomain.com"
+  },
+  "quickLinks": {
+    "title": "クイックリンク",
+    "home": "ホーム",
+    "aboutUs": "会社概要",
+    "refundPolicy": "返金ポリシー",
+    "subscriptionTerms": "定期購読規約"
+  },
+  "copyright": " 2024 Cozyai LLC. All rights reserved."
+}

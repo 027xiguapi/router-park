@@ -1,0 +1,16 @@
+{
+  "description": "Empoderar conversaciones con IA. Experimente el futuro de la comunicación con LinkAI.",
+  "contact": {
+    "title": "Contacto",
+    "intro": "Para consultas, por favor contáctenos:",
+    "email": "contacto@yourdomain.com"
+  },
+  "quickLinks": {
+    "title": "Enlaces rápidos",
+    "home": "Inicio",
+    "aboutUs": "Acerca de nosotros",
+    "refundPolicy": "Política de reembolso",
+    "subscriptionTerms": "Términos de suscripción"
+  },
+  "copyright": " 2024 Cozyai LLC. Todos los derechos reservados."
+}

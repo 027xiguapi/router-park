@@ -1,0 +1,13 @@
+{
+  "tokensLabel": "jetons",
+  "oneTime": "Unique",
+  "trial": {
+    "name": "Forfait d'essai"
+  },
+  "small": {
+    "name": "Petit paquet"
+  },
+  "medium": {
+    "name": "Paquet moyen"
+  }
+}

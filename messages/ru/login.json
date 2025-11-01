@@ -1,0 +1,15 @@
+{
+  "modal": {
+    "description": "Войдите, чтобы продолжить",
+    "triggerText": "Войти"
+  },
+  "form": {
+    "continueWithGoogle": "Продолжить с Google",
+    "continueWithGithub": "Продолжить с GitHub",
+    "orContinueWith": "Или продолжить с",
+    "emailPlaceholder": "Введите ваш адрес электронной почты",
+    "signInWithEmail": "Войти с помощью электронной почты"
+  },
+  "signOut": "Выйти",
+  "login": "Войти"
+}

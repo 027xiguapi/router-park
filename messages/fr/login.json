@@ -1,0 +1,15 @@
+{
+  "modal": {
+    "description": "Connectez-vous pour continuer votre parcours",
+    "triggerText": "Se connecter"
+  },
+  "form": {
+    "continueWithGoogle": "Continuer avec Google",
+    "continueWithGithub": "Continuer avec GitHub",
+    "orContinueWith": "Ou continuer avec",
+    "emailPlaceholder": "Entrer votre adresse e-mail",
+    "signInWithEmail": "Se connecter avec l'e-mail"
+  },
+  "signOut": "Déconnexion",
+  "login": "Se connecter"
+}

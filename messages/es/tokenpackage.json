@@ -1,0 +1,13 @@
+{
+  "tokensLabel": "tokens",
+  "oneTime": "Un solo uso",
+  "trial": {
+    "name": "Paquete de prueba"
+  },
+  "small": {
+    "name": "Paquete pequeño"
+  },
+  "medium": {
+    "name": "Paquete mediano"
+  }
+}

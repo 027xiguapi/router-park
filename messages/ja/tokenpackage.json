@@ -1,0 +1,13 @@
+{
+  "tokensLabel": "トークン",
+  "oneTime": "一回限り",
+  "trial": {
+    "name": "トライアルパック"
+  },
+  "small": {
+    "name": "小型パック"
+  },
+  "medium": {
+    "name": "中型パック"
+  }
+}

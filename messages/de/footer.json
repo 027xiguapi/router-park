@@ -1,0 +1,16 @@
+{
+  "description": "Gespräche mit KI ermöglichen. Erleben Sie die Zukunft der Kommunikation mit LinkAI.",
+  "contact": {
+    "title": "Kontakt",
+    "intro": "Für Anfragen kontaktieren Sie uns bitte:",
+    "email": "kontakt@yourdomain.com"
+  },
+  "quickLinks": {
+    "title": "Schnellzugriffe",
+    "home": "Startseite",
+    "aboutUs": "Über uns",
+    "refundPolicy": "Rückerstattungsrichtlinie",
+    "subscriptionTerms": "Abonnementbedingungen"
+  },
+  "copyright": " 2024 Cozyai LLC. Alle Rechte vorbehalten."
+}

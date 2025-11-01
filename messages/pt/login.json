@@ -1,0 +1,15 @@
+{
+  "modal": {
+    "description": "Inicie sessão para continuar a sua viagem",
+    "triggerText": "Iniciar sessão"
+  },
+  "form": {
+    "continueWithGoogle": "Continuar com o Google",
+    "continueWithGithub": "Continuar com o GitHub",
+    "orContinueWith": "Ou continuar com",
+    "emailPlaceholder": "Insira seu endereço de e-mail",
+    "signInWithEmail": "Entrar com e-mail"
+  },
+  "signOut": "Sair",
+  "login": "Entrar"
+}
