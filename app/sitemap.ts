@@ -8,7 +8,7 @@ import type { MetadataRoute } from 'next'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   unstable_noStore()
 
-  const routes = ['', '/blogs', '/voice', '/voice-design', '/blogs']
+  const routes = ['', '/blogs', '/ai-tools', '/api-monitor', '/backlinks', '/chatgpt-mirrors', '/keyword-tool', '/vpn', '/pricing', '/config-guide']
 
   const entries: MetadataRoute.Sitemap = []
 

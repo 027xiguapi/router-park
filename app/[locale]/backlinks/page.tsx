@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Mail,
   Facebook,
@@ -48,6 +49,7 @@ type SortField = "rank" | "domain" | "niche";
 type SortDirection = "asc" | "desc";
 
 export default function GuestPostsPage() {
+  const t = useTranslations("pages.backlinks");
   const [sortField, setSortField] = useState<SortField>("rank");
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
@@ -112,13 +114,15 @@ export default function GuestPostsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white py-4 px-6 text-center">
+      <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 text-white py-4 px-6 text-center">
         <div className="flex items-center justify-center gap-4 text-lg font-semibold">
           <Info className="h-6 w-6" />
           <span>
-            提升您的网站域名评级至 <span className="text-yellow-300">10+</span> 只需{" "}
-            <span className="text-yellow-300">数小时</span>，完全{" "}
-            <span className="text-yellow-300">免费</span>
+            {t.rich('banner', {
+              value1: (chunks) => <span className="text-yellow-300">{chunks}</span>,
+              value2: (chunks) => <span className="text-yellow-300">{chunks}</span>,
+              value3: (chunks) => <span className="text-yellow-300">{chunks}</span>,
+            })}
           </span>
           <Info className="h-6 w-6" />
         </div>
@@ -128,10 +132,10 @@ export default function GuestPostsPage() {
         {/* Page Title & Description */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4">
-            最佳免费外链提交网站分析 (2025)
+            {t('title')}
           </h1>
           <p className="text-muted-foreground text-lg">
-            对免费外链提交网站的全面分析和比较。网站根据审核率、提交速度和审核流程进行排名。
+            {t('description')}
           </p>
         </div>
 
@@ -139,31 +143,31 @@ export default function GuestPostsPage() {
         <div className="flex flex-wrap gap-2 mb-8">
           <Button variant="outline" size="sm" className="gap-2">
             <Mail className="h-4 w-4" />
-            邮件
+            {t('shareButtons.email')}
           </Button>
           <Button variant="outline" size="sm" className="gap-2">
             <Twitter className="h-4 w-4" />
-            Twitter
+            {t('shareButtons.twitter')}
           </Button>
           <Button variant="outline" size="sm" className="gap-2">
             <Facebook className="h-4 w-4" />
-            Facebook
+            {t('shareButtons.facebook')}
           </Button>
           <Button variant="outline" size="sm" className="gap-2">
             <Linkedin className="h-4 w-4" />
-            LinkedIn
+            {t('shareButtons.linkedin')}
           </Button>
           <Button variant="outline" size="sm" className="gap-2">
             <MessageCircle className="h-4 w-4" />
-            微信
+            {t('shareButtons.wechat')}
           </Button>
           <Button variant="outline" size="sm" className="gap-2">
             <Send className="h-4 w-4" />
-            Telegram
+            {t('shareButtons.telegram')}
           </Button>
           <Button variant="outline" size="sm" className="gap-2">
             <Share2 className="h-4 w-4" />
-            更多
+            {t('shareButtons.more')}
           </Button>
         </div>
 
@@ -174,30 +178,30 @@ export default function GuestPostsPage() {
               <TableHeader>
                 <TableRow className="bg-muted/50">
                   <TableHead className="w-16 text-center">
-                    <SortButton field="rank">排名</SortButton>
+                    <SortButton field="rank">{t('table.rank')}</SortButton>
                   </TableHead>
-                  <TableHead className="w-24 text-center">推荐</TableHead>
+                  <TableHead className="w-24 text-center">{t('table.recommended')}</TableHead>
                   <TableHead className="min-w-[200px]">
-                    <SortButton field="domain">网站</SortButton>
+                    <SortButton field="domain">{t('table.website')}</SortButton>
                   </TableHead>
                   <TableHead>
-                    <SortButton field="niche">领域分类</SortButton>
+                    <SortButton field="niche">{t('table.category')}</SortButton>
                   </TableHead>
                   <TableHead className="min-w-[300px]">
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger className="flex items-center gap-1">
-                          内容定位
+                          {t('table.contentPositioning')}
                           <Info className="h-3 w-3" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>适合该网站的内容类型和角度</p>
+                          <p>{t('table.contentPositioningTooltip')}</p>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
                   </TableHead>
-                  <TableHead>主要联系方式</TableHead>
-                  <TableHead className="text-center">操作</TableHead>
+                  <TableHead>{t('table.mainContact')}</TableHead>
+                  <TableHead className="text-center">{t('table.actions')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -214,7 +218,7 @@ export default function GuestPostsPage() {
                               <ThumbsUp className="h-5 w-5 text-yellow-500 fill-yellow-500 mx-auto" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>强烈推荐</p>
+                              <p>{t('table.highlyRecommended')}</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
@@ -268,7 +272,7 @@ export default function GuestPostsPage() {
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>访问提交页面</p>
+                              <p>{t('table.visitSubmissionPage')}</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
@@ -283,10 +287,9 @@ export default function GuestPostsPage() {
 
         {/* Footer Info */}
         <div className="mt-8 p-6 bg-muted/50 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">关于此列表</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('aboutTitle')}</h3>
           <p className="text-muted-foreground">
-            本列表包含 {sites.length} 个经过验证的外链提交网站。每个网站都经过仔细评估，
-            包括其领域分类、审核难度、提交要求等关键指标。定期更新以确保信息准确性。
+            {t('aboutDescription', { count: sites.length })}
           </p>
         </div>
       </div>

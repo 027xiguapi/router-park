@@ -137,7 +137,7 @@ export function ResultsTable({ results, stats }: ResultsTableProps) {
                     <TableCell className="font-medium max-w-[300px] break-words">
                       {item.keyword}
                     </TableCell>
-                    <TableCell className={isNA(item.avgMonthlySearches) ? 'text-muted-foreground italic' : 'font-semibold text-purple-600'}>
+                    <TableCell className={isNA(item.avgMonthlySearches) ? 'text-muted-foreground italic' : 'font-semibold text-accent'}>
                       {isNA(item.avgMonthlySearches)
                         ? 'N/A'
                         : Number(item.avgMonthlySearches).toLocaleString()}
@@ -145,7 +145,7 @@ export function ResultsTable({ results, stats }: ResultsTableProps) {
                     <TableCell className={isNA(item.averageCpc) ? 'text-muted-foreground italic' : 'text-green-600'}>
                       {isNA(item.averageCpc) ? 'N/A' : `$${item.averageCpc}`}
                     </TableCell>
-                    <TableCell className={isNA(item.competitionIndex) ? 'text-muted-foreground italic' : 'text-orange-600'}>
+                    <TableCell className={isNA(item.competitionIndex) ? 'text-muted-foreground italic' : 'text-accent'}>
                       {isNA(item.competitionIndex) ? 'N/A' : item.competitionIndex}
                     </TableCell>
                     <TableCell className={isNA(item.competition) ? 'text-muted-foreground italic' : ''}>

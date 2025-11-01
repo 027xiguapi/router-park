@@ -1,3 +1,5 @@
+"use client"
+
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -6,9 +8,10 @@ import type { ServiceStatus } from "./types"
 
 interface ServiceCardProps {
   service: ServiceStatus
+  t: (key: string) => string
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, t }: ServiceCardProps) {
   const isOnline = service.status === "online"
 
   return (
@@ -23,7 +26,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
               : "bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-500/10 dark:text-red-500 dark:hover:bg-red-500/20"
           }
         >
-          {isOnline ? "在线" : "离线"}
+          {isOnline ? t('status.online') : t('status.offline')}
         </Badge>
       </div>
 
@@ -33,7 +36,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             href={service.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
+            className="flex items-center gap-1 text-orange-600 hover:text-orange-700 hover:underline dark:text-orange-400 dark:hover:text-orange-300"
           >
             {service.url}
             <ExternalLink className="h-3 w-3" />
@@ -44,11 +47,11 @@ export function ServiceCard({ service }: ServiceCardProps) {
           <Button
             variant="outline"
             size="sm"
-            className="w-full border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-400 dark:hover:bg-indigo-500/20"
+            className="w-full border-orange-200 bg-orange-50 text-orange-700 hover:bg-orange-100 dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-400 dark:hover:bg-orange-500/20"
             asChild
           >
             <a href={service.inviteLink} target="_blank" rel="noopener noreferrer">
-              邀请链接
+              {t('serviceCard.inviteLink')}
             </a>
           </Button>
         )}
@@ -64,7 +67,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         )}
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-3 text-sm dark:border-border">
-          <span className="text-gray-600 dark:text-muted-foreground">响应时间</span>
+          <span className="text-gray-600 dark:text-muted-foreground">{t('serviceCard.responseTime')}</span>
           <span
             className={`font-mono font-semibold ${
               isOnline
@@ -77,7 +80,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
 
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-600 dark:text-muted-foreground">最后检测</span>
+          <span className="text-gray-600 dark:text-muted-foreground">{t('serviceCard.lastCheck')}</span>
           <span className="font-mono text-gray-900 dark:text-foreground">{service.lastCheck}</span>
         </div>
       </div>

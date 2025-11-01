@@ -1,0 +1,525 @@
+{
+  "HomePage": {
+    "title": "مرحبا",
+    "about": "الانتقال إلى صفحة المعلومات"
+  },
+  "login": {
+    "modal": {
+      "description": "تسجيل الدخول للاستمرار",
+      "triggerText": "تسجيل الدخول"
+    },
+    "form": {
+      "continueWithGoogle": "استمر مع Google",
+      "continueWithGithub": "استمر مع GitHub",
+      "orContinueWith": "أو استمر مع",
+      "emailPlaceholder": "أدخل عنوان البريد الإلكتروني",
+      "signInWithEmail": "تسجيل الدخول عبر البريد الإلكتروني"
+    },
+    "signOut": "تسجيل الخروج",
+    "login": "تسجيل الدخول"
+  },
+  "footer": {
+    "description": "تعزيز المحادثات بالذكاء الاصطناعي. تجربة مستقبل الاتصالات مع LinkAI.",
+    "contact": {
+      "title": "اتصل بنا",
+      "intro": "للاستفسارات، يرجى الاتصال بنا:",
+      "email": "contact@yourdomain.com"
+    },
+    "quickLinks": {
+      "title": "روابط سريعة",
+      "home": "الصفحة الرئيسية",
+      "aboutUs": "عنّا",
+      "refundPolicy": "سياسة الاسترجاع",
+      "subscriptionTerms": "شروط الاشتراك"
+    },
+    "copyright": " 2024 Cozyai LLC. جميع الحقوق محفوظة."
+  },
+  "common": {
+    "previous": "السابق",
+    "next": "التالي",
+    "morePage": "المزيد من الصفحات",
+    "close": "إغلاق",
+    "loading": "تحميل...",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "edit": "تحرير",
+    "delete": "حذف",
+    "submit": "إرسال",
+    "morePages": "عرض المزيد من الصفحات",
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة"
+  },
+  "headers": {
+    "home": "الصفحة الرئيسية",
+    "blogs": "المدونات",
+    "navigation": "تنقل الموقع",
+    "navigationDescription": "الوصول إلى الأقسام الرئيسية لموقعنا على الإنترنت",
+    "pricing": "الأسعار",
+    "voiceDesign": "تصميم الصوت",
+    "brandName": "منتزه الموجهات",
+    "apiMonitor": "مراقب API",
+    "chatgptMirrors": "مرايا ChatGPT",
+    "aiGateway": "بوابة الذكاء الاصطناعي",
+    "vpn": "VPN",
+    "keywordTool": "أداة الكلمات المفتاحية",
+    "backlinks": "الروابط الخلفية",
+    "configGuide": "دليل التكوين",
+    "announcement": "إعلان",
+    "joinGroup": "انضم للمجموعة",
+    "announcementTitle": "انضم إلى مجتمعنا",
+    "announcementDesc": "امسح الرمز أدناه للانضمام إلى مجموعة QQ الخاصة بنا",
+    "qqGroupQR": "رمز مجموعة QQ"
+  },
+  "pages": {
+    "aiTools": {
+      "title": "تنقل بوابة واجهة النموذج الكبير",
+      "description": "اكتشف أحدث وأشهر أدوات الذكاء الاصطناعي، بوابات واجهة النماذج الكبيرة، مواقع مرايا ChatGPT لتعزيز إنتاجيتك",
+      "searchPlaceholder": "البحث عن أدوات الذكاء الاصطناعي...",
+      "noResultsTitle": "لم يتم العثور على أدوات",
+      "noResultsDescription": "جرب تعديل كلمات البحث أو اختيار فئة أخرى",
+      "toolsCount": "إجمالي {count} أداة ذكاء اصطناعي مجمعة",
+      "showingCount": " · عرض {count} حالياً"
+    },
+    "apiMonitor": {
+      "title": "لوحة مراقبة إعادة توجيه Claude Code",
+      "description": "مراقبة في الوقت الفعلي لحالة خدمة إعادة توجيه Claude Code"
+    },
+    "backlinks": {
+      "title": "أفضل تحليل لمواقع تقديم الضيف المجاني (2025)",
+      "description": "تحليل شامل ومقارنة لمواقع تقديم الضيف المجاني. يتم ترتيب المواقع حسب معدل المراجعة وسرعة التقديم وعملية المراجعة.",
+      "banner": "ارفع تصنيف نطاق موقعك إلى {value1} في مجرد {value2}، تماماً {value3}",
+      "shareButtons": {
+        "email": "البريد الإلكتروني",
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "wechat": "WeChat",
+        "telegram": "Telegram",
+        "more": "المزيد"
+      },
+      "table": {
+        "rank": "الترتيب",
+        "recommended": "مُوصى به",
+        "website": "الموقع",
+        "category": "فئة المجال",
+        "contentPositioning": "تموضع المحتوى",
+        "contentPositioningTooltip": "أنواع المحتوى المناسبة وزوايا هذا الموقع",
+        "mainContact": "طريقة الاتصال الرئيسية",
+        "actions": "الإجراءات",
+        "visitSubmissionPage": "زيارة صفحة التقديم",
+        "highlyRecommended": "موصى به بشدة"
+      },
+      "aboutTitle": "حول هذه القائمة",
+      "aboutDescription": "تحتوي هذه القائمة على {count} موقع تقديم ضيف تم التحقق منها. تم تقييم كل موقع بعناية، بما في ذلك تصنيف المجال الخاص به، صعوبة المراجعة، متطلبات التقديم ومؤشرات رئيسية أخرى. يتم التحديث بانتظام لضمان دقة المعلومات."
+    },
+    "chatgptMirrors": {
+      "title": "تنقل مرايا ChatGPT",
+      "description": "مجموعة مختارة من مرايا الدردشة عالية الجودة لـ ChatGPT وClaude وغيرها من مواقع الذكاء الاصطناعي، يمكن الوصول إليها بدون VPN",
+      "statusCounts": {
+        "online": "متصل",
+        "unstable": "غير مستقر",
+        "offline": "غير متصل"
+      },
+      "searchPlaceholder": "البحث عن مواقع المرايا...",
+      "filterButtons": {
+        "all": "الكل",
+        "onlineOnly": "المتصل فقط",
+        "unstable": "غير مستقر",
+        "freeOnly": "المجاني فقط"
+      },
+      "noResultsTitle": "لم يتم العثور على مواقع مرايا",
+      "noResultsDescription": "جرب تعديل كلمات البحث أو معايير التصفية",
+      "mirrorsCount": "إجمالي {count} موقع مرايا مجمع",
+      "showingCount": " · عرض {count} حالياً",
+      "usageInstructions": "تعليمات الاستخدام",
+      "usageNotes": [
+        "مواقع المرايا مقدمة من أطراف ثالثة، يرجى تقييم الأمان قبل الاستخدام",
+        "قد تتطلب بعض المواقع التسجيل أو تسجيل الدخول للاستخدام",
+        "قد تتغير مرونة مواقع المرايا في أي وقت، يرجى ملاحظة خيارات النسخ الاحتياطي",
+        "لا ينصح بإدخال معلومات حساسة أو بيانات مهمة على مواقع المرايا",
+        "هذا الموقع يوفر فقط خدمات التنقل وليس مسؤولاً عن محتوى وخدمات مواقع المرايا"
+      ]
+    },
+    "configGuide": {
+      "title": "دليل التكوين",
+      "description": "تكوين بسيط لاستخدام خدمة إعادة توجيه واجهة الذكاء الاصطناعي",
+      "backToHome": "العودة إلى الصفحة الرئيسية",
+      "steps": {
+        "step1": {
+          "title": "اختر مزود خدمة إعادة التوجيه والتسجيل",
+          "description": "اختر مزود خدمة متصل من لوحة المراقبة في الصفحة الرئيسية وانقر على رابط الدعوة للتسجيل",
+          "tip": "يُنصح باختيار مزود خدمة بحالة متصلة ووقت استجابة منخفض",
+          "viewMonitorPanel": "عرض لوحة المراقبة"
+        },
+        "step2": {
+          "title": "الحصول على مفتاح API",
+          "description": "بعد التسجيل وتسجيل الدخول، احصل على مفتاح API الخاص بك من صفحة {apiToken} في خلفية مزود الخدمة",
+          "stepsTitle": "الخطوات:",
+          "steps": [
+            "انقر على زر {addToken}",
+            "املأ الاسم بحرية، يُنصح بتعيين الحصص إلى {unlimitedQuota}",
+            "حافظ على خيارات أخرى في الإعدادات الافتراضية",
+            "مفتاح API الذي تم الحصول عليه يبدأ بـ {codeSk}"
+          ],
+          "warning": "يرجى الاحتفاظ بمفتاح API الخاص بك بأمان وعدم مشاركته مع الآخرين"
+        },
+        "step3": {
+          "title": "تكوين متغيرات البيئة",
+          "description": "تكوين مفتاح API و Base URL في مشروعك",
+          "methods": {
+            "method1": {
+              "title": "الطريقة الأولى: استخدام متغيرات البيئة (موصى بها)",
+              "codeBlockTitle": "تعيين مفتاح API و Base URL (باستخدام anyrouter كمثال)"
+            },
+            "method2": {
+              "title": "الطريقة الثانية: التكوين في الكود (Python)",
+              "codeBlockTitle": "مثال تكوين Python"
+            },
+            "method3": {
+              "title": "الطريقة الثالثة: التكوين في الكود (Node.js)",
+              "codeBlockTitle": "مثال تكوين Node.js"
+            },
+            "method4": {
+              "title": "الطريقة الرابعة: استخدام cURL للاختبار",
+              "codeBlockTitle": "مثال اختبار cURL"
+            }
+          }
+        },
+        "step4": {
+          "title": "ابدأ الاستخدام",
+          "description": "بعد التكوين، يمكنك استخدام خدمة إعادة التوجيه تماماً مثل OpenAI API الأصلي",
+          "tipTitle": "تلميح:",
+          "tipDescription": "جميع خدمات إعادة التوجيه متوافقة بالكامل مع تنسيق OpenAI API الرسمي، لا حاجة لتعديل منطق الكود",
+          "supportedModels": "النماذج الرئيسية المدعومة:"
+        }
+      },
+      "notes": {
+        "title": "⚠️ ملاحظات",
+        "items": [
+          "يرجى الاحتفاظ بمفتاح API الخاص بك بأمان وعدم مشاركته مع الآخرين أو إرساله إلى مستودعات الكود العامة",
+          "يُنصح باختيار مزودي خدمة متصلين ومستقرين من لوحة المراقبة",
+          "قد تختلف أسعار مزودي الخدمة المختلفين والنماذج المدعومة، يرجى فحص تعليمات مزود الخدمة بعناية",
+          "API Base URL ينتهي عادة بـ {codeV1}",
+          "إذا واجهت مشاكل، يمكنك النقر على زر \"انضم للمجموعة\" في الزاوية اليمنى العليا للانضمام إلى مجموعة QQ للمساعدة"
+        ]
+      }
+    },
+    "keywordTool": {
+      "title": "أداة استعلام حجم البحث عن الكلمات الرئيسية في Google",
+      "description": "أدخل كلمات مفتاحية للحصول على حجم البحث الشهري و CPC وبيانات المنافسة في وقت واحد",
+      "buttons": {
+        "startQuery": "بدء الاستعلام",
+        "clearing": "جاري المسح...",
+        "querying": "جاري الاستعلام...",
+        "clear": "مسح"
+      },
+      "statusMessages": {
+        "enterAtLeastOneKeyword": "يرجى إدخال كلمة رئيسية واحدة على الأقل",
+        "querying": "استعلام الدفعة {current}/{total} ({count} كلمة مفتاحية)...",
+        "batchFailed": "فشل استعلام الدفعة {batchNumber}: {error}",
+        "queryCompleted": "اكتمل الاستعلام! تم استرداد بيانات {count}/{total} كلمة مفتاحية بنجاح",
+        "queryError": "خطأ في الاستعلام: {error}",
+        "queryInProgress": "جاري الاستعلام، هل أنت متأكد من المسح؟",
+        "queryingPleaseWait": "جاري الاستعلام، يرجى الانتظار..."
+      },
+      "stats": {
+        "total": "الإجمالي",
+        "success": "نجح",
+        "failed": "فشل"
+      }
+    },
+    "vpn": {
+      "title": "توصيات VPN",
+      "description": "خدمات VPN عالية الجودة مختارة لمساعدتك في الوصول بأمان واستقرار إلى الإنترنت العالمي",
+      "evaluationBasis": "على أساس السرعة والاستقرار وحماية الخصوصية وتقييمات متعددة الأبعاد أخرى",
+      "searchPlaceholder": "البحث عن خدمات VPN...",
+      "sortButtons": {
+        "default": "الترتيب الافتراضي",
+        "byRating": "حسب التقييم",
+        "byPrice": "حسب السعر"
+      },
+      "noResultsTitle": "لم يتم العثور على خدمات VPN ذات صلة",
+      "noResultsDescription": "جرب تعديل كلمات البحث",
+      "stats": {
+        "totalRecommended": "إجمالي {count} خدمة VPN عالية الجودة موصى بها",
+        "currentlyShowing": " · عرض {count} حالياً"
+      },
+      "selectionGuide": {
+        "title": "كيفية اختيار VPN المناسب؟",
+        "speedPriority": "أولوية السرعة: إذا كان يستخدم أساساً لمشاهدة مقاطع الفيديو والتحميل، اختر ExpressVPN أو StrongVPN",
+        "privacyPriority": "أولوية الخصوصية: إذا ركزت على حماية الخصوصية، أوصي بـ PrivateVPN أو NordVPN",
+        "valuePriority": "أولوية القيمة: Just My Socks وLantern يوفران قيمة ممتازة مقابل المال",
+        "chinaUsers": "المستخدمون الصينيون: StrongVPN (يدعم Alipay) وAstrill VPN (China专线) هما الأنسب"
+      },
+      "disclaimer": {
+        "title": "إشعار مهم",
+        "items": [
+          "قد تختلف توفر خدمات VPN حسب المنطقة والوقت، يُنصح باختيار خدمات مع ضمانات الاسترداد",
+          "يرجى الامتثال للقوانين واللوائح المحلية عند استخدام VPN، استخدم فقط للأغراض القانونية",
+          "قد تتطلب بعض VPNs تكوين خاص للعمل في الصين، يرجى استشارة خدمة العملاء قبل الشراء",
+          "معلومات السعر قد تتغير في أي وقت، رهناً بالسعر الفعلي على الموقع الرسمي",
+          "يُنصح بإعطاء الأولوية للخدمات التي تقدم تجارب مجانية أو ضمانات استرداد، اختبر قبل الشراء",
+          "لا تنشط عمليات حساسة (مثل المدفوعات المصرفية) أثناء الاتصال بـ VPN ما لم تتأكد من أن VPN آمن وموثوق"
+        ]
+      }
+    }
+  },
+  "siteInfo": {
+    "brandName": "Next Template",
+    "description": "Think, Write, Code",
+    "meta": {
+      "title": "Next Template - Think, Write, Code",
+      "description": "A responsive, lightweight, and accessible front-end framework using Next.js, TypeScript, and Tailwind CSS."
+    }
+  },
+  "blog": {
+    "postNotFound": "لم يتم العثور على المنشور",
+    "postNotFoundDescription": "لم يتم العثور على مشاركة مدونة التي تبحث عنها.",
+    "publishedAt": "نُشر في {date}"
+  },
+  "blogs": {
+    "pageTitle": "مشاركات المدونة",
+    "metaTitle": "رؤى ومقالات",
+    "metaDescription": "استكشف أحدث مقالاتنا حول تحليل الجمال، وتكنولوجيا الذكاء الاصطناعي، وجماليات الوجه. اكتشف رؤى الخبراء، والنصائح، والاتجاهات في عالم تقييم الجمال المدعوم بالذكاء الاصطناعي.",
+    "noArticles": "لا تتوفر مقالات",
+    "publishedAt": "نُشر في {date}"
+  },
+  "plan": {
+    "notFound": "لم يتم العثور على الخطة",
+    "priceUnit": "/ شهر",
+    "tokens": "رموز",
+    "featuresTitle": "الميزات",
+    "light": {
+      "name": "خطة الضوء",
+      "description": "مثالي للاستخدام الخفيف والاختبار",
+      "features": {
+        "0": "إنشاء محتوى غير محدود",
+        "1": "رموز Flow",
+        "2": "الوصول إلى مجتمع Flow"
+      }
+    },
+    "standard": {
+      "name": "الخطة القياسية",
+      "description": "مثالية للمستخدمين العاديين والفرق الصغيرة",
+      "features": {
+        "0": "إنشاء محتوى غير محدود",
+        "1": "رموز Flow",
+        "2": "الوصول إلى مجتمع Flow",
+        "3": "صور عالية الجودة"
+      }
+    },
+    "professional": {
+      "name": "خطة احترافية",
+      "description": "مثالية للمستخدمين المتقدمين والمشاريع الكبيرة",
+      "features": {
+        "0": "إنشاء محتوى غير محدود",
+        "1": "رموز Flow",
+        "2": "الوصول إلى مجتمع Flow",
+        "3": "صور عالية الجودة",
+        "4": "ميزات مميزة"
+      }
+    }
+  },
+  "tokenPackage": {
+    "tokensLabel": "رموز",
+    "oneTime": "مرة واحدة",
+    "trial": {
+      "name": "حزمة تجريبية"
+    },
+    "small": {
+      "name": "باقة صغيرة"
+    },
+    "medium": {
+      "name": "باقة متوسطة"
+    }
+  },
+  "pricing": {
+    "metaTitle": "خطط التسعير - اختر خطتك المثالية",
+    "metaDescription": "اختر من بين خطط التسعير المرنة وحزم الرموز الخاصة بنا. ابدأ بخطة Light الخاصة بنا أو قم بالترقية إلى Professional للحصول على ميزات متقدمة.",
+    "title": "اختر خطتك",
+    "tokensTitle": "رموز التدفق"
+  },
+  "home": {
+    "metaTitle": "مولد تحويل النص إلى كلام بالذكاء الاصطناعي مجانًا - توليف صوت عالي الجودة",
+    "metaDescription": "حوّل النص إلى كلام مجانًا باستخدام مُولّد الصوت بالذكاء الاصطناعي المتقدم الخاص بنا. أصوات عالية الجودة وطبيعية مع تحويل فوري. لا يلزم التسجيل.",
+    "title": "مولد تحويل النص إلى كلام بالذكاء الاصطناعي مجانًا",
+    "description": "حوّل أي نص إلى كلام طبيعي وعالي الجودة باستخدام تقنية الذكاء الاصطناعي المتقدمة لدينا. مجاني تمامًا مع تركيب صوت احترافي.",
+    "contentSections": {
+      "section1Title": "استمع: يمكن للذكاء الاصطناعي الآن التحدث بالصوت الذي تفتقده",
+      "section1Content1": "هل سبق لك أن وجدت نفسك في وقت متأخر من الليل، تسحب شريط كاسيت قديمًا مغطى بالغبار وتضغط على زر التشغيل، فقط لتسمع الصوت المألوف لأحد أحبائك المتوفين؟ لتسمع الطقطقة والهمهمة تتلاشى لصالح صوت من الماضي، دافئ وحاضر، كما لو كان في الغرفة المجاورة، يهمس باسمك.",
+      "section1Content2": "هذه المشهد، الذي كان محصورًا ذات مرة في ذكرياتنا وأحلامنا اليقظة، أصبح الآن واقعًا ملموسًا. مجال **AIGC (المحتوى الذي تم إنشاؤه بواسطة الذكاء الاصطناعي)** بأكمله، وخاصة في مجال **توليد الصوت بالذكاء الاصطناعي**، يجعل هذا الحلم حقيقة واقعة. تقنيته الأساسية، **TTS (تحويل النص إلى كلام)**، لا تستطيع فقط إحياء صوتًا نتوق إلى سماعه، بل يمكنها أيضًا جعل هذا الصوت يقول أي شيء نريده.",
+      "section1Content3": "هذا ليس مجرد قفزة تكنولوجية؛ بل هو إعادة تشكيل عميقة لعلاقتنا بالصوت والعاطفة والذاكرة.",
+      "section2Title": "عندما بدأت الآلات تتحدث",
+      "section2Content1": "نتذكر جميعًا الأصوات الروبوتية الخالية من الحياة لأجهزة الكمبيوتر وأنظمة تحديد المواقع العالمية (GPS) المبكرة. كانت كل كلمة مسطحة ورتيبة ومعقمة، كما لو كانت معصورة من علبة صفيح. كانت تلك الحقبة من تركيب الكلام تشبه روبوتًا يتعلم تقليد الكلام البشري - كان بإمكانه إصدار أصوات، لكنه لم يستطع نقل أي دفء.",
+      "section2Content2": "تُعزى المحاولات الأولى إلى ثلاثينيات القرن العشرين مع Voder من Bell Labs، وهي آلة ضخمة تعتبر سلف تخليق الصوت. كان على المشغل عزفها مثل آلة الأرغن، باستخدام يديه وقدميه للتلاعب بنغمة الصوت ونبرته. كانت حقبة استخدمت فيها أكثر الطرق تعقيدًا لتحقيق التحيات البسيطة.",
+      "section2Content3": "لم يكن الأمر حتى أوائل العقد الأول من القرن الحادي والعشرين، مع الأساليب القائمة على التعلم الإحصائي، بدأت الآلات في \"التعلم\" من مكتبات واسعة من التسجيلات البشرية. كانت الصوت الناتج تحسينًا، لكنه لا يزال يبدو وكأنه ممثل خدمة عملاء مهذب بشكل مفرط: واضح ومفهوم، ولكنه خالٍ تمامًا من الشخصية.",
+      "section3Title": "سحر استنساخ الصوت",
+      "section4Title": "Beyond Speech: AI Is Learning to Sing and Create",
+      "section4Content1": "طموح الذكاء الاصطناعي في مجال الصوت لا يقتصر على الكلام. إذا كنت تتابع أخبار التكنولوجيا، فمن المؤكد أنك سمعت عن **Suno** و **Udio**. هذه هي نجوم **Text-to-Music** الصاعدة. يمكن للمستخدم ببساطة كتابة وصف أو مجموعة من الكلمات، وفي ثوانٍ، يقوم الذكاء الاصطناعي بإنشاء أغنية كاملة الإنتاج، مع غناء وآلات وترتيب. حدود ما هو ممكن بالصوت تعاد رسمها أمام أعيننا.",
+      "section5Title": "روح الصوت: الجبهة النهائية لـ TTS العاطفي",
+      "section5Content1": "سواء كان استنساخًا صوتيًا أو موسيقى مُولَّدة بالذكاء الاصطناعي، بمجرد أن تحلّ التكنولوجيا مشكلة الصوت \"واقعيًا\"، فإنها تواجه التحدي النهائي: كيف تنقل المشاعر؟",
+      "section5Content2": "لنأخذ العبارة \"أنا أحبك\". همسًا في خضم العاطفة، إنه مليء بالحلويات. يختنق في وداع مليء بالدموع، إنه ثقيل بالندم. صرخة في لقاء بهيج، إنه مليء بالإثارة. تحمل الصوت البشري هذه الطبقات المعقدة بشكل لا يصدق من المشاعر، وهذا هو الخط الفاصل الأخير والأكثر صعوبة لإنشاء **\"TTS معبر\"** أو **\"TTS عاطفي\"** حقيقي.",
+      "section5Content3": "ابتكر المطورون حلاً رائعًا: إقران **نموذج لغوي كبير (LLM)** كـ \"مخرج\" مع نموذج TTS كـ \"ممثل\". يقرأ \"المخرج\" LLM السيناريو ويفهم السياق والعاطفة، ثم يقدم تعليمات مفصلة لـ \"الممثل\" TTS. هذا الهيكل هو المفتاح لتحقيق **\"TTS قابل للتحكم\"** حقًا. في المستقبل، سيكون لمساعدي الصوت وحتى **الروبوتات البشرية التي تعمل بالذكاء الاصطناعي** أرواح أكثر إقناعًا وواقعية بفضله.",
+      "section6Title": "ثمن العاطفة: أين تتعلم الذكاء الاصطناعي الإنسانية؟",
+      "section6Content1": "لكن هذا الحل يطرح مفارقة عميقة: لتعليم الذكاء الاصطناعي عاطفة، تحتاج إلى كميات هائلة من بيانات الصوت التي تم تصنيفها عاطفياً. ومع ذلك، فإن العاطفة ذاتية وخاصة للغاية. كيف تقيس الفرق بين \"خيبة أمل خفيفة\" و \"يأس عميق\"؟",
+      "section6Content2": "الأهم من ذلك، أن كل مقطع صوتي عاطفي يستخدم لتدريب هذه النماذج يأتي من إنسان حقيقي. قد تأتي تلك التسجيلات \"الغاضبة\" من ممثل يقوم بتوجيه ذكرى مؤلمة. قد تحمل تلك المقاطع \"الحزينة\" عبء حزن حقيقي لراوي. الذكاء الاصطناعي لا يتعلم الأشكال الموجية فحسب، بل يتعلم من جوهر العاطفة البشرية المتجمد.",
+      "section7Title": "Final Thoughts: Beyond the Tech, What Should We Cherish?",
+      "section7Content1": "As we stand at this technological crossroads, on the verge of watching AI master one of humanity's warmest skills, we should pause and ask ourselves: what do we want this technology to do for us?",
+      "section7Content2": "Sound is a vessel for emotion, a container for memory, a bridge between souls. As AI becomes better and better at imitation, perhaps we will come to appreciate the authentic, irreplaceable, and heartfelt sounds of real human voices even more.",
+      "section7Content3": "لأن الأمر لا يتعلق بمدى تقدم التكنولوجيا، فالأصوات الأكثر تأثيرًا ستكون دائمًا تلك التي تحمل مشاعر حقيقية وتجارب حقيقية وحياة حقيقية.",
+      "section7Content4": "في تلك الأصوات تكمن ماضينا وحبنا وكل آمالنا في المستقبل.",
+      "section3Content1": "لقد حدث السحر الحقيقي في السنوات القليلة الماضية. مع ظهور التعلم العميق والنماذج واسعة النطاق، دخلنا حقبة **\"Zero-shot Voice Cloning\"**. وهذا يعني أن الذكاء الاصطناعي لم يعد بحاجة إلى ساعات من التدريب المخصص لصوت معين. الآن، يمكنه التقاط جوهر صوت شخص ما مع بضع ثوانٍ فقط من الصوت.",
+      "section3Content2": "نماذج رائدة مثل **ElevenLabs** و **Voice Engine من OpenAI** و **VALL-E** من Microsoft في طليعة هذه الثورة. يمكنهم التقاط ليس فقط طبقة الصوت بدقة، ولكن أيضًا أسلوب الكلام والتلميحات العاطفية الدقيقة. والأكثر إثارة للدهشة هو ظهور **Cross-lingual Voice Cloning**، وهي تقنية تتيح لك التحدث بطلاقة باللغة الفرنسية أو اليابانية بصوتك الفريد، دون الحاجة إلى تعلم اللغة.",
+      "section3Content3": "الأمر الأكثر تشجيعًا هو أن قوة مجتمعات المصادر المفتوحة تمنع هذه التكنولوجيا من الاحتكار من قبل عدد قليل من عمالقة التكنولوجيا. تمكن مشاريع مفتوحة المصدر مثل **GPT-SoVITS** أي شخص لديه مهارات تقنية أساسية من تجربة استنساخ الصوت على جهاز الكمبيوتر الخاص به. يمكن للأب الذي يبتعد في رحلة عمل تسجيل قصة جديدة قبل النوم لطفله بصوته الخاص. يمكن للابنة أن تحافظ على صوت والدتها المتغير، وتحافظ على هذا الدفء إلى الأبد.",
+      "mainTitle": "عندما وجدت الآلات صوتها: قصة كلام الذكاء الاصطناعي",
+      "mainDescription": "استكشف التحول العميق في تقنية تحويل النص إلى كلام من الأصوات الباردة الميكانيكية إلى أصوات الذكاء الاصطناعي التي يمكنها إحياء الذكريات ونقل المشاعر وسد الفجوة بين الاتصال الرقمي والإنساني."
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "question1": "ما هو تحويل النص إلى كلام وكيف يعمل؟",
+      "answer1": "تحويل النص إلى كلام (TTS) هو تقنية تحول النص المكتوب إلى كلام طبيعي. تستخدم منصتنا نماذج الذكاء الاصطناعي المتقدمة من ElevenLabs لإنشاء أصوات عالية الجودة تشبه الصوت البشري من إدخال النص الخاص بك. ما عليك سوى إدخال النص وتحديد صوت والحصول على مخرجات صوتية فورية.",
+      "question2": "ما هي خيارات الصوت المتاحة؟",
+      "answer2": "نقدم مجموعة متنوعة من الأصوات التي تم إنشاؤها بواسطة الذكاء الاصطناعي من خلال ElevenLabs، بما في ذلك جنسيات مختلفة واللهجات وأنماط الكلام. يمكنك أيضًا تصميم أصوات مخصصة باستخدام ميزة تصميم الصوت لدينا من خلال تقديم وصف لخصائص الصوت المطلوبة.",
+      "question3": "ما هي تنسيقات الصوت المدعومة؟",
+      "answer3": "يقوم خدمة تحويل النص إلى كلام الخاصة بنا بإنتاج ملفات صوتية MP3 عالية الجودة بتردد 44.1 كيلو هرتز ومعدل بت 64 كيلو بت في الثانية، مما يضمن جودة صوت ممتازة مع الحفاظ على أحجام ملفات معقولة لتسليم وتنزيل الويب.",
+      "question4": "هل هناك أي قيود على الاستخدام أو تكاليف؟",
+      "answer4": "تستخدم المنصة نظامًا يعتمد على الرموز حيث تستهلك توليد الكلام رموزًا بناءً على مدة الصوت الذي تم إنشاؤه. تكلف كل ثانية من الكلام الذي تم إنشاؤه عددًا معينًا من الرموز. يمكنك مراقبة استخدام الرموز الخاص بك في لوحة معلومات حسابك.",
+      "question5": "هل يمكنني استخدام الكلام الناتج تجاريًا؟",
+      "answer5": "تعتمد حقوق الاستخدام على شروط خدمة ElevenLabs وخطة اشتراكك. بشكل عام، يمكنك استخدام الكلام الناتج للمشاريع الشخصية والتجارية، ولكن يرجى مراجعة شروط الترخيص المحددة لحالتك. تأكد دائمًا من أن لديك الحق في تحويل محتوى النص الذي تستخدمه."
+    }
+  },
+  "hero": {
+    "tagline": "Unified Large Model Interface Gateway",
+    "title": "Better Price",
+    "subtitle": "Better Stability",
+    "description": "Simply replace the model base URL with our relay interface to get started",
+    "description2": "Support for multiple mainstream large models with unified interface format and stable service",
+    "viewApiList": "View API List",
+    "documentation": "Documentation",
+    "realtimeMonitoring": "Real-time Monitoring",
+    "highAvailability": "High Availability",
+    "competitivePricing": "Competitive Pricing"
+  },
+  "features": {
+    "title": "Why Choose Us",
+    "description": "We provide the most comprehensive and professional AI tool navigation service",
+    "items": {
+      "smartSearch": {
+        "title": "Smart Search",
+        "description": "Powerful search engine with multi-dimensional filtering to quickly find the AI tools you need"
+      },
+      "preciseCategories": {
+        "title": "Precise Categories",
+        "description": "Categorized by function, industry, price and other dimensions for easy browsing of related tools"
+      },
+      "professionalReview": {
+        "title": "Professional Review",
+        "description": "Each tool is thoroughly tested and professionally evaluated by our team"
+      },
+      "realTimeUpdate": {
+        "title": "Real-time Update",
+        "description": "Daily updates on the latest AI tools to ensure you don't miss any innovative products"
+      },
+      "secure": {
+        "title": "Secure & Reliable",
+        "description": "All recommended tools are security audited to protect your data privacy"
+      },
+      "quickAccess": {
+        "title": "Quick Access",
+        "description": "One-click access to tool official websites, saving your search time"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "description": "Three simple steps to find the most suitable AI tools for you",
+    "steps": {
+      "browse": {
+        "title": "Browse & Search",
+        "description": "Browse by category or use the search function to quickly find the type of AI tools you need"
+      },
+      "details": {
+        "title": "View Details",
+        "description": "Read detailed tool introductions, feature lists, user reviews and professional evaluations"
+      },
+      "start": {
+        "title": "Get Started",
+        "description": "One-click access to the tool's official website, start using it immediately to improve your work efficiency"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "User Reviews",
+    "description": "See how other users rate our service",
+    "items": {
+      "user1": {
+        "name": "Zhang Wei",
+        "role": "Product Manager",
+        "company": "Tech Company",
+        "content": "This platform has saved me a lot of time finding AI tools. The reviews for each tool are very professional and detailed. Highly recommended!"
+      },
+      "user2": {
+        "name": "Li Na",
+        "role": "Designer",
+        "company": "Design Studio",
+        "content": "As a designer, I often need to use various AI tools. This navigation website helps me quickly find the most suitable tools, greatly improving work efficiency."
+      },
+      "user3": {
+        "name": "Wang Qiang",
+        "role": "Entrepreneur",
+        "company": "Startup",
+        "content": "Clear categories, timely updates, and detailed introductions for each tool. For our startup team that needs rapid iteration, this platform is extremely valuable."
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Common questions and answers about AI Navigation",
+    "items": {
+      "q1": {
+        "question": "What is AI Navigation?",
+        "answer": "AI Navigation is a professional AI tool aggregation platform that carefully curates and continuously updates the world's best AI tools and websites, helping users quickly find the most suitable AI solutions."
+      },
+      "q2": {
+        "question": "What's the difference between free and paid versions?",
+        "answer": "The free version provides access to 200+ basic AI tools and basic search functionality. The paid version provides access to all 500+ tools, advanced search, professional evaluation reports, priority customer support and more."
+      },
+      "q3": {
+        "question": "How do you ensure the quality of recommended tools?",
+        "answer": "Our professional team conducts in-depth testing and evaluation of each tool, including functionality, usability, security and other dimensions. Only tools that pass strict review are included in our platform."
+      },
+      "q4": {
+        "question": "How often are tools updated?",
+        "answer": "We update platform content daily, including new tools, updated tool information, and user reviews. Professional plan users also receive weekly curated recommendations."
+      },
+      "q5": {
+        "question": "Can I request a refund?",
+        "answer": "We offer a 7-day no-questions-asked refund guarantee. If you're not satisfied with our service, you can request a full refund within 7 days of purchase."
+      },
+      "q6": {
+        "question": "What special services does the enterprise plan include?",
+        "answer": "In addition to all the features of the professional plan, the enterprise plan includes team collaboration features, customized recommendations, dedicated account manager, API access, enterprise-grade security assurance, and customized training services."
+      }
+    }
+  },
+  "monitor": {
+    "title": "API Interface Monitoring Dashboard",
+    "description": "Real-time monitoring of relay interface availability",
+    "stats": {
+      "totalSites": "Total Sites",
+      "lastUpdate": "Last Update"
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline"
+    },
+    "serviceCard": {
+      "inviteLink": "Invite Link",
+      "responseTime": "Response Time",
+      "lastCheck": "Last Check"
+    }
+  },
+  "logo": {
+    "alt": "Site logo"
+  }
+}

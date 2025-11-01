@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Star, Zap, Shield, TrendingUp, CreditCard } from "lucide-react"
-import Link from "next/link"
+import { Link } from '@/i18n/navigation'
 
 interface VPNCardProps {
   vpn: VPN
@@ -26,7 +26,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
   }
 
   return (
-    <Card className="group relative overflow-hidden transition-all hover:shadow-xl hover:scale-[1.02] h-full flex flex-col border-2 hover:border-violet-500/50">
+    <Card className="group relative overflow-hidden transition-all hover:shadow-xl hover:scale-[1.02] h-full flex flex-col border-2 hover:border-orange-500/50">
       {/* 排名角标 */}
       {rank && rank <= 3 && (
         <div className="absolute top-0 right-0 z-10">
@@ -45,7 +45,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
         {/* 标题和评分 */}
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1">
-            <h3 className="font-bold text-xl mb-2 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            <h3 className="font-bold text-xl mb-2 bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
               {vpn.name}
             </h3>
             <div className="flex items-center gap-2 mb-2">
@@ -67,7 +67,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
 
         {/* 价格 */}
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-bold text-violet-600">{vpn.price}</span>
+          <span className="text-2xl font-bold text-orange-600">{vpn.price}</span>
         </div>
 
         {/* 描述 */}
@@ -79,7 +79,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
         {vpn.highlights && vpn.highlights.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {vpn.highlights.map((highlight, index) => (
-              <Badge key={index} className="bg-gradient-to-r from-violet-600 to-purple-600 text-white">
+              <Badge key={index} className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
                 {highlight}
               </Badge>
             ))}
@@ -94,7 +94,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
           <div className="grid grid-cols-1 gap-2">
             {vpn.features.slice(0, 6).map((feature, index) => (
               <div key={index} className="flex items-center gap-2 text-sm">
-                <div className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+                <div className="h-1.5 w-1.5 rounded-full bg-orange-500" />
                 <span>{feature}</span>
               </div>
             ))}
@@ -137,7 +137,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
         >
           <Button
             size="lg"
-            className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 font-semibold"
+            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 font-semibold"
           >
             立即访问
             <ExternalLink className="ml-2 h-4 w-4" />

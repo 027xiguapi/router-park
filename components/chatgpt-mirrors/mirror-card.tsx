@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, CheckCircle2, XCircle, AlertCircle, Lock, Sparkles } from "lucide-react"
-import Link from "next/link"
+import { Link } from '@/i18n/navigation'
 
 interface MirrorCardProps {
   mirror: ChatGPTMirror

@@ -1,5 +1,0 @@
-{
-  "postNotFound": "Publicación no encontrada",
-  "postNotFoundDescription": "No se pudo encontrar la entrada de blog que estás buscando.",
-  "publishedAt": "Publicado en {date}"
-}

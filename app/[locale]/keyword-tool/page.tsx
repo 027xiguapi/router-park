@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { KeywordInput } from "@/components/keyword-tool/keyword-input"
 import { QuerySettings } from "@/components/keyword-tool/query-settings"
 import { ResultsTable } from "@/components/keyword-tool/results-table"
@@ -23,8 +24,9 @@ interface QueryStats {
 }
 
 export default function KeywordToolPage() {
+  const t = useTranslations("pages.keywordTool")
   const [keywords, setKeywords] = useState<string>("")
-  const [countryId, setCountryId] = useState<string>("")
+  const [countryId, setCountryId] = useState<string>("global")
   const [batchSize, setBatchSize] = useState<number>(986)
   const [delay, setDelay] = useState<number>(1)
   const [isQuerying, setIsQuerying] = useState<boolean>(false)
@@ -55,7 +57,7 @@ export default function KeywordToolPage() {
     const buildRequestBody = (keywords: string[]) => ({
       keywords,
       includeAdultKeywords: true,
-      geoTargetConstants: geoId ? [`geoTargetConstants/${geoId}`] : [],
+      geoTargetConstants: geoId && geoId !== "global" ? [`geoTargetConstants/${geoId}`] : [],
       aggregateMetrics: {
         aggregateMetricTypes: ['DEVICE']
       },
@@ -122,7 +124,7 @@ export default function KeywordToolPage() {
     const keywordList = getKeywordList()
 
     if (keywordList.length === 0) {
-      showStatus('请输入至少一个关键词', 'warning')
+      showStatus(t('statusMessages.enterAtLeastOneKeyword'), 'warning')
       return
     }
 
@@ -139,7 +141,7 @@ export default function KeywordToolPage() {
         const batch = keywordList.slice(i, i + batchSize)
         const batchNumber = Math.floor(i / batchSize) + 1
 
-        showStatus(`正在查询第 ${batchNumber}/${totalBatches} 批 (${batch.length} 个关键词)...`, 'info')
+        showStatus(t('statusMessages.querying', { batchNumber, totalBatches, count: batch.length }), 'info')
 
         try {
           const jsonData = await queryKeywords(batch, countryId)
@@ -156,7 +158,7 @@ export default function KeywordToolPage() {
           }
         } catch (error: any) {
           console.error(`第 ${batchNumber} 批查询失败:`, error)
-          showStatus(`第 ${batchNumber} 批查询失败: ${error.message}`, 'error')
+          showStatus(t('statusMessages.batchFailed', { batchNumber, error: error.message }), 'error')
         }
       }
 
@@ -167,16 +169,16 @@ export default function KeywordToolPage() {
         success: processedCount,
         failed: keywordList.length - processedCount
       })
-      showStatus(`查询完成！成功获取 ${processedCount}/${keywordList.length} 个关键词数据`, 'success')
+      showStatus(t('statusMessages.queryCompleted', { count: processedCount, total: keywordList.length }), 'success')
     } catch (error: any) {
       setIsQuerying(false)
-      showStatus(`查询出错: ${error.message}`, 'error')
+      showStatus(t('statusMessages.queryError', { error: error.message }), 'error')
     }
   }
 
   const handleClear = () => {
     if (isQuerying) {
-      if (!confirm('查询进行中，确定要清空吗？')) {
+      if (!confirm(t('statusMessages.queryInProgress'))) {
         return
       }
     }
@@ -187,13 +189,13 @@ export default function KeywordToolPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-600 py-8 px-4">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="bg-background rounded-xl shadow-2xl overflow-hidden">
+        <div className="bg-background rounded-xl shadow-2xl overflow-hidden border border-border">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-8 text-center">
-            <h1 className="text-3xl font-bold mb-2">Google 关键词搜索量批量查询工具</h1>
-            <p className="text-purple-100">输入关键词，一键获取月均搜索量、CPC 和竞争度数据</p>
+          <div className="bg-accent text-accent-foreground p-8 text-center">
+            <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
+            <p className="text-accent-foreground/80">{t('description')}</p>
           </div>
 
           {/* Content */}
@@ -218,18 +220,18 @@ export default function KeywordToolPage() {
               <Button
                 onClick={handleQuery}
                 disabled={isQuerying}
-                className="flex-1 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700"
+                className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
                 size="lg"
               >
                 {isQuerying ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    查询中...
+                    {t('buttons.clearing')}
                   </>
                 ) : (
                   <>
                     <Search className="mr-2 h-5 w-5" />
-                    开始查询
+                    {t('buttons.startQuery')}
                   </>
                 )}
               </Button>
@@ -240,7 +242,7 @@ export default function KeywordToolPage() {
                 className="flex-1"
               >
                 <Trash2 className="mr-2 h-5 w-5" />
-                清空
+                {t('buttons.clear')}
               </Button>
             </div>
 
@@ -254,8 +256,8 @@ export default function KeywordToolPage() {
             {/* Loading Indicator */}
             {isQuerying && (
               <div className="text-center py-8">
-                <Loader2 className="h-12 w-12 animate-spin mx-auto text-purple-500" />
-                <p className="mt-4 text-muted-foreground">正在查询中，请稍候...</p>
+                <Loader2 className="h-12 w-12 animate-spin mx-auto text-accent" />
+                <p className="mt-4 text-muted-foreground">{t('statusMessages.queryingPleaseWait')}</p>
               </div>
             )}
 

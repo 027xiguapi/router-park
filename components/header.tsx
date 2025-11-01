@@ -9,13 +9,16 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Sparkles, Bell, Plus, RefreshCw, Sun, Moon } from "lucide-react"
-import Link from "next/link"
+import { Link } from '@/i18n/navigation'
 import { useTheme } from "next-themes"
 import { useState } from "react"
 import { useMonitor } from "@/contexts/monitor-context"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
+import { LocaleSwitcher } from "@/components/locale-switcher"
 
 export function Header() {
+  const t = useTranslations("headers")
   const { theme, setTheme } = useTheme()
   const { refreshMonitor } = useMonitor()
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -34,43 +37,44 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image src='/icon.svg' width="32" height="32" alt='logo' />
-            <span className="text-xl font-semibold">AI 接口中转网站</span>
+            <span className="text-xl font-semibold">{t('brandName')}</span>
           </Link>
 
           <nav className="hidden items-center gap-6 md:flex">
-            <Link href="/api-monitor" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              API 监控
+            <Link href="/router-monitor" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              {t('apiMonitor')}
             </Link>
             <Link href="/chatgpt-mirrors" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              ChatGPT 镜像
+              {t('chatgptMirrors')}
             </Link>
             <Link href="/ai-tools" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              大模型接口网关
+              {t('aiGateway')}
             </Link>
             <Link href="/vpn" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              VPN 推荐
+              {t('vpn')}
             </Link>
             <Link href="/keyword-tool" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              关键词工具
+              {t('keywordTool')}
             </Link>
             <Link href="/backlinks" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              外链导航
+              {t('backlinks')}
             </Link>
             <Link href="/config-guide" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              配置指南
+              {t('configGuide')}
             </Link>
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button
+            <LocaleSwitcher />
+            {/* <Button
               variant="outline"
               size="sm"
               className="hidden lg:inline-flex bg-transparent"
               onClick={() => setIsAnnouncementOpen(true)}
             >
               <Bell className="mr-2 h-4 w-4" />
-              公告
-            </Button>
+              {t('announcement')}
+            </Button> */}
             <Button
                 variant="outline"
                 size="sm"
@@ -78,30 +82,8 @@ export function Header() {
                 className="hidden md:inline-flex bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20 hover:text-emerald-400 dark:bg-emerald-500/10 dark:text-emerald-500"
             >
               <Plus className="mr-2 h-4 w-4" />
-              进群
+              {t('joinGroup')}
             </Button>
-            {/*{refreshMonitor && (*/}
-            {/*    <Button*/}
-            {/*      variant="outline"*/}
-            {/*      size="sm"*/}
-            {/*      onClick={handleRefresh}*/}
-            {/*      disabled={isRefreshing}*/}
-            {/*      className="bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400"*/}
-            {/*    >*/}
-            {/*      <RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />*/}
-            {/*      <span className="hidden sm:inline">刷新</span>*/}
-            {/*    </Button>*/}
-            {/*)}*/}
-            {/*{!refreshMonitor && (*/}
-            {/*  <>*/}
-            {/*    <Button variant="ghost" size="sm" className="hidden sm:inline-flex">*/}
-            {/*      登录*/}
-            {/*    </Button>*/}
-            {/*    <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">*/}
-            {/*      免费试用*/}
-            {/*    </Button>*/}
-            {/*  </>*/}
-            {/*)}*/}
             <Button
               variant="ghost"
               size="icon"
@@ -118,13 +100,13 @@ export function Header() {
       <Dialog open={isAnnouncementOpen} onOpenChange={setIsAnnouncementOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>公告通知</DialogTitle>
-            <DialogDescription>扫码加入我们的 QQ 群</DialogDescription>
+            <DialogTitle>{t('announcementTitle')}</DialogTitle>
+            <DialogDescription>{t('announcementDesc')}</DialogDescription>
           </DialogHeader>
           <div className="flex items-center justify-center p-4">
             <Image
               src="/qq-group.jpg"
-              alt="QQ群二维码"
+              alt={t('qqGroupQR')}
               width={400}
               height={400}
               className="rounded-lg"

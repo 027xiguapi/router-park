@@ -4,9 +4,11 @@ import { Card } from "@/components/ui/card"
 import { Check, Copy, Terminal, ExternalLink, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { Link } from '@/i18n/navigation'
 
 export default function ConfigGuidePage() {
+  const t = useTranslations("pages.configGuide")
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const handleCopy = (text: string, index: number) => {
@@ -22,14 +24,14 @@ export default function ConfigGuidePage() {
         <Button variant="ghost" size="sm" className="mb-8" asChild>
           <Link href="/">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            返回首页
+            {t('backToHome')}
           </Link>
         </Button>
 
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-foreground">配置指南</h1>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-foreground">{t('title')}</h1>
           <p className="text-lg text-gray-600 dark:text-muted-foreground">
-            只需简单配置，即可使用 AI 接口中转服务
+            {t('description')}
           </p>
         </div>
 
@@ -42,20 +44,20 @@ export default function ConfigGuidePage() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  选择中转服务商并注册
+                  {t('steps.step1.title')}
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  从首页监控面板中选择一个在线的服务商，点击邀请链接注册账号
+                  {t('steps.step1.description')}
                 </p>
                 <div className="flex items-center gap-2 rounded-lg bg-blue-50 p-3 dark:bg-blue-950/20">
-                  <ExternalLink className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <ExternalLink className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   <span className="text-sm text-blue-700 dark:text-blue-300">
-                    建议选择在线状态且响应时间较低的服务商
+                    {t('steps.step1.tip')}
                   </span>
                 </div>
                 <div className="mt-3">
                   <Button size="sm" variant="outline" asChild>
-                    <Link href="/#monitor">查看监控面板</Link>
+                    <Link href="/#monitor">{t('steps.step1.viewMonitorPanel')}</Link>
                   </Button>
                 </div>
               </div>
@@ -70,37 +72,37 @@ export default function ConfigGuidePage() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  获取 API Key
+                  {t('steps.step2.title')}
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  注册并登录后，在服务商后台的 <strong>API令牌</strong> 页面获取你的 API Key
+                  {t('steps.step2.description', { apiToken: 'API令牌' })}
                 </p>
                 <div className="space-y-3">
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">获取步骤：</p>
+                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{t('steps.step2.stepsTitle')}</p>
                     <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-accent">▸</span>
-                        <span>点击 <strong>添加令牌</strong> 按钮</span>
+                        <span>{t('steps.step2.steps.0', { addToken: '添加令牌' })}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-accent">▸</span>
-                        <span>名称随意填写，额度建议设为 <strong>无限额度</strong></span>
+                        <span>{t('steps.step2.steps.1', { unlimitedQuota: '无限额度' })}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-accent">▸</span>
-                        <span>其他选项保持默认设置即可</span>
+                        <span>{t('steps.step2.steps.2')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-accent">▸</span>
-                        <span>获得的 API Key 以 <code className="rounded bg-gray-200 px-1.5 py-0.5 text-xs dark:bg-gray-800">sk-</code> 开头</span>
+                        <span>{t('steps.step2.steps.3', { codeSk: 'sk-' })}</span>
                       </li>
                     </ul>
                   </div>
                   <div className="flex items-start gap-2 rounded-lg bg-amber-50 p-3 dark:bg-amber-950/20">
                     <Terminal className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
                     <span className="text-sm text-amber-700 dark:text-amber-300">
-                      请妥善保管你的 API Key，不要泄露给他人
+                      {t('steps.step2.warning')}
                     </span>
                   </div>
                 </div>
@@ -116,17 +118,17 @@ export default function ConfigGuidePage() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  配置环境变量
+                  {t('steps.step3.title')}
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  在您的项目中配置 API Key 和 Base URL
+                  {t('steps.step3.description')}
                 </p>
 
                 <div className="space-y-4">
                   {/* 环境变量配置 */}
                   <div>
                     <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      方式一：使用环境变量（推荐）
+                      {t('steps.step3.methods.method1.title')}
                     </p>
                     <div className="relative">
                       <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
@@ -154,7 +156,7 @@ echo $OPENAI_BASE_URL`}</code>
                   {/* Python 配置 */}
                   <div>
                     <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      方式二：在代码中配置（Python）
+                      {t('steps.step3.methods.method2.title')}
                     </p>
                     <div className="relative">
                       <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
@@ -185,7 +187,7 @@ print(response.choices[0].message.content)`}</code>
                   {/* Node.js 配置 */}
                   <div>
                     <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      方式三：在代码中配置（Node.js）
+                      {t('steps.step3.methods.method3.title')}
                     </p>
                     <div className="relative">
                       <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
@@ -224,7 +226,7 @@ chat();`}</code>
                   {/* cURL 测试 */}
                   <div>
                     <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      方式四：使用 cURL 测试
+                      {t('steps.step3.methods.method4.title')}
                     </p>
                     <div className="relative">
                       <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
@@ -261,21 +263,21 @@ chat();`}</code>
               </div>
               <div className="flex-1">
                 <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  开始使用
+                  {t('steps.step4.title')}
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  配置完成后，你就可以像使用原始 OpenAI API 一样使用中转服务了
+                  {t('steps.step4.description')}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-2 rounded-lg bg-emerald-50 p-4 dark:bg-emerald-950/20">
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <div className="text-sm text-emerald-700 dark:text-emerald-300">
-                      <p className="font-medium">提示：</p>
-                      <p>所有中转服务都完全兼容 OpenAI 官方 API 格式，无需修改代码逻辑</p>
+                      <p className="font-medium">{t('steps.step4.tipTitle')}</p>
+                      <p>{t('steps.step4.tipDescription')}</p>
                     </div>
                   </div>
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">支持的主流模型：</p>
+                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{t('steps.step4.supportedModels')}</p>
                     <div className="flex flex-wrap gap-2">
                       {["GPT-4", "GPT-3.5-turbo", "Claude", "Gemini", "DALL-E", "Whisper"].map((model) => (
                         <span
@@ -295,30 +297,27 @@ chat();`}</code>
           {/* 注意事项 */}
           <Card className="border-blue-200 bg-blue-50 p-6 dark:border-blue-900/50 dark:bg-blue-950/20">
             <div className="flex items-start gap-3">
-              <Terminal className="mt-0.5 h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
+              <Terminal className="mt-0.5 h-6 w-6 shrink-0 text-orange-600 dark:text-orange-400" />
               <div>
-                <h3 className="mb-3 text-lg font-semibold text-blue-900 dark:text-blue-100">⚠️ 注意事项</h3>
+                <h3 className="mb-3 text-lg font-semibold text-blue-900 dark:text-blue-100">{t('notes.title')}</h3>
                 <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                    <span>请妥善保管你的 API Key，不要泄露给他人或提交到公开代码仓库</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                    <span>建议在监控面板中选择稳定在线的服务商</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                    <span>不同服务商的定价和支持的模型可能有所不同，请仔细查看服务商说明</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                    <span>API Base URL 通常以 <code className="rounded bg-blue-100 px-1.5 py-0.5 dark:bg-blue-900">/v1</code> 结尾</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                    <span>如遇到问题，可以点击右上角"进群"按钮加入 QQ 群寻求帮助</span>
-                  </li>
+                  {t.raw('notes.items').map((item: string, index: number) => {
+                    const parts = item.split(/(\/v1|QQ 群)/);
+                    return (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
+                        <span>
+                          {parts.map((part, i) =>
+                            part === '/v1' || part === 'QQ 群' ? (
+                              <code key={i} className="rounded bg-blue-100 px-1.5 py-0.5 dark:bg-blue-900">{part}</code>
+                            ) : (
+                              part
+                            )
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -327,7 +326,7 @@ chat();`}</code>
           {/* 底部返回按钮 */}
           <div className="flex justify-center pt-8">
             <Button asChild>
-              <Link href="/">返回首页</Link>
+              <Link href="/">{t('backToHome')}</Link>
             </Button>
           </div>
         </div>

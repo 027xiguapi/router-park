@@ -6,6 +6,7 @@ import { ServiceCard } from "./service-card"
 import type { ServiceStatus } from "./types"
 import { useMonitor } from "@/contexts/monitor-context"
 import { Watermark } from "@/components/watermark"
+import { useTranslations, useLocale } from "next-intl"
 
 const initialServices: ServiceStatus[] = [
   {
@@ -165,8 +166,10 @@ const initialServices: ServiceStatus[] = [
 ]
 
 export function MonitorDashboard() {
+  const t = useTranslations("monitor")
+  const locale = useLocale()
   const [services, setServices] = useState<ServiceStatus[]>(initialServices)
-  const [lastUpdate, setLastUpdate] = useState<string>(new Date().toLocaleTimeString("zh-CN", { hour12: false }))
+  const [lastUpdate, setLastUpdate] = useState<string>(new Date().toLocaleTimeString(locale, { hour12: false }))
   const { setRefreshMonitor } = useMonitor()
 
   // 计算统计数据
@@ -174,7 +177,7 @@ export function MonitorDashboard() {
 
   // 刷新函数
   const handleRefresh = () => {
-    setLastUpdate(new Date().toLocaleTimeString("zh-CN", { hour12: false }))
+    setLastUpdate(new Date().toLocaleTimeString(locale, { hour12: false }))
     // 这里可以添加实际的刷新逻辑
   }
 
@@ -192,15 +195,15 @@ export function MonitorDashboard() {
     <section className="relative bg-gray-50 py-16 dark:bg-background" id="monitor">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
-          <h2 className="mb-2 text-3xl font-bold text-gray-900 dark:text-foreground">API 接口监控面板</h2>
-          <p className="text-gray-600 dark:text-muted-foreground">实时监控各中转接口的可用状态</p>
+          <h2 className="mb-2 text-3xl font-bold text-gray-900 dark:text-foreground">{t('title')}</h2>
+          <p className="text-gray-600 dark:text-muted-foreground">{t('description')}</p>
         </div>
 
-        <StatsCards totalServices={totalServices} lastUpdate={lastUpdate} />
+        <StatsCards totalServices={totalServices} lastUpdate={lastUpdate} t={t} />
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <ServiceCard key={service.id} service={service} t={t} />
           ))}
         </div>
       </div>

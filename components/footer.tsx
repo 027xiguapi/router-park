@@ -1,7 +1,12 @@
-import Link from "next/link"
-import Image from "next/image";
+"use client"
+
+import { Link } from '@/i18n/navigation'
+import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 export function Footer() {
+  const t = useTranslations("footer")
+
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,76 +15,76 @@ export function Footer() {
             <div>
               <Link href="/" className="mb-4 flex items-center gap-2">
                 <Image src='/icon.svg' width="32" height="32" alt='logo' />
-                <span className="text-xl font-semibold">AI 导航</span>
+                <span className="text-xl font-semibold">{t('brandName')}</span>
               </Link>
               <p className="text-sm text-muted-foreground">
-                发现最优秀的 AI 工具
+                {t('description.line1')}
                 <br />
-                提升您的工作效率
+                {t('description.line2')}
               </p>
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm font-semibold">产品</h3>
+              <h3 className="mb-4 text-sm font-semibold">{t('products.title')}</h3>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
-                    功能特性
+                    {t('products.features')}
                   </Link>
                 </li>
                 <li>
                   <Link href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
-                    定价方案
+                    {t('products.pricing')}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                    更新日志
+                    {t('products.changelog')}
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm font-semibold">资源</h3>
+              <h3 className="mb-4 text-sm font-semibold">{t('resources.title')}</h3>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                    使用文档
+                    {t('resources.documentation')}
                   </Link>
                 </li>
                 <li>
                   <Link href="#faq" className="text-muted-foreground transition-colors hover:text-foreground">
-                    常见问题
+                    {t('resources.faq')}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                    博客
+                    {t('resources.blog')}
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="mb-4 text-sm font-semibold">联系我们</h3>
+              <h3 className="mb-4 text-sm font-semibold">{t('contact.title')}</h3>
               <ul className="space-y-3 text-sm">
                 <li>
                   <a
                     href="mailto:xxxx@gmail.com"
                     className="text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    xxxx@gmail.com
+                    {t('contact.email')}
                   </a>
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                    关于我们
+                    {t('contact.aboutUs')}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                    加入我们
+                    {t('contact.joinUs')}
                   </Link>
                 </li>
               </ul>
@@ -89,16 +94,16 @@ export function Footer() {
 
         <div className="border-t border-border py-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-muted-foreground">© 2025 西瓜皮. 保留所有权利.</p>
+            <p className="text-sm text-muted-foreground">{t('copyright')}</p>
             <div className="flex gap-6 text-sm">
               <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                隐私政策
+                {t('legal.privacyPolicy')}
               </Link>
               <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                服务条款
+                {t('legal.termsOfService')}
               </Link>
               <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                Cookie 政策
+                {t('legal.cookiePolicy')}
               </Link>
             </div>
           </div>

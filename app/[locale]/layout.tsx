@@ -10,6 +10,7 @@ import {Footer} from "@/components/footer";
 import { locales, routing } from '@/i18n/routing'
 
 import type { Metadata } from 'next'
+import { getMessages } from 'next-intl/server'
 
 export function generateStaticParams() {
   return [
@@ -28,7 +29,8 @@ export function generateStaticParams() {
   ]
 }
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'siteInfo' })
 
   return {
@@ -50,6 +52,7 @@ export default async function RootLayout({
     notFound()
   }
   const currentLocale = locales.find((l) => l.code === locale)
+  const messages = await getMessages()
 
   return (
     <html lang={currentLocale?.code ?? 'en'} dir={currentLocale?.dir || 'ltr'} suppressHydrationWarning>
@@ -58,11 +61,13 @@ export default async function RootLayout({
               crossOrigin="anonymous"></script>
       </head>
       <body className={`font-sans antialiased`}>
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-        <Header/>
-        {children}
-        <Footer/>
-      </ThemeProvider>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <Header/>
+            {children}
+            <Footer/>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       <Analytics/>
       </body>
       <GoogleAnalytics gaId="G-PNRXSJMSV6"/>

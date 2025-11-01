@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import { useTranslations } from "next-intl"
 import { aiTools, categories } from "@/lib/ai-tools-data"
 import { ToolCard } from "@/components/ai-tools/tool-card"
 import { Input } from "@/components/ui/input"
@@ -18,6 +19,7 @@ const iconMap = {
 }
 
 export default function AIToolsPage() {
+  const t = useTranslations("pages.aiTools")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -40,11 +42,11 @@ export default function AIToolsPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* 页面标题 */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            大模型接口网关导航
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 bg-clip-text text-transparent">
+            {t('title')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            发现最新最热门的 AI 工具，大模型接口网关，ChatGPT 镜像站点，提升你的工作效率
+            {t('description')}
           </p>
         </div>
 
@@ -54,7 +56,7 @@ export default function AIToolsPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="搜索 AI 工具..."
+              placeholder={t('searchPlaceholder')}
               className="pl-10 h-12"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -74,7 +76,7 @@ export default function AIToolsPage() {
                 variant={isActive ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory(category.id)}
-                className={isActive ? "bg-gradient-to-r from-violet-600 to-purple-600" : ""}
+                className={isActive ? "bg-gradient-to-r from-orange-500 to-orange-600" : ""}
               >
                 <Icon className="mr-2 h-4 w-4" />
                 {category.name}
@@ -93,17 +95,17 @@ export default function AIToolsPage() {
         ) : (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold mb-2">未找到相关工具</h3>
+            <h3 className="text-xl font-semibold mb-2">{t('noResultsTitle')}</h3>
             <p className="text-muted-foreground">
-              试试调整搜索关键词或选择其他分类
+              {t('noResultsDescription')}
             </p>
           </div>
         )}
 
         {/* 工具数量统计 */}
         <div className="mt-12 text-center text-sm text-muted-foreground">
-          共收录 {aiTools.length} 个 AI 工具
-          {searchQuery || selectedCategory !== "all" ? ` · 当前显示 ${filteredTools.length} 个` : ""}
+          {t('toolsCount', { count: aiTools.length })}
+          {searchQuery || selectedCategory !== "all" ? t('showingCount', { count: filteredTools.length }) : ""}
         </div>
       </div>
     </div>

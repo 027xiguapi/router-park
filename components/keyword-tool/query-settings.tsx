@@ -15,7 +15,7 @@ interface QuerySettingsProps {
 }
 
 const COUNTRIES = [
-  { id: "", name: "全球（不限定）" },
+  { id: "global", name: "全球（不限定）" },
   { id: "2840", name: "美国" },
   { id: "2156", name: "中国" },
   { id: "2826", name: "英国" },
