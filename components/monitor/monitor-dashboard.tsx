@@ -162,7 +162,15 @@ const initialServices: ServiceStatus[] = [
     lastCheck: "10:00:26",
     inviteLink: "https://ccode.sale/register?aff=qGr6",
   },
-  
+  {
+    id: "18",
+    name: "openaiyunai",
+    url: "https://openaiyunai.top/",
+    status: "online",
+    responseTime: 213229,
+    lastCheck: "10:00:26",
+    inviteLink: "https://openaiyunai.top/register?aff=e8g4",
+  },
 ]
 
 export function MonitorDashboard() {
