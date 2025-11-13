@@ -64,7 +64,7 @@ const initialServices: ServiceStatus[] = [
     status: 'online',
     responseTime: 213229,
     lastCheck: '10:00:26',
-    inviteLink: 'https://aicoding.sh'
+    inviteLink: 'https://aicoding.sh/i/FQM7EY'
   },
   {
     id: '7',
