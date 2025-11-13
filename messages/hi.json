@@ -71,10 +71,10 @@
     "qqGroupQR": "QQ ग्रुप QR कोड"
   },
   "siteInfo": {
-    "brandName": "Next Template",
+    "brandName": "Router Park",
     "description": "Think, Write, Code",
     "meta": {
-      "title": "Next Template - Think, Write, Code",
+      "title": "Router Park - Think, Write, Code",
       "description": "A responsive, lightweight, and accessible front-end framework using Next.js, TypeScript, and Tailwind CSS."
     }
   },

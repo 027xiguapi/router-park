@@ -52,26 +52,26 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         {t('continueWithGoogle')}
       </Button>
 
-      <div className="relative my-6 flex items-center">
-        <div className="border-border flex-grow border-t"></div>
-        <span className="text-muted-foreground mx-4 flex-shrink text-xs uppercase">{t('orContinueWith')}</span>
-        <div className="border-border flex-grow border-t"></div>
-      </div>
+      {/*<div className="relative my-6 flex items-center">*/}
+      {/*  <div className="border-border flex-grow border-t"></div>*/}
+      {/*  <span className="text-muted-foreground mx-4 flex-shrink text-xs uppercase">{t('orContinueWith')}</span>*/}
+      {/*  <div className="border-border flex-grow border-t"></div>*/}
+      {/*</div>*/}
 
-      <form onSubmit={handleEmailSignIn} className="space-y-4">
-        <Input
-          type="email"
-          placeholder={t('emailPlaceholder')}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="w-full"
-        />
-        <Button type="submit" disabled={isLoading.email} variant="outline" className="w-full">
-          {isLoading.email ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Mail className="mr-2 h-5 w-5" />}
-          {t('signInWithEmail')}
-        </Button>
-      </form>
+      {/*<form onSubmit={handleEmailSignIn} className="space-y-4">*/}
+      {/*  <Input*/}
+      {/*    type="email"*/}
+      {/*    placeholder={t('emailPlaceholder')}*/}
+      {/*    value={email}*/}
+      {/*    onChange={(e) => setEmail(e.target.value)}*/}
+      {/*    required*/}
+      {/*    className="w-full"*/}
+      {/*  />*/}
+      {/*  <Button type="submit" disabled={isLoading.email} variant="outline" className="w-full">*/}
+      {/*    {isLoading.email ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Mail className="mr-2 h-5 w-5" />}*/}
+      {/*    {t('signInWithEmail')}*/}
+      {/*  </Button>*/}
+      {/*</form>*/}
     </div>
   )
 }

@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Sparkles, Bell, Plus, RefreshCw, Sun, Moon } from "lucide-react"
+import { Sun, Moon } from "lucide-react"
 import { Link } from '@/i18n/navigation'
 import { useTheme } from "next-themes"
 import { useState } from "react"
@@ -16,6 +16,7 @@ import { useMonitor } from "@/contexts/monitor-context"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { LocaleSwitcher } from "@/components/locale-switcher"
+import LoginHeader from "@/components/login/login-header"
 
 export function Header() {
   const t = useTranslations("headers")
@@ -65,7 +66,15 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <Button
+                variant="outline"
+                onClick={() => setIsAnnouncementOpen(true)}
+                className="hidden md:inline-flex bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20 hover:text-emerald-400 dark:bg-emerald-500/10 dark:text-emerald-500"
+            >
+              {t('joinGroup')}
+            </Button>
             <LocaleSwitcher />
+            <LoginHeader />
             {/* <Button
               variant="outline"
               size="sm"
@@ -75,15 +84,7 @@ export function Header() {
               <Bell className="mr-2 h-4 w-4" />
               {t('announcement')}
             </Button> */}
-            <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsAnnouncementOpen(true)}
-                className="hidden md:inline-flex bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20 hover:text-emerald-400 dark:bg-emerald-500/10 dark:text-emerald-500"
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              {t('joinGroup')}
-            </Button>
+
             <Button
               variant="ghost"
               size="icon"

@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import {Header} from "@/components/header";
 import {Footer} from "@/components/footer";
 import { locales, routing } from '@/i18n/routing'
+import { Providers } from "@/components/providers"
 
 import type { Metadata } from 'next'
 import { getMessages } from 'next-intl/server'
@@ -63,9 +64,11 @@ export default async function RootLayout({
       <body className={`font-sans antialiased`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <Header/>
-            {children}
-            <Footer/>
+            <Providers>
+              <Header/>
+              {children}
+              <Footer/>
+            </Providers>
           </ThemeProvider>
         </NextIntlClientProvider>
       <Analytics/>

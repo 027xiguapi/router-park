@@ -224,3 +224,50 @@ export const transactions = sqliteTable('transactions', {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull()
 })
+
+// 路由器状态类型
+export type RouterStatus = 'online' | 'offline'
+
+// 路由器表 - 存储路由器信息
+export const routers = sqliteTable('routers', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text('name').notNull(),
+  url: text('url').notNull(),
+  status: text('status').$type<RouterStatus>().notNull().default('offline'),
+  responseTime: integer('responseTime').notNull().default(0), // 响应时间(ms)
+  lastCheck: integer('last_check', { mode: 'timestamp_ms' })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  inviteLink: text('invite_link'), // 可选的邀请链接
+  isVerified: integer('is_verified', { mode: 'boolean' }).notNull().default(false), // 是否认证
+  likes: integer('likes').notNull().default(0), // 点赞数
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull()
+})
+
+// 路由器点赞记录表 - 记录用户点赞行为
+export const routerLikes = sqliteTable(
+  'router_likes',
+  {
+    id: text('id')
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    routerId: text('router_id')
+      .notNull()
+      .references(() => routers.id, { onDelete: 'cascade' }),
+    userId: text('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    createdAt: integer('created_at', { mode: 'timestamp_ms' })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull()
+  },
+)

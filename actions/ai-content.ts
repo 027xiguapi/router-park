@@ -15,13 +15,6 @@ import {
 } from '@/lib/articles/article-helpers'
 import { createDb } from '@/lib/db'
 import { posts, postTranslations } from '@/lib/db/schema'
-import {
-  buildLikeSearch,
-  calculateTotalPages,
-  combineConditions,
-  pushCondition,
-  resolvePagination
-} from '@/lib/db/sql-utils'
 import { withOptionalField } from '@/lib/utils/object'
 import { isDefined, normalizeNullable } from '@/lib/utils/value'
 
@@ -29,6 +22,14 @@ interface ArticleGenerationParams {
   keyword: string
   locale?: string
 }
+
+const {
+    buildLikeSearch,
+  calculateTotalPages,
+  combineConditions,
+  pushCondition,
+  resolvePagination
+} = {}
 
 export type ArticleStatusFilter = 'all' | 'published' | 'draft'
 

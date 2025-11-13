@@ -6,5 +6,6 @@ export interface ServiceStatus {
   responseTime: number
   lastCheck: string
   inviteLink?: string
+  likes?: number
   error?: string
 }

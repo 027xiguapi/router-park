@@ -1,9 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Heart } from "lucide-react"
 import type { ServiceStatus } from "./types"
 
 interface ServiceCardProps {
@@ -13,6 +14,35 @@ interface ServiceCardProps {
 
 export function ServiceCard({ service, t }: ServiceCardProps) {
   const isOnline = service.status === "online"
+  const [likes, setLikes] = useState(service.likes || 0)
+  const [isLiking, setIsLiking] = useState(false)
+
+  // 临时用户ID（实际应用中应从认证系统获取）
+  const TEMP_USER_ID = 'temp-user-123'
+
+  const handleLike = async () => {
+    if (isLiking) return
+
+    try {
+      setIsLiking(true)
+      const response = await fetch(`/api/routers/${service.id}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId: TEMP_USER_ID })
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        setLikes(data.data.likes)
+      }
+    } catch (error) {
+      console.error('Error liking router:', error)
+    } finally {
+      setIsLiking(false)
+    }
+  }
 
   return (
     <Card className="border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-accent/50 hover:shadow-md dark:border-border dark:bg-card/50 dark:backdrop-blur">
@@ -82,6 +112,19 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600 dark:text-muted-foreground">{t('serviceCard.lastCheck')}</span>
           <span className="font-mono text-gray-900 dark:text-foreground">{service.lastCheck}</span>
+        </div>
+
+        <div className="flex items-center justify-between border-t border-gray-200 pt-3 dark:border-border">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleLike}
+            disabled={isLiking}
+            className="gap-1 hover:text-red-500"
+          >
+            <Heart className={`h-4 w-4 ${likes > 0 ? 'fill-red-500 text-red-500' : ''}`} />
+            <span className="text-sm">{likes}</span>
+          </Button>
         </div>
       </div>
     </Card>

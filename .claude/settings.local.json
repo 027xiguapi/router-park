@@ -6,7 +6,8 @@
       "Bash(timeout 5 pnpm dev)",
       "Bash(node scripts/i18n-pages-translations.js)",
       "Bash(node scripts/i18n-components-translations.js)",
-      "Bash(node scripts/i18n-add-all-translations.js)"
+      "Bash(node scripts/i18n-add-all-translations.js)",
+      "Bash(pnpm list:*)"
     ],
     "deny": [],
     "ask": []
