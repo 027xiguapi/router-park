@@ -281,9 +281,9 @@
   },
   "hero": {
     "tagline": "统一的大模型接口网关",
-    "title": "更好的价格",
+    "title": "分享免费大模型接口中转站、免费api、免费vpn",
     "subtitle": "更好的稳定性",
-    "description": "只需要将模型基址替换为中转接口即可使用",
+    "description": "提供免费大模型API接口中转服务、免费VPN订阅，支持Claude、ChatGPT等主流AI模型。高速稳定，一键订阅。",
     "description2": "支持多种主流大模型，提供统一的接口格式和稳定的服务",
     "viewApiList": "查看接口列表",
     "documentation": "使用文档",
@@ -486,10 +486,10 @@
     "tokensTitle": "流動性代币"
   },
   "home": {
-    "metaTitle": "免费人工智能文本转语音生成器 - 高质量语音合成",
-    "metaDescription": "使用我们的先进人工智能语音生成器免费将文本转换为语音。高质量、听起来自然的语音，即时转换。无需注册。",
-    "title": "免费人工智能文本转语音生成器",
-    "description": "使用我们先进的 AI 技术，将任何文本转换为自然、高质量的语音。完全免费，并提供专业级别的语音合成。",
+    "metaTitle": "免费大模型接口中转站、免费api、免费vpn",
+    "metaDescription": "提供免费大模型API接口中转服务、免费VPN订阅，支持Claude、ChatGPT等主流AI模型。高速稳定，一键订阅。",
+    "title": "免费大模型接口中转站",
+    "description": "提供免费AI模型API中转服务和免费VPN订阅，支持ChatGPT、Claude、Gemini等主流大模型接口，高速稳定，完全免费。",
     "contentSections": {
       "section1Title": "聆听：AI现在可以模仿你怀念的声音",
       "section1Content1": "你有没有在深夜里，翻出那盘积满灰尘的录音带，按下播放键，只是为了听到已故亲人熟悉的声音？听到噼啪作响的杂音让位于来自过去的、温暖而真实的声音，仿佛他们就在隔壁房间里，轻声地呼唤你的名字。",
@@ -532,6 +532,56 @@
       "answer4": "平台使用基于令牌的系统，语音生成会根据生成的音频时长消耗令牌。 每秒生成的语音需要消耗一定数量的令牌。 您可以在帐户仪表板中监控您的令牌使用情况。",
       "question5": "我可以使用生成的语音进行商业用途吗？",
       "answer5": "使用权取决于 ElevenLabs 的服务条款和您的订阅计划。一般来说，您可以将生成的语音用于个人和商业项目，但请务必查看适用于您的用例的具体许可条款。始终确保您有权转换您正在使用的文本内容。"
+    }
+  },
+  "freeVpn": {
+    "title": "免费 VPN 订阅",
+    "description": "完全免费，无需注册，一键订阅即可使用",
+    "mainTitle": "免费VPN订阅",
+    "mainDescription": "高速稳定的免费VPN服务，扫码或复制订阅地址即可使用",
+    "badges": {
+      "highSpeed": "高速",
+      "stable": "稳定"
+    },
+    "subscription": {
+      "title": "订阅地址",
+      "copyButton": "复制",
+      "copied": "已复制",
+      "placeholder": "复制上方链接，粘贴到您的VPN客户端中即可使用"
+    },
+    "steps": {
+      "title": "使用步骤：",
+      "step1": "下载并安装VPN客户端（如 Clash、V2rayN等）",
+      "step2": "复制订阅地址或扫描二维码",
+      "step3": "在客户端中添加订阅链接",
+      "step4": "更新订阅并选择节点，开始使用"
+    },
+    "inviteButton": "访问邀请链接获取更多福利",
+    "qrCode": {
+      "title": "扫码订阅",
+      "description": "使用客户端扫描下方二维码",
+      "scanWith": "使用Clash、V2rayN等客户端扫描",
+      "placeholder": "请将二维码图片放置在"
+    },
+    "notice": {
+      "title": "温馨提示",
+      "item1": "本服务仅供学习交流使用，请遵守当地法律法规",
+      "item2": "建议定期更新订阅以获取最新节点",
+      "item3": "如遇问题，请通过邀请链接联系获取帮助"
+    },
+    "features": {
+      "speed": {
+        "title": "高速稳定",
+        "description": "优质线路，低延迟，高带宽，观看视频流畅无卡顿"
+      },
+      "security": {
+        "title": "安全加密",
+        "description": "采用先进加密技术，保护您的网络隐私和数据安全"
+      },
+      "free": {
+        "title": "完全免费",
+        "description": "无需注册，无需付费，一键订阅即可使用全部功能"
+      }
     }
   }
 }

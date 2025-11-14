@@ -63,7 +63,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
       <div className="space-y-3">
         <div className="flex items-center justify-between text-sm">
           <a
-            href={service.url}
+            href={service.inviteLink}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-orange-600 hover:text-orange-700 hover:underline dark:text-orange-400 dark:hover:text-orange-300"

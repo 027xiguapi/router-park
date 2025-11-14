@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" ></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,9 +23,9 @@ export function Hero() {
 
           <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
             {t('title')}
-            <span className="bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
-              {t('subtitle')}
-            </span>
+            {/*<span className="bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">*/}
+            {/*  {t('subtitle')}*/}
+            {/*</span>*/}
           </h1>
 
           <p className="mb-10 text-pretty text-lg text-muted-foreground sm:text-xl lg:text-2xl">

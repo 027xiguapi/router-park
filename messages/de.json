@@ -1,133 +1,412 @@
 {
-  "HomePage": {
-    "title": "Hallo",
-    "about": "Zur Info-Seite gehen"
-  },
-  "login": {
-    "modal": {
-      "description": "Melden Sie sich an, um fortzufahren",
-      "triggerText": "Anmelden"
-    },
-    "form": {
-      "continueWithGoogle": "Mit Google fortfahren",
-      "continueWithGithub": "Mit GitHub fortfahren",
-      "orContinueWith": "Oder mit",
-      "emailPlaceholder": "E-Mail-Adresse eingeben",
-      "signInWithEmail": "Mit E-Mail anmelden"
-    },
-    "signOut": "Abmelden",
-    "login": "Anmelden"
-  },
-  "footer": {
-    "description": "Gespräche mit KI ermöglichen. Erleben Sie die Zukunft der Kommunikation mit LinkAI.",
-    "contact": {
-      "title": "Kontakt",
-      "intro": "Für Anfragen kontaktieren Sie uns bitte:",
-      "email": "kontakt@yourdomain.com"
-    },
-    "quickLinks": {
-      "title": "Schnellzugriffe",
-      "home": "Startseite",
-      "aboutUs": "Über uns",
-      "refundPolicy": "Rückerstattungsrichtlinie",
-      "subscriptionTerms": "Abonnementbedingungen"
-    },
-    "copyright": " 2024 Cozyai LLC. Alle Rechte vorbehalten."
-  },
-  "common": {
-    "previous": "Zurück",
-    "next": "Weiter",
-    "morePage": "Mehr Seiten",
-    "close": "Schließen",
-    "loading": "Lädt...",
-    "cancel": "Abbrechen",
-    "save": "Speichern",
-    "edit": "Bearbeiten",
-    "delete": "Löschen",
-    "submit": "Einreichen",
-    "morePages": "Mehr Seiten anzeigen",
-    "language": "Sprache",
-    "selectLanguage": "Sprache auswählen"
-  },
   "headers": {
-    "home": "Startseite",
     "blogs": "Blogs",
-    "navigation": "Site-Navigation",
-    "navigationDescription": "Greifen Sie auf die Hauptabschnitte unserer Website zu",
-    "pricing": "Preisgestaltung",
+    "home": "Startseite",
     "voiceDesign": "Sprachdesign",
+    "pricing": "Preise",
+    "navigation": "Seiten-Navigation",
+    "navigationDescription": "Greifen Sie auf die Hauptbereiche unserer Website zu",
     "brandName": "Router Park",
     "apiMonitor": "API-Monitor",
     "chatgptMirrors": "ChatGPT-Spiegel",
     "aiGateway": "AI-Gateway",
     "vpn": "VPN",
-    "keywordTool": "Schlüsselwort-Tool",
+    "keywordTool": "Keyword-Tool",
     "backlinks": "Backlinks",
-    "configGuide": "Konfigurationshandbuch",
+    "configGuide": "Konfigurationsanleitung",
     "announcement": "Ankündigung",
     "joinGroup": "Gruppe beitreten",
     "announcementTitle": "Treten Sie unserer Community bei",
-    "announcementDesc": "Scannen Sie den unten stehenden QR-Code, um unserer QQ-Gruppe beizutreten",
-    "qqGroupQR": "QQ-Gruppe QR-Code"
+    "announcementDesc": "Scannen Sie den QR-Code unten, um unserer QQ-Gruppe beizutreten",
+    "qqGroupQR": "QQ-Gruppen-QR-Code"
+  },
+  "footer": {
+    "brandName": "AI-Navigation",
+    "description": {
+      "line1": "Entdecken Sie die besten AI-Tools",
+      "line2": "Steigern Sie Ihre Produktivität"
+    },
+    "products": {
+      "title": "Produkte",
+      "features": "Funktionen",
+      "pricing": "Preise",
+      "changelog": "Änderungsprotokoll"
+    },
+    "resources": {
+      "title": "Ressourcen",
+      "documentation": "Dokumentation",
+      "faq": "FAQ",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "email": "xxxx@gmail.com",
+      "aboutUs": "Über uns",
+      "joinUs": "Werden Sie Teil unseres Teams"
+    },
+    "copyright": "© 2025 Xiguapi. Alle Rechte vorbehalten.",
+    "legal": {
+      "privacyPolicy": "Datenschutzerklärung",
+      "termsOfService": "Nutzungsbedingungen",
+      "cookiePolicy": "Cookie-Richtlinie"
+    }
+  },
+  "pages": {
+    "aiTools": {
+      "title": "Gateway-Navigation für große Modell-Schnittstellen",
+      "description": "Entdecken Sie die neuesten und beliebtesten AI-Tools, Gateway-Schnittstellen für große Modelle, ChatGPT-Spiegelseiten zur Steigerung Ihrer Produktivität",
+      "searchPlaceholder": "AI-Tools suchen...",
+      "noResultsTitle": "Keine Tools gefunden",
+      "noResultsDescription": "Versuchen Sie, Ihre Suchbegriffe anzupassen oder eine andere Kategorie auszuwählen",
+      "toolsCount": "Insgesamt {count} AI-Tools gesammelt",
+      "showingCount": " · Derzeit werden {count} angezeigt"
+    },
+    "apiMonitor": {
+      "title": "Claude Code Relay Überwachungs-Dashboard",
+      "description": "Echtzeit-Überwachung des Status des Claude Code Relay-Dienstes"
+    },
+    "backlinks": {
+      "title": "Analyse der besten kostenlosen Gastbeitrag-Einreichungsseiten (2025)",
+      "description": "Umfassende Analyse und Vergleich kostenloser Gastbeitrag-Einreichungsseiten. Die Seiten werden nach Überprüfungsrate, Einreichungsgeschwindigkeit und Überprüfungsprozess eingestuft.",
+      "banner": "Steigern Sie das Domain-Rating Ihrer Website in nur {value2} auf {value1}, völlig {value3}",
+      "shareButtons": {
+        "email": "E-Mail",
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "wechat": "WeChat",
+        "telegram": "Telegram",
+        "more": "Mehr"
+      },
+      "table": {
+        "rank": "Rang",
+        "recommended": "Empfohlen",
+        "website": "Website",
+        "category": "Kategorie",
+        "contentPositioning": "Inhaltspositionierung",
+        "contentPositioningTooltip": "Geeignete Inhaltstypen und Blickwinkel für diese Website",
+        "mainContact": "Hauptkontakt",
+        "actions": "Aktionen",
+        "visitSubmissionPage": "Einreichungsseite besuchen",
+        "highlyRecommended": "Sehr empfehlenswert"
+      },
+      "aboutTitle": "Über diese Liste",
+      "aboutDescription": "Diese Liste enthält {count} verifizierte Gastbeitrag-Einreichungsseiten. Jede Seite wurde sorgfältig bewertet, einschließlich ihrer Kategorieklassifizierung, Überprüfungsschwierigkeit, Einreichungsanforderungen und anderer Schlüsselkennzahlen. Wird regelmäßig aktualisiert, um die Genauigkeit der Informationen zu gewährleisten."
+    },
+    "chatgptMirrors": {
+      "title": "ChatGPT-Spiegel-Navigation",
+      "description": "Ausgewählte hochwertige ChatGPT-, Claude- und andere AI-Chat-Spiegelseiten, ohne VPN zugänglich",
+      "statusCounts": {
+        "online": "Online",
+        "unstable": "Instabil",
+        "offline": "Offline"
+      },
+      "searchPlaceholder": "Spiegelseiten suchen...",
+      "filterButtons": {
+        "all": "Alle",
+        "onlineOnly": "Nur Online",
+        "unstable": "Instabil",
+        "freeOnly": "Nur Kostenlos"
+      },
+      "noResultsTitle": "Keine Spiegelseiten gefunden",
+      "noResultsDescription": "Versuchen Sie, Ihre Suchbegriffe oder Filterkriterien anzupassen",
+      "mirrorsCount": "Insgesamt {count} Spiegelseiten gesammelt",
+      "showingCount": " · Derzeit werden {count} angezeigt",
+      "usageInstructions": "Nutzungsanweisungen",
+      "usageNotes": [
+        "Spiegelseiten werden von Dritten bereitgestellt, bitte bewerten Sie die Sicherheit vor der Nutzung",
+        "Einige Seiten erfordern möglicherweise eine Registrierung oder Anmeldung zur Nutzung",
+        "Die Stabilität der Spiegelseiten kann sich jederzeit ändern, bitte beachten Sie Sicherungsoptionen",
+        "Geben Sie keine sensiblen Informationen oder wichtigen Daten auf Spiegelseiten ein",
+        "Diese Seite bietet nur Navigationsdienste und ist nicht verantwortlich für den Inhalt und die Dienste der Spiegelseiten"
+      ]
+    },
+    "configGuide": {
+      "title": "Konfigurationsanleitung",
+      "description": "Einfache Konfiguration zur Nutzung des AI-Schnittstellen-Relay-Dienstes",
+      "backToHome": "Zurück zur Startseite",
+      "steps": {
+        "step1": {
+          "title": "Wählen Sie einen Relay-Dienstanbieter und registrieren Sie sich",
+          "description": "Wählen Sie einen Online-Dienstanbieter aus dem Überwachungs-Panel auf der Startseite und klicken Sie auf den Einladungslink, um ein Konto zu registrieren",
+          "tip": "Es wird empfohlen, einen Dienstanbieter mit Online-Status und geringer Reaktionszeit zu wählen",
+          "viewMonitorPanel": "Überwachungs-Panel anzeigen"
+        },
+        "step2": {
+          "title": "API-Schlüssel erhalten",
+          "description": "Holen Sie sich nach der Registrierung und Anmeldung Ihren API-Schlüssel von der Seite {apiToken} im Backend des Dienstanbieters",
+          "stepsTitle": "Schritte:",
+          "steps": [
+            "Klicken Sie auf die Schaltfläche {addToken}",
+            "Füllen Sie den Namen frei aus, es wird empfohlen, das Kontingent auf {unlimitedQuota} festzulegen",
+            "Behalten Sie andere Optionen bei den Standardeinstellungen bei",
+            "Der erhaltene API-Schlüssel beginnt mit {codeSk}"
+          ],
+          "warning": "Bitte bewahren Sie Ihren API-Schlüssel sicher auf und geben Sie ihn nicht an Dritte weiter"
+        },
+        "step3": {
+          "title": "Umgebungsvariablen konfigurieren",
+          "description": "Konfigurieren Sie den API-Schlüssel und die Basis-URL in Ihrem Projekt",
+          "methods": {
+            "method1": {
+              "title": "Methode 1: Verwendung von Umgebungsvariablen (empfohlen)",
+              "codeBlockTitle": "API-Schlüssel und Basis-URL festlegen (am Beispiel von anyrouter)"
+            },
+            "method2": {
+              "title": "Methode 2: Im Code konfigurieren (Python)",
+              "codeBlockTitle": "Python-Konfigurationsbeispiel"
+            },
+            "method3": {
+              "title": "Methode 3: Im Code konfigurieren (Node.js)",
+              "codeBlockTitle": "Node.js-Konfigurationsbeispiel"
+            },
+            "method4": {
+              "title": "Methode 4: cURL zum Testen verwenden",
+              "codeBlockTitle": "cURL-Testbeispiel"
+            }
+          }
+        },
+        "step4": {
+          "title": "Nutzung starten",
+          "description": "Nach der Konfiguration können Sie den Relay-Dienst genau wie die ursprüngliche OpenAI-API verwenden",
+          "tipTitle": "Tipp:",
+          "tipDescription": "Alle Relay-Dienste sind vollständig mit dem offiziellen OpenAI-API-Format kompatibel, keine Änderung der Codelogik erforderlich",
+          "supportedModels": "Unterstützte Mainstream-Modelle:"
+        }
+      },
+      "notes": {
+        "title": "⚠️ Hinweise",
+        "items": [
+          "Bitte bewahren Sie Ihren API-Schlüssel sicher auf und geben Sie ihn nicht an Dritte weiter oder übermitteln Sie ihn an öffentliche Code-Repositories",
+          "Es wird empfohlen, stabile Online-Dienstanbieter aus dem Überwachungs-Panel zu wählen",
+          "Verschiedene Dienstanbieter können unterschiedliche Preise und unterstützte Modelle haben, bitte überprüfen Sie die Anweisungen des Dienstanbieters sorgfältig",
+          "Die API-Basis-URL endet normalerweise mit {codeV1}",
+          "Wenn Sie auf Probleme stoßen, können Sie auf die Schaltfläche \"Gruppe beitreten\" oben rechts klicken, um der QQ-Gruppe für Hilfe beizutreten"
+        ]
+      }
+    },
+    "keywordTool": {
+      "title": "Google Keyword-Suchvolumen-Batch-Abfrage-Tool",
+      "description": "Geben Sie Keywords ein, um monatliches Suchvolumen, CPC und Wettbewerbsdaten auf einmal zu erhalten",
+      "buttons": {
+        "startQuery": "Abfrage starten",
+        "clearing": "Wird gelöscht...",
+        "querying": "Wird abgefragt...",
+        "clear": "Löschen"
+      },
+      "statusMessages": {
+        "enterAtLeastOneKeyword": "Bitte geben Sie mindestens ein Keyword ein",
+        "querying": "Batch {current}/{total} wird abgefragt ({count} Keywords)...",
+        "batchFailed": "Batch {batchNumber} Abfrage fehlgeschlagen: {error}",
+        "queryCompleted": "Abfrage abgeschlossen! {count}/{total} Keyword-Daten erfolgreich abgerufen",
+        "queryError": "Abfragefehler: {error}",
+        "queryInProgress": "Abfrage läuft, möchten Sie wirklich löschen?",
+        "queryingPleaseWait": "Wird abgefragt, bitte warten Sie..."
+      },
+      "stats": {
+        "total": "Gesamt",
+        "success": "Erfolg",
+        "failed": "Fehlgeschlagen"
+      }
+    },
+    "vpn": {
+      "title": "VPN-Empfehlungen",
+      "description": "Ausgewählte hochwertige VPN-Dienste, um Ihnen einen sicheren und stabilen Zugang zum globalen Internet zu ermöglichen",
+      "evaluationBasis": "Basierend auf Geschwindigkeit, Stabilität, Datenschutz und anderen mehrdimensionalen Bewertungen",
+      "searchPlaceholder": "VPN-Dienste suchen...",
+      "sortButtons": {
+        "default": "Standardsortierung",
+        "byRating": "Nach Bewertung",
+        "byPrice": "Nach Preis"
+      },
+      "noResultsTitle": "Keine verwandten VPN-Dienste gefunden",
+      "noResultsDescription": "Versuchen Sie, Ihre Suchbegriffe anzupassen",
+      "stats": {
+        "totalRecommended": "Insgesamt {count} hochwertige VPN-Dienste empfohlen",
+        "currentlyShowing": " · Derzeit werden {count} angezeigt"
+      },
+      "selectionGuide": {
+        "title": "Wie wählt man das richtige VPN aus?",
+        "speedPriority": "Geschwindigkeitspriorität: Wenn hauptsächlich zum Ansehen von Videos und Herunterladen verwendet, wählen Sie ExpressVPN oder StrongVPN",
+        "privacyPriority": "Datenschutzpriorität: Wenn der Fokus auf dem Datenschutz liegt, empfehlen wir PrivateVPN oder NordVPN",
+        "valuePriority": "Wertpriorität: Just My Socks und Lantern bieten ein ausgezeichnetes Preis-Leistungs-Verhältnis",
+        "chinaUsers": "Benutzer in China: StrongVPN (unterstützt Alipay) und Astrill VPN (China专线) sind am besten geeignet"
+      },
+      "disclaimer": {
+        "title": "Wichtiger Hinweis",
+        "items": [
+          "Die Verfügbarkeit von VPN-Diensten kann je nach Region und Zeit variieren, es wird empfohlen, Dienste mit Rückerstattungsgarantie zu wählen",
+          "Bitte halten Sie sich bei der Nutzung von VPN an die örtlichen Gesetze und Vorschriften, verwenden Sie es nur für legale Zwecke",
+          "Einige VPNs erfordern möglicherweise eine spezielle Konfiguration, um in China zu funktionieren, wenden Sie sich bitte vor dem Kauf an den Kundendienst",
+          "Preisinformationen können sich jederzeit ändern, maßgeblich ist der tatsächliche Preis auf der offiziellen Website",
+          "Es wird empfohlen, Dienste mit kostenlosen Testversionen oder Rückerstattungsgarantien zu priorisieren und vor dem Kauf zu testen",
+          "Führen Sie keine sensiblen Vorgänge (wie Online-Banking) durch, während Sie mit VPN verbunden sind, es sei denn, Sie bestätigen, dass das VPN sicher und zuverlässig ist"
+        ]
+      }
+    }
+  },
+  "hero": {
+    "tagline": "Einheitliches Gateway für große Modell-Schnittstellen",
+    "title": "Kostenloses AI-Modell-API-Gateway, Kostenlose API, Kostenloses VPN teilen",
+    "subtitle": "Bessere Stabilität",
+    "description": "Bietet kostenlose AI-Modell-API-Gateway-Dienste und kostenlose VPN-Abonnements. Unterstützung für Claude, ChatGPT und andere Mainstream-AI-Modelle. Hohe Geschwindigkeit, stabil, One-Click-Abonnement.",
+    "description2": "Unterstützung für mehrere Mainstream-Großmodelle mit einheitlichem Schnittstellenformat und stabilem Dienst",
+    "viewApiList": "API-Liste anzeigen",
+    "documentation": "Dokumentation",
+    "realtimeMonitoring": "Echtzeit-Überwachung",
+    "highAvailability": "Hohe Verfügbarkeit",
+    "competitivePricing": "Wettbewerbsfähige Preise"
+  },
+  "features": {
+    "title": "Warum Sie uns wählen sollten",
+    "description": "Wir bieten den umfassendsten und professionellsten AI-Tool-Navigationsdienst",
+    "items": {
+      "smartSearch": {
+        "title": "Intelligente Suche",
+        "description": "Leistungsstarke Suchmaschine mit mehrdimensionaler Filterung, um schnell die benötigten AI-Tools zu finden"
+      },
+      "preciseCategories": {
+        "title": "Präzise Kategorien",
+        "description": "Kategorisiert nach Funktion, Branche, Preis und anderen Dimensionen zur einfachen Durchsuchung verwandter Tools"
+      },
+      "professionalReview": {
+        "title": "Professionelle Bewertung",
+        "description": "Jedes Tool wird von unserem Team gründlich getestet und professionell bewertet"
+      },
+      "realTimeUpdate": {
+        "title": "Echtzeit-Update",
+        "description": "Tägliche Updates der neuesten AI-Tools, um sicherzustellen, dass Sie keine innovativen Produkte verpassen"
+      },
+      "secure": {
+        "title": "Sicher & Zuverlässig",
+        "description": "Alle empfohlenen Tools werden sicherheitsüberprüft, um Ihre Datenprivatsphäre zu schützen"
+      },
+      "quickAccess": {
+        "title": "Schneller Zugriff",
+        "description": "One-Click-Zugriff auf die offiziellen Websites der Tools, spart Ihre Suchzeit"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "So funktioniert es",
+    "description": "Drei einfache Schritte, um die für Sie am besten geeigneten AI-Tools zu finden",
+    "steps": {
+      "browse": {
+        "title": "Durchsuchen & Suchen",
+        "description": "Durchsuchen Sie nach Kategorie oder verwenden Sie die Suchfunktion, um schnell die Art von AI-Tools zu finden, die Sie benötigen"
+      },
+      "details": {
+        "title": "Details anzeigen",
+        "description": "Lesen Sie detaillierte Tool-Einführungen, Funktionslisten, Benutzerbewertungen und professionelle Bewertungen"
+      },
+      "start": {
+        "title": "Loslegen",
+        "description": "One-Click-Zugriff auf die offizielle Website des Tools, beginnen Sie sofort mit der Nutzung, um Ihre Arbeitseffizienz zu verbessern"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Benutzerrezensionen",
+    "description": "Sehen Sie, wie andere Benutzer unseren Service bewerten",
+    "items": {
+      "user1": {
+        "name": "Zhang Wei",
+        "role": "Produktmanager",
+        "company": "Tech-Unternehmen",
+        "content": "Diese Plattform hat mir viel Zeit bei der Suche nach AI-Tools gespart. Die Bewertungen für jedes Tool sind sehr professionell und detailliert. Sehr empfehlenswert!"
+      },
+      "user2": {
+        "name": "Li Na",
+        "role": "Designerin",
+        "company": "Designstudio",
+        "content": "Als Designerin muss ich oft verschiedene AI-Tools verwenden. Diese Navigations-Website hilft mir, schnell die am besten geeigneten Tools zu finden, was die Arbeitseffizienz erheblich verbessert."
+      },
+      "user3": {
+        "name": "Wang Qiang",
+        "role": "Unternehmer",
+        "company": "Startup",
+        "content": "Klare Kategorien, zeitnahe Updates und detaillierte Einführungen für jedes Tool. Für unser Startup-Team, das eine schnelle Iteration benötigt, ist diese Plattform äußerst wertvoll."
+      }
+    }
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "description": "Häufige Fragen und Antworten zur AI-Navigation",
+    "items": {
+      "q1": {
+        "question": "Was ist AI-Navigation?",
+        "answer": "AI-Navigation ist eine professionelle AI-Tool-Aggregationsplattform, die die weltweit besten AI-Tools und Websites sorgfältig kuratiert und kontinuierlich aktualisiert, um Benutzern zu helfen, schnell die am besten geeigneten AI-Lösungen zu finden."
+      },
+      "q2": {
+        "question": "Was ist der Unterschied zwischen der kostenlosen und der kostenpflichtigen Version?",
+        "answer": "Die kostenlose Version bietet Zugang zu über 200 grundlegenden AI-Tools und grundlegenden Suchfunktionen. Die kostenpflichtige Version bietet Zugang zu allen über 500 Tools, erweiterte Suche, professionelle Bewertungsberichte, vorrangigen Kundensupport und mehr."
+      },
+      "q3": {
+        "question": "Wie stellen Sie die Qualität der empfohlenen Tools sicher?",
+        "answer": "Unser professionelles Team führt eingehende Tests und Bewertungen jedes Tools durch, einschließlich Funktionalität, Benutzerfreundlichkeit, Sicherheit und anderer Dimensionen. Nur Tools, die eine strenge Überprüfung bestehen, werden in unsere Plattform aufgenommen."
+      },
+      "q4": {
+        "question": "Wie oft werden Tools aktualisiert?",
+        "answer": "Wir aktualisieren den Plattforminhalt täglich, einschließlich neuer Tools, aktualisierter Tool-Informationen und Benutzerrezensionen. Benutzer des Professional-Plans erhalten außerdem wöchentlich kuratierte Empfehlungen."
+      },
+      "q5": {
+        "question": "Kann ich eine Rückerstattung beantragen?",
+        "answer": "Wir bieten eine 7-tägige bedingungslose Rückerstattungsgarantie. Wenn Sie mit unserem Service nicht zufrieden sind, können Sie innerhalb von 7 Tagen nach dem Kauf eine vollständige Rückerstattung beantragen."
+      },
+      "q6": {
+        "question": "Welche speziellen Dienste umfasst der Unternehmensplan?",
+        "answer": "Zusätzlich zu allen Funktionen des Professional-Plans umfasst der Unternehmensplan Team-Kollaborationsfunktionen, maßgeschneiderte Empfehlungen, einen dedizierten Account Manager, API-Zugriff, Sicherheitsgarantien auf Unternehmensebene und maßgeschneiderte Schulungsdienste."
+      }
+    }
+  },
+  "monitor": {
+    "title": "API-Schnittstellen-Überwachungs-Dashboard",
+    "description": "Echtzeit-Überwachung der Verfügbarkeit von Relay-Schnittstellen",
+    "stats": {
+      "totalSites": "Gesamtzahl der Websites",
+      "lastUpdate": "Letztes Update"
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline"
+    },
+    "serviceCard": {
+      "inviteLink": "Einladungslink",
+      "responseTime": "Reaktionszeit",
+      "lastCheck": "Letzte Überprüfung"
+    }
   },
   "siteInfo": {
     "brandName": "Router Park",
-    "description": "Think, Write, Code",
+    "description": "Denken, Schreiben, Code",
     "meta": {
-      "title": "Router Park - Think, Write, Code",
-      "description": "A responsive, lightweight, and accessible front-end framework using Next.js, TypeScript, and Tailwind CSS."
+      "title": "Denken, Schreiben, Code",
+      "description": "Ein responsives, leichtes und zugängliches Front-End-Framework mit Next.js, TypeScript und Tailwind CSS."
     }
   },
-  "blog": {
-    "postNotFound": "Beitrag nicht gefunden",
-    "postNotFoundDescription": "Der gesuchte Blog-Beitrag konnte nicht gefunden werden.",
-    "publishedAt": "Veröffentlicht am {date}"
-  },
-  "blogs": {
-    "pageTitle": "Blog-Beiträge",
-    "metaTitle": "Einblicke und Artikel",
-    "metaDescription": "Entdecken Sie unsere neuesten Artikel über Beauty-Analyse, KI-Technologie und Gesichtsaesthetik. Erhalten Sie Experten-Einblicke, Tipps und Trends aus der Welt der KI-gestützten Schönheitsbewertung.",
-    "noArticles": "Keine Artikel verfügbar",
-    "publishedAt": "Veröffentlicht am {date}"
-  },
-  "plan": {
-    "notFound": "Plan nicht gefunden",
-    "priceUnit": "/ Monat",
-    "tokens": "Tokens",
-    "featuresTitle": "Funktionen",
-    "light": {
-      "name": "Light Plan",
-      "description": "Perfekt für leichte Nutzung und Tests",
-      "features": {
-        "0": "Unbegrenzte Inhaltserstellung",
-        "1": "Flow-Token",
-        "2": "Zugriff auf die Flow-Community"
-      }
+  "login": {
+    "signOut": "Abmelden",
+    "login": "Anmelden",
+    "modal": {
+      "description": "Melden Sie sich an, um Ihre Reise fortzusetzen",
+      "triggerText": "Anmelden"
     },
-    "standard": {
-      "name": "Standard-Plan",
-      "description": "Ideal für regelmäßige Nutzer und kleine Teams",
-      "features": {
-        "0": "Unbegrenzte Inhaltserstellung",
-        "1": "Flow-Token",
-        "2": "Zugriff auf die Flow-Community",
-        "3": "Hochwertige Bilder"
-      }
-    },
-    "professional": {
-      "name": "Professioneller Plan",
-      "description": "Ideal für Power-User und große Projekte",
-      "features": {
-        "0": "Unbegrenzte Inhaltserstellung",
-        "1": "Flow-Token",
-        "2": "Zugriff auf die Flow-Community",
-        "3": "Hochwertige Bilder",
-        "4": "Premium-Funktionen"
-      }
+    "form": {
+      "continueWithGoogle": "Weiter mit Google",
+      "continueWithGithub": "Weiter mit GitHub",
+      "orContinueWith": "Oder fahren Sie fort mit",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "signInWithEmail": "Mit E-Mail anmelden"
     }
+  },
+  "pricing": {
+    "metaTitle": "Preispläne - Wählen Sie Ihren perfekten Plan",
+    "metaDescription": "Wählen Sie aus unseren flexiblen Preisplänen und Token-Paketen. Beginnen Sie mit unserem Light-Plan oder upgraden Sie auf Professional für erweiterte Funktionen.",
+    "title": "Wählen Sie Ihren Plan",
+    "tokensTitle": "Flow-Tokens"
   },
   "tokenPackage": {
-    "tokensLabel": "Token",
+    "tokensLabel": "Tokens",
     "oneTime": "Einmalig",
     "trial": {
       "name": "Testpaket"
@@ -139,387 +418,165 @@
       "name": "Mittleres Paket"
     }
   },
-  "pricing": {
-    "metaTitle": "Preispläne - Wählen Sie Ihren perfekten Plan",
-    "metaDescription": "Wählen Sie aus unseren flexiblen Preisplänen und Token-Paketen. Beginnen Sie mit unserem Light Plan oder aktualisieren Sie auf Professional für erweiterte Funktionen.",
-    "title": "Wählen Sie Ihren Plan",
-    "tokensTitle": "Flow-Token"
+  "plan": {
+    "notFound": "Plan nicht gefunden",
+    "priceUnit": "/ Monat",
+    "tokens": "Tokens",
+    "featuresTitle": "Funktionen",
+    "light": {
+      "name": "Light-Plan",
+      "description": "Perfekt für leichte Nutzung und Tests",
+      "features": {
+        "0": "Unbegrenzte Inhaltserstellung",
+        "1": "Flow-Tokens",
+        "2": "Zugang zur Flow-Community"
+      }
+    },
+    "standard": {
+      "name": "Standard-Plan",
+      "description": "Ideal für regelmäßige Benutzer und kleine Teams",
+      "features": {
+        "0": "Unbegrenzte Inhaltserstellung",
+        "1": "Flow-Tokens",
+        "2": "Zugang zur Flow-Community",
+        "3": "Hochwertige Bilder"
+      }
+    },
+    "professional": {
+      "name": "Professional-Plan",
+      "description": "Am besten für Power-User und große Projekte",
+      "features": {
+        "0": "Unbegrenzte Inhaltserstellung",
+        "1": "Flow-Tokens",
+        "2": "Zugang zur Flow-Community",
+        "3": "Hochwertige Bilder",
+        "4": "Premium-Funktionen"
+      }
+    }
   },
   "home": {
-    "metaTitle": "Kostenloser AI Text-to-Speech Generator - Hochwertige Sprachsynthese",
-    "metaDescription": "Konvertieren Sie Text kostenlos mit unserem fortschrittlichen AI-Sprachgenerator in Sprache. Hochwertige, natürlich klingende Stimmen mit sofortiger Konvertierung. Keine Registrierung erforderlich.",
-    "title": "Kostenloser AI Text-to-Speech Generator",
-    "description": "Transformieren Sie jeden Text mit unserer fortschrittlichen KI-Technologie in natürliche, hochwertige Sprache. Völlig kostenlos mit professioneller Sprachsynthese.",
+    "metaTitle": "Kostenloses AI-Modell-API-Gateway, Kostenlose API, Kostenloses VPN",
+    "metaDescription": "Bietet kostenlose AI-Modell-API-Gateway-Dienste und kostenlose VPN-Abonnements. Unterstützung für Claude, ChatGPT und andere Mainstream-AI-Modelle. Hohe Geschwindigkeit, stabil, One-Click-Abonnement.",
+    "title": "Kostenloses AI-Modell-API-Gateway",
+    "description": "Bietet kostenlose AI-Modell-API-Gateway-Dienste und kostenlose VPN-Abonnements. Unterstützung für ChatGPT, Claude, Gemini und andere Mainstream-Großmodell-APIs. Hohe Geschwindigkeit, stabil, komplett kostenlos.",
     "contentSections": {
-      "section1Title": "Hören Sie: KI kann jetzt mit der Stimme sprechen, die Sie vermissen",
-      "section1Content1": "Haben Sie sich jemals spät in der Nacht dabei erwischt, eine alte, staubige Kassette herauszuholen und auf Play zu drücken, nur um die vertraute Stimme eines geliebten Menschen zu hören, der verstorben ist? Um das Knistern und Rauschen zu hören, das einer Stimme aus der Vergangenheit weicht, warm und präsent, als ob sie gerade im nächsten Zimmer wäre und Ihren Namen flüstert.",
-      "section1Content2": "Diese Szene, einst auf unsere Erinnerungen und Tagträume beschränkt, wird nun zu einer greifbaren Realität. Das gesamte Feld der **AIGC (KI-generierte Inhalte)**, insbesondere im Bereich der **KI-Audioerzeugung**, macht diesen Traum wahr. Seine Kerntechnologie – **TTS (Text-to-Speech)** – kann nicht nur eine Stimme wieder zum Leben erwecken, die wir gerne hören würden, sondern diese auch dazu bringen, alles zu sagen, was wir wollen.",
-      "section1Content3": "Dies ist nicht nur ein technologischer Sprung nach vorn, sondern eine tiefgreifende Veränderung unserer Beziehung zu Klang, Emotion und Erinnerung.",
+      "mainTitle": "Als Maschinen ihre Stimme fanden: Die Geschichte der AI-Sprache",
+      "mainDescription": "Erforschen Sie die tiefgreifende Transformation der Text-zu-Sprache-Technologie von kalten, mechanischen Klängen zu AI-Stimmen, die Erinnerungen wiederbeleben, Emotionen vermitteln und die Kluft zwischen digitaler und menschlicher Verbindung überbrücken können.",
+      "section1Title": "Hören Sie: AI kann jetzt in der Stimme sprechen, die Sie vermissen",
+      "section1Content1": "Haben Sie jemals spät in der Nacht eine verstaubte alte Kassette hervorgezogen und auf Play gedrückt, nur um die vertraute Stimme eines geliebten Menschen zu hören, der verstorben ist? Das Knistern und Zischen einem Klang aus der Vergangenheit weichen zu hören, warm und präsent, als wären sie nur im nächsten Raum und würden Ihren Namen flüstern.",
+      "section1Content2": "Diese Szene, einst auf unsere Erinnerungen und Tagträume beschränkt, wird nun zu einer greifbaren Realität. Der gesamte Bereich von **AIGC (AI-Generated Content)**, insbesondere im Bereich der **AI-Audio-Generierung**, lässt diesen Traum wahr werden. Seine Kerntechnologie—**TTS (Text-to-Speech)**—kann nicht nur eine Stimme wiederbeleben, die wir uns wünschen, sondern diese Stimme auch alles sagen lassen, was wir wollen.",
+      "section1Content3": "Dies ist nicht nur ein technologischer Sprung; es ist eine tiefgreifende Neugestaltung unserer Beziehung zu Klang, Emotion und Erinnerung.",
       "section2Title": "Als Maschinen anfingen zu sprechen",
-      "section2Content1": "Wir alle erinnern uns an die roboterhaften, leblosen Stimmen früherer Computer und GPS-Systeme. Jedes Wort war flach, monoton und steril, als wäre es aus einer Konservendose gepresst worden. Diese Ära der Sprachsynthese war wie ein Roboter, der gerade lernt, menschliche Sprache nachzuahmen – er konnte Geräusche erzeugen, aber keine Wärme vermitteln.",
-      "section2Content2": "Die frühesten Versuche gehen auf die 1930er Jahre mit dem Voder von Bell Labs zurück, einer massiven Maschine, die als Vorfahre der Sprachsynthese gilt. Ein Bediener musste sie wie einem Orgel spielen, wobei er seine Hände und Füße benutzte, um Tonhöhe und Klangfarbe zu manipulieren. Es war eine Zeit, in der die kompliziertesten Methoden eingesetzt wurden, um die einfachsten Grüße zu erreichen.",
-      "section2Content3": "Es war erst in den frühen 2000er Jahren, mit Methoden, die auf statistischem Lernen basieren, dass Maschinen begannen, aus riesigen Bibliotheken menschlicher Aufnahmen zu \"lernen\". Die resultierende Stimme war eine Verbesserung, klang aber immer noch wie ein übermäßig höflicher Kundendienstmitarbeiter: klar und verständlich, aber völlig ohne Persönlichkeit.",
-      "section3Title": "Die Magie der Sprachsynthese",
-      "section4Title": "Beyond Speech: AI Is Learning to Sing and Create",
-      "section4Content1": "Die Ambition der KI im Audiobereich beschränkt sich nicht auf Sprache. Wenn Sie die Techniknachrichten verfolgen, haben Sie sicherlich schon von **Suno** und **Udio** gehört. Diese sind die aufstrebenden Stars der **Text-to-Music**-Welt. Ein Benutzer kann einfach eine Beschreibung oder eine Reihe von Texten eingeben, und in Sekundenschnelle generiert die KI einen vollständig produzierten Song mit Gesang, Instrumenten und Arrangement. Die Grenzen dessen, was mit Klang möglich ist, werden vor unseren Augen neu definiert.",
+      "section2Content1": "Wir alle erinnern uns an die robotischen, leblosen Stimmen früher Computer und GPS-Systeme. Jedes Wort war flach, monoton und steril, als wäre es aus einer Blechdose gepresst. Diese Ära der Sprachsynthese war wie ein Roboter, der gerade erst lernte, menschliche Sprache nachzuahmen—er konnte Töne erzeugen, aber keinen Funken Wärme vermitteln.",
+      "section2Content2": "Die frühesten Versuche reichen bis in die 1930er Jahre mit dem Voder von Bell Labs zurück, einer massiven Maschine, die als Vorläufer der Sprachsynthese gilt. Ein Bediener musste sie wie eine Orgel spielen und mit Händen und Füßen ihren Ton und ihre Tonhöhe manipulieren. Es war eine Zeit, in der die kompliziertesten Methoden verwendet wurden, um die einfachsten Begrüßungen zu erzielen.",
+      "section2Content3": "Erst Anfang der 2000er Jahre, mit Methoden basierend auf statistischem Lernen, begannen Maschinen, aus riesigen Bibliotheken menschlicher Aufnahmen zu \"lernen\". Die resultierende Stimme war eine Verbesserung, klang aber immer noch wie ein übermäßig höflicher Kundendienstmitarbeiter: klar und verständlich, aber völlig ohne Persönlichkeit.",
+      "section3Title": "Die Magie der Stimmklonung",
+      "section3Content1": "Die wahre Magie ist erst in den letzten Jahren geschehen. Mit dem Aufkommen von Deep Learning und großen Modellen sind wir in die Ära des **\"Zero-shot Voice Cloning\"** eingetreten. Das bedeutet, eine AI benötigt keine stundenlange dedizierte Schulung mehr für eine bestimmte Stimme. Jetzt kann sie die Essenz der Stimme einer Person aus nur wenigen Sekunden Audio erfassen.",
+      "section3Content2": "Wegweisende Modelle wie **ElevenLabs**, **OpenAI's Voice Engine** und Microsofts **VALL-E** sind an der Spitze dieser Revolution. Sie können nicht nur die Klangfarbe einer Stimme, sondern auch ihren Sprechstil und subtile emotionale Nuancen präzise erfassen. Noch unglaublicher ist das Aufkommen des **Cross-lingual Voice Cloning**, einer Technologie, die es Ihnen ermöglicht, fließend Französisch oder Japanisch in Ihrer eigenen einzigartigen Stimme zu sprechen, ohne die Sprache jemals gelernt zu haben.",
+      "section3Content3": "Was wirklich ermutigend ist, ist, dass die Macht von Open-Source-Communities verhindert, dass diese Technologie von einigen wenigen Tech-Giganten monopolisiert wird. Open-Source-Projekte wie **GPT-SoVITS** ermöglichen es jedem mit grundlegenden technischen Fähigkeiten, mit Stimmklonung auf seinem eigenen Computer zu experimentieren. Ein Vater auf einer Geschäftsreise kann eine neue Gute-Nacht-Geschichte für sein Kind in seiner eigenen Stimme aufnehmen. Eine Tochter kann die alternde Stimme ihrer Mutter bewahren und diese Wärme für immer bei sich behalten.",
+      "section4Title": "Über die Sprache hinaus: AI lernt singen und kreieren",
+      "section4Content1": "Die Ambitionen der AI im Audiobereich hören bei der Sprache nicht auf. Wenn Sie die Tech-Nachrichten verfolgt haben, haben Sie zweifellos von **Suno** und **Udio** gehört. Dies sind die Durchbruchs-Stars der **Text-zu-Musik**-Welt. Ein Benutzer kann einfach eine Beschreibung oder einen Liedtext eingeben, und in Sekundenschnelle generiert die AI ein vollständig produziertes Lied, komplett mit Gesang, Instrumenten und Arrangement. Die Grenzen dessen, was mit Klang möglich ist, werden vor unseren Augen neu gezogen.",
       "section5Title": "Die Seele einer Stimme: Die letzte Grenze der emotionalen TTS",
-      "section5Content1": "Ob es sich um Sprachsynthese oder KI-generierte Musik handelt, sobald die Technologie das Problem löst, natürlich zu klingen, steht sie vor der größten Herausforderung: Wie kann man Emotionen vermitteln?",
-      "section5Content2": "Nehmen wir den Satz \"Ich liebe dich\". Geflüstert in der Hitze des Augenblicks ist er voller Süße. Erstickt in einem tränenreichen Abschied ist er schwer von Bedauern. Geschrien bei einem freudigen Wiedersehen ist er voller Aufregung. Die menschliche Stimme trägt diese unglaublich komplexen Schichten von Emotionen, und dies ist die letzte und schwierigste Grenze, um wirklich **\"Expressive TTS\"** oder **\"Emotionale TTS\"** zu schaffen.",
-      "section5Content3": "Entwickler haben eine brillante Lösung gefunden: die Paarung eines **Large Language Model (LLM)** als \"Regisseur\" mit einem TTS-Modell als \"Schauspieler\". Der LLM \"Regisseur\" liest das Skript, versteht den Kontext und die Emotion und gibt dann dem TTS \"Schauspieler\" detaillierte Anweisungen. Diese Architektur ist der Schlüssel, um wirklich **\"Kontrollierbare TTS\"** zu erreichen. In Zukunft werden Sprachassistenten und sogar **KI-Digital Humans** dankdessen überzeugendere und lebensechtere Seelen haben.",
-      "section6Title": "Der Preis der Emotion: Wo lernt KI die Menschlichkeit?",
-      "section6Content1": "Doch diese Lösung stellt ein tiefgreifendes Paradoxon dar: Um einer KI Emotionen beizubringen, benötigt man riesige Mengen an emotional gekennzeichneten Audiodaten. Emotionen sind jedoch zutiefst subjektiv und privat. Wie quantifiziert man den Unterschied zwischen \"leichter Enttäuschung\" und \"tiefer Verzweiflung?\"",
-      "section6Content2": "Noch wichtiger ist, dass jeder emotionale Audioausschnitt, der zum Trainieren dieser Modelle verwendet wird, von einem echten Menschen stammt. Diese \"wütenden\" Aufnahmen können von einem Schauspieler stammen, der eine schmerzhafte Erinnerung kanalisert. Diese \"traurigen\" Fragmente können die Last des echten Leids eines Sprechers tragen. Die KI lernt nicht nur Wellenformen; sie lernt von der kristallisierten Essenz menschlicher Emotionen.",
-      "section7Title": "Final Thoughts: Beyond the Tech, What Should We Cherish?",
-      "section7Content1": "As we stand at this technological crossroads, on the verge of watching AI master one of humanity's warmest skills, we should pause and ask ourselves: what do we want this technology to do for us?",
-      "section7Content2": "Sound is a vessel for emotion, a container for memory, a bridge between souls. As AI becomes better and better at imitation, perhaps we will come to appreciate the authentic, irreplaceable, and heartfelt sounds of real human voices even more.",
-      "section7Content3": "Denn egal wie fortschrittlich die Technologie wird, die ergreifendsten Klänge werden immer diejenigen sein, die echte Emotionen, echte Erfahrungen und echtes Leben vermitteln.",
-      "section7Content4": "In diesen Stimmen liegen unsere Vergangenheit, unsere Liebe und all unsere Hoffnungen für die Zukunft.",
-      "section3Content1": "Die wahre Magie ist in den letzten Jahren geschehen. Mit dem Aufstieg des Deep Learning und der großen Modelle sind wir in das Zeitalter des **\"Zero-shot Voice Cloning\"** eingetreten. Das bedeutet, dass eine KI keine stundenlangen, speziellen Trainingsaufwand für eine bestimmte Stimme mehr benötigt. Jetzt kann sie die Essenz einer Stimme einer Person mit nur wenigen Sekunden Audio erfassen.",
-      "section3Content2": "Bahnbrechende Modelle wie **ElevenLabs**, **OpenAI's Voice Engine** und **VALL-E** von Microsoft stehen an der Spitze dieser Revolution. Sie können nicht nur den Klang einer Stimme, sondern auch ihren Sprachstil und subtile emotionale Nuancen präzise erfassen. Noch erstaunlicher ist das Aufkommen des **Cross-lingual Voice Cloning**, einer Technologie, die es Ihnen ermöglicht, fließend Französisch oder Japanisch mit Ihrer eigenen, einzigartigen Stimme zu sprechen, ohne die Sprache jemals gelernt zu haben.",
-      "section3Content3": "Was wirklich erfreulich ist, ist, dass die Kraft der Open-Source-Community verhindert, dass diese Technologie von wenigen Technologiegiganten monopolisiert wird. Open-Source-Projekte wie **GPT-SoVITS** ermöglichen es jedem mit grundlegenden technischen Fähigkeiten, mit der Sprachsynthese auf seinem eigenen Computer zu experimentieren. Ein Vater, der sich auf Geschäftsreise befindet, kann seinem Kind eine neue Gute-Nacht-Geschichte mit seiner eigenen Stimme aufnehmen. Eine Tochter kann die alternde Stimme ihrer Mutter bewahren und so diese Wärme für immer bewahren.",
-      "mainTitle": "Als Maschinen ihre Stimme fanden: Die Geschichte der KI-Sprache",
-      "mainDescription": "Erforschen Sie die tiefgreifende Veränderung der Sprachsynthese-Technologie von kalten, mechanischen Geräuschen zu KI-Stimmen, die Erinnerungen wiederbeleben, Emotionen vermitteln und die Kluft zwischen digitaler und menschlicher Verbindung überbrücken können."
+      "section5Content1": "Ob es sich um Stimmklonung oder AI-generierte Musik handelt, sobald die Technologie das Problem löst, \"realistisch\" zu klingen, steht sie vor der ultimativen Herausforderung: Wie man Emotionen vermittelt.",
+      "section5Content2": "Nehmen Sie den Satz \"Ich liebe dich.\" Im Eifer der Leidenschaft geflüstert, ist er voller Süße. Unter Tränen beim Abschied hervorgewürgt, ist er schwer von Bedauern. Bei einem freudigen Wiedersehen herausgeschrien, ist er voller Aufregung. Die menschliche Stimme trägt diese unglaublich komplexen Schichten von Emotionen, und dies ist die letzte, schwierigste Grenze für die Schaffung wirklich **\"Expressiver TTS\"** oder **\"Emotionaler TTS.\"**",
+      "section5Content3": "Entwickler haben eine brillante Lösung entwickelt: die Kombination eines **Large Language Model (LLM)** als \"Regisseur\" mit einem TTS-Modell als \"Schauspieler\". Der LLM-\"Regisseur\" liest das Skript, versteht den Kontext und die Emotion und gibt dann detaillierte Anweisungen an den TTS-\"Schauspieler\". Diese Architektur ist der Schlüssel zur Erreichung wirklich **\"Steuerbarer TTS.\"** In Zukunft werden Sprachassistenten und sogar **AI Digital Humans** dadurch überzeugendere und lebensechtere Seelen haben.",
+      "section6Title": "Der Preis der Emotion: Wo lernt AI Menschlichkeit?",
+      "section6Content1": "Aber diese Lösung birgt ein tiefgreifendes Paradox: Um einer AI Emotion beizubringen, benötigt man massive Mengen an emotional gelabelten Audiodaten. Emotion ist jedoch zutiefst subjektiv und privat. Wie quantifiziert man den Unterschied zwischen \"leichter Enttäuschung\" und \"tiefer Verzweiflung\"?",
+      "section6Content2": "Noch wichtiger ist, dass jeder Clip emotionalen Audios, der zur Schulung dieser Modelle verwendet wird, von einem echten Menschen stammt. Diese \"wütenden\" Aufnahmen stammen möglicherweise von einem Schauspieler, der eine schmerzhafte Erinnerung kanalisiert. Diese \"traurigen\" Ausschnitte tragen möglicherweise das Gewicht des echten Kummers eines Synchronsprechers. Die AI lernt nicht nur Wellenformen; sie lernt aus der kristallisierten Essenz menschlicher Emotion.",
+      "section7Title": "Abschließende Gedanken: Was sollten wir jenseits der Technologie schätzen?",
+      "section7Content1": "Während wir an dieser technologischen Kreuzung stehen, kurz davor, die AI eine der wärmsten Fähigkeiten der Menschheit meistern zu sehen, sollten wir innehalten und uns fragen: Was soll diese Technologie für uns tun?",
+      "section7Content2": "Klang ist ein Gefäß für Emotionen, ein Behälter für Erinnerungen, eine Brücke zwischen Seelen. Wenn die AI immer besser in der Nachahmung wird, werden wir vielleicht die authentischen, unersetzlichen und herzlichen Klänge echter menschlicher Stimmen noch mehr schätzen lernen.",
+      "section7Content3": "Denn egal wie fortschrittlich die Technologie wird, die bewegendsten Klänge werden immer jene sein, die echte Emotionen, echte Erfahrungen und echtes Leben tragen.",
+      "section7Content4": "In diesen Stimmen liegen unsere Vergangenheit, unsere Liebe und all unsere Hoffnungen für die Zukunft."
     },
     "faq": {
       "title": "Häufig gestellte Fragen",
-      "question1": "Was ist Text-to-Speech und wie funktioniert es?",
-      "answer1": "Text-to-Speech (TTS) ist eine Technologie, die geschriebenen Text in natürlich klingende Sprache umwandelt. Unsere Plattform verwendet fortschrittliche KI-Modelle von ElevenLabs, um hochwertige, menschenähnliche Stimmen aus Ihrer Texteingabe zu erzeugen. Geben Sie einfach Ihren Text ein, wählen Sie eine Stimme und erhalten Sie sofortige Audioausgabe.",
+      "question1": "Was ist Text-zu-Sprache und wie funktioniert es?",
+      "answer1": "Text-zu-Sprache (TTS) ist eine Technologie, die geschriebenen Text in natürlich klingende Sprache umwandelt. Unsere Plattform verwendet die fortschrittlichen AI-Modelle von ElevenLabs, um hochwertige, menschenähnliche Stimmen aus Ihrer Texteingabe zu generieren. Geben Sie einfach Ihren Text ein, wählen Sie eine Stimme aus und erhalten Sie sofort eine Audioausgabe.",
       "question2": "Welche Sprachoptionen stehen zur Verfügung?",
-      "answer2": "Wir bieten über ElevenLabs eine Vielzahl von KI-generierten Stimmen an, darunter verschiedene Geschlechter, Akzente und Sprechweisen. Sie können auch benutzerdefinierte Stimmen mit unserem Voice-Design-Feature erstellen, indem Sie eine Beschreibung der gewünschten Stimmcharakteristika angeben.",
+      "answer2": "Wir bieten eine Vielzahl von AI-generierten Stimmen über ElevenLabs an, einschließlich verschiedener Geschlechter, Akzente und Sprechstile. Sie können auch benutzerdefinierte Stimmen mit unserer Sprachdesign-Funktion entwerfen, indem Sie eine Beschreibung der gewünschten Stimmmerkmale angeben.",
       "question3": "Welche Audioformate werden unterstützt?",
-      "answer3": "Unser TTS-Dienst gibt hochwertige MP3-Audio-Dateien mit 44,1 kHz und einer Bitrate von 64 kbps aus, wodurch eine ausgezeichnete Klangqualität gewährleistet und gleichzeitig angemessene Dateigrößen für die Web-Bereitstellung und -Downloads erhalten bleiben.",
-      "question4": "Gibt es Nutzungslimits oder Kosten?",
-      "answer4": "Die Plattform verwendet ein Token-basiertes System, bei dem die Sprachsynthese Token basierend auf der Dauer des generierten Audios verbraucht. Jede Sekunde generierter Sprache kostet eine bestimmte Anzahl von Token. Sie können Ihre Token-Nutzung in Ihrem Kontodashboard überwachen.",
+      "answer3": "Unser TTS-Dienst gibt hochwertige MP3-Audiodateien mit 44,1 kHz und einer Bitrate von 64 kbit/s aus, was eine ausgezeichnete Klangqualität gewährleistet und gleichzeitig angemessene Dateigrößen für die Webbereitstellung und Downloads beibehält.",
+      "question4": "Gibt es Nutzungsbeschränkungen oder Kosten?",
+      "answer4": "Die Plattform verwendet ein Token-basiertes System, bei dem die Spracherzeugung Tokens basierend auf der Dauer des generierten Audios verbraucht. Jede Sekunde generierter Sprache kostet eine bestimmte Anzahl von Tokens. Sie können Ihren Token-Verbrauch in Ihrem Kontodashboard überwachen.",
       "question5": "Kann ich die generierte Sprache kommerziell nutzen?",
-      "answer5": "Die Nutzungsrechte hängen von den Nutzungsbedingungen und Ihrem Abonnementplan von ElevenLabs ab. Im Allgemeinen können Sie die generierte Sprache für persönliche und kommerzielle Projekte verwenden, aber bitte überprüfen Sie die spezifischen Lizenzbedingungen für Ihren Anwendungsfall. Stellen Sie immer sicher, dass Sie das Recht haben, den Textinhalt zu konvertieren, den Sie verwenden."
+      "answer5": "Die Nutzungsrechte hängen von den Nutzungsbedingungen von ElevenLabs und Ihrem Abonnementplan ab. Im Allgemeinen können Sie generierte Sprache für persönliche und kommerzielle Projekte verwenden, aber bitte überprüfen Sie die spezifischen Lizenzbedingungen für Ihren Anwendungsfall. Stellen Sie immer sicher, dass Sie das Recht haben, den verwendeten Textinhalt zu konvertieren."
     }
   },
-  "pages": {
-    "aiTools": {
-      "title": "Large Model Interface Gateway Navigation",
-      "description": "Discover the latest and hottest AI tools, large model interface gateways, ChatGPT mirror sites to boost your productivity",
-      "searchPlaceholder": "Search AI tools...",
-      "noResultsTitle": "No tools found",
-      "noResultsDescription": "Try adjusting your search keywords or selecting another category",
-      "toolsCount": "Total {count} AI tools collected",
-      "showingCount": " · Currently showing {count}"
+  "freeVpn": {
+    "title": "Kostenloses VPN-Abonnement",
+    "description": "Komplett kostenlos, keine Registrierung erforderlich, One-Click-Abonnement",
+    "mainTitle": "Kostenloses VPN-Abonnement",
+    "mainDescription": "Hochgeschwindigkeits- und stabiler kostenloser VPN-Dienst, scannen Sie den QR-Code oder kopieren Sie die Abonnementadresse zur Nutzung",
+    "badges": {
+      "highSpeed": "Hohe Geschwindigkeit",
+      "stable": "Stabil"
     },
-    "apiMonitor": {
-      "title": "Claude Code Relay Monitoring Dashboard",
-      "description": "Real-time monitoring of Claude Code relay service status"
+    "subscription": {
+      "title": "Abonnement-URL",
+      "copyButton": "Kopieren",
+      "copied": "Kopiert",
+      "placeholder": "Kopieren Sie den obigen Link und fügen Sie ihn in Ihren VPN-Client ein"
     },
-    "backlinks": {
-      "title": "Best Free Guest Post Submission Sites Analysis (2025)",
-      "description": "Comprehensive analysis and comparison of free guest post submission sites. Sites are ranked by review rate, submission speed, and review process.",
-      "banner": "Boost your website domain rating to {value1} in just {value2}, completely {value3}",
-      "shareButtons": {
-        "email": "Email",
-        "twitter": "Twitter",
-        "facebook": "Facebook",
-        "linkedin": "LinkedIn",
-        "wechat": "WeChat",
-        "telegram": "Telegram",
-        "more": "More"
-      },
-      "table": {
-        "rank": "Rank",
-        "recommended": "Recommended",
-        "website": "Website",
-        "category": "Category",
-        "contentPositioning": "Content Positioning",
-        "contentPositioningTooltip": "Suitable content types and angles for this website",
-        "mainContact": "Main Contact",
-        "actions": "Actions",
-        "visitSubmissionPage": "Visit Submission Page",
-        "highlyRecommended": "Highly Recommended"
-      },
-      "aboutTitle": "About This List",
-      "aboutDescription": "This list contains {count} verified guest post submission sites. Each site has been carefully evaluated, including its category classification, review difficulty, submission requirements and other key metrics. Regularly updated to ensure information accuracy."
-    },
-    "chatgptMirrors": {
-      "title": "ChatGPT Mirror Navigation",
-      "description": "Curated high-quality ChatGPT, Claude and other AI chat mirror sites, accessible without VPN",
-      "statusCounts": {
-        "online": "Online",
-        "unstable": "Unstable",
-        "offline": "Offline"
-      },
-      "searchPlaceholder": "Search mirror sites...",
-      "filterButtons": {
-        "all": "All",
-        "onlineOnly": "Online Only",
-        "unstable": "Unstable",
-        "freeOnly": "Free Only"
-      },
-      "noResultsTitle": "No mirror sites found",
-      "noResultsDescription": "Try adjusting your search keywords or filter criteria",
-      "mirrorsCount": "Total {count} mirror sites collected",
-      "showingCount": " · Currently showing {count}",
-      "usageInstructions": "Usage Instructions",
-      "usageNotes": [
-        "Mirror sites are provided by third parties, please evaluate security before use",
-        "Some sites may require registration or login to use",
-        "The stability of mirror sites may change at any time, please note backup options",
-        "Do not enter sensitive information or important data on mirror sites",
-        "This site only provides navigation services and is not responsible for the content and services of mirror sites"
-      ]
-    },
-    "configGuide": {
-      "title": "Configuration Guide",
-      "description": "Simple configuration to use AI interface relay service",
-      "backToHome": "Back to Home",
-      "steps": {
-        "step1": {
-          "title": "Select a relay service provider and register",
-          "description": "Select an online service provider from the homepage monitoring panel and click the invitation link to register an account",
-          "tip": "It is recommended to choose a service provider with online status and low response time",
-          "viewMonitorPanel": "View Monitoring Panel"
-        },
-        "step2": {
-          "title": "Get API Key",
-          "description": "After registering and logging in, get your API Key from the {apiToken} page in the service provider's backend",
-          "stepsTitle": "Steps:",
-          "steps": [
-            "Click the {addToken} button",
-            "Fill in the name freely, it is recommended to set the quota to {unlimitedQuota}",
-            "Keep other options at default settings",
-            "The obtained API Key starts with {codeSk}"
-          ],
-          "warning": "Please keep your API Key safe and do not share it with others"
-        },
-        "step3": {
-          "title": "Configure Environment Variables",
-          "description": "Configure API Key and Base URL in your project",
-          "methods": {
-            "method1": {
-              "title": "Method 1: Using environment variables (recommended)",
-              "codeBlockTitle": "Set API Key and Base URL (using anyrouter as example)"
-            },
-            "method2": {
-              "title": "Method 2: Configure in code (Python)",
-              "codeBlockTitle": "Python configuration example"
-            },
-            "method3": {
-              "title": "Method 3: Configure in code (Node.js)",
-              "codeBlockTitle": "Node.js configuration example"
-            },
-            "method4": {
-              "title": "Method 4: Use cURL for testing",
-              "codeBlockTitle": "cURL test example"
-            }
-          }
-        },
-        "step4": {
-          "title": "Start Using",
-          "description": "After configuration, you can use the relay service just like the original OpenAI API",
-          "tipTitle": "Tip:",
-          "tipDescription": "All relay services are fully compatible with OpenAI official API format, no need to modify code logic",
-          "supportedModels": "Supported mainstream models:"
-        }
-      },
-      "notes": {
-        "title": "⚠️ Notes",
-        "items": [
-          "Please keep your API Key safe and do not share it with others or submit it to public code repositories",
-          "It is recommended to choose stable online service providers from the monitoring panel",
-          "Different service providers may have different pricing and supported models, please check the service provider's instructions carefully",
-          "API Base URL usually ends with {codeV1}",
-          "If you encounter problems, you can click the \"Join Group\" button in the top right corner to join the QQ group for help"
-        ]
-      }
-    },
-    "keywordTool": {
-      "title": "Google Keyword Search Volume Batch Query Tool",
-      "description": "Enter keywords to get monthly search volume, CPC and competition data at once",
-      "buttons": {
-        "startQuery": "Start Query",
-        "clearing": "Clearing...",
-        "querying": "Querying...",
-        "clear": "Clear"
-      },
-      "statusMessages": {
-        "enterAtLeastOneKeyword": "Please enter at least one keyword",
-        "querying": "Querying batch {current}/{total} ({count} keywords)...",
-        "batchFailed": "Batch {batchNumber} query failed: {error}",
-        "queryCompleted": "Query completed! Successfully retrieved {count}/{total} keyword data",
-        "queryError": "Query error: {error}",
-        "queryInProgress": "Query in progress, are you sure you want to clear?",
-        "queryingPleaseWait": "Querying, please wait..."
-      },
-      "stats": {
-        "total": "Total",
-        "success": "Success",
-        "failed": "Failed"
-      }
-    },
-    "vpn": {
-      "title": "VPN Recommendations",
-      "description": "Curated high-quality VPN services to help you safely and stably access the global Internet",
-      "evaluationBasis": "Based on speed, stability, privacy protection and other multi-dimensional evaluations",
-      "searchPlaceholder": "Search VPN services...",
-      "sortButtons": {
-        "default": "Default Sort",
-        "byRating": "By Rating",
-        "byPrice": "By Price"
-      },
-      "noResultsTitle": "No related VPN services found",
-      "noResultsDescription": "Try adjusting your search keywords",
-      "stats": {
-        "totalRecommended": "Total {count} high-quality VPN services recommended",
-        "currentlyShowing": " · Currently showing {count}"
-      },
-      "selectionGuide": {
-        "title": "How to choose the right VPN?",
-        "speedPriority": "Speed Priority: If mainly used for watching videos and downloading, choose ExpressVPN or StrongVPN",
-        "privacyPriority": "Privacy Priority: If focusing on privacy protection, recommend PrivateVPN or NordVPN",
-        "valuePriority": "Value Priority: Just My Socks and Lantern provide excellent value for money",
-        "chinaUsers": "China Users: StrongVPN (supports Alipay) and Astrill VPN (China专线) are most suitable"
-      },
-      "disclaimer": {
-        "title": "Important Notice",
-        "items": [
-          "The availability of VPN services may vary by region and time, it is recommended to choose services with refund guarantees",
-          "Please abide by local laws and regulations when using VPN, use only for legal purposes",
-          "Some VPNs may require special configuration to work in China, please consult customer service before purchase",
-          "Price information may change at any time, subject to the actual price on the official website",
-          "It is recommended to prioritize services that offer free trials or refund guarantees, test before buying",
-          "Do not perform sensitive operations (such as online banking) while connected to VPN unless you confirm the VPN is safe and reliable"
-        ]
-      }
-    }
-  },
-  "hero": {
-    "tagline": "Unified Large Model Interface Gateway",
-    "title": "Better Price",
-    "subtitle": "Better Stability",
-    "description": "Simply replace the model base URL with our relay interface to get started",
-    "description2": "Support for multiple mainstream large models with unified interface format and stable service",
-    "viewApiList": "View API List",
-    "documentation": "Documentation",
-    "realtimeMonitoring": "Real-time Monitoring",
-    "highAvailability": "High Availability",
-    "competitivePricing": "Competitive Pricing"
-  },
-  "features": {
-    "title": "Why Choose Us",
-    "description": "We provide the most comprehensive and professional AI tool navigation service",
-    "items": {
-      "smartSearch": {
-        "title": "Smart Search",
-        "description": "Powerful search engine with multi-dimensional filtering to quickly find the AI tools you need"
-      },
-      "preciseCategories": {
-        "title": "Precise Categories",
-        "description": "Categorized by function, industry, price and other dimensions for easy browsing of related tools"
-      },
-      "professionalReview": {
-        "title": "Professional Review",
-        "description": "Each tool is thoroughly tested and professionally evaluated by our team"
-      },
-      "realTimeUpdate": {
-        "title": "Real-time Update",
-        "description": "Daily updates on the latest AI tools to ensure you don't miss any innovative products"
-      },
-      "secure": {
-        "title": "Secure & Reliable",
-        "description": "All recommended tools are security audited to protect your data privacy"
-      },
-      "quickAccess": {
-        "title": "Quick Access",
-        "description": "One-click access to tool official websites, saving your search time"
-      }
-    }
-  },
-  "howItWorks": {
-    "title": "How It Works",
-    "description": "Three simple steps to find the most suitable AI tools for you",
     "steps": {
-      "browse": {
-        "title": "Browse & Search",
-        "description": "Browse by category or use the search function to quickly find the type of AI tools you need"
-      },
-      "details": {
-        "title": "View Details",
-        "description": "Read detailed tool introductions, feature lists, user reviews and professional evaluations"
-      },
-      "start": {
-        "title": "Get Started",
-        "description": "One-click access to the tool's official website, start using it immediately to improve your work efficiency"
-      }
-    }
-  },
-  "testimonials": {
-    "title": "User Reviews",
-    "description": "See how other users rate our service",
-    "items": {
-      "user1": {
-        "name": "Zhang Wei",
-        "role": "Product Manager",
-        "company": "Tech Company",
-        "content": "This platform has saved me a lot of time finding AI tools. The reviews for each tool are very professional and detailed. Highly recommended!"
-      },
-      "user2": {
-        "name": "Li Na",
-        "role": "Designer",
-        "company": "Design Studio",
-        "content": "As a designer, I often need to use various AI tools. This navigation website helps me quickly find the most suitable tools, greatly improving work efficiency."
-      },
-      "user3": {
-        "name": "Wang Qiang",
-        "role": "Entrepreneur",
-        "company": "Startup",
-        "content": "Clear categories, timely updates, and detailed introductions for each tool. For our startup team that needs rapid iteration, this platform is extremely valuable."
-      }
-    }
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "description": "Common questions and answers about AI Navigation",
-    "items": {
-      "q1": {
-        "question": "What is AI Navigation?",
-        "answer": "AI Navigation is a professional AI tool aggregation platform that carefully curates and continuously updates the world's best AI tools and websites, helping users quickly find the most suitable AI solutions."
-      },
-      "q2": {
-        "question": "What's the difference between free and paid versions?",
-        "answer": "The free version provides access to 200+ basic AI tools and basic search functionality. The paid version provides access to all 500+ tools, advanced search, professional evaluation reports, priority customer support and more."
-      },
-      "q3": {
-        "question": "How do you ensure the quality of recommended tools?",
-        "answer": "Our professional team conducts in-depth testing and evaluation of each tool, including functionality, usability, security and other dimensions. Only tools that pass strict review are included in our platform."
-      },
-      "q4": {
-        "question": "How often are tools updated?",
-        "answer": "We update platform content daily, including new tools, updated tool information, and user reviews. Professional plan users also receive weekly curated recommendations."
-      },
-      "q5": {
-        "question": "Can I request a refund?",
-        "answer": "We offer a 7-day no-questions-asked refund guarantee. If you're not satisfied with our service, you can request a full refund within 7 days of purchase."
-      },
-      "q6": {
-        "question": "What special services does the enterprise plan include?",
-        "answer": "In addition to all the features of the professional plan, the enterprise plan includes team collaboration features, customized recommendations, dedicated account manager, API access, enterprise-grade security assurance, and customized training services."
-      }
-    }
-  },
-  "monitor": {
-    "title": "API Interface Monitoring Dashboard",
-    "description": "Real-time monitoring of relay interface availability",
-    "stats": {
-      "totalSites": "Total Sites",
-      "lastUpdate": "Last Update"
+      "title": "Nutzungsschritte:",
+      "step1": "Laden Sie den VPN-Client herunter und installieren Sie ihn (wie Clash, V2rayN usw.)",
+      "step2": "Kopieren Sie die Abonnementadresse oder scannen Sie den QR-Code",
+      "step3": "Fügen Sie den Abonnementlink im Client hinzu",
+      "step4": "Abonnement aktualisieren, Knoten auswählen und mit der Nutzung beginnen"
     },
-    "status": {
-      "online": "Online",
-      "offline": "Offline"
+    "inviteButton": "Besuchen Sie den Einladungslink für weitere Vorteile",
+    "qrCode": {
+      "title": "Zum Abonnieren scannen",
+      "description": "Scannen Sie den QR-Code unten mit Ihrem Client",
+      "scanWith": "Mit Clash, V2rayN oder anderen Clients scannen",
+      "placeholder": "Bitte platzieren Sie das QR-Code-Bild bei"
     },
-    "serviceCard": {
-      "inviteLink": "Invite Link",
-      "responseTime": "Response Time",
-      "lastCheck": "Last Check"
+    "notice": {
+      "title": "Hinweis",
+      "item1": "Dieser Dienst dient nur zu Lern- und Kommunikationszwecken, bitte halten Sie sich an die örtlichen Gesetze und Vorschriften",
+      "item2": "Es wird empfohlen, Abonnements regelmäßig zu aktualisieren, um die neuesten Knoten zu erhalten",
+      "item3": "Wenn Sie auf Probleme stoßen, kontaktieren Sie uns bitte über den Einladungslink für Hilfe"
+    },
+    "features": {
+      "speed": {
+        "title": "Hohe Geschwindigkeit & Stabil",
+        "description": "Premium-Routen, geringe Latenz, hohe Bandbreite, reibungsloses Video-Streaming"
+      },
+      "security": {
+        "title": "Sichere Verschlüsselung",
+        "description": "Fortschrittliche Verschlüsselungstechnologie zum Schutz Ihrer Netzwerk-Privatsphäre und Datensicherheit"
+      },
+      "free": {
+        "title": "Komplett Kostenlos",
+        "description": "Keine Registrierung, keine Zahlung, One-Click-Abonnement für vollen Zugriff"
+      }
     }
   },
-  "logo": {
-    "alt": "Site logo"
+  "common": {
+    "loading": "Wird geladen...",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "submit": "Senden",
+    "morePages": "Weitere Seiten anzeigen",
+    "language": "Sprache",
+    "selectLanguage": "Sprache auswählen"
+  },
+  "blog": {
+    "postNotFound": "Beitrag nicht gefunden",
+    "postNotFoundDescription": "Der gesuchte Blogbeitrag konnte nicht gefunden werden.",
+    "publishedAt": "Veröffentlicht am {date}"
+  },
+  "blogs": {
+    "pageTitle": "Blogbeiträge",
+    "metaTitle": "Einblicke & Artikel",
+    "metaDescription": "Entdecken Sie unsere neuesten Artikel über Schönheitsanalyse, AI-Technologie und Gesichtsästhetik. Entdecken Sie Experteneinblicke, Tipps und Trends in der Welt der AI-gestützten Schönheitsbewertung.",
+    "noArticles": "Keine Artikel verfügbar",
+    "publishedAt": "Veröffentlicht am {date}"
   }
 }

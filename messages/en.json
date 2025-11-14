@@ -247,9 +247,9 @@
   },
   "hero": {
     "tagline": "Unified Large Model Interface Gateway",
-    "title": "Better Price",
+    "title": "Share Free AI Model API Gateway, Free API, Free VPN",
     "subtitle": "Better Stability",
-    "description": "Simply replace the model base URL with our relay interface to get started",
+    "description": "Providing free AI model API gateway services and free VPN subscriptions. Support for Claude, ChatGPT and other mainstream AI models. High-speed, stable, one-click subscription.",
     "description2": "Support for multiple mainstream large models with unified interface format and stable service",
     "viewApiList": "View API List",
     "documentation": "Documentation",
@@ -455,10 +455,10 @@
     }
   },
   "home": {
-    "metaTitle": "Free AI Text to Speech Generator - High Quality Voice Synthesis",
-    "metaDescription": "Convert text to speech for free with our advanced AI voice generator. High-quality, natural-sounding voices with instant conversion. No registration required.",
-    "title": "Free AI Text to Speech Generator",
-    "description": "Transform any text into natural, high-quality speech with our advanced AI technology. Completely free with professional-grade voice synthesis.",
+    "metaTitle": "Free AI Model API Gateway, Free API, Free VPN",
+    "metaDescription": "Providing free AI model API gateway services and free VPN subscriptions. Support for Claude, ChatGPT and other mainstream AI models. High-speed, stable, one-click subscription.",
+    "title": "Free AI Model API Gateway",
+    "description": "Providing free AI model API gateway services and free VPN subscriptions. Support for ChatGPT, Claude, Gemini and other mainstream large model APIs. High-speed, stable, completely free.",
     "contentSections": {
       "mainTitle": "When Machines Found Their Voice: The Story of AI Speech",
       "mainDescription": "Explore the profound transformation of text-to-speech technology from cold, mechanical sounds to AI voices that can resurrect memories, convey emotions, and bridge the gap between digital and human connection.",
@@ -501,6 +501,56 @@
       "answer4": "The platform uses a token-based system where speech generation consumes tokens based on the duration of the generated audio. Each second of generated speech costs a certain number of tokens. You can monitor your token usage in your account dashboard.",
       "question5": "Can I use the generated speech commercially?",
       "answer5": "Usage rights depend on ElevenLabs' terms of service and your subscription plan. Generally, you can use generated speech for personal and commercial projects, but please review the specific licensing terms for your use case. Always ensure you have the right to convert the text content you're using."
+    }
+  },
+  "freeVpn": {
+    "title": "Free VPN Subscription",
+    "description": "Completely free, no registration required, one-click subscription",
+    "mainTitle": "Free VPN Subscription",
+    "mainDescription": "High-speed and stable free VPN service, scan QR code or copy subscription address to use",
+    "badges": {
+      "highSpeed": "High Speed",
+      "stable": "Stable"
+    },
+    "subscription": {
+      "title": "Subscription URL",
+      "copyButton": "Copy",
+      "copied": "Copied",
+      "placeholder": "Copy the link above and paste it into your VPN client"
+    },
+    "steps": {
+      "title": "Usage Steps:",
+      "step1": "Download and install VPN client (such as Clash, V2rayN, etc.)",
+      "step2": "Copy subscription address or scan QR code",
+      "step3": "Add subscription link in the client",
+      "step4": "Update subscription, select node, and start using"
+    },
+    "inviteButton": "Visit invite link for more benefits",
+    "qrCode": {
+      "title": "Scan to Subscribe",
+      "description": "Scan the QR code below with your client",
+      "scanWith": "Scan with Clash, V2rayN or other clients",
+      "placeholder": "Please place QR code image at"
+    },
+    "notice": {
+      "title": "Notice",
+      "item1": "This service is for learning and communication only, please comply with local laws and regulations",
+      "item2": "It is recommended to update subscriptions regularly to get the latest nodes",
+      "item3": "If you encounter problems, please contact us through the invitation link for help"
+    },
+    "features": {
+      "speed": {
+        "title": "High Speed & Stable",
+        "description": "Premium routes, low latency, high bandwidth, smooth video streaming"
+      },
+      "security": {
+        "title": "Secure Encryption",
+        "description": "Advanced encryption technology to protect your network privacy and data security"
+      },
+      "free": {
+        "title": "Completely Free",
+        "description": "No registration, no payment, one-click subscription for full access"
+      }
     }
   },
   "common": {

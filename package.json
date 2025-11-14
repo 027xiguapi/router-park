@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "next dev --turbopack -p 7000",
     "build": "next build",
+    "win:build": "rimraf ./.next && next build",
     "start": "next start -p 7000",
     "lint": "next lint",
     "format": "prettier --write .",

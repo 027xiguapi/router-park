@@ -28,13 +28,7 @@ const VPN_CONFIG = {
   qrCodeImage: "/vpn-qr.png",
 
   // 邀请链接
-  inviteLink: "https://xn--4gq62f52gdss.top/#/register?code=pLMhKWOx",
-
-  // VPN名称
-  name: "免费VPN订阅",
-
-  // 描述
-  description: "高速稳定的免费VPN服务，扫码或复制订阅地址即可使用"
+  inviteLink: "https://xn--4gq62f52gdss.top/#/register?code=pLMhKWOx"
 }
 
 export function FreeVPN() {
@@ -59,11 +53,11 @@ export function FreeVPN() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Gift className="h-12 w-12 text-green-600" />
             <h2 className="text-4xl font-bold bg-gradient-to-r from-green-500 via-green-600 to-emerald-700 bg-clip-text text-transparent">
-              免费 VPN 订阅
+              {t('title')}
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            完全免费，无需注册，一键订阅即可使用
+            {t('description')}
           </p>
         </div>
 
@@ -74,20 +68,20 @@ export function FreeVPN() {
               <div className="flex-1">
                 <CardTitle className="text-2xl flex items-center gap-2">
                   <Shield className="h-6 w-6 text-green-600" />
-                  {VPN_CONFIG.name}
+                  {t('mainTitle')}
                 </CardTitle>
                 <CardDescription className="text-base mt-2">
-                  {VPN_CONFIG.description}
+                  {t('mainDescription')}
                 </CardDescription>
               </div>
               <div className="flex gap-2">
                 <Badge className="bg-green-500 text-white hover:bg-green-600">
                   <Zap className="h-3 w-3 mr-1" />
-                  高速
+                  {t('badges.highSpeed')}
                 </Badge>
                 <Badge className="bg-emerald-500 text-white hover:bg-emerald-600">
                   <Globe className="h-3 w-3 mr-1" />
-                  稳定
+                  {t('badges.stable')}
                 </Badge>
               </div>
             </div>
@@ -100,7 +94,7 @@ export function FreeVPN() {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                     <Download className="h-5 w-5 text-green-600" />
-                    订阅地址
+                    {t('subscription.title')}
                   </h3>
                   <div className="space-y-3">
                     <div className="flex gap-2">
@@ -117,18 +111,18 @@ export function FreeVPN() {
                         {copied ? (
                           <>
                             <Check className="h-4 w-4 mr-1 text-green-600" />
-                            已复制
+                            {t('subscription.copied')}
                           </>
                         ) : (
                           <>
                             <Copy className="h-4 w-4 mr-1" />
-                            复制
+                            {t('subscription.copyButton')}
                           </>
                         )}
                       </Button>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      复制上方链接，粘贴到您的VPN客户端中即可使用
+                      {t('subscription.placeholder')}
                     </p>
                   </div>
                 </div>
@@ -136,24 +130,24 @@ export function FreeVPN() {
                 {/* 使用步骤 */}
                 <div className="bg-green-50 dark:bg-green-950/30 p-4 rounded-lg border border-green-200 dark:border-green-800">
                   <h4 className="font-semibold mb-3 text-green-700 dark:text-green-400">
-                    使用步骤：
+                    {t('steps.title')}
                   </h4>
                   <ol className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-green-600 shrink-0">1.</span>
-                      <span>下载并安装VPN客户端（如 Clash、V2rayN等）</span>
+                      <span>{t('steps.step1')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-green-600 shrink-0">2.</span>
-                      <span>复制订阅地址或扫描二维码</span>
+                      <span>{t('steps.step2')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-green-600 shrink-0">3.</span>
-                      <span>在客户端中添加订阅链接</span>
+                      <span>{t('steps.step3')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-green-600 shrink-0">4.</span>
-                      <span>更新订阅并选择节点，开始使用</span>
+                      <span>{t('steps.step4')}</span>
                     </li>
                   </ol>
                 </div>
@@ -169,7 +163,7 @@ export function FreeVPN() {
                     className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold"
                   >
                     <Gift className="mr-2 h-5 w-5" />
-                    访问邀请链接获取更多福利
+                    {t('inviteButton')}
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -180,10 +174,10 @@ export function FreeVPN() {
                 <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border-2 border-green-200 dark:border-green-800">
                   <div className="mb-4 text-center">
                     <h3 className="text-lg font-semibold text-green-700 dark:text-green-400">
-                      扫码订阅
+                      {t('qrCode.title')}
                     </h3>
                     <p className="text-sm text-muted-foreground mt-1">
-                      使用客户端扫描下方二维码
+                      {t('qrCode.description')}
                     </p>
                   </div>
                   <div className="relative w-64 h-64 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center border-2 border-dashed border-green-300 dark:border-green-700">
@@ -202,7 +196,7 @@ export function FreeVPN() {
                           parent.innerHTML = `
                             <div class="text-center p-4">
                               <div class="text-4xl mb-2">📱</div>
-                              <p class="text-sm text-muted-foreground">请将二维码图片放置在<br/><code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">${VPN_CONFIG.qrCodeImage}</code></p>
+                              <p class="text-sm text-muted-foreground">${t('qrCode.placeholder')}<br/><code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">${VPN_CONFIG.qrCodeImage}</code></p>
                             </div>
                           `
                         }
@@ -210,7 +204,7 @@ export function FreeVPN() {
                     />
                   </div>
                   <p className="text-xs text-center text-muted-foreground mt-4">
-                    使用Clash、V2rayN等客户端扫描
+                    {t('qrCode.scanWith')}
                   </p>
                 </div>
               </div>
@@ -222,12 +216,12 @@ export function FreeVPN() {
                 <Shield className="h-5 w-5 text-yellow-600 shrink-0 mt-0.5" />
                 <div className="text-sm">
                   <p className="font-semibold text-yellow-800 dark:text-yellow-400 mb-1">
-                    温馨提示
+                    {t('notice.title')}
                   </p>
                   <ul className="text-muted-foreground space-y-1">
-                    <li>• 本服务仅供学习交流使用，请遵守当地法律法规</li>
-                    <li>• 建议定期更新订阅以获取最新节点</li>
-                    <li>• 如遇问题，请通过邀请链接联系获取帮助</li>
+                    <li>• {t('notice.item1')}</li>
+                    <li>• {t('notice.item2')}</li>
+                    <li>• {t('notice.item3')}</li>
                   </ul>
                 </div>
               </div>
@@ -241,12 +235,12 @@ export function FreeVPN() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Zap className="h-5 w-5 text-green-600" />
-                高速稳定
+                {t('features.speed.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                优质线路，低延迟，高带宽，观看视频流畅无卡顿
+                {t('features.speed.description')}
               </p>
             </CardContent>
           </Card>
@@ -255,12 +249,12 @@ export function FreeVPN() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Shield className="h-5 w-5 text-green-600" />
-                安全加密
+                {t('features.security.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                采用先进加密技术，保护您的网络隐私和数据安全
+                {t('features.security.description')}
               </p>
             </CardContent>
           </Card>
@@ -269,12 +263,12 @@ export function FreeVPN() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Gift className="h-5 w-5 text-green-600" />
-                完全免费
+                {t('features.free.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                无需注册，无需付费，一键订阅即可使用全部功能
+                {t('features.free.description')}
               </p>
             </CardContent>
           </Card>

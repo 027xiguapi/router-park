@@ -45,3 +45,5 @@ next-env.d.ts
 certificates
 
 sqlite.db
+
+.env.example
