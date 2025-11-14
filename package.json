@@ -7,9 +7,9 @@
     "pnpm": ">=9.0.0"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 7000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 7000",
     "lint": "next lint",
     "format": "prettier --write .",
     "i18n:translate": "tsx scripts/18n/cli.ts --mode=missing",

@@ -12,6 +12,8 @@ export interface VPN {
   paymentMethods?: string[]
   speed: "fast" | "medium" | "excellent"
   stability: "high" | "medium" | "excellent"
+  inviteLink?: string  // 邀请链接
+  isFree?: boolean     // 是否免费
 }
 
 export const vpnServices: VPN[] = [
@@ -160,7 +162,9 @@ export const vpnServices: VPN[] = [
     highlights: ["有免费版本", "极简设计"],
     paymentMethods: ["信用卡", "PayPal"],
     speed: "medium",
-    stability: "medium"
+    stability: "medium",
+    isFree: true,
+    inviteLink: "https://lantern.io/zh"
   },
   {
     id: "justmysocks",
@@ -181,7 +185,144 @@ export const vpnServices: VPN[] = [
     highlights: ["搬瓦工官方", "专业机场"],
     paymentMethods: ["支付宝", "信用卡", "PayPal"],
     speed: "excellent",
-    stability: "excellent"
+    stability: "excellent",
+    inviteLink: "https://justmysocks.net/members/aff.php?aff=999"
+  }
+]
+
+// 免费VPN列表
+export const freeVPNServices: VPN[] = [
+  {
+    id: "protonvpn-free",
+    name: "ProtonVPN Free",
+    url: "https://protonvpn.com/free-vpn",
+    description: "由瑞士公司提供的完全免费VPN服务，无日志、无广告、不限流量",
+    features: [
+      "完全免费",
+      "不限流量",
+      "无广告",
+      "强加密",
+      "3个国家节点",
+      "单设备连接"
+    ],
+    rating: 4.3,
+    price: "完全免费",
+    tags: ["免费", "无限流量", "无广告"],
+    highlights: ["零成本使用", "隐私保护强"],
+    speed: "medium",
+    stability: "high",
+    isFree: true,
+    inviteLink: "https://protonvpn.com/free-vpn"
+  },
+  {
+    id: "windscribe-free",
+    name: "Windscribe Free",
+    url: "https://windscribe.com",
+    description: "每月10GB免费流量，支持多个国家节点，功能丰富",
+    features: [
+      "10GB/月免费流量",
+      "10个国家节点",
+      "广告拦截",
+      "防火墙",
+      "无限设备",
+      "邮箱注册送额外流量"
+    ],
+    rating: 4.2,
+    price: "免费 10GB/月",
+    tags: ["免费", "10GB流量", "广告拦截"],
+    highlights: ["10GB免费流量", "功能全面"],
+    speed: "medium",
+    stability: "high",
+    isFree: true,
+    inviteLink: "https://windscribe.com/?affid=free2024"
+  },
+  {
+    id: "tunnelbear-free",
+    name: "TunnelBear Free",
+    url: "https://www.tunnelbear.com",
+    description: "界面可爱的免费VPN，每月500MB免费流量，操作简单",
+    features: [
+      "500MB/月免费",
+      "48个国家节点",
+      "超简单操作",
+      "可爱界面",
+      "自动连接",
+      "分应用代理"
+    ],
+    rating: 4.0,
+    price: "免费 500MB/月",
+    tags: ["免费", "500MB流量", "简单易用"],
+    highlights: ["最易上手", "界面友好"],
+    speed: "medium",
+    stability: "medium",
+    isFree: true,
+    inviteLink: "https://www.tunnelbear.com"
+  },
+  {
+    id: "hide-me-free",
+    name: "Hide.me Free",
+    url: "https://hide.me/en/",
+    description: "免费版提供10GB流量，支持5个国家节点，速度不错",
+    features: [
+      "10GB/月免费",
+      "5个国家节点",
+      "不限速度",
+      "无日志",
+      "HTTPS代理",
+      "分流功能"
+    ],
+    rating: 4.1,
+    price: "免费 10GB/月",
+    tags: ["免费", "10GB流量", "不限速"],
+    highlights: ["免费10GB", "速度较快"],
+    speed: "fast",
+    stability: "medium",
+    isFree: true,
+    inviteLink: "https://hide.me/en/"
+  },
+  {
+    id: "cloudflare-warp",
+    name: "Cloudflare WARP",
+    url: "https://1.1.1.1",
+    description: "Cloudflare提供的免费VPN服务，不限流量，主打隐私保护",
+    features: [
+      "完全免费",
+      "不限流量",
+      "全球CDN加速",
+      "隐私保护",
+      "自动优化路由",
+      "简单易用"
+    ],
+    rating: 4.4,
+    price: "完全免费",
+    tags: ["免费", "无限流量", "Cloudflare"],
+    highlights: ["大厂出品", "不限流量"],
+    speed: "fast",
+    stability: "high",
+    isFree: true,
+    inviteLink: "https://1.1.1.1"
+  },
+  {
+    id: "vpngate",
+    name: "VPN Gate",
+    url: "https://www.vpngate.net/cn/",
+    description: "筑波大学的学术项目，完全免费的志愿者VPN网络",
+    features: [
+      "完全免费",
+      "不限流量",
+      "志愿者节点",
+      "开源项目",
+      "全球节点",
+      "无需注册"
+    ],
+    rating: 3.8,
+    price: "完全免费",
+    tags: ["免费", "无限流量", "学术项目"],
+    highlights: ["学术支持", "开源透明"],
+    speed: "medium",
+    stability: "medium",
+    isFree: true,
+    inviteLink: "https://www.vpngate.net/cn/"
   }
 ]
 

@@ -7,6 +7,7 @@ import { Features } from "@/components/features"
 import { HowItWorks } from "@/components/how-it-works"
 import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
+import { FreeVPN } from "@/components/free-vpn"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('home')
@@ -28,6 +29,7 @@ export default async function Home() {
       </div>
       <Hero />
       <MonitorDashboard />
+      <FreeVPN />
       <Features />
       <HowItWorks />
       <Testimonials />

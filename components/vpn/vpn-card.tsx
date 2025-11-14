@@ -4,7 +4,7 @@ import { VPN } from "@/lib/vpn-data"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Star, Zap, Shield, TrendingUp, CreditCard } from "lucide-react"
+import { ExternalLink, Star, Zap, Shield, TrendingUp, CreditCard, Gift } from "lucide-react"
 import { Link } from '@/i18n/navigation'
 
 interface VPNCardProps {
@@ -128,7 +128,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="border-t pt-4 pb-4">
+      <CardFooter className="border-t pt-4 pb-4 flex-col gap-2">
         <Link
           href={vpn.url}
           target="_blank"
@@ -143,6 +143,25 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
             <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
         </Link>
+
+        {/* 邀请链接按钮 */}
+        {vpn.inviteLink && (
+          <Link
+            href={vpn.inviteLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full border-2 border-orange-500/50 hover:bg-orange-500/10 font-semibold"
+            >
+              <Gift className="mr-2 h-4 w-4 text-orange-500" />
+              专属邀请链接
+            </Button>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   )

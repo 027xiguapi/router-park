@@ -2,11 +2,11 @@
 
 import { useState, useMemo } from "react"
 import { useTranslations } from "next-intl"
-import { vpnServices, vpnFeatures } from "@/lib/vpn-data"
+import { vpnServices, freeVPNServices, vpnFeatures } from "@/lib/vpn-data"
 import { VPNCard } from "@/components/vpn/vpn-card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Search, Zap, Shield, Lock, DollarSign, AlertCircle, Star, TrendingUp } from "lucide-react"
+import { Search, Zap, Shield, Lock, DollarSign, AlertCircle, Star, TrendingUp, Gift } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const iconMap = {
@@ -151,6 +151,55 @@ export default function VPNRecommendPage() {
             <p className="text-muted-foreground">{t('noResultsDescription')}</p>
           </div>
         )}
+
+        {/* 免费VPN专区 */}
+        <div className="mt-16 mb-12">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Gift className="h-10 w-10 text-green-600" />
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-green-500 via-green-600 to-green-700 bg-clip-text text-transparent">
+                免费VPN推荐
+              </h2>
+            </div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              以下是精选的免费VPN服务，适合轻度使用和临时需求
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {freeVPNServices.map((vpn) => (
+              <VPNCard key={vpn.id} vpn={vpn} />
+            ))}
+          </div>
+
+          {/* 免费VPN使用提示 */}
+          <Card className="border-2 border-green-500/20 bg-green-500/5 max-w-4xl mx-auto">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <AlertCircle className="h-5 w-5 text-green-600" />
+                免费VPN使用提示
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <div className="flex items-start gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-green-600 mt-2" />
+                <p><strong>流量限制：</strong>大部分免费VPN都有流量限制，适合轻度使用或临时需求</p>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-green-600 mt-2" />
+                <p><strong>速度较慢：</strong>免费VPN通常速度较慢，不适合看视频或下载大文件</p>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-green-600 mt-2" />
+                <p><strong>隐私风险：</strong>选择知名品牌的免费VPN，避免使用来路不明的服务</p>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-green-600 mt-2" />
+                <p><strong>升级选项：</strong>如果需要更好的体验，建议考虑付费版本或上方的付费VPN服务</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* 统计信息 */}
         <div className="mt-12 text-center text-sm text-muted-foreground mb-8">
