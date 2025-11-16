@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search, Zap, Shield, Lock, DollarSign, AlertCircle, Star, TrendingUp, Gift } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {FreeVPN} from "@/components/free-vpn";
 
 const iconMap = {
   Zap,
@@ -154,22 +155,8 @@ export default function VPNRecommendPage() {
 
         {/* 免费VPN专区 */}
         <div className="mt-16 mb-12">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Gift className="h-10 w-10 text-green-600" />
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-green-500 via-green-600 to-green-700 bg-clip-text text-transparent">
-                免费VPN推荐
-              </h2>
-            </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              以下是精选的免费VPN服务，适合轻度使用和临时需求
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {freeVPNServices.map((vpn) => (
-              <VPNCard key={vpn.id} vpn={vpn} />
-            ))}
+          <div className="mb-12">
+            <FreeVPN />
           </div>
 
           {/* 免费VPN使用提示 */}

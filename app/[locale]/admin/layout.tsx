@@ -12,11 +12,11 @@ export default async function AdminLayout({
 }) {
   const { locale } = await params
   const s = await auth()
-  if (!process.env.NEXT_PUBLIC_ADMIN_ID.split(',').includes(s?.user?.id ?? '')) {
-    redirect({
-      href: '/',
-      locale
-    })
-  }
+  // if (!process.env.PROJECT_ADMIN_ID.split(',').includes(s?.user?.id ?? '')) {
+  //   redirect({
+  //     href: '/',
+  //     locale
+  //   })
+  // }
   return children
 }

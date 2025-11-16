@@ -3,12 +3,14 @@
 import { useRequest } from 'ahooks'
 import { User } from 'next-auth'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { createContext, useContext, ReactNode, useState } from 'react'
 import { toast } from 'sonner'
 
 import { getUserOrder } from '@/actions/payment/orders'
 import { getUserTokenBalance } from '@/actions/payment/tokens'
-import LoginModal from '@/components/login/login-modal'
+import LoginForm from '@/components/login/login-form'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useRouter } from '@/i18n/navigation'
 import { Currency, OrderStatus, PaymentMethod } from '@/lib/db/schema'
 
@@ -35,6 +37,8 @@ export interface UserOrder {
 interface UserContextType {
   user: User | null
   status: 'authenticated' | 'loading' | 'unauthenticated'
+  isAuthenticated: boolean
+  showLoginModal: () => void
   refetchGetToken: () => void
   checkIsLoggedIn: () => boolean
   checkIsPaid: () => boolean
@@ -51,9 +55,11 @@ interface UserProviderProps {
 export function UserProvider({ children }: UserProviderProps) {
   const { data: session, status } = useSession()
   const router = useRouter()
+  const t = useTranslations('userProvider.loginModal')
 
   const [open, setOpen] = useState(false)
   const user = session?.user || null
+  const isAuthenticated = status === 'authenticated' && !!user
 
   const { data: order } = useRequest(getUserOrder, {
     ready: !!user?.id
@@ -61,6 +67,10 @@ export function UserProvider({ children }: UserProviderProps) {
   const { data: usage, run: refetchGetToken } = useRequest(getUserTokenBalance, {
     ready: !!user?.id
   })
+
+  const showLoginModal = () => {
+    setOpen(true)
+  }
 
   const checkIsLoggedIn = () => {
     if (!user) {
@@ -87,6 +97,8 @@ export function UserProvider({ children }: UserProviderProps) {
     checkIsLoggedIn,
     checkIsPaid,
     refetchGetToken,
+    showLoginModal,
+    isAuthenticated,
     user,
     usage,
     order,
@@ -95,8 +107,18 @@ export function UserProvider({ children }: UserProviderProps) {
 
   return (
     <UserContext.Provider value={value}>
-      <LoginModal open={open} setOpen={setOpen} />
       {children}
+
+      {/* Login Modal */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center text-2xl font-bold">{t('title')}</DialogTitle>
+            <DialogDescription className="text-center">{t('description')}</DialogDescription>
+          </DialogHeader>
+          <LoginForm onSuccess={() => setOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </UserContext.Provider>
   )
 }

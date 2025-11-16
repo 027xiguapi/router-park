@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Loader2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -27,20 +27,29 @@ interface RouterDialogProps {
 }
 
 export function RouterDialog({ open, onOpenChange, router, onSuccess }: RouterDialogProps) {
-  const [name, setName] = useState(router?.name || '')
-  const [url, setUrl] = useState(router?.url || '')
-  const [inviteLink, setInviteLink] = useState(router?.inviteLink || '')
-  const [isVerified, setIsVerified] = useState(router?.isVerified || false)
+  const [name, setName] = useState('')
+  const [url, setUrl] = useState('')
+  const [inviteLink, setInviteLink] = useState('')
+  const [isVerified, setIsVerified] = useState(false)
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
 
-  // 当对话框打开或 router 变化时更新表单
+  const resetForm = () => {
+    setName(router?.name || '')
+    setUrl(router?.url || '')
+    setInviteLink(router?.inviteLink || '')
+    setIsVerified(router?.isVerified || false)
+  }
+
+  useEffect(() => {
+    if (open) {
+      resetForm()
+    }
+  }, [open, router])
+
   const handleOpenChange = (isOpen: boolean) => {
-    if (isOpen) {
-      setName(router?.name || '')
-      setUrl(router?.url || '')
-      setInviteLink(router?.inviteLink || '')
-      setIsVerified(router?.isVerified || false)
+    if (!isOpen) {
+      setTimeout(resetForm, 100)
     }
     onOpenChange(isOpen)
   }

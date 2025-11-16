@@ -567,6 +567,14 @@
     "language": "اللغة",
     "selectLanguage": "حدد اللغة"
   },
+  "userProvider": {
+    "errorFetchingUsage": "خطأ في استرداد عد العدد:",
+    "errorUseUserHook": "يجب استخدام useUser داخل UserProvider",
+    "loginModal": {
+      "title": "مرحبًا في م 분 tích الجمال AI",
+      "description": "سجل دخولك لمواصلة رحلتك"
+    }
+  },
   "blog": {
     "postNotFound": "لم يتم العثور على المنشور",
     "postNotFoundDescription": "لم يتم العثور على منشور المدونة الذي تبحث عنه.",

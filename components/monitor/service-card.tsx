@@ -4,8 +4,9 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Heart } from "lucide-react"
+import { ExternalLink, Heart, Shield } from "lucide-react"
 import type { ServiceStatus } from "./types"
+import {useUser} from "@/contexts/user-context";
 
 interface ServiceCardProps {
   service: ServiceStatus
@@ -16,9 +17,10 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
   const isOnline = service.status === "online"
   const [likes, setLikes] = useState(service.likes || 0)
   const [isLiking, setIsLiking] = useState(false)
+  const { user } = useUser()
 
   // 临时用户ID（实际应用中应从认证系统获取）
-  const TEMP_USER_ID = 'temp-user-123'
+  const TEMP_USER_ID = user?.id || ''
 
   const handleLike = async () => {
     if (isLiking) return
@@ -47,7 +49,15 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
   return (
     <Card className="border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-accent/50 hover:shadow-md dark:border-border dark:bg-card/50 dark:backdrop-blur">
       <div className="mb-4 flex items-start justify-between">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-foreground">{service.name}</h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-foreground">{service.name}</h3>
+          {service.isVerified && (
+            <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-500/10 dark:text-blue-500 dark:hover:bg-blue-500/20">
+              <Shield className="mr-1 h-3 w-3" />
+              {t('serviceCard.verified')}
+            </Badge>
+          )}
+        </div>
         <Badge
           variant={isOnline ? "default" : "destructive"}
           className={

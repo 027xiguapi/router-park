@@ -104,10 +104,10 @@ export const posts = sqliteTable('posts', {
   content: text('content').notNull(),
   publishedAt: integer('published_at', { mode: 'timestamp_ms' }),
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -125,10 +125,10 @@ export const postTranslations = sqliteTable('postTranslations', {
   locale: text('locale').notNull(),
   content: text('content').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -152,10 +152,10 @@ export const products = sqliteTable('products', {
   tokenAmount: integer('tokenAmount'), // 如果产品提供tokens
   active: integer('active', { mode: 'boolean' }).notNull().default(true),
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -177,10 +177,10 @@ export const orders = sqliteTable('orders', {
   paymentIntentId: text('paymentIntentId'), // 支付网关的交易ID
   metadata: text('metadata'), // 存储JSON格式的额外信息
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -202,10 +202,10 @@ export const subscriptions = sqliteTable('subscriptions', {
   subscriptionId: text('subscriptionId'), // 支付网关的订阅ID
   metadata: text('metadata'), // 存储JSON格式的额外信息
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -221,7 +221,7 @@ export const transactions = sqliteTable('transactions', {
   type: text('type').$type<TransactionType>().notNull(),
   amount: integer('amount').notNull(), // token数量，可以是正数(增加)或负数(消费)
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -238,18 +238,18 @@ export const routers = sqliteTable('routers', {
   status: text('status').$type<RouterStatus>().notNull().default('offline'),
   responseTime: integer('responseTime').notNull().default(0), // 响应时间(ms)
   lastCheck: integer('last_check', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull(),
   inviteLink: text('invite_link'), // 可选的邀请链接
   isVerified: integer('is_verified', { mode: 'boolean' }).notNull().default(false), // 是否认证
   likes: integer('likes').notNull().default(0), // 点赞数
   createdBy: text('created_by').references(() => users.id), // 创建人
   updatedBy: text('updated_by').references(() => users.id), // 修改人
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
-    .default(sql`CURRENT_TIMESTAMP`)
+    .default(sql`(unixepoch())`)
     .notNull()
 })
 
@@ -267,7 +267,7 @@ export const routerLikes = sqliteTable(
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
     createdAt: integer('created_at', { mode: 'timestamp_ms' })
-      .default(sql`CURRENT_TIMESTAMP`)
+      .default(sql`(unixepoch())`)
       .notNull()
   },
 )

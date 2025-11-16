@@ -19,14 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const t = await getTranslations('home')
-
   return (
     <>
-      {/*<div className="mb-8 text-center">*/}
-      {/*  <h1 className="text-primary mb-4 text-4xl font-bold md:text-5xl">{t('title')}</h1>*/}
-      {/*  <p className="text-muted-foreground mx-auto max-w-2xl text-lg">{t('description')}</p>*/}
-      {/*</div>*/}
       <Hero />
       <MonitorDashboard />
       <FreeVPN />

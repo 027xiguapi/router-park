@@ -567,6 +567,14 @@
     "language": "भाषा",
     "selectLanguage": "भाषा चुनें"
   },
+  "userProvider": {
+    "errorFetchingUsage": "वितरण संख्या प्राप्त करने में त्रुटि हुई:",
+    "errorUseUserHook": "useUser को UserProvider के भीतर उपयोग करना होगा",
+    "loginModal": {
+      "title": "आईआई रोमांचकारक अनालाइजर में आपका स्वागत है",
+      "description": "अपनी यात्रा जारी रखने के लिए लॉगिन करें"
+    }
+  },
   "blog": {
     "postNotFound": "पोस्ट नहीं मिली",
     "postNotFoundDescription": "आप जिस ब्लॉग पोस्ट को खोज रहे हैं, वह नहीं मिली।",

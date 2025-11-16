@@ -569,6 +569,14 @@
     "language": "Lingua",
     "selectLanguage": "Seleziona Lingua"
   },
+  "userProvider": {
+    "errorFetchingUsage": "Errore nel recupero del conteggio utilizzo:",
+    "errorUseUserHook": "useUser deve essere utilizzato all'interno di un UserProvider",
+    "loginModal": {
+      "title": "Benvenuto nell'Analizzatore di Bellezza AI",
+      "description": "Effettua il login per continuare il tuo viaggio"
+    }
+  },
   "blog": {
     "postNotFound": "Articolo Non Trovato",
     "postNotFoundDescription": "L'articolo del blog che stai cercando non è stato trovato.",

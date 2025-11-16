@@ -42,8 +42,6 @@ export interface UpdateRouterInput {
 
 // 创建路由器
 export async function createRouter(db: Db, input: CreateRouterInput): Promise<Router> {
-  const now = new Date().getTime()
-
   const result = await db
     .insert(routers)
     .values({
@@ -52,12 +50,12 @@ export async function createRouter(db: Db, input: CreateRouterInput): Promise<Ro
       inviteLink: input.inviteLink,
       isVerified: input.isVerified ?? false,
       createdBy: input.createdBy,
-      updatedBy: input.createdBy, // 初始时创建人和修改人相同
+      updatedBy: input.createdBy,
       status: 'offline',
       responseTime: 0,
-      lastCheck: now,
-      createdAt: now,
-      updatedAt: now
+      lastCheck: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
     })
     .returning()
 
@@ -127,7 +125,7 @@ export async function updateRouter(
   id: string,
   input: UpdateRouterInput
 ): Promise<Router | null> {
-  const now = new Date().getTime()
+  const now = new Date()
 
   const updateData: Record<string, unknown> = {
     updatedAt: now
@@ -157,7 +155,7 @@ export async function updateRouterStatus(
   status: RouterStatus,
   responseTime: number
 ): Promise<Router | null> {
-  const now = new Date().getTime()
+  const now = new Date()
 
   const result = await db
     .update(routers)
@@ -259,7 +257,7 @@ export async function likeRouter(db: Db, routerId: string, userId: string): Prom
     await db.insert(routerLikes).values({
       routerId,
       userId,
-      createdAt: new Date().getTime()
+      createdAt: new Date()
     })
 
     // 增加点赞数
@@ -267,7 +265,7 @@ export async function likeRouter(db: Db, routerId: string, userId: string): Prom
       .update(routers)
       .set({
         likes: sql`${routers.likes} + 1`,
-        updatedAt: new Date().getTime()
+        updatedAt: new Date()
       })
       .where(eq(routers.id, routerId))
       .returning()
@@ -304,7 +302,7 @@ export async function unlikeRouter(db: Db, routerId: string, userId: string): Pr
       .update(routers)
       .set({
         likes: sql`MAX(0, ${routers.likes} - 1)`,
-        updatedAt: new Date().getTime()
+        updatedAt: new Date()
       })
       .where(eq(routers.id, routerId))
       .returning()

@@ -26,6 +26,7 @@ import {
 import { useToast } from '@/hooks/use-toast'
 
 import type { Router } from '@/lib/db/routers'
+import {useUser} from "@/contexts/user-context";
 
 interface RoutersTableProps {
   onEdit: (router: Router) => void
@@ -37,10 +38,11 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
   const [checking, setChecking] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
   const [likingIds, setLikingIds] = useState<Set<string>>(new Set())
+  const { user } = useUser()
   const { toast } = useToast()
 
   // 临时用户ID（实际应用中应从认证系统获取）
-  const TEMP_USER_ID = 'temp-user-123'
+  const TEMP_USER_ID = user?.id || ''
 
   // 加载路由器列表
   const loadRouters = async () => {

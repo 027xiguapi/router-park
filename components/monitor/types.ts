@@ -8,4 +8,5 @@ export interface ServiceStatus {
   inviteLink?: string
   likes?: number
   error?: string
+  isVerified?: boolean
 }

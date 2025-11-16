@@ -16,7 +16,7 @@ import { useMonitor } from "@/contexts/monitor-context"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { LocaleSwitcher } from "@/components/locale-switcher"
-import LoginHeader from "@/components/login/login-header"
+import LoginModal from '@/components/login/login-modal'
 
 export function Header() {
   const t = useTranslations("headers")
@@ -74,7 +74,7 @@ export function Header() {
               {t('joinGroup')}
             </Button>
             <LocaleSwitcher />
-            <LoginHeader />
+            <LoginModal />
             {/* <Button
               variant="outline"
               size="sm"

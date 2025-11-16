@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { SessionProvider } from 'next-auth/react'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Analytics } from "@vercel/analytics/next"
@@ -7,8 +8,9 @@ import "../globals.css"
 import { GoogleAnalytics } from '@next/third-parties/google'
 import {Header} from "@/components/header";
 import {Footer} from "@/components/footer";
+import { UserProvider } from '@/contexts/user-context'
+import { Toaster } from '@/components/ui/sonner'
 import { locales, routing } from '@/i18n/routing'
-import { Providers } from "@/components/providers"
 
 import type { Metadata } from 'next'
 import { getMessages } from 'next-intl/server'
@@ -35,9 +37,25 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'siteInfo' })
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
     title: t('meta.title'),
     description: t('meta.description'),
-    generator: "v0.app",
+    icons: {
+      icon: '/logo.svg'
+    },
+    authors: [{ name: 'Felix' }],
+    creator: 'Felix',
+    openGraph: {
+      images: ['/logo.svg']
+    },
+    alternates: {
+      languages: {
+        'x-default': process.env.NEXT_PUBLIC_BASE_URL,
+        ...Object.fromEntries(
+            locales.map((locale) => [locale.code, `${process.env.NEXT_PUBLIC_BASE_URL}${locale.code}`])
+        )
+      }
+    }
   }
 }
 
@@ -64,12 +82,15 @@ export default async function RootLayout({
       <body className={`font-sans antialiased`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <Providers>
+            <SessionProvider>
+            <UserProvider>
               <Header/>
               {children}
               <Footer/>
-            </Providers>
+            </UserProvider>
+            </SessionProvider>
           </ThemeProvider>
+          <Toaster richColors />
         </NextIntlClientProvider>
       <Analytics/>
       </body>

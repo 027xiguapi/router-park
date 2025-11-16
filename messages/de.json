@@ -567,6 +567,14 @@
     "language": "Sprache",
     "selectLanguage": "Sprache auswählen"
   },
+  "userProvider": {
+    "errorFetchingUsage": "Fehler beim Abrufen der Nutzungszahl:",
+    "errorUseUserHook": "useUser muss innerhalb eines UserProvider verwendet werden",
+    "loginModal": {
+      "title": "Willkommen im AI Beauty Analyzer",
+      "description": "Melden Sie sich an, um Ihre Reise fortzusetzen"
+    }
+  },
   "blog": {
     "postNotFound": "Beitrag nicht gefunden",
     "postNotFoundDescription": "Der gesuchte Blogbeitrag konnte nicht gefunden werden.",

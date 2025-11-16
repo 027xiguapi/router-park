@@ -2,10 +2,17 @@
 
 import { useTranslations, useLocale } from 'next-intl'
 import { useState, useEffect } from 'react'
+import { Plus } from 'lucide-react'
 
 import { Watermark } from '@/components/watermark'
 import { useMonitor } from '@/contexts/monitor-context'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { useToast } from '@/hooks/use-toast'
+import { useUser } from '@/contexts/user-context'
 
 import { ServiceCard } from './service-card'
 import { StatsCards } from './stats-cards'
@@ -13,31 +20,28 @@ import { StatsCards } from './stats-cards'
 import type { ServiceStatus } from './types'
 import type { Router } from '@/lib/db/routers'
 
-// 将 Router 数据转换为 ServiceStatus
-function transformRouterToService(router: Router, locale: string): ServiceStatus {
-  return {
-    id: router.id,
-    name: router.name,
-    url: router.url,
-    status: router.status,
-    responseTime: router.responseTime,
-    lastCheck: new Date(router.lastCheck).toLocaleTimeString(locale, { hour12: false }),
-    inviteLink: router.inviteLink || undefined,
-    likes: router.likes
-  }
-}
-
 export function MonitorDashboard() {
   const t = useTranslations('monitor')
   const locale = useLocale()
+  const { toast } = useToast()
+  const { isAuthenticated, showLoginModal, user } = useUser()
   const [services, setServices] = useState<ServiceStatus[]>([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'latest' | 'my-likes' | 'most-liked'>('latest')
   const [lastUpdate, setLastUpdate] = useState<string>(new Date().toLocaleTimeString(locale, { hour12: false }))
   const { setRefreshMonitor } = useMonitor()
 
+  // Submit form state
+  const [submitDialogOpen, setSubmitDialogOpen] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    url: '',
+    inviteLink: ''
+  })
+
   // 临时用户ID（实际应用中应从认证系统获取）
-  const TEMP_USER_ID = 'temp-user-123'
+  const TEMP_USER_ID = user?.id || ''
 
   // 从数据库加载路由器数据
   const loadServices = async (tab: 'latest' | 'my-likes' | 'most-liked' = activeTab) => {
@@ -55,10 +59,7 @@ export function MonitorDashboard() {
       const data = await response.json()
 
       if (data.success) {
-        const transformedServices = data.data.map((router: Router) =>
-          transformRouterToService(router, locale)
-        )
-        setServices(transformedServices)
+        setServices(data.data)
         setLastUpdate(new Date().toLocaleTimeString(locale, { hour12: false }))
       }
     } catch (error) {
@@ -96,12 +97,180 @@ export function MonitorDashboard() {
     }
   }, [setRefreshMonitor])
 
+  // 处理表单输入变化
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
+
+  // 重置表单
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      url: '',
+      inviteLink: ''
+    })
+  }
+
+  // 提交新路由器
+  const handleSubmitRouter = async () => {
+    // 检查登录状态
+    if (!isAuthenticated) {
+      showLoginModal()
+      return
+    }
+
+    // 表单验证
+    if (!formData.name.trim() || !formData.url.trim()) {
+      toast({
+        title: "错误",
+        description: "请填写必填字段（路由器名称和URL）",
+        variant: "destructive"
+      })
+      return
+    }
+
+    // 简单的URL验证
+    try {
+      new URL(formData.url)
+    } catch {
+      toast({
+        title: "错误",
+        description: "请输入有效的URL地址",
+        variant: "destructive"
+      })
+      return
+    }
+
+    setSubmitting(true)
+    try {
+      const response = await fetch('/api/routers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          url: formData.url.trim(),
+          inviteLink: formData.inviteLink.trim() || null,
+          createdBy: TEMP_USER_ID
+        })
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        toast({
+          title: "提交成功",
+          description: "你的路由器已提交，等待验证后将显示在列表中"
+        })
+        setSubmitDialogOpen(false)
+        resetForm()
+        // 刷新数据
+        await loadServices()
+      } else {
+        toast({
+          title: "提交失败",
+          description: data.error || "提交过程中出现错误，请重试",
+          variant: "destructive"
+        })
+      }
+    } catch (error) {
+      console.error('Error submitting router:', error)
+      toast({
+        title: "提交失败",
+        description: "网络错误，请检查连接后重试",
+        variant: "destructive"
+      })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
     <section className="dark:bg-background relative bg-gray-50 py-16" id="monitor">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h2 className="dark:text-foreground mb-2 text-3xl font-bold text-gray-900">{t('title')}</h2>
           <p className="dark:text-muted-foreground text-gray-600">{t('description')}</p>
+        </div>
+
+        {/* 提交路由器按钮 */}
+        <div className="mb-6 flex justify-center">
+          <Dialog open={submitDialogOpen} onOpenChange={setSubmitDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Plus className="mr-2 h-4 w-4" />
+                提交网站
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>提交新路由器</DialogTitle>
+                <DialogDescription>
+                  分享你的路由器，让更多人发现和使用。提交后需要审核验证。
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="router-name">路由器名称 *</Label>
+                  <Input
+                    id="router-name"
+                    placeholder="例如：OpenAI官方API"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="router-url">网站地址 *</Label>
+                  <Input
+                    id="router-url"
+                    placeholder="例如：https://chatgpt.com/"
+                    value={formData.url}
+                    onChange={(e) => handleInputChange('url', e.target.value)}
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="invite-link">邀请链接</Label>
+                  <Input
+                    id="invite-link"
+                    placeholder="例如：https://example.com/invite?code=abc"
+                    value={formData.inviteLink}
+                    onChange={(e) => handleInputChange('inviteLink', e.target.value)}
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div className="flex gap-2 pt-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSubmitDialogOpen(false)
+                      resetForm()
+                    }}
+                    disabled={submitting}
+                    className="flex-1"
+                  >
+                    取消
+                  </Button>
+                  <Button
+                    onClick={handleSubmitRouter}
+                    disabled={submitting}
+                    className="flex-1"
+                  >
+                    {submitting ? '提交中...' : '提交'}
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <StatsCards totalServices={totalServices} lastUpdate={lastUpdate} t={t} />

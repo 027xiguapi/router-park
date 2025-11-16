@@ -373,7 +373,8 @@
     "serviceCard": {
       "inviteLink": "Invite Link",
       "responseTime": "Response Time",
-      "lastCheck": "Last Check"
+      "lastCheck": "Last Check",
+      "verified": "Verified"
     }
   },
   "siteInfo": {
@@ -566,6 +567,30 @@
     "morePages": "View More Pages",
     "language": "Language",
     "selectLanguage": "Select Language"
+  },
+  "userProvider": {
+    "errorFetchingUsage": "Error fetching usage count:",
+    "errorUseUserHook": "useUser must be used within a UserProvider",
+    "loginModal": {
+      "title": "Welcome to Router Park",
+      "description": "Sign in to continue your journey"
+    },
+    "dailySignIn": {
+      "title": "Daily Sign-in Reward!",
+      "description": "You've received {bonus} bonus analysis credits for today!",
+      "usesAdded": "analysis credits added"
+    },
+    "redeemCode": {
+      "title": "Redeem Code",
+      "description": "Enter your redeem code to get additional analysis credits",
+      "placeholder": "Enter redeem code",
+      "redeemButton": "Redeem",
+      "cancelButton": "Cancel",
+      "submittingButton": "Redeeming...",
+      "successMessage": "Success! You've received {amount} analysis credits!",
+      "errorMessage": "Failed to redeem code. Please try again.",
+      "dailyHint": "💡 Sign in daily to get 2 free analysis credits each day!"
+    }
   },
   "blog": {
     "postNotFound": "Post Not Found",

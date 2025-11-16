@@ -31,7 +31,7 @@
       "signInWithEmail": "使用电子邮件登录"
     },
     "signOut": "退出登录",
-    "login": "登录"
+      "login": "登录"
   },
   "footer": {
     "brandName": "AI 导航",
@@ -407,7 +407,8 @@
     "serviceCard": {
       "inviteLink": "邀请链接",
       "responseTime": "响应时间",
-      "lastCheck": "最后检测"
+      "lastCheck": "最后检测",
+      "verified": "已认证"
     }
   },
   "siteInfo": {
@@ -416,6 +417,30 @@
     "meta": {
       "title": "Router Park - Think, Write, Code",
       "description": "A responsive, lightweight, and accessible front-end framework using Next.js, TypeScript, and Tailwind CSS."
+    }
+  },
+  "userProvider": {
+    "errorFetchingUsage": "获取使用情况时出错：",
+    "errorUseUserHook": "useUser 必须在 UserProvider 内使用",
+    "loginModal": {
+      "title": "欢迎来到 Router Park",
+      "description": "登录以继续您的旅程"
+    },
+    "dailySignIn": {
+      "title": "每日签到奖励！",
+      "description": "您今天获得了 {bonus} 个分析积分奖励！",
+      "usesAdded": "分析积分已添加"
+    },
+    "redeemCode": {
+      "title": "兑换码",
+      "description": "输入您的兑换码以获得额外的分析积分",
+      "placeholder": "请输入兑换码",
+      "redeemButton": "兑换",
+      "cancelButton": "取消",
+      "submittingButton": "兑换中...",
+      "successMessage": "兑换成功！您获得了 {amount} 个分析积分！",
+      "errorMessage": "兑换失败，请重试。",
+      "dailyHint": "💡 每天签到可免费获得2个分析积分！"
     }
   },
   "blog": {

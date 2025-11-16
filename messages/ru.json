@@ -567,6 +567,14 @@
     "language": "Язык",
     "selectLanguage": "Выбрать Язык"
   },
+  "userProvider": {
+    "errorFetchingUsage": "Ошибка при получении данных использования:",
+    "errorUseUserHook": "useUser должен использоваться внутри UserProvider",
+    "loginModal": {
+      "title": "Добро пожаловать в AI Beauty Analyzer",
+      "description": "Войдите, чтобы продолжить свой путь"
+    }
+  },
   "blog": {
     "postNotFound": "Запись Не Найдена",
     "postNotFoundDescription": "Запись в блоге, которую вы ищете, не найдена.",

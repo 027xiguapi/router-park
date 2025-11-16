@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
+import QRCode from "qrcode"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,21 +20,37 @@ import Image from "next/image"
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from "next-intl"
 
-// 配置信息 - 您可以轻松修改这些值
 const VPN_CONFIG = {
-  // VPN订阅地址（您的实际订阅链接）
   subscriptionUrl: "https://sub3.smallstrawberry.com/api/v1/client/subscribe?token=e001c6c2898588f9cfc856e42e247723",
-
-  // 二维码图片路径（请将您的二维码图片放在 public 目录下）
-  qrCodeImage: "/vpn-qr.png",
-
-  // 邀请链接
   inviteLink: "https://xn--4gq62f52gdss.top/#/register?code=pLMhKWOx"
 }
 
 export function FreeVPN() {
   const t = useTranslations("freeVpn")
   const [copied, setCopied] = useState(false)
+  const [qrCodeSrc, setQrCodeSrc] = useState('')
+
+  // 生成二维码数据URL
+  useEffect(() => {
+    const generateQRCode = async () => {
+      try {
+        const dataUrl = await QRCode.toDataURL(VPN_CONFIG.subscriptionUrl, {
+          width: 240,
+          margin: 2,
+          color: {
+            dark: '#000000',
+            light: '#FFFFFF'
+          }
+        })
+        setQrCodeSrc(dataUrl)
+      } catch (error) {
+        console.error('Failed to generate QR code:', error)
+        setQrCodeSrc('')
+      }
+    }
+
+    generateQRCode()
+  }, [])
 
   const handleCopy = async () => {
     try {
@@ -181,27 +198,34 @@ export function FreeVPN() {
                     </p>
                   </div>
                   <div className="relative w-64 h-64 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center border-2 border-dashed border-green-300 dark:border-green-700">
-                    <Image
-                      src={VPN_CONFIG.qrCodeImage}
-                      alt="VPN订阅二维码"
-                      width={240}
-                      height={240}
-                      className="rounded"
-                      onError={(e) => {
-                        // 如果图片加载失败，显示占位符
-                        const target = e.target as HTMLImageElement
-                        target.style.display = 'none'
-                        const parent = target.parentElement
-                        if (parent) {
-                          parent.innerHTML = `
-                            <div class="text-center p-4">
-                              <div class="text-4xl mb-2">📱</div>
-                              <p class="text-sm text-muted-foreground">${t('qrCode.placeholder')}<br/><code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">${VPN_CONFIG.qrCodeImage}</code></p>
-                            </div>
-                          `
-                        }
-                      }}
-                    />
+                    {qrCodeSrc ? (
+                      <Image
+                        src={qrCodeSrc}
+                        alt="VPN订阅二维码"
+                        width={240}
+                        height={240}
+                        className="rounded"
+                        onError={(e) => {
+                          // 如果图片加载失败，显示占位符
+                          const target = e.target as HTMLImageElement
+                          target.style.display = 'none'
+                          const parent = target.parentElement
+                          if (parent) {
+                            parent.innerHTML = `
+                              <div class="text-center p-4">
+                                <div class="text-4xl mb-2">📱</div>
+                                <p class="text-sm text-muted-foreground">${t('qrCode.placeholder')}</p>
+                              </div>
+                            `
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="text-center p-4">
+                        <div className="text-4xl mb-2 animate-pulse">⏳</div>
+                        <p className="text-sm text-muted-foreground">生成二维码中...</p>
+                      </div>
+                    )}
                   </div>
                   <p className="text-xs text-center text-muted-foreground mt-4">
                     {t('qrCode.scanWith')}
