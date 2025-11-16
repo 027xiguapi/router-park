@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AlertCircle, CheckCircle, ExternalLink, Loader2, Plus, RefreshCw, Trash2, ShieldCheck, Heart } from 'lucide-react'
+import { AlertCircle, CheckCircle, ExternalLink, Loader2, Plus, RefreshCw, Trash2, ShieldCheck, Heart, Search } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -23,6 +23,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
+import { Input } from '@/components/ui/input'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from '@/components/ui/pagination'
 import { useToast } from '@/hooks/use-toast'
 
 import type { Router } from '@/lib/db/routers'
@@ -41,18 +51,49 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
   const { user } = useUser()
   const { toast } = useToast()
 
+  // 分页和搜索状态
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize] = useState(30)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchInput, setSearchInput] = useState('')
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pageSize: 30,
+    total: 0,
+    totalPages: 0,
+    hasNext: false,
+    hasPrev: false
+  })
+
   // 临时用户ID（实际应用中应从认证系统获取）
   const TEMP_USER_ID = user?.id || ''
 
   // 加载路由器列表
-  const loadRouters = async () => {
+  const loadRouters = async (page: number = currentPage, search: string = searchQuery) => {
     try {
       setLoading(true)
-      const response = await fetch('/api/routers')
+
+      // 构建URL参数
+      const params = new URLSearchParams()
+      params.set('page', page.toString())
+      params.set('pageSize', pageSize.toString())
+
+      if (search.trim()) {
+        params.set('search', search.trim())
+      }
+
+      // 默认按最新排序
+      params.set('sortBy', 'latest')
+
+      const url = `/api/routers?${params.toString()}`
+      const response = await fetch(url)
       const data = await response.json()
 
       if (data.success) {
         setRouters(data.data)
+        if (data.pagination) {
+          setPagination(data.pagination)
+        }
       } else {
         toast({
           title: '加载失败',
@@ -81,7 +122,8 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
       const data = await response.json()
 
       if (data.success) {
-        setRouters(data.data)
+        // 重新加载当前页面数据而不是替换全部数据
+        await loadRouters(currentPage, searchQuery)
         toast({
           title: '检查完成',
           description: `已检查 ${data.count} 个路由器的健康状态`
@@ -115,7 +157,8 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
       const data = await response.json()
 
       if (data.success) {
-        setRouters((prev) => prev.filter((r) => r.id !== deleteId))
+        // 重新加载数据以保持分页正确性
+        await loadRouters(currentPage, searchQuery)
         toast({
           title: '删除成功',
           description: '路由器已被删除'
@@ -187,9 +230,138 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
     }
   }
 
+  // 搜索处理
+  const handleSearch = () => {
+    setSearchQuery(searchInput.trim())
+  }
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setSearchInput(value)
+
+    // 如果输入为空，立即清除搜索
+    if (!value.trim()) {
+      setSearchQuery('')
+    }
+  }
+
+  const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
+
+  // 分页处理
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= pagination.totalPages) {
+      setCurrentPage(page)
+    }
+  }
+
+  // 生成分页按钮
+  const renderPaginationItems = () => {
+    const items = []
+    const { page, totalPages } = pagination
+
+    // 显示逻辑：1 ... 4 5 6 ... 10
+    const showEllipsis = totalPages > 7
+
+    if (showEllipsis) {
+      // 总是显示第一页
+      items.push(
+        <PaginationItem key={1}>
+          <PaginationLink
+            onClick={() => handlePageChange(1)}
+            isActive={page === 1}
+          >
+            1
+          </PaginationLink>
+        </PaginationItem>
+      )
+
+      // 如果当前页离第一页很远，显示省略号
+      if (page > 4) {
+        items.push(
+          <PaginationItem key="start-ellipsis">
+            <PaginationEllipsis />
+          </PaginationItem>
+        )
+      }
+
+      // 显示当前页周围的页码
+      const start = Math.max(2, page - 1)
+      const end = Math.min(totalPages - 1, page + 1)
+
+      for (let i = start; i <= end; i++) {
+        items.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              onClick={() => handlePageChange(i)}
+              isActive={page === i}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>
+        )
+      }
+
+      // 如果当前页离最后页很远，显示省略号
+      if (page < totalPages - 3) {
+        items.push(
+          <PaginationItem key="end-ellipsis">
+            <PaginationEllipsis />
+          </PaginationItem>
+        )
+      }
+
+      // 总是显示最后一页（如果不是第一页）
+      if (totalPages > 1) {
+        items.push(
+          <PaginationItem key={totalPages}>
+            <PaginationLink
+              onClick={() => handlePageChange(totalPages)}
+              isActive={page === totalPages}
+            >
+              {totalPages}
+            </PaginationLink>
+          </PaginationItem>
+        )
+      }
+    } else {
+      // 页数少时，显示所有页码
+      for (let i = 1; i <= totalPages; i++) {
+        items.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              onClick={() => handlePageChange(i)}
+              isActive={page === i}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>
+        )
+      }
+    }
+
+    return items
+  }
+
   useEffect(() => {
     loadRouters()
   }, [])
+
+  // 搜索变化时重新加载数据
+  useEffect(() => {
+    setCurrentPage(1) // 搜索时重置页码
+    loadRouters(1, searchQuery)
+  }, [searchQuery])
+
+  // 页码变化时重新加载数据
+  useEffect(() => {
+    if (currentPage !== 1) { // 避免重复加载第一页
+      loadRouters(currentPage, searchQuery)
+    }
+  }, [currentPage])
 
   const formatDate = (date: Date | string) => {
     const d = typeof date === 'string' ? new Date(date) : date
@@ -218,6 +390,30 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
           </Button>
         </div>
 
+        {/* 搜索栏 */}
+        <div className="flex justify-between items-center gap-4">
+          <div className="flex w-full max-w-sm items-center space-x-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder="搜索路由器名称或网址..."
+                value={searchInput}
+                onChange={handleSearchInputChange}
+                onKeyPress={handleSearchKeyPress}
+                className="pl-10"
+              />
+            </div>
+            <Button onClick={handleSearch} size="default">
+              搜索
+            </Button>
+          </div>
+
+          {/* 总数显示 */}
+          <div className="text-sm text-muted-foreground">
+            共 {pagination.total} 条记录
+          </div>
+        </div>
+
         <div className="rounded-md border">
           <Table>
             <TableHeader>
@@ -237,7 +433,7 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
               {routers.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
-                    暂无路由器数据，点击右上角添加按钮创建新路由器
+                    {searchQuery ? `未找到包含 "${searchQuery}" 的路由器` : '暂无路由器数据，点击右上角添加按钮创建新路由器'}
                   </TableCell>
                 </TableRow>
               ) : (
@@ -332,6 +528,35 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
             </TableBody>
           </Table>
         </div>
+
+        {/* 分页组件 */}
+        {pagination.totalPages > 1 && (
+          <div className="space-y-4">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => handlePageChange(pagination.page - 1)}
+                    className={!pagination.hasPrev ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                  />
+                </PaginationItem>
+
+                {renderPaginationItems()}
+
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => handlePageChange(pagination.page + 1)}
+                    className={!pagination.hasNext ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+
+            <div className="text-center text-sm text-muted-foreground">
+              第 {pagination.page} / {pagination.totalPages} 页，共 {pagination.total} 个结果
+            </div>
+          </div>
+        )}
       </div>
 
       {/* 删除确认对话框 */}

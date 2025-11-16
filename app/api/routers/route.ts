@@ -6,36 +6,67 @@ import {
   getAllRouters,
   getRoutersByLikes,
   getUserLikedRouters,
+  getRoutersWithPagination,
 } from '@/lib/db/routers'
 
-import type { CreateRouterInput } from '@/lib/db/routers'
+import type { CreateRouterInput, RouterQueryOptions } from '@/lib/db/routers'
 import type { NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const sortBy = searchParams.get('sortBy')
-    const userId = searchParams.get('userId')
-    const likedBy = searchParams.get('likedBy')
+
+    // 解析查询参数
+    const page = parseInt(searchParams.get('page') || '1', 10)
+    const pageSize = parseInt(searchParams.get('pageSize') || '30', 10)
+    const search = searchParams.get('search') || undefined
+    const sortBy = searchParams.get('sortBy') as 'latest' | 'likes' | 'name' | undefined
+    const userId = searchParams.get('userId') || undefined
+    const likedBy = searchParams.get('likedBy') === 'true'
+
+    // 使用新的分页功能还是保持兼容性
+    const usePagination = searchParams.has('page') || searchParams.has('pageSize') || searchParams.has('search')
 
     const db = createDb()
-    let routers
 
-    if (likedBy === 'true' && userId) {
-      // 获取用户点赞的路由器
-      routers = await getUserLikedRouters(db, userId)
-    } else if (sortBy === 'likes') {
-      // 按点赞数排序
-      routers = await getRoutersByLikes(db)
+    if (usePagination) {
+      // 使用新的分页API
+      const options: RouterQueryOptions = {
+        page: Math.max(1, page),
+        pageSize: Math.min(100, Math.max(1, pageSize)), // 限制页面大小在1-100之间
+        search,
+        sortBy: sortBy || (likedBy ? 'latest' : (searchParams.get('sortBy') === 'likes' ? 'likes' : 'latest')),
+        userId,
+        likedBy
+      }
+
+      const result = await getRoutersWithPagination(db, options)
+
+      return NextResponse.json({
+        success: true,
+        data: result.data,
+        pagination: result.pagination
+      })
     } else {
-      // 默认：按创建时间排序
-      routers = await getAllRouters(db)
-    }
+      // 保持向后兼容性 - 使用原来的逻辑
+      let routers
 
-    return NextResponse.json({
-      success: true,
-      data: routers
-    })
+      if (likedBy && userId) {
+        // 获取用户点赞的路由器
+        routers = await getUserLikedRouters(db, userId)
+      } else if (sortBy === 'likes') {
+        // 按点赞数排序
+        routers = await getRoutersByLikes(db)
+      } else {
+        // 默认：按创建时间排序
+        routers = await getAllRouters(db)
+      }
+
+      return NextResponse.json({
+        success: true,
+        data: routers
+      })
+    }
   } catch (error) {
     console.error('Error fetching routers:', error)
     return NextResponse.json(

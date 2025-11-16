@@ -1,4 +1,4 @@
-import { eq, sql } from 'drizzle-orm'
+import { eq, sql, ilike, desc, asc } from 'drizzle-orm'
 
 import { routers, routerLikes } from './schema'
 
@@ -40,6 +40,27 @@ export interface UpdateRouterInput {
   updatedBy?: string
 }
 
+export interface RouterQueryOptions {
+  page?: number
+  pageSize?: number
+  search?: string
+  sortBy?: 'latest' | 'likes' | 'name'
+  userId?: string
+  likedBy?: boolean
+}
+
+export interface PaginatedRouters {
+  data: Router[]
+  pagination: {
+    page: number
+    pageSize: number
+    total: number
+    totalPages: number
+    hasNext: boolean
+    hasPrev: boolean
+  }
+}
+
 // 创建路由器
 export async function createRouter(db: Db, input: CreateRouterInput): Promise<Router> {
   const result = await db
@@ -70,6 +91,107 @@ export async function getAllRouters(db: Db): Promise<Router[]> {
     .orderBy(sql`${routers.createdAt} DESC`)
 
   return result.map(transformRouter)
+}
+
+// 获取路由器（支持分页和搜索）
+export async function getRoutersWithPagination(db: Db, options: RouterQueryOptions = {}): Promise<PaginatedRouters> {
+  const {
+    page = 1,
+    pageSize = 30,
+    search,
+    sortBy = 'latest',
+    userId,
+    likedBy = false
+  } = options
+
+  const offset = (page - 1) * pageSize
+
+  // 构建基础查询
+  let query = db.select().from(routers)
+  let countQuery = db.select({ count: sql`COUNT(*)` }).from(routers)
+
+  // 如果查询用户点赞的路由器
+  if (likedBy && userId) {
+    query = db
+      .select({
+        id: routers.id,
+        name: routers.name,
+        url: routers.url,
+        status: routers.status,
+        responseTime: routers.responseTime,
+        lastCheck: routers.lastCheck,
+        inviteLink: routers.inviteLink,
+        isVerified: routers.isVerified,
+        likes: routers.likes,
+        createdBy: routers.createdBy,
+        updatedBy: routers.updatedBy,
+        createdAt: routers.createdAt,
+        updatedAt: routers.updatedAt
+      })
+      .from(routers)
+      .innerJoin(routerLikes, eq(routers.id, routerLikes.routerId))
+      .where(eq(routerLikes.userId, userId))
+
+    countQuery = db
+      .select({ count: sql`COUNT(*)` })
+      .from(routers)
+      .innerJoin(routerLikes, eq(routers.id, routerLikes.routerId))
+      .where(eq(routerLikes.userId, userId))
+  }
+
+  // 添加搜索条件
+  if (search && search.trim()) {
+    const searchCondition = sql`${ilike(routers.name, `%${search}%`)} OR ${ilike(routers.url, `%${search}%`)}`
+    if (likedBy && userId) {
+      query = query.where(sql`${eq(routerLikes.userId, userId)} AND (${searchCondition})`)
+      countQuery = countQuery.where(sql`${eq(routerLikes.userId, userId)} AND (${searchCondition})`)
+    } else {
+      query = query.where(searchCondition)
+      countQuery = countQuery.where(searchCondition)
+    }
+  }
+
+  // 添加排序
+  switch (sortBy) {
+    case 'likes':
+      query = query.orderBy(desc(routers.likes), desc(routers.createdAt))
+      break
+    case 'name':
+      query = query.orderBy(asc(routers.name))
+      break
+    case 'latest':
+    default:
+      if (likedBy && userId) {
+        query = query.orderBy(desc(routerLikes.createdAt))
+      } else {
+        query = query.orderBy(desc(routers.createdAt))
+      }
+      break
+  }
+
+  // 添加分页
+  query = query.limit(pageSize).offset(offset)
+
+  // 执行查询
+  const [result, totalResult] = await Promise.all([
+    query,
+    countQuery
+  ])
+
+  const total = Number(totalResult[0].count)
+  const totalPages = Math.ceil(total / pageSize)
+
+  return {
+    data: result.map(transformRouter),
+    pagination: {
+      page,
+      pageSize,
+      total,
+      totalPages,
+      hasNext: page < totalPages,
+      hasPrev: page > 1
+    }
+  }
 }
 
 // 获取所有路由器（按点赞数排序）
