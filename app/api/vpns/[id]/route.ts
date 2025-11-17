@@ -6,10 +6,11 @@ import { getVPNById, updateVPN, deleteVPN } from '@/lib/db/vpns'
 import type { UpdateVPNInput } from '@/lib/db/vpns'
 import type { NextRequest } from 'next/server'
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params
     const db = createDb()
-    const vpn = await getVPNById(db, params.id)
+    const vpn = await getVPNById(db, id)
 
     if (!vpn) {
       return NextResponse.json(
@@ -37,9 +38,10 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-// PUT /api/vpns/[id] - 更新 VPN
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+// PATCH /api/vpns/[id] - 更新 VPN
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params
     const body = (await request.json()) as UpdateVPNInput
 
     // 验证 URL 格式（如果提供）
@@ -60,7 +62,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     const db = createDb()
-    const vpn = await updateVPN(db, params.id, body)
+    const vpn = await updateVPN(db, id, body)
 
     if (!vpn) {
       return NextResponse.json(
@@ -89,10 +91,11 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 }
 
 // DELETE /api/vpns/[id] - 删除 VPN
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params
     const db = createDb()
-    const success = await deleteVPN(db, params.id)
+    const success = await deleteVPN(db, id)
 
     if (!success) {
       return NextResponse.json(

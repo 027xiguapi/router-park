@@ -15,6 +15,13 @@
       "when": 1763291293704,
       "tag": "0001_normal_purple_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1763382096350,
+      "tag": "0002_panoramic_thunderbolts",
+      "breakpoints": true
     }
   ]
 }

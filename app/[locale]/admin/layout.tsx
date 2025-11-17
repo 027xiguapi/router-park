@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
+import { redirect } from 'next/navigation'
 
-import { redirect } from '@/i18n/navigation'
 import { auth } from '@/lib/auth'
 
 export default async function AdminLayout({
@@ -12,11 +12,8 @@ export default async function AdminLayout({
 }) {
   const { locale } = await params
   const s = await auth()
-  // if (!process.env.PROJECT_ADMIN_ID.split(',').includes(s?.user?.id ?? '')) {
-  //   redirect({
-  //     href: '/',
-  //     locale
-  //   })
-  // }
+  if (!process.env.PROJECT_ADMIN_ID?.split(',').includes(s?.user?.id ?? '')) {
+    redirect(`/${locale}`)
+  }
   return children
 }
