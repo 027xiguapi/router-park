@@ -20,23 +20,49 @@ import Image from "next/image"
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from "next-intl"
 
-const VPN_CONFIG = {
-  name: '免费VPN',
-  url: 'https://routerpark.com/zh/vpn',
-  subscriptionUrl: "https://sub3.smallstrawberry.com/api/v1/client/subscribe?token=e001c6c2898588f9cfc856e42e247723",
-  inviteLink: "https://xn--4gq62f52gdss.top/#/register?code=pLMhKWOx"
+interface VPNConfig {
+  id: string
+  name: string
+  url: string
+  subscriptionUrl: string
+  inviteLink?: string | null
+  description?: string | null
 }
 
 export function FreeVPN() {
   const t = useTranslations("freeVpn")
   const [copied, setCopied] = useState(false)
   const [qrCodeSrc, setQrCodeSrc] = useState('')
+  const [vpnConfig, setVpnConfig] = useState<VPNConfig | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // 从 API 获取 VPN 配置
+  useEffect(() => {
+    const fetchVPNConfig = async () => {
+      try {
+        const response = await fetch('/api/vpns?firstOnly=true')
+        const result = await response.json()
+
+        if (result.success && result.data) {
+          setVpnConfig(result.data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch VPN config:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchVPNConfig()
+  }, [])
 
   // 生成二维码数据URL
   useEffect(() => {
+    if (!vpnConfig) return
+
     const generateQRCode = async () => {
       try {
-        const dataUrl = await QRCode.toDataURL(VPN_CONFIG.subscriptionUrl, {
+        const dataUrl = await QRCode.toDataURL(vpnConfig.subscriptionUrl, {
           width: 240,
           margin: 2,
           color: {
@@ -52,16 +78,36 @@ export function FreeVPN() {
     }
 
     generateQRCode()
-  }, [])
+  }, [vpnConfig])
 
   const handleCopy = async () => {
+    if (!vpnConfig) return
+
     try {
-      await navigator.clipboard.writeText(VPN_CONFIG.subscriptionUrl)
+      await navigator.clipboard.writeText(vpnConfig.subscriptionUrl)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error("Failed to copy:", err)
     }
+  }
+
+  // 如果正在加载，显示加载状态
+  if (loading) {
+    return (
+      <section className="py-16 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-green-950/20 dark:via-emerald-950/20 dark:to-teal-950/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-lg text-muted-foreground">加载中...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // 如果没有 VPN 配置，不显示任何内容
+  if (!vpnConfig) {
+    return null
   }
 
   return (
@@ -119,7 +165,7 @@ export function FreeVPN() {
                     <div className="flex gap-2">
                       <Input
                         readOnly
-                        value={VPN_CONFIG.subscriptionUrl}
+                        value={vpnConfig.subscriptionUrl}
                         className="font-mono text-sm bg-muted"
                       />
                       <Button
@@ -172,20 +218,22 @@ export function FreeVPN() {
                 </div>
 
                 {/* 邀请链接按钮 */}
-                <Link
-                  href={VPN_CONFIG.inviteLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold"
+                {vpnConfig.inviteLink && (
+                  <Link
+                    href={vpnConfig.inviteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Gift className="mr-2 h-5 w-5" />
-                    {t('inviteButton')}
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                    <Button
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold"
+                    >
+                      <Gift className="mr-2 h-5 w-5" />
+                      {t('inviteButton')}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                )}
               </div>
 
               {/* 右侧：二维码 */}

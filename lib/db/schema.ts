@@ -271,3 +271,25 @@ export const routerLikes = sqliteTable(
       .notNull()
   },
 )
+
+// VPN 配置表 - 存储免费 VPN 配置信息
+export const vpns = sqliteTable('vpns', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text('name').notNull(),
+  url: text('url').notNull(), // VPN 详情页面 URL
+  subscriptionUrl: text('subscription_url').notNull(), // 订阅地址
+  inviteLink: text('invite_link'), // 邀请链接
+  description: text('description'), // VPN 描述
+  isActive: integer('is_active', { mode: 'boolean' }).notNull().default(true), // 是否激活
+  sortOrder: integer('sort_order').notNull().default(0), // 排序顺序
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
