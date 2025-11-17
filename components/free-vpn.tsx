@@ -21,6 +21,8 @@ import { Link } from '@/i18n/navigation'
 import { useTranslations } from "next-intl"
 
 const VPN_CONFIG = {
+  name: '免费VPN',
+  url: 'https://routerpark.com/zh/vpn',
   subscriptionUrl: "https://sub3.smallstrawberry.com/api/v1/client/subscribe?token=e001c6c2898588f9cfc856e42e247723",
   inviteLink: "https://xn--4gq62f52gdss.top/#/register?code=pLMhKWOx"
 }

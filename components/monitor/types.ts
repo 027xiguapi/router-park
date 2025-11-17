@@ -9,4 +9,7 @@ export interface ServiceStatus {
   likes?: number
   error?: string
   isVerified?: boolean
+  createdBy?: string // 创建人 ID
+  createdByName?: string // 创建人名称
+  createdByImage?: string // 创建人头像
 }

@@ -1,6 +1,6 @@
 import { eq, sql, like, desc, asc } from 'drizzle-orm'
 
-import { routers, routerLikes } from './schema'
+import { routers, routerLikes, users } from './schema'
 
 import type { Db } from './index'
 import type { RouterStatus } from './schema'
@@ -17,6 +17,8 @@ export interface Router {
   isVerified: boolean
   likes: number
   createdBy?: string | null
+  createdByName?: string | null
+  createdByImage?: string | null
   updatedBy?: string | null
   createdAt: Date
   updatedAt: Date
@@ -86,8 +88,25 @@ export async function createRouter(db: Db, input: CreateRouterInput): Promise<Ro
 // 获取所有路由器
 export async function getAllRouters(db: Db): Promise<Router[]> {
   const result = await db
-    .select()
+    .select({
+      id: routers.id,
+      name: routers.name,
+      url: routers.url,
+      status: routers.status,
+      responseTime: routers.responseTime,
+      lastCheck: routers.lastCheck,
+      inviteLink: routers.inviteLink,
+      isVerified: routers.isVerified,
+      likes: routers.likes,
+      createdBy: routers.createdBy,
+      createdByName: users.name,
+      createdByImage: users.image,
+      updatedBy: routers.updatedBy,
+      createdAt: routers.createdAt,
+      updatedAt: routers.updatedAt
+    })
     .from(routers)
+    .leftJoin(users, eq(routers.createdBy, users.id))
     .orderBy(sql`${routers.createdAt} DESC`)
 
   return result.map(transformRouter)
@@ -106,8 +125,28 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
 
   const offset = (page - 1) * pageSize
 
-  // 构建基础查询
-  let query = db.select().from(routers)
+  // 构建基础查询 - 添加用户信息
+  let query = db
+    .select({
+      id: routers.id,
+      name: routers.name,
+      url: routers.url,
+      status: routers.status,
+      responseTime: routers.responseTime,
+      lastCheck: routers.lastCheck,
+      inviteLink: routers.inviteLink,
+      isVerified: routers.isVerified,
+      likes: routers.likes,
+      createdBy: routers.createdBy,
+      createdByName: users.name,
+      createdByImage: users.image,
+      updatedBy: routers.updatedBy,
+      createdAt: routers.createdAt,
+      updatedAt: routers.updatedAt
+    })
+    .from(routers)
+    .leftJoin(users, eq(routers.createdBy, users.id))
+
   let countQuery = db.select({ count: sql`COUNT(*)` }).from(routers)
 
   // 如果查询用户点赞的路由器
@@ -124,11 +163,14 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
         isVerified: routers.isVerified,
         likes: routers.likes,
         createdBy: routers.createdBy,
+        createdByName: users.name,
+        createdByImage: users.image,
         updatedBy: routers.updatedBy,
         createdAt: routers.createdAt,
         updatedAt: routers.updatedAt
       })
       .from(routers)
+      .leftJoin(users, eq(routers.createdBy, users.id))
       .innerJoin(routerLikes, eq(routers.id, routerLikes.routerId))
       .where(eq(routerLikes.userId, userId))
 
@@ -197,8 +239,25 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
 // 获取所有路由器（按点赞数排序）
 export async function getRoutersByLikes(db: Db): Promise<Router[]> {
   const result = await db
-    .select()
+    .select({
+      id: routers.id,
+      name: routers.name,
+      url: routers.url,
+      status: routers.status,
+      responseTime: routers.responseTime,
+      lastCheck: routers.lastCheck,
+      inviteLink: routers.inviteLink,
+      isVerified: routers.isVerified,
+      likes: routers.likes,
+      createdBy: routers.createdBy,
+      createdByName: users.name,
+      createdByImage: users.image,
+      updatedBy: routers.updatedBy,
+      createdAt: routers.createdAt,
+      updatedAt: routers.updatedAt
+    })
     .from(routers)
+    .leftJoin(users, eq(routers.createdBy, users.id))
     .orderBy(sql`${routers.likes} DESC, ${routers.createdAt} DESC`)
 
   return result.map(transformRouter)
@@ -218,11 +277,14 @@ export async function getUserLikedRouters(db: Db, userId: string): Promise<Route
       isVerified: routers.isVerified,
       likes: routers.likes,
       createdBy: routers.createdBy,
+      createdByName: users.name,
+      createdByImage: users.image,
       updatedBy: routers.updatedBy,
       createdAt: routers.createdAt,
       updatedAt: routers.updatedAt
     })
     .from(routers)
+    .leftJoin(users, eq(routers.createdBy, users.id))
     .innerJoin(routerLikes, eq(routers.id, routerLikes.routerId))
     .where(eq(routerLikes.userId, userId))
     .orderBy(sql`${routerLikes.createdAt} DESC`)
@@ -232,7 +294,28 @@ export async function getUserLikedRouters(db: Db, userId: string): Promise<Route
 
 // 根据 ID 获取路由器
 export async function getRouterById(db: Db, id: string): Promise<Router | null> {
-  const result = await db.select().from(routers).where(eq(routers.id, id)).limit(1)
+  const result = await db
+    .select({
+      id: routers.id,
+      name: routers.name,
+      url: routers.url,
+      status: routers.status,
+      responseTime: routers.responseTime,
+      lastCheck: routers.lastCheck,
+      inviteLink: routers.inviteLink,
+      isVerified: routers.isVerified,
+      likes: routers.likes,
+      createdBy: routers.createdBy,
+      createdByName: users.name,
+      createdByImage: users.image,
+      updatedBy: routers.updatedBy,
+      createdAt: routers.createdAt,
+      updatedAt: routers.updatedAt
+    })
+    .from(routers)
+    .leftJoin(users, eq(routers.createdBy, users.id))
+    .where(eq(routers.id, id))
+    .limit(1)
 
   if (result.length === 0) {
     return null
@@ -340,7 +423,7 @@ export async function checkAllRoutersHealth(db: Db): Promise<Router[]> {
 }
 
 // 辅助函数：转换数据库结果为 Router 类型
-function transformRouter(data: typeof routers.$inferSelect): Router {
+function transformRouter(data: any): Router {
   return {
     id: data.id,
     name: data.name,
@@ -352,6 +435,8 @@ function transformRouter(data: typeof routers.$inferSelect): Router {
     isVerified: data.isVerified,
     likes: data.likes,
     createdBy: data.createdBy,
+    createdByName: data.createdByName || null,
+    createdByImage: data.createdByImage || null,
     updatedBy: data.updatedBy,
     createdAt: new Date(data.createdAt),
     updatedAt: new Date(data.updatedAt)

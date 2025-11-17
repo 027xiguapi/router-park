@@ -4,7 +4,8 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Heart, Shield } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ExternalLink, Heart, Shield, User } from "lucide-react"
 import type { ServiceStatus } from "./types"
 import {useUser} from "@/contexts/user-context";
 
@@ -135,6 +136,22 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
             <Heart className={`h-4 w-4 ${likes > 0 ? 'fill-red-500 text-red-500' : ''}`} />
             <span className="text-sm">{likes}</span>
           </Button>
+
+          {/* 创建人信息 */}
+          {service.createdByName && (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Avatar className="h-6 w-6">
+                {service.createdByImage ? (
+                  <AvatarImage src={service.createdByImage} alt={service.createdByName} />
+                ) : (
+                  <AvatarFallback className="bg-primary/10 text-primary">
+                    <User className="h-3 w-3" />
+                  </AvatarFallback>
+                )}
+              </Avatar>
+              <span className="text-xs">{service.createdByName}</span>
+            </div>
+          )}
         </div>
       </div>
     </Card>
