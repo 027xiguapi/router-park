@@ -65,9 +65,6 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
     hasPrev: false
   })
 
-  // 临时用户ID（实际应用中应从认证系统获取）
-  const TEMP_USER_ID = user?.id || ''
-
   // 加载路由器列表
   const loadRouters = async (page: number = currentPage, search: string = searchQuery) => {
     try {
@@ -188,14 +185,12 @@ export function RoutersTable({ onEdit }: RoutersTableProps) {
     try {
       setLikingIds((prev) => new Set(prev).add(routerId))
 
-      // 这里简单实现：每次点击都增加点赞
-      // 实际应用中应该检查用户是否已点赞
       const response = await fetch(`/api/routers/${routerId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId: TEMP_USER_ID })
+        body: JSON.stringify({ userId: user?.id || '' })
       })
 
       const data = await response.json()

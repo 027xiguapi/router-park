@@ -56,8 +56,6 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
     inviteLink: ''
   })
 
-  const TEMP_USER_ID = user?.id || ''
-
   const loadServices = async (
   ) => {
     try {
@@ -66,7 +64,6 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
       const search = searchQuery
       const page = currentPage
       setLoading(true)
-      console.log(tab, page, search)
 
       // 构建URL参数
       const params = new URLSearchParams()
@@ -80,7 +77,11 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
       if (tab === 'most-liked') {
         params.set('sortBy', 'likes')
       } else if (tab === 'my-likes') {
-        params.set('userId', TEMP_USER_ID)
+        if (!isAuthenticated) {
+          showLoginModal()
+          return
+        }
+        params.set('userId', user?.id || '')
         params.set('likedBy', 'true')
       } else {
         params.set('sortBy', 'latest')
@@ -227,7 +228,7 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
           name: formData.name.trim(),
           url: formData.url.trim(),
           inviteLink: formData.inviteLink.trim() || null,
-          createdBy: TEMP_USER_ID
+          createdBy: user?.id || null,
         })
       })
 

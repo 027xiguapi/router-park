@@ -18,13 +18,15 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
   const isOnline = service.status === "online"
   const [likes, setLikes] = useState(service.likes || 0)
   const [isLiking, setIsLiking] = useState(false)
-  const { user } = useUser()
-
-  // 临时用户ID（实际应用中应从认证系统获取）
-  const TEMP_USER_ID = user?.id || ''
+  const { isAuthenticated, showLoginModal, user } = useUser()
 
   const handleLike = async () => {
     if (isLiking) return
+
+    if (!isAuthenticated) {
+      showLoginModal()
+      return
+    }
 
     try {
       setIsLiking(true)
@@ -33,7 +35,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId: TEMP_USER_ID })
+        body: JSON.stringify({ userId: user?.id || '' })
       })
 
       const data = await response.json()
