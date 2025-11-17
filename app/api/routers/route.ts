@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     // 解析查询参数
     const page = parseInt(searchParams.get('page') || '1', 10)
-    const pageSize = parseInt(searchParams.get('pageSize') || '30', 10)
+    const pageSize = parseInt(searchParams.get('pageSize') || '12', 10)
     const search = searchParams.get('search') || undefined
     const sortBy = searchParams.get('sortBy') as 'latest' | 'likes' | 'name' | undefined
     const userId = searchParams.get('userId') || undefined

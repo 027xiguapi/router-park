@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('meta.title'),
     description: t('meta.description'),
     icons: {
-      icon: '/logo.svg'
+      icon: '/favicon.ico'
     },
     authors: [{ name: 'Felix' }],
     creator: 'Felix',

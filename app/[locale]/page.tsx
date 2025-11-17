@@ -18,11 +18,20 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function Home() {
+export default async function Home({
+                                       params,
+                                       searchParams
+                                   }: {
+    params: Promise<{ locale: string }>
+    searchParams: Promise<{ page?: string }>
+}) {
+    const { locale } = await params
+    const { page } = await searchParams
+    const currentPage = page ? parseInt(page) : 1
   return (
     <>
       <Hero />
-      <MonitorDashboard />
+      <MonitorDashboard locale={locale} currentPage={currentPage} />
       <FreeVPN />
       <Features />
       <HowItWorks />

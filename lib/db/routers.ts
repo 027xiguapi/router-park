@@ -1,4 +1,4 @@
-import { eq, sql, ilike, desc, asc } from 'drizzle-orm'
+import { eq, sql, like, desc, asc } from 'drizzle-orm'
 
 import { routers, routerLikes } from './schema'
 
@@ -72,7 +72,7 @@ export async function createRouter(db: Db, input: CreateRouterInput): Promise<Ro
       isVerified: input.isVerified ?? false,
       createdBy: input.createdBy,
       updatedBy: input.createdBy,
-      status: 'offline',
+      status: 'online',
       responseTime: 0,
       lastCheck: new Date(),
       createdAt: new Date(),
@@ -97,7 +97,7 @@ export async function getAllRouters(db: Db): Promise<Router[]> {
 export async function getRoutersWithPagination(db: Db, options: RouterQueryOptions = {}): Promise<PaginatedRouters> {
   const {
     page = 1,
-    pageSize = 30,
+    pageSize = 10,
     search,
     sortBy = 'latest',
     userId,
@@ -141,7 +141,7 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
 
   // 添加搜索条件
   if (search && search.trim()) {
-    const searchCondition = sql`${ilike(routers.name, `%${search}%`)} OR ${ilike(routers.url, `%${search}%`)}`
+    const searchCondition = sql`${like(routers.name, `%${search}%`)} OR ${like(routers.url, `%${search}%`)}`
     if (likedBy && userId) {
       query = query.where(sql`${eq(routerLikes.userId, userId)} AND (${searchCondition})`)
       countQuery = countQuery.where(sql`${eq(routerLikes.userId, userId)} AND (${searchCondition})`)

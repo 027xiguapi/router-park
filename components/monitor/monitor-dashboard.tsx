@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { Plus, Search } from 'lucide-react'
 
@@ -13,41 +13,34 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { useUser } from '@/contexts/user-context'
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationEllipsis,
-} from '@/components/ui/pagination'
+import { useRouter } from '@/i18n/navigation'
 
 import { ServiceCard } from './service-card'
 import { StatsCards } from './stats-cards'
+import { MonitorPagination } from './monitor-pagination'
 
 import type { ServiceStatus } from './types'
-import type { Router } from '@/lib/db/routers'
+interface MonitorDashboardProps {
+  locale: string
+  currentPage: number
+  pageSize?: number
+  activeTab?: 'latest' | 'my-likes' | 'most-liked'
+  searchQuery?: string
+}
 
-export function MonitorDashboard() {
+export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab = 'latest', searchQuery = '' }: MonitorDashboardProps) {
   const t = useTranslations('monitor')
-  const locale = useLocale()
   const { toast } = useToast()
   const { isAuthenticated, showLoginModal, user } = useUser()
   const [services, setServices] = useState<ServiceStatus[]>([])
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<'latest' | 'my-likes' | 'most-liked'>('latest')
   const [lastUpdate, setLastUpdate] = useState<string>(new Date().toLocaleTimeString(locale, { hour12: false }))
   const { setRefreshMonitor } = useMonitor()
-
-  // 分页和搜索状态
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize] = useState(30)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchInput, setSearchInput] = useState('')
+  const router = useRouter()
+  const [searchInput, setSearchInput] = useState(searchQuery)
   const [pagination, setPagination] = useState({
     page: 1,
-    pageSize: 30,
+    pageSize: 12,
     total: 0,
     totalPages: 0,
     hasNext: false,
@@ -63,17 +56,17 @@ export function MonitorDashboard() {
     inviteLink: ''
   })
 
-  // 临时用户ID（实际应用中应从认证系统获取）
   const TEMP_USER_ID = user?.id || ''
 
-  // 从数据库加载路由器数据
   const loadServices = async (
-    tab: 'latest' | 'my-likes' | 'most-liked' = activeTab,
-    page: number = currentPage,
-    search: string = searchQuery
   ) => {
     try {
+
+      const tab = activeTab
+      const search = searchQuery
+      const page = currentPage
       setLoading(true)
+      console.log(tab, page, search)
 
       // 构建URL参数
       const params = new URLSearchParams()
@@ -111,41 +104,43 @@ export function MonitorDashboard() {
     }
   }
 
-  // 初始加载
   useEffect(() => {
     loadServices()
   }, [locale])
 
-  // Tab 切换时重新加载数据
+  // 同步 searchQuery prop 到 searchInput state
   useEffect(() => {
-    setCurrentPage(1) // 切换tab时重置页码
-    loadServices(activeTab, 1, searchQuery)
-  }, [activeTab])
-
-  // 搜索变化时重新加载数据
-  useEffect(() => {
-    setCurrentPage(1) // 搜索时重置页码
-    loadServices(activeTab, 1, searchQuery)
+    setSearchInput(searchQuery)
   }, [searchQuery])
 
-  // 页码变化时重新加载数据
+  // 当 URL 参数变化时重新加载数据
   useEffect(() => {
-    if (currentPage !== 1) { // 避免重复加载第一页
-      loadServices(activeTab, currentPage, searchQuery)
+    loadServices()
+  }, [activeTab, currentPage, searchQuery, pageSize])
+
+  const handleSearch = (tab?: 'latest' | 'my-likes' | 'most-liked', resetPage: boolean = true) => {
+    const selectedTab = tab || activeTab
+    const search = searchInput.trim()
+    const page = resetPage ? 1 : currentPage
+
+    const params = new URLSearchParams()
+    params.set('page', page.toString())
+    params.set('tab', selectedTab)
+
+    if (search) {
+      params.set('search', search)
     }
-  }, [currentPage])
+
+    // 导航到新 URL
+    router.push(`/router-monitor?${params.toString()}`)
+  }
 
   // 计算统计数据
   const totalServices = pagination.total
 
   // 刷新函数
   const handleRefresh = async () => {
-    await loadServices(activeTab, currentPage, searchQuery)
-  }
-
-  // 搜索处理
-  const handleSearch = () => {
-    setSearchQuery(searchInput.trim())
+    await loadServices()
   }
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,7 +149,7 @@ export function MonitorDashboard() {
 
     // 如果输入为空，立即清除搜索
     if (!value.trim()) {
-      setSearchQuery('')
+      handleSearch()
     }
   }
 
@@ -162,101 +157,6 @@ export function MonitorDashboard() {
     if (e.key === 'Enter') {
       handleSearch()
     }
-  }
-
-  // 分页处理
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= pagination.totalPages) {
-      setCurrentPage(page)
-    }
-  }
-
-  // 生成分页按钮
-  const renderPaginationItems = () => {
-    const items = []
-    const { page, totalPages } = pagination
-
-    // 显示逻辑：1 ... 4 5 6 ... 10
-    const showEllipsis = totalPages > 7
-
-    if (showEllipsis) {
-      // 总是显示第一页
-      items.push(
-        <PaginationItem key={1}>
-          <PaginationLink
-            onClick={() => handlePageChange(1)}
-            isActive={page === 1}
-          >
-            1
-          </PaginationLink>
-        </PaginationItem>
-      )
-
-      // 如果当前页离第一页很远，显示省略号
-      if (page > 4) {
-        items.push(
-          <PaginationItem key="start-ellipsis">
-            <PaginationEllipsis />
-          </PaginationItem>
-        )
-      }
-
-      // 显示当前页周围的页码
-      const start = Math.max(2, page - 1)
-      const end = Math.min(totalPages - 1, page + 1)
-
-      for (let i = start; i <= end; i++) {
-        items.push(
-          <PaginationItem key={i}>
-            <PaginationLink
-              onClick={() => handlePageChange(i)}
-              isActive={page === i}
-            >
-              {i}
-            </PaginationLink>
-          </PaginationItem>
-        )
-      }
-
-      // 如果当前页离最后页很远，显示省略号
-      if (page < totalPages - 3) {
-        items.push(
-          <PaginationItem key="end-ellipsis">
-            <PaginationEllipsis />
-          </PaginationItem>
-        )
-      }
-
-      // 总是显示最后一页（如果不是第一页）
-      if (totalPages > 1) {
-        items.push(
-          <PaginationItem key={totalPages}>
-            <PaginationLink
-              onClick={() => handlePageChange(totalPages)}
-              isActive={page === totalPages}
-            >
-              {totalPages}
-            </PaginationLink>
-          </PaginationItem>
-        )
-      }
-    } else {
-      // 页数少时，显示所有页码
-      for (let i = 1; i <= totalPages; i++) {
-        items.push(
-          <PaginationItem key={i}>
-            <PaginationLink
-              onClick={() => handlePageChange(i)}
-              isActive={page === i}
-            >
-              {i}
-            </PaginationLink>
-          </PaginationItem>
-        )
-      }
-    }
-
-    return items
   }
 
   // 注册刷新函数到 Context
@@ -340,8 +240,7 @@ export function MonitorDashboard() {
         })
         setSubmitDialogOpen(false)
         resetForm()
-        // 刷新数据
-        await loadServices(activeTab, 1, searchQuery)
+        await loadServices()
       } else {
         toast({
           title: "提交失败",
@@ -369,82 +268,6 @@ export function MonitorDashboard() {
           <p className="dark:text-muted-foreground text-gray-600">{t('description')}</p>
         </div>
 
-        {/* 提交路由器按钮 */}
-        <div className="mb-6 flex justify-center">
-          <Dialog open={submitDialogOpen} onOpenChange={setSubmitDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                <Plus className="mr-2 h-4 w-4" />
-                提交网站
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle>提交新路由器</DialogTitle>
-                <DialogDescription>
-                  分享你的路由器，让更多人发现和使用。提交后需要审核验证。
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="router-name">路由器名称 *</Label>
-                  <Input
-                    id="router-name"
-                    placeholder="例如：OpenAI官方API"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    disabled={submitting}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="router-url">网站地址 *</Label>
-                  <Input
-                    id="router-url"
-                    placeholder="例如：https://chatgpt.com/"
-                    value={formData.url}
-                    onChange={(e) => handleInputChange('url', e.target.value)}
-                    disabled={submitting}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="invite-link">邀请链接</Label>
-                  <Input
-                    id="invite-link"
-                    placeholder="例如：https://example.com/invite?code=abc"
-                    value={formData.inviteLink}
-                    onChange={(e) => handleInputChange('inviteLink', e.target.value)}
-                    disabled={submitting}
-                  />
-                </div>
-
-                <div className="flex gap-2 pt-2">
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setSubmitDialogOpen(false)
-                      resetForm()
-                    }}
-                    disabled={submitting}
-                    className="flex-1"
-                  >
-                    取消
-                  </Button>
-                  <Button
-                    onClick={handleSubmitRouter}
-                    disabled={submitting}
-                    className="flex-1"
-                  >
-                    {submitting ? '提交中...' : '提交'}
-                  </Button>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
-        </div>
-
         <StatsCards totalServices={totalServices} lastUpdate={lastUpdate} t={t} />
 
         {/* 搜索栏 */}
@@ -460,15 +283,90 @@ export function MonitorDashboard() {
                 className="pl-10"
               />
             </div>
-            <Button onClick={handleSearch} size="default">
+            <Button onClick={()=>handleSearch()} size="default">
               搜索
             </Button>
+
+            <div>
+              <Dialog open={submitDialogOpen} onOpenChange={setSubmitDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                    <Plus className="mr-2 h-4 w-4" />
+                    提交网站
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>提交新路由器</DialogTitle>
+                    <DialogDescription>
+                      分享你的路由器，让更多人发现和使用。提交后需要审核验证。
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="router-name">路由器名称 *</Label>
+                      <Input
+                          id="router-name"
+                          placeholder="例如：OpenAI官方API"
+                          value={formData.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                          disabled={submitting}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="router-url">网站地址 *</Label>
+                      <Input
+                          id="router-url"
+                          placeholder="例如：https://chatgpt.com/"
+                          value={formData.url}
+                          onChange={(e) => handleInputChange('url', e.target.value)}
+                          disabled={submitting}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="invite-link">邀请链接</Label>
+                      <Input
+                          id="invite-link"
+                          placeholder="例如：https://example.com/invite?code=abc"
+                          value={formData.inviteLink}
+                          onChange={(e) => handleInputChange('inviteLink', e.target.value)}
+                          disabled={submitting}
+                      />
+                    </div>
+
+                    <div className="flex gap-2 pt-2">
+                      <Button
+                          variant="outline"
+                          onClick={() => {
+                            setSubmitDialogOpen(false)
+                            resetForm()
+                          }}
+                          disabled={submitting}
+                          className="flex-1"
+                      >
+                        取消
+                      </Button>
+                      <Button
+                          onClick={handleSubmitRouter}
+                          disabled={submitting}
+                          className="flex-1"
+                      >
+                        {submitting ? '提交中...' : '提交'}
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
         </div>
 
         <Tabs
           value={activeTab}
-          onValueChange={(value) => setActiveTab(value as 'latest' | 'my-likes' | 'most-liked')}
+          onValueChange={(value) => handleSearch(value as 'latest' | 'my-likes' | 'most-liked')}
           className="mt-8"
         >
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
@@ -500,33 +398,17 @@ export function MonitorDashboard() {
                 </div>
 
                 {/* 分页组件 */}
-                {pagination.totalPages > 1 && (
-                  <div className="mt-8">
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem>
-                          <PaginationPrevious
-                            onClick={() => handlePageChange(pagination.page - 1)}
-                            className={!pagination.hasPrev ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-                          />
-                        </PaginationItem>
-
-                        {renderPaginationItems()}
-
-                        <PaginationItem>
-                          <PaginationNext
-                            onClick={() => handlePageChange(pagination.page + 1)}
-                            className={!pagination.hasNext ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-                          />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
-
+                <div className="mt-8">
+                  <MonitorPagination
+                    currentPage={pagination.page}
+                    totalPages={pagination.totalPages}
+                  />
+                  {pagination.totalPages > 1 && (
                     <div className="mt-4 text-center text-sm text-muted-foreground">
                       第 {pagination.page} / {pagination.totalPages} 页，共 {pagination.total} 个结果
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </TabsContent>
@@ -557,33 +439,17 @@ export function MonitorDashboard() {
                 </div>
 
                 {/* 分页组件 */}
-                {pagination.totalPages > 1 && (
-                  <div className="mt-8">
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem>
-                          <PaginationPrevious
-                            onClick={() => handlePageChange(pagination.page - 1)}
-                            className={!pagination.hasPrev ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-                          />
-                        </PaginationItem>
-
-                        {renderPaginationItems()}
-
-                        <PaginationItem>
-                          <PaginationNext
-                            onClick={() => handlePageChange(pagination.page + 1)}
-                            className={!pagination.hasNext ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-                          />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
-
+                <div className="mt-8">
+                  <MonitorPagination
+                    currentPage={pagination.page}
+                    totalPages={pagination.totalPages}
+                  />
+                  {pagination.totalPages > 1 && (
                     <div className="mt-4 text-center text-sm text-muted-foreground">
                       第 {pagination.page} / {pagination.totalPages} 页，共 {pagination.total} 个结果
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </TabsContent>
@@ -611,39 +477,22 @@ export function MonitorDashboard() {
                 </div>
 
                 {/* 分页组件 */}
-                {pagination.totalPages > 1 && (
-                  <div className="mt-8">
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem>
-                          <PaginationPrevious
-                            onClick={() => handlePageChange(pagination.page - 1)}
-                            className={!pagination.hasPrev ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-                          />
-                        </PaginationItem>
-
-                        {renderPaginationItems()}
-
-                        <PaginationItem>
-                          <PaginationNext
-                            onClick={() => handlePageChange(pagination.page + 1)}
-                            className={!pagination.hasNext ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-                          />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
-
+                <div className="mt-8">
+                  <MonitorPagination
+                    currentPage={pagination.page}
+                    totalPages={pagination.totalPages}
+                  />
+                  {pagination.totalPages > 1 && (
                     <div className="mt-4 text-center text-sm text-muted-foreground">
                       第 {pagination.page} / {pagination.totalPages} 页，共 {pagination.total} 个结果
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </TabsContent>
         </Tabs>
       </div>
-
       {/* 水印放在最上层 */}
       <Watermark text="routerpark" count={30} opacity={0.05} darkOpacity={0.05} rotate={-25} />
     </section>
