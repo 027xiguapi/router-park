@@ -12,8 +12,8 @@ export default async function AdminLayout({
 }) {
   const { locale } = await params
   const s = await auth()
-  if (!process.env.PROJECT_ADMIN_ID?.split(',').includes(s?.user?.id ?? '')) {
+  if (process.env.NODE_ENV === 'production' && !process.env.PROJECT_ADMIN_ID?.split(',').includes(s?.user?.id ?? '')) {
     redirect(`/${locale}`)
   }
-  return children
+  return (<div className="mt-10">{children}</div>)
 }
