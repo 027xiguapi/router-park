@@ -1,4 +1,5 @@
 import { MonitorDashboard } from "@/components/monitor/monitor-dashboard"
+import {FreeAPIKeys} from "@/components/free-api-keys";
 
 export default async function MonitorPage({
                                         params,
@@ -21,6 +22,7 @@ export default async function MonitorPage({
             activeTab={activeTab}
             searchQuery={searchQuery}
         />
+        <FreeAPIKeys />
     </div>
   )
 }

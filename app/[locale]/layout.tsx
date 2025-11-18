@@ -86,11 +86,11 @@ export default async function RootLayout({
             <UserProvider>
               <Header/>
               {children}
+              <Toaster position="top-center" closeButton richColors />
               <Footer/>
             </UserProvider>
             </SessionProvider>
           </ThemeProvider>
-          <Toaster richColors />
         </NextIntlClientProvider>
       <Analytics/>
       </body>

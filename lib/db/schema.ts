@@ -293,3 +293,30 @@ export const vpns = sqliteTable('vpns', {
     .default(sql`(unixepoch())`)
     .notNull()
 })
+
+// 代理/中转站表 - 存储 SEO 优化的代理中转站信息
+export const proxys = sqliteTable('proxys', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text('name').notNull(), // 中转站名称
+  url: text('url').notNull(), // 中转站 URL
+  slug: text('slug').unique().notNull(), // SEO 友好的 URL 标识符 (例: proxy/megallm)
+  seoTitle: text('seo_title').notNull(), // SEO 页面标题
+  seoDescription: text('seo_description').notNull(), // SEO 页面描述
+  content: text('content'), // Markdown 格式的页面内容
+  models: text('models'), // 支持的模型 (JSON 数组字符串，例: ["GPT-4","Claude"])
+  inviteLink: text('invite_link'), // 邀请链接
+  status: text('status').$type<'active' | 'inactive'>().notNull().default('active'), // 状态
+  sortOrder: integer('sort_order').notNull().default(0), // 排序顺序
+  views: integer('views').notNull().default(0), // 浏览次数
+  likes: integer('likes').notNull().default(0), // 点赞数
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
