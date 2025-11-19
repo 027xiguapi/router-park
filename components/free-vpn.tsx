@@ -14,11 +14,13 @@ import {
   Shield,
   Zap,
   Globe,
-  Download
+  Download,
+  Lock
 } from "lucide-react"
 import Image from "next/image"
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from "next-intl"
+import { useUser } from "@/contexts/user-context"
 
 interface VPNConfig {
   id: string
@@ -31,6 +33,7 @@ interface VPNConfig {
 
 export function FreeVPN() {
   const t = useTranslations("freeVpn")
+  const { checkIsLoggedIn, isAuthenticated } = useUser()
   const [copied, setCopied] = useState(false)
   const [qrCodeSrc, setQrCodeSrc] = useState('')
   const [vpnConfig, setVpnConfig] = useState<VPNConfig | null>(null)
@@ -81,6 +84,10 @@ export function FreeVPN() {
   }, [vpnConfig])
 
   const handleCopy = async () => {
+    if (!checkIsLoggedIn()) {
+      return
+    }
+
     if (!vpnConfig) return
 
     try {
@@ -163,11 +170,18 @@ export function FreeVPN() {
                   </h3>
                   <div className="space-y-3">
                     <div className="flex gap-2">
-                      <Input
-                        readOnly
-                        value={vpnConfig.subscriptionUrl}
-                        className="font-mono text-sm bg-muted"
-                      />
+                      <div className="relative flex-1">
+                        <Input
+                          readOnly
+                          value={isAuthenticated ? vpnConfig.subscriptionUrl : "••••••••••••••••••••••••••"}
+                          className={`font-mono text-sm ${isAuthenticated ? 'bg-muted' : 'bg-muted blur-sm select-none pointer-events-none'}`}
+                        />
+                        {!isAuthenticated && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Lock className="h-5 w-5 text-muted-foreground" />
+                          </div>
+                        )}
+                      </div>
                       <Button
                         onClick={handleCopy}
                         variant="outline"
@@ -186,6 +200,14 @@ export function FreeVPN() {
                         )}
                       </Button>
                     </div>
+                    {!isAuthenticated && (
+                      <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3 flex items-start gap-2">
+                        <Lock className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                        <p className="text-sm text-amber-800 dark:text-amber-400">
+                          请先登录后才能查看和复制订阅地址
+                        </p>
+                      </div>
+                    )}
                     <p className="text-sm text-muted-foreground">
                       {t('subscription.placeholder')}
                     </p>
@@ -249,27 +271,35 @@ export function FreeVPN() {
                   </div>
                   <div className="relative w-64 h-64 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center border-2 border-dashed border-green-300 dark:border-green-700">
                     {qrCodeSrc ? (
-                      <Image
-                        src={qrCodeSrc}
-                        alt="VPN订阅二维码"
-                        width={240}
-                        height={240}
-                        className="rounded"
-                        onError={(e) => {
-                          // 如果图片加载失败，显示占位符
-                          const target = e.target as HTMLImageElement
-                          target.style.display = 'none'
-                          const parent = target.parentElement
-                          if (parent) {
-                            parent.innerHTML = `
-                              <div class="text-center p-4">
-                                <div class="text-4xl mb-2">📱</div>
-                                <p class="text-sm text-muted-foreground">${t('qrCode.placeholder')}</p>
-                              </div>
-                            `
-                          }
-                        }}
-                      />
+                      <>
+                        <Image
+                          src={qrCodeSrc}
+                          alt="VPN订阅二维码"
+                          width={240}
+                          height={240}
+                          className={`rounded ${!isAuthenticated ? 'blur-md' : ''}`}
+                          onError={(e) => {
+                            // 如果图片加载失败，显示占位符
+                            const target = e.target as HTMLImageElement
+                            target.style.display = 'none'
+                            const parent = target.parentElement
+                            if (parent) {
+                              parent.innerHTML = `
+                                <div class="text-center p-4">
+                                  <div class="text-4xl mb-2">📱</div>
+                                  <p class="text-sm text-muted-foreground">${t('qrCode.placeholder')}</p>
+                                </div>
+                              `
+                            }
+                          }}
+                        />
+                        {!isAuthenticated && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10 dark:bg-black/30 rounded-lg">
+                            <Lock className="h-12 w-12 text-white drop-shadow-lg mb-2" />
+                            <p className="text-sm font-semibold text-white drop-shadow-lg">需要登录查看</p>
+                          </div>
+                        )}
+                      </>
                     ) : (
                       <div className="text-center p-4">
                         <div className="text-4xl mb-2 animate-pulse">⏳</div>
