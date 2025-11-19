@@ -18,6 +18,21 @@ export function FreeAPIKeys() {
     ANTHROPIC_BASE_URL: 'https://any.routerpark.com'
   }
 
+  const keys = [
+    "sk-gmoc2FR54apTAJkopcLPuy0MAifx0Z07HHsx16MvXvdFTGYm",
+    "sk-dCiB11Bnr5jbSMtiVB0yLxCyTKC2HBzlPlJV0tCPobfTfTIr",
+    "sk-mmZpaLYmxtgsi9c4FjmOlauJiGtiH6TrFYr7xU6KUwfJcyjk",
+    "sk-g85GX2UUDgJMfS8DUJ4sSkG2EMmPC4fz6zUxHN358cH365aV",
+    "sk-mvuvGT1HeLouRsSxpjUSRkvzWcySzVjGBdTQi5F5Lg48Yzij",
+    "sk-5R6dyzgtOdfyGU1hsjFZHRFjAiW6V7BzRtF0Xi1fXMy2jNFy",
+    "sk-twxc28metDIeoxeLZ1kI6dvjeFnrV3HRmOWPzfKwn94Itgke",
+    "sk-XOs6ST57tOd170k0iuMkBawvrw7xXZU1FE5Kd0ArdQM5SeN8",
+    "sk-oxgOmYlEePoYh5BsolMqpGt4ZIeCWS0yVtK85QcaJ7CLjeWD",
+    "sk-gGBQJak0rJOExSn3kArZYPuxVeDF16DhJ6MloSTDhyHu7WaZ",
+    "sk-prmNbs78x1qMVTlMpsgNTSceKNWM5GRdAohctOuDo6OzKrYb",
+    "sk-BkQso8Z9Bo4hznTHbPLPL8lSi5EcL83B9QbOrvAZpvQy7Y8J"
+  ]
+
   // 遮罩 API Key 中间字符
   const maskApiKey = (key: string) => {
     if (key.length <= 20) return key
@@ -65,12 +80,27 @@ export function FreeAPIKeys() {
   "env": {
     "ANTHROPIC_API_KEY": "${config.ANTHROPIC_API_KEY}",
     "ANTHROPIC_AUTH_TOKEN": "${config.ANTHROPIC_AUTH_TOKEN}",
-    "ANTHROPIC_BASE_URL": "${config.ANTHROPIC_BASE_URL}"
+    "ANTHROPIC_BASE_URL": "${config.ANTHROPIC_BASE_URL}",
   }
 }`
     try {
       await navigator.clipboard.writeText(configText)
       setCopiedField('all')
+      toast.success('复制成功')
+      setTimeout(() => setCopiedField(null), 2000)
+    } catch (error) {
+      toast.error('复制失败')
+    }
+  }
+
+  const handleCopyKey = async (key: string, index: number) => {
+    if (!user) {
+      toast.error('需要登录')
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(key)
+      setCopiedField(`key-${index}`)
       toast.success('复制成功')
       setTimeout(() => setCopiedField(null), 2000)
     } catch (error) {
@@ -228,10 +258,11 @@ export function FreeAPIKeys() {
             </CardContent>
           </Card>
 
-          {/* Login Prompt for Unauthenticated Users */}
-          {!user && (
-            <Card className="mt-8 border-2 border-primary/20 shadow-lg">
-              <CardContent className="py-8">
+          {/* API Keys Card - 根据登录状态显示不同内容 */}
+          <Card className="mt-8 border-2 border-primary/20 shadow-lg">
+            <CardContent className="py-8">
+              {!user ? (
+                // 未登录时显示登录提示
                 <div className="text-center space-y-4">
                   <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Lock className="h-6 w-6 text-primary" />
@@ -250,9 +281,56 @@ export function FreeAPIKeys() {
                     支持 Google 和 GitHub 登录
                   </p>
                 </div>
-              </CardContent>
-            </Card>
-          )}
+              ) : (
+                <div className="space-y-4">
+                  <div className="text-center space-y-2 mb-6">
+                    <div className="mx-auto w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
+                      <Sparkles className="h-6 w-6 text-green-500" />
+                    </div>
+                    <h3 className="text-xl font-bold">可用的 API Keys</h3>
+                    <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                      您可以使用以下任意一个 API Key，点击复制按钮即可
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3 max-h-96 overflow-y-auto">
+                    {keys.map((key, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 p-3 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                      >
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                          <span className="text-xs font-bold text-primary">{index + 1}</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-mono truncate">
+                            {key}
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleCopyKey(key, index)}
+                          className="flex-shrink-0"
+                        >
+                          {copiedField === `key-${index}` ? (
+                            <Check className="h-4 w-4 text-green-500" />
+                          ) : (
+                            <Copy className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+                <p className="text-sm text-center">
+                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Additional Info */}
           <div className="mt-8 grid md:grid-cols-3 gap-4 text-center">

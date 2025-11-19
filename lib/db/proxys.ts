@@ -1,6 +1,6 @@
 import { eq, sql, like, desc, asc } from 'drizzle-orm'
 
-import { proxys, proxyLikes, users } from './schema'
+import { proxys, users } from './schema'
 
 import type { Db } from './index'
 
@@ -118,7 +118,6 @@ export async function getAllProxys(db: Db): Promise<Proxy[]> {
       seoDescription: proxys.seoDescription,
       content: proxys.content,
       models: proxys.models,
-      hasReward: proxys.hasReward,
       inviteLink: proxys.inviteLink,
       status: proxys.status,
       sortOrder: proxys.sortOrder,
@@ -150,7 +149,6 @@ export async function getActiveProxys(db: Db): Promise<Proxy[]> {
       seoDescription: proxys.seoDescription,
       content: proxys.content,
       models: proxys.models,
-      hasReward: proxys.hasReward,
       inviteLink: proxys.inviteLink,
       status: proxys.status,
       sortOrder: proxys.sortOrder,
@@ -196,7 +194,6 @@ export async function getProxysWithPagination(db: Db, options: ProxyQueryOptions
       seoDescription: proxys.seoDescription,
       content: proxys.content,
       models: proxys.models,
-      hasReward: proxys.hasReward,
       inviteLink: proxys.inviteLink,
       status: proxys.status,
       sortOrder: proxys.sortOrder,
@@ -226,7 +223,6 @@ export async function getProxysWithPagination(db: Db, options: ProxyQueryOptions
         seoDescription: proxys.seoDescription,
         content: proxys.content,
         models: proxys.models,
-        hasReward: proxys.hasReward,
         inviteLink: proxys.inviteLink,
         status: proxys.status,
         sortOrder: proxys.sortOrder,
@@ -241,22 +237,18 @@ export async function getProxysWithPagination(db: Db, options: ProxyQueryOptions
       })
       .from(proxys)
       .leftJoin(users, eq(proxys.createdBy, users.id))
-      .innerJoin(proxyLikes, eq(proxys.id, proxyLikes.proxyId))
-      .where(eq(proxyLikes.userId, userId))
 
     countQuery = db
       .select({ count: sql`COUNT(*)` })
       .from(proxys)
-      .innerJoin(proxyLikes, eq(proxys.id, proxyLikes.proxyId))
-      .where(eq(proxyLikes.userId, userId))
   }
 
   // 添加搜索条件
   if (search && search.trim()) {
     const searchCondition = sql`${like(proxys.name, `%${search}%`)} OR ${like(proxys.seoDescription, `%${search}%`)} OR ${like(proxys.models, `%${search}%`)}`
     if (likedBy && userId) {
-      query = query.where(sql`${eq(proxyLikes.userId, userId)} AND (${searchCondition})`)
-      countQuery = countQuery.where(sql`${eq(proxyLikes.userId, userId)} AND (${searchCondition})`)
+      query = query.where(`${searchCondition}`)
+      countQuery = countQuery.where(sql` AND (${searchCondition})`)
     } else {
       query = query.where(searchCondition)
       countQuery = countQuery.where(searchCondition)
@@ -266,8 +258,8 @@ export async function getProxysWithPagination(db: Db, options: ProxyQueryOptions
   // 添加状态过滤
   if (status) {
     if (likedBy && userId) {
-      query = query.where(sql`${eq(proxyLikes.userId, userId)} AND ${eq(proxys.status, status)}`)
-      countQuery = countQuery.where(sql`${eq(proxyLikes.userId, userId)} AND ${eq(proxys.status, status)}`)
+      query = query.where(sql` AND ${eq(proxys.status, status)}`)
+      countQuery = countQuery.where(sql` AND ${eq(proxys.status, status)}`)
     } else {
       query = query.where(eq(proxys.status, status))
       countQuery = countQuery.where(eq(proxys.status, status))
@@ -288,7 +280,6 @@ export async function getProxysWithPagination(db: Db, options: ProxyQueryOptions
     case 'latest':
     default:
       if (likedBy && userId) {
-        query = query.orderBy(desc(proxyLikes.createdAt))
       } else {
         query = query.orderBy(desc(proxys.sortOrder), desc(proxys.createdAt))
       }
@@ -332,7 +323,6 @@ export async function getProxyById(db: Db, id: string): Promise<Proxy | null> {
       seoDescription: proxys.seoDescription,
       content: proxys.content,
       models: proxys.models,
-      hasReward: proxys.hasReward,
       inviteLink: proxys.inviteLink,
       status: proxys.status,
       sortOrder: proxys.sortOrder,
@@ -369,7 +359,6 @@ export async function getProxyBySlug(db: Db, slug: string): Promise<Proxy | null
       seoDescription: proxys.seoDescription,
       content: proxys.content,
       models: proxys.models,
-      hasReward: proxys.hasReward,
       inviteLink: proxys.inviteLink,
       status: proxys.status,
       sortOrder: proxys.sortOrder,
@@ -459,10 +448,6 @@ export async function likeProxy(db: Db, proxyId: string, userId: string): Promis
     // 检查是否已经点赞
     const existingLike = await db
       .select()
-      .from(proxyLikes)
-      .where(
-        sql`${proxyLikes.proxyId} = ${proxyId} AND ${proxyLikes.userId} = ${userId}`
-      )
       .limit(1)
 
     if (existingLike.length > 0) {
@@ -470,12 +455,6 @@ export async function likeProxy(db: Db, proxyId: string, userId: string): Promis
       return await getProxyById(db, proxyId)
     }
 
-    // 插入点赞记录
-    await db.insert(proxyLikes).values({
-      proxyId,
-      userId,
-      createdAt: new Date()
-    })
 
     // 增加点赞数
     const result = await db
@@ -503,10 +482,6 @@ export async function unlikeProxy(db: Db, proxyId: string, userId: string): Prom
   try {
     // 删除点赞记录
     const deleted = await db
-      .delete(proxyLikes)
-      .where(
-        sql`${proxyLikes.proxyId} = ${proxyId} AND ${proxyLikes.userId} = ${userId}`
-      )
       .returning()
 
     if (deleted.length === 0) {
@@ -539,10 +514,6 @@ export async function unlikeProxy(db: Db, proxyId: string, userId: string): Prom
 export async function hasUserLikedProxy(db: Db, proxyId: string, userId: string): Promise<boolean> {
   const result = await db
     .select()
-    .from(proxyLikes)
-    .where(
-      sql`${proxyLikes.proxyId} = ${proxyId} AND ${proxyLikes.userId} = ${userId}`
-    )
     .limit(1)
 
   return result.length > 0
@@ -560,7 +531,6 @@ export async function getUserLikedProxys(db: Db, userId: string): Promise<Proxy[
       seoDescription: proxys.seoDescription,
       content: proxys.content,
       models: proxys.models,
-      hasReward: proxys.hasReward,
       inviteLink: proxys.inviteLink,
       status: proxys.status,
       sortOrder: proxys.sortOrder,
@@ -575,9 +545,6 @@ export async function getUserLikedProxys(db: Db, userId: string): Promise<Proxy[
     })
     .from(proxys)
     .leftJoin(users, eq(proxys.createdBy, users.id))
-    .innerJoin(proxyLikes, eq(proxys.id, proxyLikes.proxyId))
-    .where(eq(proxyLikes.userId, userId))
-    .orderBy(desc(proxyLikes.createdAt))
 
   return result.map(transformProxy)
 }
