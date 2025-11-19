@@ -19,18 +19,17 @@ export function FreeAPIKeys() {
   }
 
   const keys = [
-    "sk-gmoc2FR54apTAJkopcLPuy0MAifx0Z07HHsx16MvXvdFTGYm",
-    "sk-dCiB11Bnr5jbSMtiVB0yLxCyTKC2HBzlPlJV0tCPobfTfTIr",
-    "sk-mmZpaLYmxtgsi9c4FjmOlauJiGtiH6TrFYr7xU6KUwfJcyjk",
-    "sk-g85GX2UUDgJMfS8DUJ4sSkG2EMmPC4fz6zUxHN358cH365aV",
-    "sk-mvuvGT1HeLouRsSxpjUSRkvzWcySzVjGBdTQi5F5Lg48Yzij",
-    "sk-5R6dyzgtOdfyGU1hsjFZHRFjAiW6V7BzRtF0Xi1fXMy2jNFy",
-    "sk-twxc28metDIeoxeLZ1kI6dvjeFnrV3HRmOWPzfKwn94Itgke",
-    "sk-XOs6ST57tOd170k0iuMkBawvrw7xXZU1FE5Kd0ArdQM5SeN8",
-    "sk-oxgOmYlEePoYh5BsolMqpGt4ZIeCWS0yVtK85QcaJ7CLjeWD",
-    "sk-gGBQJak0rJOExSn3kArZYPuxVeDF16DhJ6MloSTDhyHu7WaZ",
-    "sk-prmNbs78x1qMVTlMpsgNTSceKNWM5GRdAohctOuDo6OzKrYb",
-    "sk-BkQso8Z9Bo4hznTHbPLPL8lSi5EcL83B9QbOrvAZpvQy7Y8J"
+    "sk-leo9ZlX7r7XlFMseydEWBHKk0e0UDL0dxstvtW8MvDizbMyO",
+     "sk-QKo1Oj8qB47ErERN4wjuzcBNJ0uLRmOqx293flIRE4jubbje",
+    "sk-kat8EXvTMEFdSqYmvLaOs2VKkK1RojAJQFmMIMRJfsOyapJh",
+    "sk-rE9nMFeEK9kWMe7E5FOwQ690PaciseqiorQshFvKK4w1fpqA",
+     "sk-EOQdDbkzLazdbk1aQvInFZGyh3vG00zwBM5tj0s3PGNrGncf",
+     "sk-AXKNgk2ReW6bD464KehwAiTIpa2dEhMm00kkg5MZP71TsBoS",
+    "sk-Ke66fiwkeGnLcHvI079JJzhBRNwnbPiLkStZF36yrsQt7gHq",
+    "sk-U8BG8PcixTJzkqEw3B56kVxRJXaluB5EP79ujFM7RrKnXDsT",
+    "sk-qMbna7kMjY2ihQmX5a3AhtDukTVOqz7g1yNvNN4JICjNsg5N",
+    "sk-s6IRA822j37rfT22bmN3eFkhYF4gsQr2jNta7KsDEWSVbcHo",
+    "sk-y1P2djllxhUxbY5kqS8uYin6cdDbuGYuiZv5jfG3mnGdcxnz"
   ]
 
   // 遮罩 API Key 中间字符
@@ -326,7 +325,7 @@ export function FreeAPIKeys() {
               )}
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥
+                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥，<span className="font-bold text-green-600 dark:text-green-400">2025-11-19 19：44</span> 更新
                 </p>
               </div>
             </CardContent>

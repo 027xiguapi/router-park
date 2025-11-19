@@ -177,7 +177,7 @@ export function FreeVPN() {
                           className={`font-mono text-sm ${isAuthenticated ? 'bg-muted' : 'bg-muted blur-sm select-none pointer-events-none'}`}
                         />
                         {!isAuthenticated && (
-                          <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="absolute inset-0 flex items-center justify-center" onClick={checkIsLoggedIn}>
                             <Lock className="h-5 w-5 text-muted-foreground" />
                           </div>
                         )}
@@ -294,7 +294,7 @@ export function FreeVPN() {
                           }}
                         />
                         {!isAuthenticated && (
-                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10 dark:bg-black/30 rounded-lg">
+                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10 dark:bg-black/30 rounded-lg" onClick={checkIsLoggedIn}>
                             <Lock className="h-12 w-12 text-white drop-shadow-lg mb-2" />
                             <p className="text-sm font-semibold text-white drop-shadow-lg">需要登录查看</p>
                           </div>

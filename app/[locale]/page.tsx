@@ -9,6 +9,7 @@ import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
 import { FreeVPN } from "@/components/free-vpn"
 import { FreeAPIKeys } from "@/components/free-api-keys"
+import { FreeLLMAPI } from "@/components/free-llm-api"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('home')
@@ -34,6 +35,7 @@ export default async function Home({
       <Hero />
       <MonitorDashboard locale={locale} currentPage={currentPage} />
       <FreeAPIKeys />
+      <FreeLLMAPI />
       <FreeVPN />
       <Features />
       <HowItWorks />
