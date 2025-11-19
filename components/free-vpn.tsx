@@ -118,7 +118,7 @@ export function FreeVPN() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-green-950/20 dark:via-emerald-950/20 dark:to-teal-950/20">
+    <section id="free-vpn" className="py-16 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-green-950/20 dark:via-emerald-950/20 dark:to-teal-950/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* 标题 */}
         <div className="text-center mb-12">

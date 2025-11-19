@@ -1,12 +1,19 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles, Gift, Key } from "lucide-react"
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from "next-intl"
 
 export function Hero() {
   const t = useTranslations("hero")
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
     <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
@@ -23,9 +30,6 @@ export function Hero() {
 
           <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
             {t('title')}
-            {/*<span className="bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">*/}
-            {/*  {t('subtitle')}*/}
-            {/*</span>*/}
           </h1>
 
           <p className="mb-10 text-pretty text-lg text-muted-foreground sm:text-xl lg:text-2xl">
@@ -43,6 +47,22 @@ export function Hero() {
             </Button>
             <Button size="lg" variant="outline" className="h-12 px-8 text-base bg-transparent" asChild>
               <Link href="/config-guide">{t('documentation')}</Link>
+            </Button>
+            <Button
+                size="lg"
+                className="border border-green-500/30 bg-green-500/5 hover:bg-green-500/10 hover:border-green-500/50 text-green-700 dark:text-green-400"
+                onClick={() => scrollToSection('free-api-keys')}
+            >
+              <Key className="h-4 w-4" />
+              免费 API Keys
+            </Button>
+            <Button
+                size="lg"
+                className="border border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/50 text-emerald-700 dark:text-emerald-400"
+                onClick={() => scrollToSection('free-vpn')}
+            >
+              <Gift className="h-4 w-4" />
+              免费 VPN
             </Button>
           </div>
 
