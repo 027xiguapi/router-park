@@ -19,17 +19,16 @@ export function FreeAPIKeys() {
   }
 
   const keys = [
-    "sk-leo9ZlX7r7XlFMseydEWBHKk0e0UDL0dxstvtW8MvDizbMyO",
-     "sk-QKo1Oj8qB47ErERN4wjuzcBNJ0uLRmOqx293flIRE4jubbje",
-    "sk-kat8EXvTMEFdSqYmvLaOs2VKkK1RojAJQFmMIMRJfsOyapJh",
-    "sk-rE9nMFeEK9kWMe7E5FOwQ690PaciseqiorQshFvKK4w1fpqA",
-     "sk-EOQdDbkzLazdbk1aQvInFZGyh3vG00zwBM5tj0s3PGNrGncf",
-     "sk-AXKNgk2ReW6bD464KehwAiTIpa2dEhMm00kkg5MZP71TsBoS",
-    "sk-Ke66fiwkeGnLcHvI079JJzhBRNwnbPiLkStZF36yrsQt7gHq",
-    "sk-U8BG8PcixTJzkqEw3B56kVxRJXaluB5EP79ujFM7RrKnXDsT",
-    "sk-qMbna7kMjY2ihQmX5a3AhtDukTVOqz7g1yNvNN4JICjNsg5N",
-    "sk-s6IRA822j37rfT22bmN3eFkhYF4gsQr2jNta7KsDEWSVbcHo",
-    "sk-y1P2djllxhUxbY5kqS8uYin6cdDbuGYuiZv5jfG3mnGdcxnz"
+    "sk-ACNDB3Zb2gTpi9G9k15JxYKyNaqWo5AmsvrYJoGNcse3ukZt",
+    "sk-7pc3Of6yrJXSdy1F0JPp2tODd9P6Sgc72fiO9O6dLECSBeQQ",
+    "sk-HFKLwfEh59MBRT6P4AYkIKTuGMtxk1reiM4GnzUdRMGrfDwg",
+    "sk-VF6dxzpbUekqf4kGRBMXu8Qnxt7A62uyeNVjlLpgYXpKrvJM",
+    "sk-hepDZnypLMHQNRvVEyqUStMZq6F8v8fPHLKrynZfRldmFjed",
+    "sk-FOZmkKjz0TNYuLDarc8KVVLRrqyJxwGOHsuC0eddKVQFAlrJ",
+    "sk-4EdOmTVmq5dWQOq3t8MP5x0qQKXhFh3MGdrJldLn173vvSyQ",
+    "sk-CFizIiPQPpD8caum6AGoNnmbNwkHxzT04QU0D85e3KWH7MWx",
+    "sk-JiSUCfRanGm2sieng4eonTm0bYY2FoAFcYsifOQ5vHsvqb9x",
+    "sk-1WgyqoprUEpYyGIYxyphfXQcV04NOhPRDF5pY3vrsjT4kgY6"
   ]
 
   // 遮罩 API Key 中间字符
@@ -325,7 +324,7 @@ export function FreeAPIKeys() {
               )}
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥，<span className="font-bold text-green-600 dark:text-green-400">2025-11-19 19：44</span> 更新
+                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥，<span className="font-bold text-green-600 dark:text-green-400">2025-11-22 22:11</span> 更新
                 </p>
               </div>
             </CardContent>

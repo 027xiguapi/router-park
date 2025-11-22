@@ -13,16 +13,16 @@ export function FreeLLMAPI() {
   const { user, showLoginModal, status } = useUser()
 
   const apiKeys = [
-    "sk-eXQS8XjnX9aqBRe7M2Nlnh1yEeqRbYLbN3Iwtr9nwDjaTZsS",
-    "sk-xUG8YlvaARHdcVgJ34l0m9O1wFS5RRn0lwYENX3enwLdlcqi",
-    "sk-hEHicYqPIWoFNm7MScEN5tMjKyTOd8Uf2r7ppZ7gIQw0WSFK",
-    "sk-35vWksIrBZP9gH5P2TvmNzWPOEVBdEigSuTHEUlcpT0H1SRy",
-    "sk-qQdho96hInmOKRfbtkhTru440Cli3LHXqST9CBPGobZuAKdD",
-    "sk-1mNKiUFV9iFGPLdNRl2qBYJm5OpiZvgZhK7IFk2XR15hPXAm",
-    "sk-rgKHPWrfmVysvg7PQ0hDsu1TsK0HzeT0SXpdjeDDVZAR3jev",
-    "sk-nUodRaYQ4SohCeSGMg0CMr2Z3tpKmQ8kKOQJolLAtbhBh29G",
-    "sk-uYBZLINACfi6p6H7nHJbYxNTtPaY8UUmOqM9w9to5fnpg5re",
-    "sk-qxRbaByvn1AmDMwvUigHrcyRzlLaqyLDlfl8LAMvgLSxQyFO"
+    "sk-4EqKw0cuLNdvPiSR33wO4Hf3Ko3pFzKzX4ZSSiKfaMDiHMs0",
+    "sk-MxehmwOqw3jQMbzE4aBnGC93yvN52XHJH7OFMuJGtcmT1Rju",
+    "sk-KA0TC2tufMaGMSsUgKbhILe2E7ERgUJ4f5arxvkgv8mZi327",
+    "sk-Pv6r4erArJRpYBlfMWao70UaSoiXsFmMvAwYWE3ET3liv2Vm",
+    "sk-27d3dxQENDLvyR9dDwZdDDGXPOpUieIiMUOpTrEQtIJo8kn5",
+    "sk-JUPKpoKG7wWJshluzNd886YmMXPDapPKJgO9GBE89QOGRs1S",
+    "sk-zmff1GSUTuYd7tJx6lJrsGeiaP6TNki3SsoPfs9UgxOM0Xuh",
+    "sk-PtBpIj3EBylSKwrJMob3Fbed0TPeGJ1SY9jpTibuT0OzyVuJ",
+    "sk-cPOOcrODzFCpcT6kITOoULyuvp1oYQsxnthOEcqx2kX4a9f9",
+    "sk-FSUj4dV7O0rkR5A86niNPbY5QbvIdK02iz7PImVrxEWX4yQg"
   ]
 
   const models = [
@@ -260,7 +260,7 @@ export function FreeLLMAPI() {
 
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{apiKeys.length}</span> 个可用密钥，支持 <span className="font-bold text-green-600 dark:text-green-400">2</span> 个模型
+                  共 <span className="font-bold text-green-600 dark:text-green-400">{apiKeys.length}</span> 个可用密钥，支持 <span className="font-bold text-green-600 dark:text-green-400">2</span> 个模型，<span className="font-bold text-green-600 dark:text-green-400">2025-11-22 22:11</span> 更新
                 </p>
               </div>
             </CardContent>
