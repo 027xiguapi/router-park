@@ -1,6 +1,6 @@
  'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Copy, Check, Code, Sparkles, Lock, LogIn, Brain } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -10,20 +10,39 @@ import { useUser } from '@/contexts/user-context'
 
 export function FreeLLMAPI() {
   const [copiedField, setCopiedField] = useState<string | null>(null)
+  const [apiKeys, setApiKeys] = useState<string[]>([])
+  const [loading, setLoading] = useState(true)
+  const [lastUpdated, setLastUpdated] = useState<string>('')
   const { user, showLoginModal, status } = useUser()
 
-  const apiKeys = [
-    "sk-4EqKw0cuLNdvPiSR33wO4Hf3Ko3pFzKzX4ZSSiKfaMDiHMs0",
-    "sk-MxehmwOqw3jQMbzE4aBnGC93yvN52XHJH7OFMuJGtcmT1Rju",
-    "sk-KA0TC2tufMaGMSsUgKbhILe2E7ERgUJ4f5arxvkgv8mZi327",
-    "sk-Pv6r4erArJRpYBlfMWao70UaSoiXsFmMvAwYWE3ET3liv2Vm",
-    "sk-27d3dxQENDLvyR9dDwZdDDGXPOpUieIiMUOpTrEQtIJo8kn5",
-    "sk-JUPKpoKG7wWJshluzNd886YmMXPDapPKJgO9GBE89QOGRs1S",
-    "sk-zmff1GSUTuYd7tJx6lJrsGeiaP6TNki3SsoPfs9UgxOM0Xuh",
-    "sk-PtBpIj3EBylSKwrJMob3Fbed0TPeGJ1SY9jpTibuT0OzyVuJ",
-    "sk-cPOOcrODzFCpcT6kITOoULyuvp1oYQsxnthOEcqx2kX4a9f9",
-    "sk-FSUj4dV7O0rkR5A86niNPbY5QbvIdK02iz7PImVrxEWX4yQg"
-  ]
+  // 从数据库获取 LLM 密钥
+  useEffect(() => {
+    const fetchApiKeys = async () => {
+      try {
+        const response = await fetch('/api/freeKeys?type=llm&activeOnly=true')
+        const data = await response.json()
+
+        if (data.success && data.data) {
+          // 解析密钥值数组
+          const keys = JSON.parse(data.data.keyValues) as string[]
+          setApiKeys(keys)
+          // 设置最后更新时间
+          const updateTime = new Date(data.data.updatedAt).toLocaleString('zh-CN')
+          setLastUpdated(updateTime)
+        } else {
+          // 使用当前时间作为默认更新时间
+          setLastUpdated(new Date().toLocaleString('zh-CN'))
+        }
+      } catch (error) {
+        console.error('Error fetching API keys:', error)
+        // 使用当前时间作为默认更新时间
+        setLastUpdated(new Date().toLocaleString('zh-CN'))
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchApiKeys()
+  }, [])
 
   const models = [
     {
@@ -100,7 +119,7 @@ export function FreeLLMAPI() {
   }
 
   // 如果正在加载，显示加载状态
-  if (status === 'loading') {
+  if (status === 'loading' || loading) {
     return (
       <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto px-4">
@@ -260,7 +279,7 @@ export function FreeLLMAPI() {
 
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{apiKeys.length}</span> 个可用密钥，支持 <span className="font-bold text-green-600 dark:text-green-400">2</span> 个模型，<span className="font-bold text-green-600 dark:text-green-400">2025-11-22 22:11</span> 更新
+                  共 <span className="font-bold text-green-600 dark:text-green-400">{apiKeys.length}</span> 个可用密钥，支持 <span className="font-bold text-green-600 dark:text-green-400">2</span> 个模型，<span className="font-bold text-green-600 dark:text-green-400">{lastUpdated}</span> 更新
                 </p>
               </div>
             </CardContent>

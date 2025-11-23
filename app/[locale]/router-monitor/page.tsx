@@ -1,6 +1,7 @@
 import { MonitorDashboard } from "@/components/monitor/monitor-dashboard"
 import {FreeAPIKeys} from "@/components/free-api-keys";
 import { APIProvidersTable } from "@/components/api-providers-table";
+import {FreeLLMAPI} from "@/components/free-llm-api";
 
 export default async function MonitorPage({
                                         params,
@@ -26,6 +27,7 @@ export default async function MonitorPage({
         />
         <APIProvidersTable />
         <FreeAPIKeys />
+        <FreeLLMAPI />
     </div>
   )
 }

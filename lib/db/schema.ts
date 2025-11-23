@@ -245,10 +245,10 @@ export const routers = sqliteTable('routers', {
   likes: integer('likes').notNull().default(0), // 点赞数
   createdBy: text('created_by').references(() => users.id), // 创建人
   updatedBy: text('updated_by').references(() => users.id), // 修改人
-createdAt: integer('created_at', { mode: 'timestamp' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -266,7 +266,7 @@ export const routerLikes = sqliteTable(
     userId: text('user_id')
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
-    createdAt: integer('created_at', { mode: 'timestamp_ms' })
+    createdAt: integer('created_at', { mode: 'timestamp' })
       .default(sql`(unixepoch())`)
       .notNull()
   },
@@ -286,10 +286,10 @@ export const vpns = sqliteTable('vpns', {
   sortOrder: integer('sort_order').notNull().default(0), // 排序顺序
   createdBy: text('created_by').references(() => users.id), // 创建人
   updatedBy: text('updated_by').references(() => users.id), // 修改人
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -316,7 +316,29 @@ export const proxys = sqliteTable('proxys', {
   createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
+
+// 免费密钥类型
+export type FreeKeyType = 'claude' | 'llm'
+export type FreeKeyStatus = 'active' | 'inactive' | 'exhausted'
+
+// 免费密钥表 - 存储免费API密钥
+export const freeKeys = sqliteTable('free_keys', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  keyValues: text('key_values').notNull(),
+  keyType: text('key_type').$type<FreeKeyType>().notNull(),
+  status: text('status').$type<FreeKeyStatus>().notNull().default('active'), // 状态
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })

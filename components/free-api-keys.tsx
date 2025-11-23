@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Copy, Check, Code, Sparkles, Lock, LogIn } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -10,6 +10,9 @@ import { useUser } from '@/contexts/user-context'
 
 export function FreeAPIKeys() {
   const [copiedField, setCopiedField] = useState<string | null>(null)
+  const [keys, setKeys] = useState<string[]>([])
+  const [loading, setLoading] = useState(true)
+  const [lastUpdated, setLastUpdated] = useState<string>('')
   const { user, showLoginModal, status } = useUser()
 
   const config = {
@@ -18,18 +21,35 @@ export function FreeAPIKeys() {
     ANTHROPIC_BASE_URL: 'https://any.routerpark.com'
   }
 
-  const keys = [
-    "sk-ACNDB3Zb2gTpi9G9k15JxYKyNaqWo5AmsvrYJoGNcse3ukZt",
-    "sk-7pc3Of6yrJXSdy1F0JPp2tODd9P6Sgc72fiO9O6dLECSBeQQ",
-    "sk-HFKLwfEh59MBRT6P4AYkIKTuGMtxk1reiM4GnzUdRMGrfDwg",
-    "sk-VF6dxzpbUekqf4kGRBMXu8Qnxt7A62uyeNVjlLpgYXpKrvJM",
-    "sk-hepDZnypLMHQNRvVEyqUStMZq6F8v8fPHLKrynZfRldmFjed",
-    "sk-FOZmkKjz0TNYuLDarc8KVVLRrqyJxwGOHsuC0eddKVQFAlrJ",
-    "sk-4EdOmTVmq5dWQOq3t8MP5x0qQKXhFh3MGdrJldLn173vvSyQ",
-    "sk-CFizIiPQPpD8caum6AGoNnmbNwkHxzT04QU0D85e3KWH7MWx",
-    "sk-JiSUCfRanGm2sieng4eonTm0bYY2FoAFcYsifOQ5vHsvqb9x",
-    "sk-1WgyqoprUEpYyGIYxyphfXQcV04NOhPRDF5pY3vrsjT4kgY6"
-  ]
+  // 从数据库获取 Claude 密钥
+  useEffect(() => {
+    const fetchApiKeys = async () => {
+      try {
+        const response = await fetch('/api/freeKeys?type=claude&activeOnly=true')
+        const data = await response.json()
+
+        if (data.success && data.data) {
+          // 解析密钥值数组
+          const claudeKeys = JSON.parse(data.data.keyValues) as string[]
+          setKeys(claudeKeys)
+          // 设置最后更新时间
+          const updateTime = new Date(data.data.updatedAt).toLocaleString('zh-CN')
+          setLastUpdated(updateTime)
+        } else {
+          // 使用当前时间作为默认更新时间
+          setLastUpdated(new Date().toLocaleString('zh-CN'))
+        }
+      } catch (error) {
+        console.error('Error fetching API keys:', error)
+        // 使用当前时间作为默认更新时间
+        setLastUpdated(new Date().toLocaleString('zh-CN'))
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchApiKeys()
+  }, [])
 
   // 遮罩 API Key 中间字符
   const maskApiKey = (key: string) => {
@@ -107,7 +127,7 @@ export function FreeAPIKeys() {
   }
 
   // 如果正在加载，显示加载状态
-  if (status === 'loading') {
+  if (status === 'loading' || loading) {
     return (
       <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto px-4">
@@ -251,7 +271,7 @@ export function FreeAPIKeys() {
 
               {/* Note */}
               <div className="text-xs text-muted-foreground text-center pt-2">
-                💡 提示：此配置使用我们的免费��理服务器，可能会有速率限制
+                💡 提示：此配置使用我们的免费代理服务器，可能会有速率限制
               </div>
             </CardContent>
           </Card>
@@ -324,7 +344,7 @@ export function FreeAPIKeys() {
               )}
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥，<span className="font-bold text-green-600 dark:text-green-400">2025-11-22 22:11</span> 更新
+                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥，<span className="font-bold text-green-600 dark:text-green-400">{lastUpdated}</span> 更新
                 </p>
               </div>
             </CardContent>

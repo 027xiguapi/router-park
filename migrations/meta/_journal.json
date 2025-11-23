@@ -22,6 +22,20 @@
       "when": 1763382096350,
       "tag": "0002_panoramic_thunderbolts",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1763875124739,
+      "tag": "0003_polite_micromax",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1763877295122,
+      "tag": "0004_stormy_alex_wilder",
+      "breakpoints": true
     }
   ]
 }
