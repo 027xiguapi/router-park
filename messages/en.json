@@ -599,6 +599,13 @@
     "backToBlogs": "Back To Blogs",
     "readTime": "Read Time: {minutes} "
   },
+  "docs": {
+    "postNotFound": "Post Not Found",
+    "postNotFoundDescription": "The blog post you're looking for could not be found.",
+    "publishedAt": "Published at {date}",
+    "backToDocs": "Back To Blogs",
+    "readTime": "Read Time: {minutes} "
+  },
   "blogs": {
     "pageTitle": "Blog Posts",
     "metaTitle": "Insights & Articles",

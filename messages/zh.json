@@ -450,6 +450,13 @@
     "backToBlogs": "返回博客",
     "readTime": "{minutes} 分钟阅读"
   },
+  "docs": {
+    "postNotFound": "找不到文章",
+    "postNotFoundDescription": "您寻找的博客文章不存在。",
+    "publishedAt": "在 {date} 发布",
+    "backToDocs": "返回文档",
+    "readTime": "{minutes} 分钟阅读"
+  },
   "blogs": {
     "pageTitle": "博客文章",
     "metaTitle": "洞察与文章",

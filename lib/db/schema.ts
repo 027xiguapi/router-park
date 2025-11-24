@@ -342,3 +342,21 @@ export const freeKeys = sqliteTable('free_keys', {
     .default(sql`(unixepoch())`)
     .notNull()
 })
+
+// 文档表 - 存储 doc 文件夹中的 MD 文件内容
+export const docs = sqliteTable('docs', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  slug: text('slug').notNull(),
+  locale: text('locale').notNull(),
+  coverImageUrl: text('cover_image_url'),
+  title: text('title').notNull(),
+  content: text('content').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})

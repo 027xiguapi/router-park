@@ -4,7 +4,20 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const nextConfig: NextConfig = {
   devIndicators: false,
   images: {
-    remotePatterns: [new URL('https://static.getwhynot.org/**'), new URL('https://static.destinyai.tools/**')]
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'static.getwhynot.org'
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.destinyai.tools'
+      },
+      {
+        protocol: 'https',
+        hostname: '**' // 允许所有 HTTPS 图片（因为我们在组件中已经用 img 标签处理了）
+      }
+    ]
   },
   eslint: {
     ignoreDuringBuilds: true

@@ -1,335 +1,135 @@
-"use client"
+import { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
-import { Card } from "@/components/ui/card"
-import { Check, Copy, Terminal, ExternalLink, ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { useTranslations } from "next-intl"
+import { getPaginatedDocs } from '@/actions/doc-content'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Link } from '@/i18n/navigation'
+import { formatDate } from '@/lib/utils'
+import { Calendar, FileText } from 'lucide-react'
 
-export default function ConfigGuidePage() {
-  const t = useTranslations("pages.configGuide")
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('pages.configGuide')
 
-  const handleCopy = (text: string, index: number) => {
-    navigator.clipboard.writeText(text)
-    setCopiedIndex(index)
-    setTimeout(() => setCopiedIndex(null), 2000)
+  return {
+    title: t('title'),
+    description: t('description')
   }
+}
+
+export default async function ConfigGuidePage({
+  params,
+  searchParams
+}: {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ page?: string }>
+}) {
+  const { locale } = await params
+  const { page } = await searchParams
+  const currentPage = page ? parseInt(page) : 1
+  const pageSize = 18
+
+  const { docs: docsList, pagination } = await getPaginatedDocs(locale, currentPage, pageSize)
+
+  const t = await getTranslations('pages.configGuide')
 
   return (
-    <div className="min-h-screen bg-white dark:bg-background">
-      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        {/* 返回按钮 */}
-        <Button variant="ghost" size="sm" className="mb-8" asChild>
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t('backToHome')}
-          </Link>
-        </Button>
-
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-foreground">{t('title')}</h1>
-          <p className="text-lg text-gray-600 dark:text-muted-foreground">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 mt-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+        {/* 页面标题 */}
+        <div className="mb-8 sm:mb-10 md:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent mb-3 sm:mb-4">
+            {t('title')}
+          </h1>
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
             {t('description')}
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl space-y-8">
-          {/* 步骤 1 */}
-          <Card className="p-6">
-            <div className="mb-4 flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-xl font-bold text-accent-foreground">
-                1️⃣
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  {t('steps.step1.title')}
-                </h3>
-                <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  {t('steps.step1.description')}
-                </p>
-                <div className="flex items-center gap-2 rounded-lg bg-blue-50 p-3 dark:bg-blue-950/20">
-                  <ExternalLink className="h-5 w-5 text-orange-600 dark:text-orange-400" />
-                  <span className="text-sm text-blue-700 dark:text-blue-300">
-                    {t('steps.step1.tip')}
-                  </span>
-                </div>
-                <div className="mt-3">
-                  <Button size="sm" variant="outline" asChild>
-                    <Link href="/#monitor">{t('steps.step1.viewMonitorPanel')}</Link>
-                  </Button>
+        {docsList.length === 0 ? (
+          <Card className="border-border/50">
+            <CardContent className="py-12 sm:py-16 text-center">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-muted/50">
+                  <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground" />
                 </div>
               </div>
-            </div>
+              <p className="text-base sm:text-lg text-muted-foreground">暂无配置文档</p>
+            </CardContent>
           </Card>
+        ) : (
+          <>
+            {/* 文档网格 */}
+            <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {docsList.map((doc) => (
+                <Link
+                  key={doc.id}
+                  href={`/docs/${doc.slug}`}
+                  className="group"
+                >
+                  <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 border-border/50 overflow-hidden">
+                    <CardHeader className="space-y-2 sm:space-y-3">
+                      {/* 标题 */}
+                      <CardTitle className="text-base sm:text-lg md:text-xl line-clamp-2 group-hover:text-primary transition-colors">
+                        {doc.title}
+                      </CardTitle>
 
-          {/* 步骤 2 */}
-          <Card className="p-6">
-            <div className="mb-4 flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-xl font-bold text-accent-foreground">
-                2️⃣
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  {t('steps.step2.title')}
-                </h3>
-                <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  {t('steps.step2.description', { apiToken: 'API令牌' })}
-                </p>
-                <div className="space-y-3">
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{t('steps.step2.stepsTitle')}</p>
-                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1 text-accent">▸</span>
-                        <span>{t('steps.step2.steps.0', { addToken: '添加令牌' })}</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1 text-accent">▸</span>
-                        <span>{t('steps.step2.steps.1', { unlimitedQuota: '无限额度' })}</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1 text-accent">▸</span>
-                        <span>{t('steps.step2.steps.2')}</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1 text-accent">▸</span>
-                        <span>{t('steps.step2.steps.3', { codeSk: 'sk-' })}</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="flex items-start gap-2 rounded-lg bg-amber-50 p-3 dark:bg-amber-950/20">
-                    <Terminal className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
-                    <span className="text-sm text-amber-700 dark:text-amber-300">
-                      {t('steps.step2.warning')}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
+                      {/* 发布日期 */}
+                      <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                          <span>{formatDate(doc.createdAt)}</span>
+                        </div>
+                      </div>
+                    </CardHeader>
 
-          {/* 步骤 3 */}
-          <Card className="p-6">
-            <div className="mb-4 flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-xl font-bold text-accent-foreground">
-                3️⃣
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  {t('steps.step3.title')}
-                </h3>
-                <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  {t('steps.step3.description')}
-                </p>
-
-                <div className="space-y-4">
-                  {/* 环境变量配置 */}
-                  <div>
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {t('steps.step3.methods.method1.title')}
-                    </p>
-                    <div className="relative">
-                      <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
-                        <code>{`# 设置 API Key
-export OPENAI_API_KEY="sk-your-api-key"
-
-# 设置 API 基址（以 anyrouter 为例）
-export OPENAI_BASE_URL="https://anyrouter.top/v1"
-
-# 验证配置
-echo $OPENAI_API_KEY
-echo $OPENAI_BASE_URL`}</code>
-                      </pre>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="absolute right-2 top-2 h-8 w-8 p-0 text-gray-400 hover:text-gray-100"
-                        onClick={() => handleCopy(`export OPENAI_API_KEY="sk-your-api-key"\nexport OPENAI_BASE_URL="https://anyrouter.top/v1"\necho $OPENAI_API_KEY\necho $OPENAI_BASE_URL`, 0)}
-                      >
-                        {copiedIndex === 0 ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Python 配置 */}
-                  <div>
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {t('steps.step3.methods.method2.title')}
-                    </p>
-                    <div className="relative">
-                      <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
-                        <code>{`import openai
-
-# 配置 API Key 和 Base URL
-openai.api_key = "sk-your-api-key"
-openai.api_base = "https://anyrouter.top/v1"
-
-# 使用 API
-response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[{"role": "user", "content": "Hello!"}]
-)
-print(response.choices[0].message.content)`}</code>
-                      </pre>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="absolute right-2 top-2 h-8 w-8 p-0 text-gray-400 hover:text-gray-100"
-                        onClick={() => handleCopy(`import openai\n\nopenai.api_key = "sk-your-api-key"\nopenai.api_base = "https://anyrouter.top/v1"\n\nresponse = openai.ChatCompletion.create(\n    model="gpt-3.5-turbo",\n    messages=[{"role": "user", "content": "Hello!"}]\n)\nprint(response.choices[0].message.content)`, 1)}
-                      >
-                        {copiedIndex === 1 ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Node.js 配置 */}
-                  <div>
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {t('steps.step3.methods.method3.title')}
-                    </p>
-                    <div className="relative">
-                      <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
-                        <code>{`const { Configuration, OpenAIApi } = require("openai");
-
-// 配置 API Key 和 Base URL
-const configuration = new Configuration({
-  apiKey: "sk-your-api-key",
-  basePath: "https://anyrouter.top/v1",
-});
-
-const openai = new OpenAIApi(configuration);
-
-// 使用 API
-async function chat() {
-  const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: "Hello!" }],
-  });
-  console.log(response.data.choices[0].message.content);
-}
-
-chat();`}</code>
-                      </pre>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="absolute right-2 top-2 h-8 w-8 p-0 text-gray-400 hover:text-gray-100"
-                        onClick={() => handleCopy(`const { Configuration, OpenAIApi } = require("openai");\n\nconst configuration = new Configuration({\n  apiKey: "sk-your-api-key",\n  basePath: "https://anyrouter.top/v1",\n});\n\nconst openai = new OpenAIApi(configuration);\n\nasync function chat() {\n  const response = await openai.createChatCompletion({\n    model: "gpt-3.5-turbo",\n    messages: [{ role: "user", content: "Hello!" }],\n  });\n  console.log(response.data.choices[0].message.content);\n}\n\nchat();`, 2)}
-                      >
-                        {copiedIndex === 2 ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* cURL 测试 */}
-                  <div>
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {t('steps.step3.methods.method4.title')}
-                    </p>
-                    <div className="relative">
-                      <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100">
-                        <code>{`curl https://anyrouter.top/v1/chat/completions \\
-  -H "Content-Type: application/json" \\
-  -H "Authorization: Bearer sk-your-api-key" \\
-  -d '{
-    "model": "gpt-3.5-turbo",
-    "messages": [
-      {"role": "user", "content": "Hello!"}
-    ]
-  }'`}</code>
-                      </pre>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="absolute right-2 top-2 h-8 w-8 p-0 text-gray-400 hover:text-gray-100"
-                        onClick={() => handleCopy(`curl https://anyrouter.top/v1/chat/completions \\\n  -H "Content-Type: application/json" \\\n  -H "Authorization: Bearer sk-your-api-key" \\\n  -d '{\n    "model": "gpt-3.5-turbo",\n    "messages": [\n      {"role": "user", "content": "Hello!"}\n    ]\n  }'`, 3)}
-                      >
-                        {copiedIndex === 3 ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
-
-          {/* 步骤 4 */}
-          <Card className="p-6">
-            <div className="mb-4 flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-xl font-bold text-accent-foreground">
-                4️⃣
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-foreground">
-                  {t('steps.step4.title')}
-                </h3>
-                <p className="mb-4 text-gray-600 dark:text-muted-foreground">
-                  {t('steps.step4.description')}
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-2 rounded-lg bg-emerald-50 p-4 dark:bg-emerald-950/20">
-                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                    <div className="text-sm text-emerald-700 dark:text-emerald-300">
-                      <p className="font-medium">{t('steps.step4.tipTitle')}</p>
-                      <p>{t('steps.step4.tipDescription')}</p>
-                    </div>
-                  </div>
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
-                    <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{t('steps.step4.supportedModels')}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {["GPT-4", "GPT-3.5-turbo", "Claude", "Gemini", "DALL-E", "Whisper"].map((model) => (
-                        <span
-                          key={model}
-                          className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent dark:bg-accent/20"
-                        >
-                          {model}
+                    <CardContent>
+                      {/* 阅读更多 */}
+                      <div className="mt-3 sm:mt-4">
+                        <span className="inline-flex items-center text-xs sm:text-sm font-medium text-primary group-hover:gap-2 transition-all">
+                          阅读文档
+                          <svg
+                            className="ml-1 h-3 w-3 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
                         </span>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+
+            {/* 分页 */}
+            {pagination.totalPages > 1 && (
+              <div className="mt-8 sm:mt-10 md:mt-12">
+                <div className="flex justify-center gap-2">
+                  {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((pageNum) => (
+                    <Link
+                      key={pageNum}
+                      href={`/config-guide?page=${pageNum}`}
+                      className={`px-4 py-2 rounded-lg transition-colors ${
+                        pageNum === pagination.currentPage
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted hover:bg-muted/80'
+                      }`}
+                    >
+                      {pageNum}
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </div>
-          </Card>
-
-          {/* 注意事项 */}
-          <Card className="border-blue-200 bg-blue-50 p-6 dark:border-blue-900/50 dark:bg-blue-950/20">
-            <div className="flex items-start gap-3">
-              <Terminal className="mt-0.5 h-6 w-6 shrink-0 text-orange-600 dark:text-orange-400" />
-              <div>
-                <h3 className="mb-3 text-lg font-semibold text-blue-900 dark:text-blue-100">{t('notes.title')}</h3>
-                <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                  {t.raw('notes.items').map((item: string, index: number) => {
-                    const parts = item.split(/(\/v1|QQ 群)/);
-                    return (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                        <span>
-                          {parts.map((part, i) =>
-                            part === '/v1' || part === 'QQ 群' ? (
-                              <code key={i} className="rounded bg-blue-100 px-1.5 py-0.5 dark:bg-blue-900">{part}</code>
-                            ) : (
-                              part
-                            )
-                          )}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
-          </Card>
-
-          {/* 底部返回按钮 */}
-          <div className="flex justify-center pt-8">
-            <Button asChild>
-              <Link href="/">{t('backToHome')}</Link>
-            </Button>
-          </div>
-        </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   )
