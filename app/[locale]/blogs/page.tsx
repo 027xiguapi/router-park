@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
-import { getPaginatedDocs } from '@/actions/doc-content'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { getPaginatedArticles } from '@/actions/ai-content'
+import { BlogPagination } from '@/components/blog/blog-pagination'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Link } from '@/i18n/navigation'
 import { formatDate } from '@/lib/utils'
 import { Calendar, FileText } from 'lucide-react'
@@ -28,7 +29,11 @@ export default async function BlogPage({
   const currentPage = page ? parseInt(page) : 1
   const pageSize = 18
 
-  const { docs: docsList, pagination } = await getPaginatedDocs(locale, currentPage, pageSize)
+  const { articles, pagination } = await getPaginatedArticles({
+    locale,
+    page: currentPage,
+    pageSize
+  })
 
   const t = await getTranslations('blogs')
 
@@ -45,7 +50,7 @@ export default async function BlogPage({
           </p>
         </div>
 
-        {docsList.length === 0 ? (
+        {articles.length === 0 ? (
           <Card className="border-border/50">
             <CardContent className="py-12 sm:py-16 text-center">
               <div className="mb-4">
@@ -60,24 +65,24 @@ export default async function BlogPage({
           <>
             {/* 文章网格 */}
             <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {docsList.map((doc) => (
+              {articles.map((article) => (
                 <Link
-                  key={doc.id}
-                  href={`/blog/${doc.slug}`}
+                  key={article.id}
+                  href={`/blog/${article.slug}`}
                   className="group"
                 >
                   <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 border-border/50 overflow-hidden">
                     <CardHeader className="space-y-2 sm:space-y-3">
                       {/* 标题 */}
                       <CardTitle className="text-base sm:text-lg md:text-xl line-clamp-2 group-hover:text-primary transition-colors">
-                        {doc.title}
+                        {article.title}
                       </CardTitle>
 
                       {/* 发布日期 */}
                       <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                          <span>{formatDate(doc.createdAt)}</span>
+                          <span>{formatDate(article.createdAt)}</span>
                         </div>
                       </div>
                     </CardHeader>
@@ -110,23 +115,9 @@ export default async function BlogPage({
 
             {/* 分页 */}
             {pagination.totalPages > 1 && (
-              <div className="mt-8 sm:mt-10 md:mt-12">
-                <div className="flex justify-center gap-2">
-                  {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((pageNum) => (
-                    <Link
-                      key={pageNum}
-                      href={`/blogs?page=${pageNum}`}
-                      className={`px-4 py-2 rounded-lg transition-colors ${
-                        pageNum === pagination.currentPage
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted hover:bg-muted/80'
-                      }`}
-                    >
-                      {pageNum}
-                    </Link>
-                  ))}
+                <div className="mt-8 sm:mt-10 md:mt-12">
+                  <BlogPagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
                 </div>
-              </div>
             )}
           </>
         )}

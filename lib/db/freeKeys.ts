@@ -1,6 +1,6 @@
-import { eq } from 'drizzle-orm'
-import type { Database } from '.'
-import {freeKeys, type FreeKeyType, type FreeKeyStatus, proxys} from './schema'
+import { eq, and } from 'drizzle-orm'
+import {freeKeys, type FreeKeyType, type FreeKeyStatus} from './schema'
+import type {Db} from "@/lib/db/index";
 
 // 免费密钥类型定义
 export interface FreeKey {
@@ -29,37 +29,34 @@ export interface UpdateFreeKeyInput {
 }
 
 // 获取所有免费密钥
-export async function getAllFreeKeys(db: Database): Promise<FreeKey[]> {
-  console.log(await db.select({ createdAt: freeKeys.createdAt,
-    updatedAt: freeKeys.updatedAt}).from(freeKeys))
+export async function getAllFreeKeys(db: Db): Promise<FreeKey[]> {
   return await db.select({...freeKeys}).from(freeKeys)
 }
 
 // 根据类型获取免费密钥
-export async function getFreeKeysByType(db: Database, keyType: FreeKeyType): Promise<FreeKey[]> {
+export async function getFreeKeysByType(db: Db, keyType: FreeKeyType): Promise<FreeKey[]> {
   return await db.select().from(freeKeys).where(eq(freeKeys.keyType, keyType))
 }
 
 // 获取活跃的免费密钥
-export async function getActiveFreeKeysByType(db: Database, keyType: FreeKeyType): Promise<FreeKey | null> {
-  const results = await db
+export async function getActiveFreeKeysByType(db: Db, keyType: FreeKeyType): Promise<FreeKey | null> {
+  const result = await db
     .select()
     .from(freeKeys)
-    .where(eq(freeKeys.keyType, keyType))
-    .where(eq(freeKeys.status, 'active'))
-    .limit(1)
+    .where(and(eq(freeKeys.keyType, keyType), eq(freeKeys.keyType, keyType)))
+    .get()
 
-  return results[0] || null
+  return result || null
 }
 
 // 根据ID获取免费密钥
-export async function getFreeKeyById(db: Database, id: string): Promise<FreeKey | null> {
+export async function getFreeKeyById(db: Db, id: string): Promise<FreeKey | null> {
   const results = await db.select().from(freeKeys).where(eq(freeKeys.id, id)).limit(1)
   return results[0] || null
 }
 
 // 创建免费密钥
-export async function createFreeKey(db: Database, data: CreateFreeKeyInput): Promise<FreeKey> {
+export async function createFreeKey(db: Db, data: CreateFreeKeyInput): Promise<FreeKey> {
   const result = await db.insert(freeKeys).values({
     keyValues: JSON.stringify(data.keyValues),
     keyType: data.keyType,
@@ -73,7 +70,7 @@ export async function createFreeKey(db: Database, data: CreateFreeKeyInput): Pro
 
 // 更新免费密钥
 export async function updateFreeKey(
-  db: Database,
+  db: Db,
   id: string,
   data: UpdateFreeKeyInput
 ): Promise<FreeKey | null> {
@@ -102,7 +99,7 @@ export async function updateFreeKey(
 }
 
 // 删除免费密钥
-export async function deleteFreeKey(db: Database, id: string): Promise<boolean> {
+export async function deleteFreeKey(db: Db, id: string): Promise<boolean> {
   const result = await db.delete(freeKeys).where(eq(freeKeys.id, id))
   return result.rowsAffected > 0
 }

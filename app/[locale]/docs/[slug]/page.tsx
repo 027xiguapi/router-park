@@ -69,18 +69,8 @@ const DocSlugPage = async (props: DocSlugPageProps) => {
   const readTime = Math.ceil(wordCount / 200)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 mt-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        {/* 返回按钮 */}
-        <div className="mb-6 sm:mb-8">
-          <Link href="/docs">
-            <Button variant="ghost" size="sm" className="gap-2 hover:text-primary">
-              <ArrowLeft className="h-4 w-4" />
-              <span className="text-sm">{t('backToDocs') || '返回文档列表'}</span>
-            </Button>
-          </Link>
-        </div>
-
         {/* 主内容卡片 */}
         <article className="max-w-4xl mx-auto">
           <Card className="border-border/50 shadow-lg overflow-hidden">
@@ -185,7 +175,7 @@ const DocSlugPage = async (props: DocSlugPageProps) => {
                   {t('publishedAt', { date: formatDate(publishedAt) })}
                 </div>
 
-                <Link href="/docs">
+                <Link href="/config-guide">
                   <Button variant="outline" size="sm" className="gap-2 border-primary/30 hover:bg-primary/10 hover:text-primary">
                     <ArrowLeft className="h-4 w-4" />
                     <span className="text-sm">{t('backToDocs') || '返回文档列表'}</span>
