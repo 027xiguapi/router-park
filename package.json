@@ -20,7 +20,8 @@
     "i18n:sequential": "tsx scripts/18n/sequential-cli.ts",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
-    "db:studio": "npx drizzle-kit studio"
+    "db:studio": "npx drizzle-kit studio",
+    "blog:import": "tsx scripts/import-blogs.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.9.0",
@@ -51,6 +52,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.43.1",
+    "gray-matter": "^4.0.3",
     "immer": "^10.1.1",
     "lucide-react": "^0.487.0",
     "markdown-to-jsx": "^7.7.4",

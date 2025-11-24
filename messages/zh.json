@@ -446,14 +446,17 @@
   "blog": {
     "postNotFound": "找不到文章",
     "postNotFoundDescription": "您寻找的博客文章不存在。",
-    "publishedAt": "在 {date} 发布"
+    "publishedAt": "在 {date} 发布",
+    "backToBlogs": "返回博客",
+    "readTime": "{minutes} 分钟阅读"
   },
   "blogs": {
     "pageTitle": "博客文章",
     "metaTitle": "洞察与文章",
     "metaDescription": "探索我们关于美容分析、人工智能技术和面部美学的最新文章。发现专家见解、技巧和人工智能驱动的美容评估世界中的趋势。",
     "noArticles": "没有可用的文章",
-    "publishedAt": "发布于 {date}"
+    "publishedAt": "发布于 {date}",
+    "readMore": "阅读更多"
   },
   "plan": {
     "notFound": "未找到计划",

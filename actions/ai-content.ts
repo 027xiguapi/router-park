@@ -22,15 +22,6 @@ interface ArticleGenerationParams {
   keyword: string
   locale?: string
 }
-
-const {
-    buildLikeSearch,
-  calculateTotalPages,
-  combineConditions,
-  pushCondition,
-  resolvePagination
-} = {}
-
 export type ArticleStatusFilter = 'all' | 'published' | 'draft'
 
 interface ArticleFilters {
@@ -47,7 +38,7 @@ interface GetPaginatedArticlesParams {
 }
 
 export async function generateArticleCoverImage(articleContent: string, title: string) {
-  const cloudflareAI = createAI()
+  const cloudflareAI = {}
 
   const promptGenerationResult = await cloudflareAI.run('@cf/meta/llama-4-scout-17b-16e-instruct', {
     messages: [
@@ -207,14 +198,41 @@ export async function generateArticle({ keyword, locale = DEFAULT_LOCALE }: Arti
 
 export async function getPaginatedArticles({ locale, page = 1, pageSize = 10, filters }: GetPaginatedArticlesParams) {
   const database = createDb()
-
-  const { page: currentPage, pageSize: itemsPerPage, offset } = resolvePagination({ page, pageSize })
-
   const languageFilter = filters?.language ?? locale
   const statusFilter: ArticleStatusFilter = filters?.status ?? 'all'
   const rawSearch = filters?.search?.trim() ?? ''
   const normalizedSearch = rawSearch.toLowerCase()
   const hasSearch = normalizedSearch.length > 0
+
+  // Pagination variables
+  const currentPage = page
+  const itemsPerPage = pageSize
+  const offset = (currentPage - 1) * itemsPerPage
+
+  // Helper function to calculate total pages
+  const calculateTotalPages = (total: number, perPage: number) => Math.ceil(total / perPage)
+
+  // Helper function to build LIKE search conditions
+  const buildLikeSearch = (columns: any[], { value }: { value: string }): SQL | undefined => {
+    if (!value) return undefined
+    const likePattern = `%${value}%`
+    const conditions = columns.map(col => sql`${col} LIKE ${likePattern}`)
+    return sql`(${sql.join(conditions, sql` OR `)})`
+  }
+
+  // Helper function to push non-undefined conditions
+  const pushCondition = (conditions: SQL[], condition: SQL | undefined) => {
+    if (condition) {
+      conditions.push(condition)
+    }
+  }
+
+  // Helper function to combine conditions with AND
+  const combineConditions = (conditions: SQL[]): SQL | undefined => {
+    if (conditions.length === 0) return undefined
+    if (conditions.length === 1) return conditions[0]
+    return and(...conditions)
+  }
 
   const buildPostSearchCondition = (): SQL | undefined =>
     hasSearch ? buildLikeSearch([posts.title, posts.slug, posts.excerpt], { value: normalizedSearch }) : undefined

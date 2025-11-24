@@ -102,11 +102,11 @@ export const posts = sqliteTable('posts', {
   coverImageUrl: text('cover_image_url'),
   excerpt: text('excerpt').notNull(),
   content: text('content').notNull(),
-  publishedAt: integer('published_at', { mode: 'timestamp_ms' }),
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  publishedAt: integer('published_at', { mode: 'timestamp' }),
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -124,10 +124,10 @@ export const postTranslations = sqliteTable('postTranslations', {
   coverImageUrl: text('cover_image_url'),
   locale: text('locale').notNull(),
   content: text('content').notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -151,10 +151,10 @@ export const products = sqliteTable('products', {
   interval: text('interval').$type<SubscriptionInterval>(), // 仅用于订阅
   tokenAmount: integer('tokenAmount'), // 如果产品提供tokens
   active: integer('active', { mode: 'boolean' }).notNull().default(true),
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -176,10 +176,10 @@ export const orders = sqliteTable('orders', {
   paymentMethod: text('paymentMethod').$type<PaymentMethod>(),
   paymentIntentId: text('paymentIntentId'), // 支付网关的交易ID
   metadata: text('metadata'), // 存储JSON格式的额外信息
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -196,15 +196,15 @@ export const subscriptions = sqliteTable('subscriptions', {
     .notNull()
     .references(() => products.id),
   orderId: text('orderId').references(() => orders.id),
-  currentPeriodStart: integer('current_period_start', { mode: 'timestamp_ms' }).notNull(),
-  currentPeriodEnd: integer('current_period_end', { mode: 'timestamp_ms' }).notNull(),
+  currentPeriodStart: integer('current_period_start', { mode: 'timestamp' }).notNull(),
+  currentPeriodEnd: integer('current_period_end', { mode: 'timestamp' }).notNull(),
   cancelAtPeriodEnd: integer('cancel_at_period_end', { mode: 'boolean' }).default(false),
   subscriptionId: text('subscriptionId'), // 支付网关的订阅ID
   metadata: text('metadata'), // 存储JSON格式的额外信息
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -220,7 +220,7 @@ export const transactions = sqliteTable('transactions', {
   orderId: text('orderId').references(() => orders.id),
   type: text('type').$type<TransactionType>().notNull(),
   amount: integer('amount').notNull(), // token数量，可以是正数(增加)或负数(消费)
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })
@@ -237,7 +237,7 @@ export const routers = sqliteTable('routers', {
   url: text('url').notNull(),
   status: text('status').$type<RouterStatus>().notNull().default('offline'),
   responseTime: integer('responseTime').notNull().default(0), // 响应时间(ms)
-  lastCheck: integer('last_check', { mode: 'timestamp_ms' })
+  lastCheck: integer('last_check', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull(),
   inviteLink: text('invite_link'), // 可选的邀请链接

@@ -9,7 +9,9 @@
       "Bash(node scripts/i18n-add-all-translations.js)",
       "Bash(pnpm list:*)",
       "Bash(pnpm add:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(cat:*)",
+      "Bash(pnpm blog:import:*)"
     ],
     "deny": [],
     "ask": []
