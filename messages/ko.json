@@ -242,6 +242,25 @@
           "무료 체험 또는 환불 보증을 제공하는 서비스를 우선적으로 선택하고 구매 전에 테스트하는 것이 좋습니다",
           "VPN이 안전하고 신뢰할 수 있음을 확인하지 않는 한 VPN에 연결된 상태에서 민감한 작업(예: 온라인 뱅킹)을 수행하지 마십시오"
         ]
+      },
+      "card": {
+        "speed": "속도",
+        "stability": "안정성",
+        "coreFeatures": "핵심 기능",
+        "paymentMethods": "결제 방법",
+        "visitNow": "지금 방문",
+        "inviteLink": "초대 링크",
+        "freeVpnTips": {
+          "title": "무료 VPN 사용 팁",
+          "trafficLimit": "트래픽 제한:",
+          "trafficLimitDesc": "대부분의 무료 VPN은 트래픽 제한이 있어 가벼운 사용이나 임시 필요에 적합합니다",
+          "slowSpeed": "느린 속도:",
+          "slowSpeedDesc": "무료 VPN은 일반적으로 속도가 느려 스트리밍이나 대용량 파일 다운로드에 적합하지 않습니다",
+          "privacyRisk": "개인정보 위험:",
+          "privacyRiskDesc": "유명 브랜드의 무료 VPN을 선택하고 알 수 없는 서비스 사용을 피하세요",
+          "upgradeOption": "업그레이드 옵션:",
+          "upgradeOptionDesc": "더 나은 경험이 필요하면 유료 버전이나 위의 유료 VPN 서비스를 고려하세요"
+        }
       }
     }
   },

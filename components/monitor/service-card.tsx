@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ExternalLink, Heart, Shield, User } from "lucide-react"
 import type { ServiceStatus } from "./types"
 import {useUser} from "@/contexts/user-context";
+import {formatDate} from "@/lib/utils";
 
 interface ServiceCardProps {
   service: ServiceStatus
@@ -130,7 +131,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
         {/* 最后检查时间 */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0 text-xs sm:text-sm">
           <span className="text-gray-600 dark:text-muted-foreground">{t('serviceCard.lastCheck')}</span>
-          <span className="font-mono text-gray-900 dark:text-foreground text-xs">{service.lastCheck}</span>
+          <span className="font-mono text-gray-900 dark:text-foreground text-xs">{formatDate(service.lastCheck)}</span>
         </div>
 
         {/* 底部操作区 */}

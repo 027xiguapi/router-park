@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { VPN } from "@/lib/vpn-data"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +14,8 @@ interface VPNCardProps {
 }
 
 export function VPNCard({ vpn, rank }: VPNCardProps) {
+  const t = useTranslations("pages.vpn.card")
+
   const speedIcons = {
     excellent: <Zap className="h-4 w-4 text-yellow-500 fill-yellow-500" />,
     fast: <Zap className="h-4 w-4 text-green-500" />,
@@ -55,11 +58,11 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
               </div>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 {speedIcons[vpn.speed]}
-                <span>速度</span>
+                <span>{t('speed')}</span>
               </div>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 {stabilityIcons[vpn.stability]}
-                <span>稳定</span>
+                <span>{t('stability')}</span>
               </div>
             </div>
           </div>
@@ -90,7 +93,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
       <CardContent className="space-y-4 flex-1">
         {/* 特性列表 */}
         <div className="space-y-2">
-          <h4 className="text-xs font-semibold text-muted-foreground uppercase">核心特性</h4>
+          <h4 className="text-xs font-semibold text-muted-foreground uppercase">{t('coreFeatures')}</h4>
           <div className="grid grid-cols-1 gap-2">
             {vpn.features.slice(0, 6).map((feature, index) => (
               <div key={index} className="flex items-center gap-2 text-sm">
@@ -106,7 +109,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
           <div className="space-y-2">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase flex items-center gap-1">
               <CreditCard className="h-3 w-3" />
-              支付方式
+              {t('paymentMethods')}
             </h4>
             <div className="flex flex-wrap gap-2">
               {vpn.paymentMethods.map((method, index) => (
@@ -139,7 +142,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
             size="lg"
             className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 font-semibold"
           >
-            立即访问
+            {t('visitNow')}
             <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
         </Link>
@@ -158,7 +161,7 @@ export function VPNCard({ vpn, rank }: VPNCardProps) {
               className="w-full border-2 border-orange-500/50 hover:bg-orange-500/10 font-semibold"
             >
               <Gift className="mr-2 h-4 w-4 text-orange-500" />
-              专属邀请链接
+              {t('inviteLink')}
             </Button>
           </Link>
         )}

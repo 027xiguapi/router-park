@@ -242,6 +242,25 @@
           "Si consiglia di dare priorità ai servizi che offrono prove gratuite o garanzie di rimborso, testare prima di acquistare",
           "Non eseguire operazioni sensibili (come l'online banking) mentre sei connesso alla VPN a meno che tu non confermi che la VPN è sicura e affidabile"
         ]
+      },
+      "card": {
+        "speed": "Velocità",
+        "stability": "Stabilità",
+        "coreFeatures": "Funzionalità Principali",
+        "paymentMethods": "Metodi di Pagamento",
+        "visitNow": "Visita Ora",
+        "inviteLink": "Link di Invito",
+        "freeVpnTips": {
+          "title": "Suggerimenti per VPN Gratuita",
+          "trafficLimit": "Limite di Traffico:",
+          "trafficLimitDesc": "La maggior parte delle VPN gratuite ha limiti di traffico, adatte per uso leggero o esigenze temporanee",
+          "slowSpeed": "Velocità Lenta:",
+          "slowSpeedDesc": "Le VPN gratuite sono generalmente più lente, non adatte per lo streaming o il download di file di grandi dimensioni",
+          "privacyRisk": "Rischio Privacy:",
+          "privacyRiskDesc": "Scegli VPN gratuite di marchi noti, evita di utilizzare servizi sconosciuti",
+          "upgradeOption": "Opzione di Aggiornamento:",
+          "upgradeOptionDesc": "Se hai bisogno di un'esperienza migliore, considera le versioni a pagamento o i servizi VPN a pagamento sopra"
+        }
       }
     }
   },

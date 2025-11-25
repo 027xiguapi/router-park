@@ -14,7 +14,7 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function formatDate(
     date: Date | string | number | null | undefined,
-    formatString: string = 'yyyy年MM月dd日 HH:mm'
+    formatString: string = 'yyyy-MM-dd HH:mm'
 ): string {
   if (!date) return ''
 

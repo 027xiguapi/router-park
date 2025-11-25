@@ -255,6 +255,25 @@
           "建议优先选择提供免费试用或退款保证的服务，先测试再购买",
           "不要在 VPN 连接时进行敏感操作（如网银支付），除非确认 VPN 安全可靠"
         ]
+      },
+      "card": {
+        "speed": "速度",
+        "stability": "稳定",
+        "coreFeatures": "核心特性",
+        "paymentMethods": "支付方式",
+        "visitNow": "立即访问",
+        "inviteLink": "专属邀请链接",
+        "freeVpnTips": {
+          "title": "免费VPN使用提示",
+          "trafficLimit": "流量限制：",
+          "trafficLimitDesc": "大部分免费VPN都有流量限制，适合轻度使用或临时需求",
+          "slowSpeed": "速度较慢：",
+          "slowSpeedDesc": "免费VPN通常速度较慢，不适合看视频或下载大文件",
+          "privacyRisk": "隐私风险：",
+          "privacyRiskDesc": "选择知名品牌的免费VPN，避免使用来路不明的服务",
+          "upgradeOption": "升级选项：",
+          "upgradeOptionDesc": "如果需要更好的体验，建议考虑付费版本或上方的付费VPN服务"
+        }
       }
     }
   },
@@ -569,11 +588,106 @@
       "answer5": "使用权取决于 ElevenLabs 的服务条款和您的订阅计划。一般来说，您可以将生成的语音用于个人和商业项目，但请务必查看适用于您的用例的具体许可条款。始终确保您有权转换您正在使用的文本内容。"
     }
   },
+  "freeApiKeys": {
+    "freeUse": "免费使用",
+    "title": "免费 Claude Code 和 Codex 配置",
+    "description": "立即开始使用 Claude Code 和 Codex，无需付费订阅。复制以下配置到你的 Claude Code 设置中即可使用。",
+    "loggedIn": "✓ 已登录：{user}",
+    "notLoggedIn": "⚠ 未登录：API 密钥已部分隐藏，登录后查看完整配置",
+    "envConfig": "环境配置",
+    "copyAll": "复制全部",
+    "copied": "已复制",
+    "addToSettings": "将以下配置添加到 Claude Code 的设置文件中",
+    "copyIndividual": "单独复制各项配置：",
+    "usageInstructions": "使用说明",
+    "instructions": {
+      "step1": "打开 Claude Code 设置（通常是",
+      "step2": "将上述配置粘贴到配置文件中",
+      "step3": "保存文件并重启 Claude Code",
+      "step4": "开始免费使用 Claude Code！"
+    },
+    "tip": "💡 提示：此配置使用我们的免费代理服务器，可能会有速率限制",
+    "loginRequired": "登录查看完整配置",
+    "loginToView": "登录后可查看完整的 API 密钥，并复制配置到你的 Claude Code 设置中",
+    "loginNow": "立即登录",
+    "loginSupport": "支持 Google 和 GitHub 登录",
+    "availableKeys": "可用的 API Keys",
+    "availableKeysDesc": "您可以使用以下任意一个 API Key，点击复制按钮即可",
+    "keysCount": "共 {count} 个可用密钥，{date} 更新",
+    "stats": {
+      "free": "完全免费",
+      "available": "全天候可用",
+      "unlimited": "无限使用"
+    },
+    "toast": {
+      "loginRequired": "需要登录",
+      "loginToCopy": "请先登录后才能复制配置",
+      "copySuccess": "复制成功",
+      "copyFailed": "复制失败"
+    }
+  },
+  "freeLlmApi": {
+    "freeModels": "免费大模型",
+    "title": "免费大模型 API 接口",
+    "description": "提供 GPT-4.1-nano 和 Gemini-2.5-flash-lite 模型的免费 API 接口，完全兼容 OpenAI 格式",
+    "loggedIn": "✓ 已登录：{user}",
+    "notLoggedIn": "⚠ 未登录：API 密钥已部分隐藏，登录后查看完整配置",
+    "baseUrl": "基础地址",
+    "endpoint": "端点",
+    "copyExample": "复制示例代码",
+    "exampleCopied": "已复制示例代码",
+    "loginToViewKeys": "登录查看 API Keys",
+    "loginToViewKeysDesc": "登录后可查看完整的 API 密钥，并复制使用",
+    "loginNow": "立即登录",
+    "loginSupport": "支持 Google 和 GitHub 登录",
+    "availableKeys": "可用的 API Keys",
+    "availableKeysDesc": "支持 gpt-4.1-nano 和 gemini-2.5-flash-lite 模型，点击复制按钮即可使用",
+    "copyApiKey": "复制 API Key",
+    "importToCherry": "导入到 Cherry Studio",
+    "launchingCherry": "正在启动 Cherry Studio...",
+    "keysStats": "共 {keyCount} 个可用密钥，支持 {modelCount} 个模型，{date} 更新",
+    "usageGuide": "使用指南",
+    "basicUsage": "基础使用",
+    "basicUsageSteps": {
+      "step1": "复制任意一个 API Key",
+      "step2": "使用 OpenAI 兼容的客户端",
+      "step3": "设置正确的模型名称",
+      "step4": "发送请求到 /v1/chat/completions"
+    },
+    "supportedFeatures": "支持的功能",
+    "features": {
+      "chat": "文本对话和生成",
+      "code": "代码编写和解释",
+      "translate": "翻译和总结",
+      "creative": "创意写作"
+    },
+    "stats": {
+      "availableKeys": "可用密钥",
+      "supportedModels": "支持模型",
+      "freeUsage": "免费使用"
+    },
+    "toast": {
+      "loginRequired": "需要登录",
+      "apiKeyCopied": "API Key 复制成功",
+      "exampleCopied": "示例代码复制成功",
+      "copyFailed": "复制失败",
+      "apiKeyUnavailable": "API Key 不可用"
+    },
+    "models": {
+      "gpt4nano": {
+        "description": "OpenAI 兼容接口"
+      },
+      "geminiFlash": {
+        "description": "Google Gemini 兼容接口"
+      }
+    }
+  },
   "freeVpn": {
     "title": "免费 VPN 订阅",
     "description": "完全免费，无需注册，一键订阅即可使用",
     "mainTitle": "免费VPN订阅",
     "mainDescription": "高速稳定的免费VPN服务，扫码或复制订阅地址即可使用",
+    "loading": "加载中...",
     "badges": {
       "highSpeed": "高速",
       "stable": "稳定"
@@ -582,7 +696,9 @@
       "title": "订阅地址",
       "copyButton": "复制",
       "copied": "已复制",
-      "placeholder": "复制上方链接，粘贴到您的VPN客户端中即可使用"
+      "placeholder": "复制上方链接，粘贴到您的VPN客户端中即可使用",
+      "importToClash": "一键导入到 Clash for Windows",
+      "loginRequired": "请先登录后才能查看和复制订阅地址"
     },
     "steps": {
       "title": "使用步骤：",
@@ -596,7 +712,9 @@
       "title": "扫码订阅",
       "description": "使用客户端扫描下方二维码",
       "scanWith": "使用Clash、V2rayN等客户端扫描",
-      "placeholder": "请将二维码图片放置在"
+      "placeholder": "请将二维码图片放置在",
+      "loginRequired": "需要登录查看",
+      "generating": "生成二维码中..."
     },
     "notice": {
       "title": "温馨提示",

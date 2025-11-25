@@ -242,6 +242,25 @@
           "It is recommended to prioritize services that offer free trials or refund guarantees, test before buying",
           "Do not perform sensitive operations (such as online banking) while connected to VPN unless you confirm the VPN is safe and reliable"
         ]
+      },
+      "card": {
+        "speed": "Speed",
+        "stability": "Stability",
+        "coreFeatures": "Core Features",
+        "paymentMethods": "Payment Methods",
+        "visitNow": "Visit Now",
+        "inviteLink": "Invite Link",
+        "freeVpnTips": {
+          "title": "Free VPN Tips",
+          "trafficLimit": "Traffic Limit:",
+          "trafficLimitDesc": "Most free VPNs have traffic limits, suitable for light use or temporary needs",
+          "slowSpeed": "Slow Speed:",
+          "slowSpeedDesc": "Free VPNs are usually slower, not suitable for streaming or downloading large files",
+          "privacyRisk": "Privacy Risk:",
+          "privacyRiskDesc": "Choose well-known brand free VPNs, avoid using unknown services",
+          "upgradeOption": "Upgrade Option:",
+          "upgradeOptionDesc": "If you need a better experience, consider paid versions or the paid VPN services above"
+        }
       }
     }
   },
@@ -504,11 +523,106 @@
       "answer5": "Usage rights depend on ElevenLabs' terms of service and your subscription plan. Generally, you can use generated speech for personal and commercial projects, but please review the specific licensing terms for your use case. Always ensure you have the right to convert the text content you're using."
     }
   },
+  "freeApiKeys": {
+    "freeUse": "Free to Use",
+    "title": "Free Claude Code and Codex Configuration",
+    "description": "Start using Claude Code and Codex right now, no paid subscription required. Copy the following configuration to your Claude Code settings to use.",
+    "loggedIn": "✓ Logged in: {user}",
+    "notLoggedIn": "⚠ Not logged in: API keys are partially hidden, log in to view full configuration",
+    "envConfig": "Environment Configuration",
+    "copyAll": "Copy All",
+    "copied": "Copied",
+    "addToSettings": "Add the following configuration to your Claude Code settings file",
+    "copyIndividual": "Copy individual configuration items:",
+    "usageInstructions": "Usage Instructions",
+    "instructions": {
+      "step1": "Open Claude Code settings (usually",
+      "step2": "Paste the above configuration into the settings file",
+      "step3": "Save the file and restart Claude Code",
+      "step4": "Start using Claude Code for free!"
+    },
+    "tip": "💡 Tip: This configuration uses our free proxy server and may have rate limits",
+    "loginRequired": "Login Required",
+    "loginToView": "Log in to view the full API keys and copy the configuration to your Claude Code settings",
+    "loginNow": "Login Now",
+    "loginSupport": "Supports Google and GitHub login",
+    "availableKeys": "Available API Keys",
+    "availableKeysDesc": "You can use any of the following API Keys, click the copy button to use",
+    "keysCount": "Total {count} available keys, updated on {date}",
+    "stats": {
+      "free": "Completely Free",
+      "available": "Available 24/7",
+      "unlimited": "Unlimited Usage"
+    },
+    "toast": {
+      "loginRequired": "Login required",
+      "loginToCopy": "Please log in to copy configuration",
+      "copySuccess": "Copied successfully",
+      "copyFailed": "Copy failed"
+    }
+  },
+  "freeLlmApi": {
+    "freeModels": "Free Large Models",
+    "title": "Free Large Model API Interface",
+    "description": "Providing free API interfaces for GPT-4.1-nano and Gemini-2.5-flash-lite models, fully compatible with OpenAI format",
+    "loggedIn": "✓ Logged in: {user}",
+    "notLoggedIn": "⚠ Not logged in: API keys are partially hidden, log in to view full configuration",
+    "baseUrl": "Base URL",
+    "endpoint": "Endpoint",
+    "copyExample": "Copy Example Code",
+    "exampleCopied": "Example code copied",
+    "loginToViewKeys": "Login to View API Keys",
+    "loginToViewKeysDesc": "Log in to view the full API keys and copy to use",
+    "loginNow": "Login Now",
+    "loginSupport": "Supports Google and GitHub login",
+    "availableKeys": "Available API Keys",
+    "availableKeysDesc": "Supports gpt-4.1-nano and gemini-2.5-flash-lite models, click the copy button to use",
+    "copyApiKey": "Copy API Key",
+    "importToCherry": "Import to Cherry Studio",
+    "launchingCherry": "Launching Cherry Studio...",
+    "keysStats": "Total {keyCount} available keys, supports {modelCount} models, updated on {date}",
+    "usageGuide": "Usage Guide",
+    "basicUsage": "Basic Usage",
+    "basicUsageSteps": {
+      "step1": "Copy any API Key",
+      "step2": "Use an OpenAI compatible client",
+      "step3": "Set the correct model name",
+      "step4": "Send request to /v1/chat/completions"
+    },
+    "supportedFeatures": "Supported Features",
+    "features": {
+      "chat": "Text conversation and generation",
+      "code": "Code writing and explanation",
+      "translate": "Translation and summarization",
+      "creative": "Creative writing"
+    },
+    "stats": {
+      "availableKeys": "Available Keys",
+      "supportedModels": "Supported Models",
+      "freeUsage": "Free Usage"
+    },
+    "toast": {
+      "loginRequired": "Login required",
+      "apiKeyCopied": "API Key copied successfully",
+      "exampleCopied": "Example code copied successfully",
+      "copyFailed": "Copy failed",
+      "apiKeyUnavailable": "API Key unavailable"
+    },
+    "models": {
+      "gpt4nano": {
+        "description": "OpenAI Compatible Interface"
+      },
+      "geminiFlash": {
+        "description": "Google Gemini Compatible Interface"
+      }
+    }
+  },
   "freeVpn": {
     "title": "Free VPN Subscription",
     "description": "Completely free, no registration required, one-click subscription",
     "mainTitle": "Free VPN Subscription",
     "mainDescription": "High-speed and stable free VPN service, scan QR code or copy subscription address to use",
+    "loading": "Loading...",
     "badges": {
       "highSpeed": "High Speed",
       "stable": "Stable"
@@ -517,7 +631,9 @@
       "title": "Subscription URL",
       "copyButton": "Copy",
       "copied": "Copied",
-      "placeholder": "Copy the link above and paste it into your VPN client"
+      "placeholder": "Copy the link above and paste it into your VPN client",
+      "importToClash": "Import to Clash for Windows",
+      "loginRequired": "Please log in to view and copy the subscription URL"
     },
     "steps": {
       "title": "Usage Steps:",
@@ -531,7 +647,9 @@
       "title": "Scan to Subscribe",
       "description": "Scan the QR code below with your client",
       "scanWith": "Scan with Clash, V2rayN or other clients",
-      "placeholder": "Please place QR code image at"
+      "placeholder": "Please place QR code image at",
+      "loginRequired": "Login required to view",
+      "generating": "Generating QR code..."
     },
     "notice": {
       "title": "Notice",

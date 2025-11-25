@@ -242,6 +242,25 @@
           "無料トライアルまたは返金保証を提供するサービスを優先し、購入前にテストすることをお勧めします",
           "VPNが安全で信頼できることを確認しない限り、VPN接続中に機密性の高い操作（オンラインバンキングなど）を行わないでください"
         ]
+      },
+      "card": {
+        "speed": "速度",
+        "stability": "安定",
+        "coreFeatures": "主な機能",
+        "paymentMethods": "支払い方法",
+        "visitNow": "今すぐアクセス",
+        "inviteLink": "招待リンク",
+        "freeVpnTips": {
+          "title": "無料VPN使用のヒント",
+          "trafficLimit": "トラフィック制限：",
+          "trafficLimitDesc": "ほとんどの無料VPNにはトラフィック制限があり、軽い使用や一時的なニーズに適しています",
+          "slowSpeed": "遅い速度：",
+          "slowSpeedDesc": "無料VPNは通常遅いため、ストリーミングや大容量ファイルのダウンロードには適していません",
+          "privacyRisk": "プライバシーリスク：",
+          "privacyRiskDesc": "有名ブランドの無料VPNを選び、不明なサービスの使用は避けてください",
+          "upgradeOption": "アップグレードオプション：",
+          "upgradeOptionDesc": "より良い体験が必要な場合は、有料版または上記の有料VPNサービスを検討してください"
+        }
       }
     }
   },

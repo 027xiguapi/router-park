@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Copy, Check, Code, Sparkles, Lock, LogIn } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -9,6 +10,7 @@ import { toast } from 'sonner'
 import { useUser } from '@/contexts/user-context'
 
 export function FreeAPIKeys() {
+  const t = useTranslations('freeApiKeys')
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [keys, setKeys] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
@@ -76,22 +78,22 @@ export function FreeAPIKeys() {
 
   const handleCopy = async (key: string, value: string) => {
     if (!user) {
-      toast.error('需要登录')
+      toast.error(t('toast.loginRequired'))
       return
     }
     try {
       await navigator.clipboard.writeText(value)
       setCopiedField(key)
-      toast.success( '复制成功')
+      toast.success(t('toast.copySuccess'))
       setTimeout(() => setCopiedField(null), 2000)
     } catch (error) {
-      toast.error('复制失败')
+      toast.error(t('toast.copyFailed'))
     }
   }
 
   const handleCopyAll = async () => {
     if (!user) {
-      toast.error('请先登录后才能复制配置')
+      toast.error(t('toast.loginToCopy'))
       return
     }
     const configText = `{
@@ -104,25 +106,25 @@ export function FreeAPIKeys() {
     try {
       await navigator.clipboard.writeText(configText)
       setCopiedField('all')
-      toast.success('复制成功')
+      toast.success(t('toast.copySuccess'))
       setTimeout(() => setCopiedField(null), 2000)
     } catch (error) {
-      toast.error('复制失败')
+      toast.error(t('toast.copyFailed'))
     }
   }
 
   const handleCopyKey = async (key: string, index: number) => {
     if (!user) {
-      toast.error('需要登录')
+      toast.error(t('toast.loginRequired'))
       return
     }
     try {
       await navigator.clipboard.writeText(key)
       setCopiedField(`key-${index}`)
-      toast.success('复制成功')
+      toast.success(t('toast.copySuccess'))
       setTimeout(() => setCopiedField(null), 2000)
     } catch (error) {
-      toast.error('复制失败')
+      toast.error(t('toast.copyFailed'))
     }
   }
 
@@ -151,21 +153,21 @@ export function FreeAPIKeys() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
               <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-medium">免费使用</span>
+              <span className="text-sm font-medium">{t('freeUse')}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              免费 Claude Code 和 Codex 配置
+              {t('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              立即开始使用 Claude Code 和 Codex，无需付费订阅。复制以下配置到你的 Claude Code 设置中即可使用。
+              {t('description')}
             </p>
             {user ? (
               <p className="text-sm text-green-600 dark:text-green-400 mt-2">
-                ✓ 已登录：{user.email || user.name}
+                {t('loggedIn', { user: user.email || user.name })}
               </p>
             ) : (
               <p className="text-sm text-orange-600 dark:text-orange-400 mt-2">
-                ⚠ 未登录：API 密钥已部分隐藏，登录后查看完整配置
+                {t('notLoggedIn')}
               </p>
             )}
           </div>
@@ -176,7 +178,7 @@ export function FreeAPIKeys() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Code className="h-5 w-5 text-primary" />
-                  <CardTitle>环境配置</CardTitle>
+                  <CardTitle>{t('envConfig')}</CardTitle>
                 </div>
                 <Button
                   variant="outline"
@@ -187,18 +189,18 @@ export function FreeAPIKeys() {
                   {copiedField === 'all' ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
-                      已复制
+                      {t('copied')}
                     </>
                   ) : (
                     <>
                       <Copy className="h-4 w-4" />
-                      复制全部
+                      {t('copyAll')}
                     </>
                   )}
                 </Button>
               </div>
               <CardDescription>
-                将以下配置添加到 Claude Code 的设置文件中
+                {t('addToSettings')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -222,7 +224,7 @@ export function FreeAPIKeys() {
 
               {/* Individual Fields */}
               <div className="space-y-3 pt-4 border-t">
-                <p className="text-sm font-medium mb-2">单独复制各项配置：</p>
+                <p className="text-sm font-medium mb-2">{t('copyIndividual')}</p>
 
                 {Object.entries(displayConfig).map(([key, value]) => (
                   <div
@@ -259,44 +261,43 @@ export function FreeAPIKeys() {
               <div className="mt-6 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
                 <h4 className="font-medium mb-2 flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-blue-500" />
-                  使用说明
+                  {t('usageInstructions')}
                 </h4>
                 <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside">
-                  <li>打开 Claude Code 设置（通常是 <code className="bg-secondary px-1 rounded">.claude/config.json</code>）</li>
-                  <li>将上述配置粘贴到配置文件中</li>
-                  <li>保存文件并重启 Claude Code</li>
-                  <li>开始免费使用 Claude Code！</li>
+                  <li>{t('instructions.step1')} <code className="bg-secondary px-1 rounded">.claude/config.json</code>)</li>
+                  <li>{t('instructions.step2')}</li>
+                  <li>{t('instructions.step3')}</li>
+                  <li>{t('instructions.step4')}</li>
                 </ol>
               </div>
 
               {/* Note */}
               <div className="text-xs text-muted-foreground text-center pt-2">
-                💡 提示：此配置使用我们的免费代理服务器，可能会有速率限制
+                {t('tip')}
               </div>
             </CardContent>
           </Card>
 
-          {/* API Keys Card - 根据登录状态显示不同内容 */}
+          {/* API Keys Card */}
           <Card className="mt-8 border-2 border-primary/20 shadow-lg">
             <CardContent className="py-8">
               {!user ? (
-                // 未登录时显示登录提示
                 <div className="text-center space-y-4">
                   <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Lock className="h-6 w-6 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-xl font-bold">登录查看完整配置</h3>
+                    <h3 className="text-xl font-bold">{t('loginRequired')}</h3>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                      登录后可查看完整的 API 密钥，并复制配置到你的 Claude Code 设置中
+                      {t('loginToView')}
                     </p>
                   </div>
                   <Button size="lg" onClick={showLoginModal} className="gap-2">
                     <LogIn className="h-4 w-4" />
-                    立即登录
+                    {t('loginNow')}
                   </Button>
                   <p className="text-xs text-muted-foreground">
-                    支持 Google 和 GitHub 登录
+                    {t('loginSupport')}
                   </p>
                 </div>
               ) : (
@@ -305,9 +306,9 @@ export function FreeAPIKeys() {
                     <div className="mx-auto w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
                       <Sparkles className="h-6 w-6 text-green-500" />
                     </div>
-                    <h3 className="text-xl font-bold">可用的 API Keys</h3>
+                    <h3 className="text-xl font-bold">{t('availableKeys')}</h3>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                      您可以使用以下任意一个 API Key，点击复制按钮即可
+                      {t('availableKeysDesc')}
                     </p>
                   </div>
 
@@ -344,7 +345,7 @@ export function FreeAPIKeys() {
               )}
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{keys.length}</span> 个可用密钥，<span className="font-bold text-green-600 dark:text-green-400">{lastUpdated}</span> 更新
+                  {t('keysCount', { count: keys.length, date: lastUpdated })}
                 </p>
               </div>
             </CardContent>
@@ -354,15 +355,15 @@ export function FreeAPIKeys() {
           <div className="mt-8 grid md:grid-cols-3 gap-4 text-center">
             <div className="p-4 rounded-lg bg-secondary/30">
               <div className="text-2xl font-bold text-primary mb-1">100%</div>
-              <div className="text-sm text-muted-foreground">完全免费</div>
+              <div className="text-sm text-muted-foreground">{t('stats.free')}</div>
             </div>
             <div className="p-4 rounded-lg bg-secondary/30">
               <div className="text-2xl font-bold text-primary mb-1">24/7</div>
-              <div className="text-sm text-muted-foreground">全天候可用</div>
+              <div className="text-sm text-muted-foreground">{t('stats.available')}</div>
             </div>
             <div className="p-4 rounded-lg bg-secondary/30">
               <div className="text-2xl font-bold text-primary mb-1">∞</div>
-              <div className="text-sm text-muted-foreground">无限使用</div>
+              <div className="text-sm text-muted-foreground">{t('stats.unlimited')}</div>
             </div>
           </div>
         </div>

@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
 import { useUser } from '@/contexts/user-context'
+import { useTranslations } from 'next-intl'
 
 export function FreeLLMAPI() {
+  const t = useTranslations('freeLlmApi')
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [apiKeys, setApiKeys] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
@@ -47,7 +49,7 @@ export function FreeLLMAPI() {
   const models = [
     {
       name: "gpt-4.1-nano",
-      description: "OpenAI 兼容接口",
+      description: t('models.gpt4nano.description'),
       endpoint: "/v1/chat/completions",
       baseUrl: "https://cjack.routerpark.com",
       method: "POST",
@@ -55,7 +57,7 @@ export function FreeLLMAPI() {
     },
     {
       name: "gemini-2.5-flash-lite",
-      description: "Google Gemini 兼容接口",
+      description: t('models.geminiFlash.description'),
       endpoint: "/v1/chat/completions",
       baseUrl: "https://cjack.routerpark.com",
       method: "POST",
@@ -74,16 +76,16 @@ export function FreeLLMAPI() {
 
   const handleCopyKey = async (key: string, index: number) => {
     if (!user) {
-      toast.error('需要登录')
+      toast.error(t('toast.loginRequired'))
       return
     }
     try {
       await navigator.clipboard.writeText(key)
       setCopiedField(`key-${index}`)
-      toast.success('API Key 复制成功')
+      toast.success(t('toast.apiKeyCopied'))
       setTimeout(() => setCopiedField(null), 2000)
     } catch (error) {
-      toast.error('复制失败')
+      toast.error(t('toast.copyFailed'))
     }
   }
 
@@ -111,10 +113,10 @@ export function FreeLLMAPI() {
     try {
       await navigator.clipboard.writeText(exampleCode)
       setCopiedField(`example-${model}`)
-      toast.success('示例代码复制成功')
+      toast.success(t('toast.exampleCopied'))
       setTimeout(() => setCopiedField(null), 2000)
     } catch (error) {
-      toast.error('复制失败')
+      toast.error(t('toast.copyFailed'))
     }
   }
 
@@ -125,7 +127,7 @@ export function FreeLLMAPI() {
     }
 
     if (!apiKey) {
-      toast.error('API Key 不可用')
+      toast.error(t('toast.apiKeyUnavailable'))
       return
     }
 
@@ -143,7 +145,7 @@ export function FreeLLMAPI() {
 
     window.location.href = cherryUrl
 
-    toast.success('正在启动 Cherry Studio...')
+    toast.success(t('launchingCherry'))
   }
 
   // 如果正在加载，显示加载状态
@@ -170,21 +172,21 @@ export function FreeLLMAPI() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-600 mb-4">
               <Brain className="h-4 w-4" />
-              <span className="text-sm font-medium">免费大模型</span>
+              <span className="text-sm font-medium">{t('freeModels')}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              免费大模型 API 接口
+              {t('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              提供 GPT-4.1-nano 和 Gemini-2.5-flash-lite 模型的免费 API 接口，完全兼容 OpenAI 格式
+              {t('description')}
             </p>
             {user ? (
               <p className="text-sm text-green-600 dark:text-green-400 mt-2">
-                ✓ 已登录：{user.email || user.name}
+                {t('loggedIn', { user: user.email || user.name })}
               </p>
             ) : (
               <p className="text-sm text-orange-600 dark:text-orange-400 mt-2">
-                ⚠ 未登录：API 密钥已部分隐藏，登录后查看完整配置
+                {t('notLoggedIn')}
               </p>
             )}
           </div>
@@ -203,13 +205,13 @@ export function FreeLLMAPI() {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">基础地址</span>
+                      <span className="text-sm text-muted-foreground">{t('baseUrl')}</span>
                       <code className="bg-secondary/50 px-2 py-1 rounded text-xs font-mono">
                         {model.baseUrl}
                       </code>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">端点</span>
+                      <span className="text-sm text-muted-foreground">{t('endpoint')}</span>
                       <code className="bg-secondary/50 px-2 py-1 rounded text-xs font-mono">
                         {model.method} {model.endpoint}
                       </code>
@@ -223,12 +225,12 @@ export function FreeLLMAPI() {
                       {copiedField === `example-${model.name}` ? (
                         <>
                           <Check className="h-4 w-4 text-green-500" />
-                          已复制示例代码
+                          {t('exampleCopied')}
                         </>
                       ) : (
                         <>
                           <Code className="h-4 w-4" />
-                          复制示例代码
+                          {t('copyExample')}
                         </>
                       )}
                     </Button>
@@ -248,17 +250,17 @@ export function FreeLLMAPI() {
                     <Lock className="h-6 w-6 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-xl font-bold">登录查看 API Keys</h3>
+                    <h3 className="text-xl font-bold">{t('loginToViewKeys')}</h3>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                      登录后可查看完整的 API 密钥，并复制使用
+                      {t('loginToViewKeysDesc')}
                     </p>
                   </div>
                   <Button size="lg" onClick={showLoginModal} className="gap-2">
                     <LogIn className="h-4 w-4" />
-                    立即登录
+                    {t('loginNow')}
                   </Button>
                   <p className="text-xs text-muted-foreground">
-                    支持 Google 和 GitHub 登录
+                    {t('loginSupport')}
                   </p>
                 </div>
               ) : (
@@ -267,9 +269,9 @@ export function FreeLLMAPI() {
                     <div className="mx-auto w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
                       <Brain className="h-6 w-6 text-green-500" />
                     </div>
-                    <h3 className="text-xl font-bold">可用的 API Keys</h3>
+                    <h3 className="text-xl font-bold">{t('availableKeys')}</h3>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                      支持 gpt-4.1-nano 和 gemini-2.5-flash-lite 模型，点击复制按钮即可使用
+                      {t('availableKeysDesc')}
                     </p>
                   </div>
 
@@ -292,7 +294,7 @@ export function FreeLLMAPI() {
                           size="sm"
                           onClick={() => handleCopyKey(key, index)}
                           className="flex-shrink-0"
-                          title="复制 API Key"
+                          title={t('copyApiKey')}
                         >
                           {copiedField === `key-${index}` ? (
                             <Check className="h-4 w-4 text-green-500" />
@@ -305,7 +307,7 @@ export function FreeLLMAPI() {
                           size="sm"
                           onClick={() => handleImportToCherryStudio(key)}
                           className="flex-shrink-0"
-                          title="导入到 Cherry Studio"
+                          title={t('importToCherry')}
                         >
                           <MessageSquare className="h-4 w-4 text-pink-500" />
                         </Button>
@@ -317,7 +319,7 @@ export function FreeLLMAPI() {
 
               <div className="mt-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                 <p className="text-sm text-center">
-                  共 <span className="font-bold text-green-600 dark:text-green-400">{apiKeys.length}</span> 个可用密钥，支持 <span className="font-bold text-green-600 dark:text-green-400">2</span> 个模型，<span className="font-bold text-green-600 dark:text-green-400">{lastUpdated}</span> 更新
+                  {t('keysStats', { keyCount: apiKeys.length, modelCount: 2, date: lastUpdated })}
                 </p>
               </div>
             </CardContent>
@@ -327,25 +329,25 @@ export function FreeLLMAPI() {
           <div className="mt-8 p-6 rounded-lg bg-blue-500/10 border border-blue-500/20">
             <h4 className="font-medium mb-3 flex items-center gap-2">
               <Code className="h-4 w-4 text-blue-500" />
-              使用指南
+              {t('usageGuide')}
             </h4>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
               <div>
-                <h5 className="font-medium mb-2">基础使用</h5>
+                <h5 className="font-medium mb-2">{t('basicUsage')}</h5>
                 <ul className="text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>复制任意一个 API Key</li>
-                  <li>使用 OpenAI 兼容的客户端</li>
-                  <li>设置正确的模型名称</li>
-                  <li>发送请求到 /v1/chat/completions</li>
+                  <li>{t('basicUsageSteps.step1')}</li>
+                  <li>{t('basicUsageSteps.step2')}</li>
+                  <li>{t('basicUsageSteps.step3')}</li>
+                  <li>{t('basicUsageSteps.step4')}</li>
                 </ul>
               </div>
               <div>
-                <h5 className="font-medium mb-2">支持的功能</h5>
+                <h5 className="font-medium mb-2">{t('supportedFeatures')}</h5>
                 <ul className="text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>文本对话和生成</li>
-                  <li>代码编写和解释</li>
-                  <li>翻译和总结</li>
-                  <li>创意写作</li>
+                  <li>{t('features.chat')}</li>
+                  <li>{t('features.code')}</li>
+                  <li>{t('features.translate')}</li>
+                  <li>{t('features.creative')}</li>
                 </ul>
               </div>
             </div>
@@ -355,15 +357,15 @@ export function FreeLLMAPI() {
           <div className="mt-8 grid md:grid-cols-3 gap-4 text-center">
             <div className="p-4 rounded-lg bg-secondary/30">
               <div className="text-2xl font-bold text-primary mb-1">{apiKeys.length}</div>
-              <div className="text-sm text-muted-foreground">可用密钥</div>
+              <div className="text-sm text-muted-foreground">{t('stats.availableKeys')}</div>
             </div>
             <div className="p-4 rounded-lg bg-secondary/30">
               <div className="text-2xl font-bold text-primary mb-1">{models.length}</div>
-              <div className="text-sm text-muted-foreground">支持模型</div>
+              <div className="text-sm text-muted-foreground">{t('stats.supportedModels')}</div>
             </div>
             <div className="p-4 rounded-lg bg-secondary/30">
               <div className="text-2xl font-bold text-primary mb-1">100%</div>
-              <div className="text-sm text-muted-foreground">免费使用</div>
+              <div className="text-sm text-muted-foreground">{t('stats.freeUsage')}</div>
             </div>
           </div>
         </div>

@@ -242,6 +242,25 @@
           "Es wird empfohlen, Dienste mit kostenlosen Testversionen oder Rückerstattungsgarantien zu priorisieren und vor dem Kauf zu testen",
           "Führen Sie keine sensiblen Vorgänge (wie Online-Banking) durch, während Sie mit VPN verbunden sind, es sei denn, Sie bestätigen, dass das VPN sicher und zuverlässig ist"
         ]
+      },
+      "card": {
+        "speed": "Geschwindigkeit",
+        "stability": "Stabilität",
+        "coreFeatures": "Kernfunktionen",
+        "paymentMethods": "Zahlungsmethoden",
+        "visitNow": "Jetzt Besuchen",
+        "inviteLink": "Einladungslink",
+        "freeVpnTips": {
+          "title": "Tipps für Kostenlose VPN",
+          "trafficLimit": "Traffic-Limit:",
+          "trafficLimitDesc": "Die meisten kostenlosen VPNs haben Traffic-Limits, geeignet für leichte Nutzung oder temporäre Bedürfnisse",
+          "slowSpeed": "Langsame Geschwindigkeit:",
+          "slowSpeedDesc": "Kostenlose VPNs sind normalerweise langsamer, nicht geeignet für Streaming oder das Herunterladen großer Dateien",
+          "privacyRisk": "Datenschutzrisiko:",
+          "privacyRiskDesc": "Wählen Sie kostenlose VPNs bekannter Marken, vermeiden Sie unbekannte Dienste",
+          "upgradeOption": "Upgrade-Option:",
+          "upgradeOptionDesc": "Wenn Sie ein besseres Erlebnis benötigen, ziehen Sie kostenpflichtige Versionen oder die oben genannten kostenpflichtigen VPN-Dienste in Betracht"
+        }
       }
     }
   },

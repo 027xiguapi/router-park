@@ -118,7 +118,7 @@ export function FreeVPN() {
       <section className="py-16 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-green-950/20 dark:via-emerald-950/20 dark:to-teal-950/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-lg text-muted-foreground">加载中...</p>
+            <p className="text-lg text-muted-foreground">{t('loading')}</p>
           </div>
         </div>
       </section>
@@ -224,14 +224,14 @@ export function FreeVPN() {
                         className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white"
                       >
                         <Rocket className="h-4 w-4 mr-2" />
-                        <span className="text-sm">一键导入到 Clash for Windows</span>
+                        <span className="text-sm">{t('subscription.importToClash')}</span>
                       </Button>
                     </div>
                     {!isAuthenticated && (
                       <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3 flex items-start gap-2">
                         <Lock className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
                         <p className="text-xs sm:text-sm text-amber-800 dark:text-amber-400">
-                          请先登录后才能查看和复制订阅地址
+                          {t('subscription.loginRequired')}
                         </p>
                       </div>
                     )}
@@ -323,14 +323,14 @@ export function FreeVPN() {
                         {!isAuthenticated && (
                           <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10 dark:bg-black/30 rounded-lg" onClick={checkIsLoggedIn}>
                             <Lock className="h-10 w-10 sm:h-12 sm:w-12 text-white drop-shadow-lg mb-2" />
-                            <p className="text-xs sm:text-sm font-semibold text-white drop-shadow-lg">需要登录查看</p>
+                            <p className="text-xs sm:text-sm font-semibold text-white drop-shadow-lg">{t('qrCode.loginRequired')}</p>
                           </div>
                         )}
                       </>
                     ) : (
                       <div className="text-center p-4">
                         <div className="text-3xl sm:text-4xl mb-2 animate-pulse">⏳</div>
-                        <p className="text-xs sm:text-sm text-muted-foreground">生成二维码中...</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">{t('qrCode.generating')}</p>
                       </div>
                     )}
                   </div>
