@@ -1,7 +1,7 @@
  'use client'
 
 import { useState, useEffect } from 'react'
-import { Copy, Check, Code, Sparkles, Lock, LogIn, Brain } from 'lucide-react'
+import { Copy, Check, Code, Sparkles, Lock, LogIn, Brain, Cherry, MessageSquare } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -116,6 +116,34 @@ export function FreeLLMAPI() {
     } catch (error) {
       toast.error('复制失败')
     }
+  }
+
+  const handleImportToCherryStudio = (apiKey: string) => {
+    if (!user) {
+      showLoginModal()
+      return
+    }
+
+    if (!apiKey) {
+      toast.error('API Key 不可用')
+      return
+    }
+
+    const cherryConfig = {
+      id: "router-park-free-llm",
+      baseUrl: models[0].baseUrl,
+      apiKey: apiKey
+    }
+
+    // 将配置转换为 JSON，然后 Base64 编码
+    const configJson = JSON.stringify(cherryConfig)
+    const base64Data = btoa(configJson)
+
+    const cherryUrl = `cherrystudio://providers/api-keys?v=1&data=${encodeURIComponent(base64Data)}`
+
+    window.location.href = cherryUrl
+
+    toast.success('正在启动 Cherry Studio...')
   }
 
   // 如果正在加载，显示加载状态
@@ -264,12 +292,22 @@ export function FreeLLMAPI() {
                           size="sm"
                           onClick={() => handleCopyKey(key, index)}
                           className="flex-shrink-0"
+                          title="复制 API Key"
                         >
                           {copiedField === `key-${index}` ? (
                             <Check className="h-4 w-4 text-green-500" />
                           ) : (
                             <Copy className="h-4 w-4" />
                           )}
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleImportToCherryStudio(key)}
+                          className="flex-shrink-0"
+                          title="导入到 Cherry Studio"
+                        >
+                          <MessageSquare className="h-4 w-4 text-pink-500" />
                         </Button>
                       </div>
                     ))}

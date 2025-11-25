@@ -15,7 +15,8 @@ import {
   Zap,
   Globe,
   Download,
-  Lock
+  Lock,
+  Rocket
 } from "lucide-react"
 import Image from "next/image"
 import { Link } from '@/i18n/navigation'
@@ -99,6 +100,18 @@ export function FreeVPN() {
     }
   }
 
+  const handleImportToClash = () => {
+    if (!checkIsLoggedIn()) {
+      return
+    }
+
+    if (!vpnConfig) return
+
+    const clashUrl = `clash://install-config?url=${encodeURIComponent(vpnConfig.subscriptionUrl)}&name=${encodeURIComponent('routerpark')}`
+
+    window.location.href = clashUrl
+  }
+
   // 如果正在加载，显示加载状态
   if (loading) {
     return (
@@ -169,36 +182,49 @@ export function FreeVPN() {
                     {t('subscription.title')}
                   </h3>
                   <div className="space-y-3">
-                    <div className="flex flex-col sm:flex-row gap-2">
-                      <div className="relative flex-1">
-                        <Input
-                          readOnly
-                          value={isAuthenticated ? vpnConfig.subscriptionUrl : "••••••••••••••••••••••••••"}
-                          className={`font-mono text-xs sm:text-sm ${isAuthenticated ? 'bg-muted' : 'bg-muted blur-sm select-none pointer-events-none'}`}
-                        />
-                        {!isAuthenticated && (
-                          <div className="absolute inset-0 flex items-center justify-center" onClick={checkIsLoggedIn}>
-                            <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
-                          </div>
-                        )}
+                    <div className="space-y-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
+                        <div className="relative flex-1">
+                          <Input
+                            readOnly
+                            value={isAuthenticated ? vpnConfig.subscriptionUrl : "••••••••••••••••••••••••••"}
+                            className={`font-mono text-xs sm:text-sm ${isAuthenticated ? 'bg-muted' : 'bg-muted blur-sm select-none pointer-events-none'}`}
+                          />
+                          {!isAuthenticated && (
+                            <div className="absolute inset-0 flex items-center justify-center" onClick={checkIsLoggedIn}>
+                              <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
+                            </div>
+                          )}
+                        </div>
+                        <Button
+                          onClick={handleCopy}
+                          variant="outline"
+                          size="default"
+                          className="shrink-0 border-green-500/50 hover:bg-green-500/10 w-full sm:w-auto"
+                        >
+                          {copied ? (
+                            <>
+                              <Check className="h-4 w-4 mr-1 text-green-600" />
+                              <span className="text-sm">{t('subscription.copied')}</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="h-4 w-4 mr-1" />
+                              <span className="text-sm">{t('subscription.copyButton')}</span>
+                            </>
+                          )}
+                        </Button>
                       </div>
+
+                      {/* Clash for Windows 导入按钮 */}
                       <Button
-                        onClick={handleCopy}
-                        variant="outline"
+                        onClick={handleImportToClash}
+                        variant="default"
                         size="default"
-                        className="shrink-0 border-green-500/50 hover:bg-green-500/10 w-full sm:w-auto"
+                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white"
                       >
-                        {copied ? (
-                          <>
-                            <Check className="h-4 w-4 mr-1 text-green-600" />
-                            <span className="text-sm">{t('subscription.copied')}</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="h-4 w-4 mr-1" />
-                            <span className="text-sm">{t('subscription.copyButton')}</span>
-                          </>
-                        )}
+                        <Rocket className="h-4 w-4 mr-2" />
+                        <span className="text-sm">一键导入到 Clash for Windows</span>
                       </Button>
                     </div>
                     {!isAuthenticated && (
