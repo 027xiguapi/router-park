@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'static.getwhynot.org'
+        hostname: 'oss.routerpark.com'
       },
       {
         protocol: 'https',

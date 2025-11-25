@@ -672,6 +672,62 @@
       }
     }
   },
+  "freeImageApi": {
+    "freeModels": "Free Image Generation",
+    "title": "Free Image Generation API Interface",
+    "description": "Providing free API interfaces for Lexica-v2 and Lexica-aperture models, fully compatible with OpenAI format",
+    "loggedIn": "✓ Logged in: {user}",
+    "notLoggedIn": "⚠ Not logged in: API keys are partially hidden, log in to view full configuration",
+    "baseUrl": "Base URL",
+    "endpoint": "Endpoint",
+    "copyExample": "Copy Example Code",
+    "exampleCopied": "Example code copied",
+    "loginToViewKeys": "Login to View API Keys",
+    "loginToViewKeysDesc": "Log in to view the full API keys and copy to use",
+    "loginNow": "Login Now",
+    "loginSupport": "Supports Google and GitHub login",
+    "availableKeys": "Available API Keys",
+    "availableKeysDesc": "Supports lexica-v2 and lexica-aperture models, click the copy button to use",
+    "copyApiKey": "Copy API Key",
+    "importToCherry": "Import to Cherry Studio",
+    "launchingCherry": "Launching Cherry Studio...",
+    "keysStats": "Total {keyCount} available keys, supports {modelCount} models, updated on {date}",
+    "usageGuide": "Usage Guide",
+    "basicUsage": "Basic Usage",
+    "basicUsageSteps": {
+      "step1": "Copy any API Key",
+      "step2": "Use an OpenAI compatible client",
+      "step3": "Set the correct model name",
+      "step4": "Send request to /v1/chat/completions"
+    },
+    "supportedFeatures": "Supported Features",
+    "features": {
+      "textToImage": "Text to image generation",
+      "styleTransfer": "Style transfer",
+      "artGeneration": "Art generation",
+      "conceptDesign": "Concept design"
+    },
+    "stats": {
+      "availableKeys": "Available Keys",
+      "supportedModels": "Supported Models",
+      "freeUsage": "Free Usage"
+    },
+    "toast": {
+      "loginRequired": "Login required",
+      "apiKeyCopied": "API Key copied successfully",
+      "exampleCopied": "Example code copied successfully",
+      "copyFailed": "Copy failed",
+      "apiKeyUnavailable": "API Key unavailable"
+    },
+    "models": {
+      "lexicaV2": {
+        "description": "Lexica v2 image generation model"
+      },
+      "lexicaAperture": {
+        "description": "Lexica Aperture high-quality image generation"
+      }
+    }
+  },
   "common": {
     "loading": "Loading...",
     "cancel": "Cancel",

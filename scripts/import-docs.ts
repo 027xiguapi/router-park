@@ -85,7 +85,7 @@ function parseMarkdownFile(filePath: string): {
  */
 async function importDocs() {
   const db = createDb()
-  const docsDir = path.join(process.cwd(), 'doc')
+  const docsDir = path.join(process.cwd(), 'doc/zh')
 
   console.log('🔍 正在扫描 doc 文件夹...')
 
