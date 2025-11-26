@@ -5,6 +5,7 @@ import { Copy, Check, Code, Image, Lock, LogIn, Palette, Cherry, MessageSquare }
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { toast } from 'sonner'
 import { useUser } from '@/contexts/user-context'
 import { useTranslations } from 'next-intl'
@@ -15,6 +16,7 @@ export function FreeImageAPI() {
   const [apiKeys, setApiKeys] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState<string>('')
+  const [selectedTab, setSelectedTab] = useState<{ [key: string]: string }>({})
   const { user, showLoginModal, status } = useUser()
 
   // 从数据库获取图片 API 密钥
@@ -100,9 +102,28 @@ export function FreeImageAPI() {
     }
 
     const modelData = models.find(m => m.name === model)
-    const exampleCode = `curl -X POST "${modelData?.baseUrl}${modelData?.endpoint}" \\
+    const currentTab = selectedTab[model] || 'curl'
+    const exampleCode = getCodeExample(model, modelData?.baseUrl || '', modelData?.endpoint || '', currentTab)
+
+    try {
+      await navigator.clipboard.writeText(exampleCode)
+      setCopiedField(`example-${model}`)
+      toast.success(t('toast.exampleCopied'))
+      setTimeout(() => setCopiedField(null), 2000)
+    } catch (error) {
+      toast.error(t('toast.copyFailed'))
+    }
+  }
+
+  // 生成不同语言的代码示例
+  const getCodeExample = (model: string, baseUrl: string, endpoint: string, lang: string) => {
+    const apiKey = apiKeys[0] || 'YOUR_API_KEY'
+
+    switch (lang) {
+      case 'curl':
+        return `curl -X POST "${baseUrl}${endpoint}" \\
   -H "Content-Type: application/json" \\
-  -H "Authorization: Bearer ${apiKeys[0]}" \\
+  -H "Authorization: Bearer ${apiKey}" \\
   -d '{
     "model": "${model}",
     "messages": [
@@ -113,14 +134,44 @@ export function FreeImageAPI() {
     ],
     "max_tokens": 100
   }'`
+      case 'python':
+        return `import requests
 
-    try {
-      await navigator.clipboard.writeText(exampleCode)
-      setCopiedField(`example-${model}`)
-      toast.success(t('toast.exampleCopied'))
-      setTimeout(() => setCopiedField(null), 2000)
-    } catch (error) {
-      toast.error(t('toast.copyFailed'))
+url = "${baseUrl}${endpoint}"
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer ${apiKey}"
+}
+data = {
+    "model": "${model}",
+    "messages": [
+        {"role": "user", "content": "A beautiful sunset over the ocean, digital art"}
+    ],
+    "max_tokens": 100
+}
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())`
+      case 'javascript':
+        return `const response = await fetch("${baseUrl}${endpoint}", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer ${apiKey}"
+  },
+  body: JSON.stringify({
+    model: "${model}",
+    messages: [
+      { role: "user", content: "A beautiful sunset over the ocean, digital art" }
+    ],
+    max_tokens: 100
+  })
+});
+
+const data = await response.json();
+console.log(data);`
+      default:
+        return ''
     }
   }
 
@@ -196,10 +247,10 @@ export function FreeImageAPI() {
           </div>
 
           {/* Models Info */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="mb-8">
             {models.map((model, index) => (
               <Card key={index} className="border-2 shadow-lg">
-                <CardHeader>
+                <CardHeader className="pb-3">
                   <div className="flex items-center gap-2">
                     <div className={`w-3 h-3 rounded-full bg-${model.color}-500`}></div>
                     <CardTitle className="text-lg">{model.name}</CardTitle>
@@ -208,36 +259,68 @@ export function FreeImageAPI() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                       <span className="text-sm text-muted-foreground">{t('baseUrl')}</span>
-                      <code className="bg-secondary/50 px-2 py-1 rounded text-xs font-mono">
+                      <code className="bg-secondary/50 px-2 py-1 rounded text-xs font-mono break-all">
                         {model.baseUrl}
                       </code>
                     </div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                       <span className="text-sm text-muted-foreground">{t('endpoint')}</span>
-                      <code className="bg-secondary/50 px-2 py-1 rounded text-xs font-mono">
+                      <code className="bg-secondary/50 px-2 py-1 rounded text-xs font-mono break-all">
                         {model.method} {model.endpoint}
                       </code>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleCopyExample(model.name)}
-                      className="w-full gap-2"
-                    >
-                      {copiedField === `example-${model.name}` ? (
-                        <>
-                          <Check className="h-4 w-4 text-green-500" />
-                          {t('exampleCopied')}
-                        </>
-                      ) : (
-                        <>
-                          <Code className="h-4 w-4" />
-                          {t('copyExample')}
-                        </>
-                      )}
-                    </Button>
+
+                    {/* Code Examples Tabs */}
+                    <div className="mt-4">
+                      <Tabs
+                        defaultValue="curl"
+                        value={selectedTab[model.name] || 'curl'}
+                        onValueChange={(value) => setSelectedTab(prev => ({ ...prev, [model.name]: value }))}
+                      >
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                          <TabsList className="w-full sm:w-auto">
+                            <TabsTrigger value="curl" className="flex-1 sm:flex-none text-xs sm:text-sm">cURL</TabsTrigger>
+                            <TabsTrigger value="python" className="flex-1 sm:flex-none text-xs sm:text-sm">Python</TabsTrigger>
+                            <TabsTrigger value="javascript" className="flex-1 sm:flex-none text-xs sm:text-sm">JS</TabsTrigger>
+                          </TabsList>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCopyExample(model.name)}
+                            className="gap-1 w-full sm:w-auto"
+                          >
+                            {copiedField === `example-${model.name}` ? (
+                              <>
+                                <Check className="h-3 w-3 text-green-500" />
+                                <span className="text-xs">{t('exampleCopied')}</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="h-3 w-3" />
+                                <span className="text-xs">{t('copyExample')}</span>
+                              </>
+                            )}
+                          </Button>
+                        </div>
+                        <TabsContent value="curl" className="mt-0">
+                          <pre className="bg-secondary/50 p-2 sm:p-3 rounded-lg text-[10px] sm:text-xs font-mono overflow-x-auto max-h-48 overflow-y-auto">
+                            <code>{getCodeExample(model.name, model.baseUrl, model.endpoint, 'curl')}</code>
+                          </pre>
+                        </TabsContent>
+                        <TabsContent value="python" className="mt-0">
+                          <pre className="bg-secondary/50 p-2 sm:p-3 rounded-lg text-[10px] sm:text-xs font-mono overflow-x-auto max-h-48 overflow-y-auto">
+                            <code>{getCodeExample(model.name, model.baseUrl, model.endpoint, 'python')}</code>
+                          </pre>
+                        </TabsContent>
+                        <TabsContent value="javascript" className="mt-0">
+                          <pre className="bg-secondary/50 p-2 sm:p-3 rounded-lg text-[10px] sm:text-xs font-mono overflow-x-auto max-h-48 overflow-y-auto">
+                            <code>{getCodeExample(model.name, model.baseUrl, model.endpoint, 'javascript')}</code>
+                          </pre>
+                        </TabsContent>
+                      </Tabs>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

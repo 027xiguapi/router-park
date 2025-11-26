@@ -360,3 +360,41 @@ export const docs = sqliteTable('docs', {
     .default(sql`(unixepoch())`)
     .notNull()
 })
+
+// 大语言模型状态类型
+export type ModelStatus = 'active' | 'inactive' | 'beta' | 'deprecated'
+export type ModelProvider = 'openai' | 'anthropic' | 'google' | 'meta' | 'mistral' | 'alibaba' | 'baidu' | 'other'
+
+// 大语言模型表 - 存储 AI 大语言模型信息
+export const models = sqliteTable('models', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  slug: text('slug').notNull(), // URL 友好的标识符，如 gpt-4, claude-3-opus
+  locale: text('locale').notNull(), // 语言，如 zh-CN, en-US
+  name: text('name').notNull(), // 模型名称，如 GPT-4, Claude 3 Opus
+  provider: text('provider').$type<ModelProvider>().notNull(), // 模型提供商
+  coverImageUrl: text('cover_image_url'), // 封面图片 URL
+  title: text('title').notNull(), // SEO 标题
+  description: text('description'), // 简短描述
+  content: text('content').notNull(), // Markdown 格式的详细介绍
+  status: text('status').$type<ModelStatus>().notNull().default('active'), // 模型状态
+  contextWindow: integer('context_window'), // 上下文窗口大小（tokens）
+  maxOutputTokens: integer('max_output_tokens'), // 最大输出 tokens
+  officialUrl: text('official_url'), // 官方网站链接
+  apiDocUrl: text('api_doc_url'), // API 文档链接
+  pricing: text('pricing'), // 定价信息（JSON 格式）
+  capabilities: text('capabilities'), // 能力标签（JSON 数组，如 ["text", "vision", "function-calling"]）
+  releaseDate: integer('release_date', { mode: 'timestamp' }), // 发布日期
+  sortOrder: integer('sort_order').notNull().default(0), // 排序顺序
+  views: integer('views').notNull().default(0), // 浏览次数
+  likes: integer('likes').notNull().default(0), // 点赞数
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
