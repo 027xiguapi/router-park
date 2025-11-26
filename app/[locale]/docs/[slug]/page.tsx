@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import MarkdownRender from '@/components/markdown/mark-down-render'
+import Markdown from 'markdown-to-jsx/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -163,7 +163,7 @@ const DocSlugPage = async (props: DocSlugPageProps) => {
                 prose-td:border
                 prose-td:border-border
               ">
-                <MarkdownRender content={content} />
+                <Markdown children={content} />
               </div>
 
               {/* 文档底部分隔 */}

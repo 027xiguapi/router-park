@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import MarkdownRender from '@/components/markdown/mark-down-render'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -10,6 +8,7 @@ import { formatDate } from '@/lib/utils'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/button'
+import Markdown from "markdown-to-jsx/react";
 
 interface PostSlugPageProps {
   params: Promise<{
@@ -199,7 +198,7 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
                 prose-td:border
                 prose-td:border-border
               ">
-                <MarkdownRender content={content} />
+                <Markdown children={content} />
               </div>
 
               {/* 文章底部分隔 */}

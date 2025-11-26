@@ -58,7 +58,7 @@
     "gray-matter": "^4.0.3",
     "immer": "^10.1.1",
     "lucide-react": "^0.487.0",
-    "markdown-to-jsx": "^7.7.4",
+    "markdown-to-jsx": "^9.1.2",
     "next": "15.3.5",
     "next-auth": "5.0.0-beta.29",
     "next-intl": "^4.3.4",

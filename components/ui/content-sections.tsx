@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import MarkdownRender from '@/components/markdown/mark-down-render'
+import Markdown from 'markdown-to-jsx/react'
 import { cn } from '@/lib/utils'
 
 interface TextImageSection {
@@ -34,7 +34,7 @@ export default function TextImageSections({ className, sections = [] }: TextImag
             <div className={cn('space-y-4', currentImagePosition === 'left' && 'lg:col-start-2')}>
               <h2 className="text-primary mb-6 text-2xl font-bold">{section.title}</h2>
               {section.content.map((paragraph, pIndex) => (
-                <MarkdownRender content={paragraph} key={pIndex} />
+                <Markdown children={paragraph} key={pIndex} />
               ))}
             </div>
 

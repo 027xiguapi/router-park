@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import MarkdownRender from '@/components/markdown/mark-down-render'
 import { Button } from '@/components/ui/button'
+import Markdown from 'markdown-to-jsx/react'
 
 interface ProxySlugPageProps {
   params: Promise<{
@@ -122,7 +122,7 @@ const ProxySlugPage = async (props: ProxySlugPageProps) => {
 
       {/* Content Section */}
       <div className="prose prose-lg dark:prose-invert max-w-none">
-        <MarkdownRender content={content} />
+        <Markdown children={content} />
       </div>
     </article>
   )
