@@ -12,4 +12,5 @@ export interface ServiceStatus {
   createdBy?: string // 创建人 ID
   createdByName?: string // 创建人名称
   createdByImage?: string // 创建人头像
+  isLikedByCurrentUser?: boolean // 当前用户是否已点赞
 }

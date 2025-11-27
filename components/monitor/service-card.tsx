@@ -19,6 +19,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
   const isOnline = service.status === "online"
   const [likes, setLikes] = useState(service.likes || 0)
   const [isLiking, setIsLiking] = useState(false)
+  const [isLikedByUser, setIsLikedByUser] = useState(service.isLikedByCurrentUser || false)
   const { isAuthenticated, showLoginModal, user } = useUser()
 
   const handleLike = async () => {
@@ -42,6 +43,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
       const data = await response.json()
       if (data.success) {
         setLikes(data.data.likes)
+        setIsLikedByUser(data.data.isLikedByCurrentUser)
       }
     } catch (error) {
       console.error('Error liking router:', error)
@@ -143,7 +145,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
             disabled={isLiking}
             className="gap-1 hover:text-red-500 h-8 px-2 sm:px-3"
           >
-            <Heart className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${likes > 0 ? 'fill-red-500 text-red-500' : ''}`} />
+            <Heart className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isLikedByUser ? 'fill-red-500 text-red-500' : ''}`} />
             <span className="text-xs sm:text-sm">{likes}</span>
           </Button>
 

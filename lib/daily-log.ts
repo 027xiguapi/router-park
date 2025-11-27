@@ -2,6 +2,8 @@ import { db } from '@/lib/db'
 import { routers, freeKeys } from '@/lib/db/schema'
 import { gte, sql, desc, eq } from 'drizzle-orm'
 import { parseKeyValues } from '@/lib/db/freeKeys'
+import fs from 'fs/promises'
+import path from 'path'
 
 // 简化的类型定义，匹配数据库返回的原始数据
 interface RouterData {
@@ -36,7 +38,7 @@ interface DailySummaryData {
   routers: {
     total: number
     online: number
-    offline: number
+    totalLikes: number
     newToday: RouterData[]
   }
   freeKeys: {
@@ -112,16 +114,15 @@ export async function getDailySummaryData(): Promise<DailySummaryData> {
     .from(routers)
     .where(eq(routers.status, 'online'))
 
-  const offlineRoutersCount = await db
-    .select({ count: sql<number>`count(*)` })
+  // 获取所有路由器的总点赞数
+  const totalLikesCount = await db
+    .select({ sum: sql<number>`COALESCE(SUM(${routers.likes}), 0)` })
     .from(routers)
-    .where(eq(routers.status, 'offline'))
 
   // 获取前一天新增的免费密钥
   const newFreeKeysYesterday = await db
     .select()
     .from(freeKeys)
-    .where(gte(freeKeys.createdAt, yesterday))
     .orderBy(desc(freeKeys.createdAt))
 
   // 获取所有免费密钥统计
@@ -153,7 +154,7 @@ export async function getDailySummaryData(): Promise<DailySummaryData> {
     routers: {
       total: Number(allRoutersCount[0]?.count || 0),
       online: Number(onlineRoutersCount[0]?.count || 0),
-      offline: Number(offlineRoutersCount[0]?.count || 0),
+      totalLikes: Number(totalLikesCount[0]?.sum || 0),
       newToday: serializedRouters
     },
     freeKeys: {
@@ -194,9 +195,9 @@ export function generateDailySummaryMarkdown(
   markdown += `## 🔌 ${t('routersSection.title')}\n\n`
 
   markdown += `### ${t('routersSection.overview')}\n\n`
-  markdown += `| ${t('routersSection.total')} | ${t('routersSection.online')} | ${t('routersSection.offline')} | ${t('routersSection.newToday')} |\n`
+  markdown += `| ${t('routersSection.total')} | ${t('routersSection.online')} | ${t('routersSection.totalLikes')} | ${t('routersSection.newToday')} |\n`
   markdown += `|------|------|------|------|\n`
-  markdown += `| **${routers.total}** ${t('routersSection.units.items')} | **${routers.online}** ${t('routersSection.units.items')} ✅ | **${routers.offline}** ${t('routersSection.units.items')} ⚠️ | **${routers.newToday.length}** ${t('routersSection.units.items')} 🆕 |\n\n`
+  markdown += `| **${routers.total}** ${t('routersSection.units.items')} | **${routers.online}** ${t('routersSection.units.items')} ✅ | **${routers.totalLikes}** 👍 | **${routers.newToday.length}** ${t('routersSection.units.items')} 🆕 |\n\n`
 
   // 今日新增路由器
   if (routers.newToday.length > 0) {
@@ -207,7 +208,6 @@ export function generateDailySummaryMarkdown(
       markdown += `${index + 1}. **${router.name}** ${statusEmoji}${verifiedBadge}\n`
       markdown += `   - URL: [${router.url}](${router.url})\n`
       markdown += `   - ${t('routersSection.status')}: ${router.status === 'online' ? t('routersSection.statusOnline') : t('routersSection.statusOffline')}\n`
-      markdown += `   - ${t('routersSection.responseTime')}: ${router.responseTime}ms\n`
       if (router.inviteLink) {
         markdown += `   - ${t('routersSection.inviteLink')}: [${t('routersSection.visitLink')}](${router.inviteLink})\n`
       }
@@ -245,21 +245,9 @@ export function generateDailySummaryMarkdown(
       markdown += `   - ${t('freeKeysSection.status')}: ${statusLabel}\n`
       markdown += `   - ${t('freeKeysSection.keyCount')}: ${keys.length} ${t('routersSection.units.items')}\n`
 
-      if (keys.length > 0 && keys.length <= 5) {
-        markdown += `   - ${t('freeKeysSection.keyList')}:\n`
-        keys.forEach((k, i) => {
-          // 隐藏部分密钥内容
-          const maskedKey = k.length > 20 ? `${k.substring(0, 10)}...${k.substring(k.length - 10)}` : k
-          markdown += `     ${i + 1}. \`${maskedKey}\`\n`
-        })
-      } else if (keys.length > 5) {
-        markdown += `   - ${t('freeKeysSection.keyPreview')}:\n`
-        keys.slice(0, 3).forEach((k, i) => {
-          const maskedKey = k.length > 20 ? `${k.substring(0, 10)}...${k.substring(k.length - 10)}` : k
-          markdown += `     ${i + 1}. \`${maskedKey}\`\n`
-        })
-        markdown += `   - ${t('freeKeysSection.moreKeys', { count: keys.length - 3 })}\n`
-      }
+      keys.forEach((k, i) => {
+        markdown += `     ${i + 1}. \`${k}\`\n`
+      })
 
       markdown += `\n`
     })

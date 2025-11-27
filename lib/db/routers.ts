@@ -22,6 +22,7 @@ export interface Router {
   updatedBy?: string | null
   createdAt: Date
   updatedAt: Date
+  isLikedByCurrentUser?: boolean
 }
 
 export interface CreateRouterInput {
@@ -49,6 +50,7 @@ export interface RouterQueryOptions {
   sortBy?: 'latest' | 'likes' | 'name'
   userId?: string
   likedBy?: boolean
+  currentUserId?: string // 当前登录用户的 ID，用于判断是否已点赞
 }
 
 export interface PaginatedRouters {
@@ -86,7 +88,7 @@ export async function createRouter(db: Db, input: CreateRouterInput): Promise<Ro
 }
 
 // 获取所有路由器
-export async function getAllRouters(db: Db): Promise<Router[]> {
+export async function getAllRouters(db: Db, currentUserId?: string): Promise<Router[]> {
   const result = await db
     .select({
       id: routers.id,
@@ -109,7 +111,20 @@ export async function getAllRouters(db: Db): Promise<Router[]> {
     .leftJoin(users, eq(routers.createdBy, users.id))
     .orderBy(sql`${routers.createdAt} DESC`)
 
-  return result.map(transformRouter)
+  // 如果有当前用户 ID，批量查询点赞状态
+  if (currentUserId && result.length > 0) {
+    const routerIds = result.map(r => r.id)
+    const likedRouters = await db
+      .select({ routerId: routerLikes.routerId })
+      .from(routerLikes)
+      .where(sql`${routerLikes.userId} = ${currentUserId} AND ${routerLikes.routerId} IN (${sql.join(routerIds.map(id => sql`${id}`), sql`, `)})`)
+
+    const likedRouterIds = new Set(likedRouters.map(r => r.routerId))
+
+    return result.map(r => transformRouter(r, likedRouterIds.has(r.id)))
+  }
+
+  return result.map(r => transformRouter(r))
 }
 
 // 获取路由器（支持分页和搜索）
@@ -120,7 +135,8 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
     search,
     sortBy = 'latest',
     userId,
-    likedBy = false
+    likedBy = false,
+    currentUserId
   } = options
 
   const offset = (page - 1) * pageSize
@@ -223,8 +239,25 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
   const total = Number(totalResult[0].count)
   const totalPages = Math.ceil(total / pageSize)
 
+  // 如果有当前用户 ID，批量查询点赞状态
+  let routersWithLikeStatus = result
+  if (currentUserId && result.length > 0) {
+    const routerIds = result.map(r => r.id)
+    const likedRouters = await db
+      .select({ routerId: routerLikes.routerId })
+      .from(routerLikes)
+      .where(sql`${routerLikes.userId} = ${currentUserId} AND ${routerLikes.routerId} IN (${sql.join(routerIds.map(id => sql`${id}`), sql`, `)})`)
+
+    const likedRouterIds = new Set(likedRouters.map(r => r.routerId))
+
+    routersWithLikeStatus = result.map(r => ({
+      ...r,
+      isLikedByCurrentUser: likedRouterIds.has(r.id)
+    }))
+  }
+
   return {
-    data: result.map(transformRouter),
+    data: routersWithLikeStatus.map(r => transformRouter(r, r.isLikedByCurrentUser)),
     pagination: {
       page,
       pageSize,
@@ -237,7 +270,7 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
 }
 
 // 获取所有路由器（按点赞数排序）
-export async function getRoutersByLikes(db: Db): Promise<Router[]> {
+export async function getRoutersByLikes(db: Db, currentUserId?: string): Promise<Router[]> {
   const result = await db
     .select({
       id: routers.id,
@@ -260,11 +293,24 @@ export async function getRoutersByLikes(db: Db): Promise<Router[]> {
     .leftJoin(users, eq(routers.createdBy, users.id))
     .orderBy(sql`${routers.likes} DESC, ${routers.createdAt} DESC`)
 
-  return result.map(transformRouter)
+  // 如果有当前用户 ID，批量查询点赞状态
+  if (currentUserId && result.length > 0) {
+    const routerIds = result.map(r => r.id)
+    const likedRouters = await db
+      .select({ routerId: routerLikes.routerId })
+      .from(routerLikes)
+      .where(sql`${routerLikes.userId} = ${currentUserId} AND ${routerLikes.routerId} IN (${sql.join(routerIds.map(id => sql`${id}`), sql`, `)})`)
+
+    const likedRouterIds = new Set(likedRouters.map(r => r.routerId))
+
+    return result.map(r => transformRouter(r, likedRouterIds.has(r.id)))
+  }
+
+  return result.map(r => transformRouter(r))
 }
 
 // 获取用户点赞的路由器
-export async function getUserLikedRouters(db: Db, userId: string): Promise<Router[]> {
+export async function getUserLikedRouters(db: Db, userId: string, currentUserId?: string): Promise<Router[]> {
   const result = await db
     .select({
       id: routers.id,
@@ -289,7 +335,20 @@ export async function getUserLikedRouters(db: Db, userId: string): Promise<Route
     .where(eq(routerLikes.userId, userId))
     .orderBy(sql`${routerLikes.createdAt} DESC`)
 
-  return result.map(transformRouter)
+  // 如果有当前用户 ID，批量查询点赞状态
+  if (currentUserId && result.length > 0) {
+    const routerIds = result.map(r => r.id)
+    const likedRouters = await db
+      .select({ routerId: routerLikes.routerId })
+      .from(routerLikes)
+      .where(sql`${routerLikes.userId} = ${currentUserId} AND ${routerLikes.routerId} IN (${sql.join(routerIds.map(id => sql`${id}`), sql`, `)})`)
+
+    const likedRouterIds = new Set(likedRouters.map(r => r.routerId))
+
+    return result.map(r => transformRouter(r, likedRouterIds.has(r.id)))
+  }
+
+  return result.map(r => transformRouter(r))
 }
 
 // 根据 ID 获取路由器
@@ -423,7 +482,7 @@ export async function checkAllRoutersHealth(db: Db): Promise<Router[]> {
 }
 
 // 辅助函数：转换数据库结果为 Router 类型
-function transformRouter(data: any): Router {
+function transformRouter(data: any, isLikedByCurrentUser?: boolean): Router {
   return {
     id: data.id,
     name: data.name,
@@ -439,7 +498,8 @@ function transformRouter(data: any): Router {
     createdByImage: data.createdByImage || null,
     updatedBy: data.updatedBy,
     createdAt: new Date(data.createdAt),
-    updatedAt: new Date(data.updatedAt)
+    updatedAt: new Date(data.updatedAt),
+    isLikedByCurrentUser: isLikedByCurrentUser || false
   }
 }
 

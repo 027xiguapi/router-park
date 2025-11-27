@@ -65,10 +65,13 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
           showLoginModal()
           return
         }
-        params.set('userId', user?.id || '')
         params.set('likedBy', 'true')
       } else {
         params.set('sortBy', 'latest')
+      }
+
+      if (user?.id) {
+        params.set('userId', user?.id || '')
       }
 
       const url = `/api/routers?${params.toString()}`

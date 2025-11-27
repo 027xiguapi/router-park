@@ -8,6 +8,7 @@ import {
   getUserLikedRouters,
   getRoutersWithPagination,
 } from '@/lib/db/routers'
+import { auth } from '@/lib/auth'
 
 import type { CreateRouterInput, RouterQueryOptions } from '@/lib/db/routers'
 import type { NextRequest } from 'next/server'
@@ -15,6 +16,10 @@ import type { NextRequest } from 'next/server'
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
+
+    // 获取当前登录用户
+    const session = await auth()
+    const currentUserId = session?.user?.id
 
     // 解析查询参数
     const page = parseInt(searchParams.get('page') || '1', 10)
@@ -37,7 +42,8 @@ export async function GET(request: NextRequest) {
         search,
         sortBy: sortBy || (likedBy ? 'latest' : (searchParams.get('sortBy') === 'likes' ? 'likes' : 'latest')),
         userId,
-        likedBy
+        likedBy,
+        currentUserId
       }
 
       const result = await getRoutersWithPagination(db, options)
@@ -53,13 +59,13 @@ export async function GET(request: NextRequest) {
 
       if (likedBy && userId) {
         // 获取用户点赞的路由器
-        routers = await getUserLikedRouters(db, userId)
+        routers = await getUserLikedRouters(db, userId, currentUserId)
       } else if (sortBy === 'likes') {
         // 按点赞数排序
-        routers = await getRoutersByLikes(db)
+        routers = await getRoutersByLikes(db, currentUserId)
       } else {
         // 默认：按创建时间排序
-        routers = await getAllRouters(db)
+        routers = await getAllRouters(db, currentUserId)
       }
 
       return NextResponse.json({

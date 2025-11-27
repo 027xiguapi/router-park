@@ -801,6 +801,7 @@
       "total": "Total",
       "online": "Online",
       "offline": "Offline",
+      "totalLikes": "Likes",
       "newToday": "New Today",
       "units": {
         "items": "items"

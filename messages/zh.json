@@ -806,6 +806,7 @@
       "total": "总计",
       "online": "在线",
       "offline": "离线",
+      "totalLikes": "点赞",
       "newToday": "今日新增",
       "units": {
         "items": "个"

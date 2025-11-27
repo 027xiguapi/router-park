@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge'
 import {
   TrendingUp,
   Activity,
-  Key,
   CheckCircle2,
   XCircle,
   Sparkles,
@@ -15,7 +14,6 @@ import {
   ExternalLink
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {getTranslations} from "next-intl/server";
 import {useTranslations} from "next-intl";
 
 interface RouterData {
@@ -50,7 +48,7 @@ interface DailySummaryData {
   routers: {
     total: number
     online: number
-    offline: number
+    totalLikes: number
     newToday: RouterData[]
   }
   freeKeys: {
@@ -105,7 +103,7 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="mb-8">
             {/* Routers Stats */}
             <Card className="border-2 shadow-lg">
               <CardHeader>
@@ -129,13 +127,13 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
                       {t('routersSection.online')}
                     </div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-orange-500/10 border border-orange-500/20">
-                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                      {routers.offline}
+                  <div className="text-center p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      {routers.totalLikes}
                     </div>
                     <div className="text-sm text-muted-foreground flex items-center justify-center gap-1 mt-1">
-                      <XCircle className="h-3 w-3" />
-                      {t('routersSection.offline')}
+                      <ThumbsUp className="h-3 w-3" />
+                      {t('routersSection.totalLikes')}
                     </div>
                   </div>
                   <div className="col-span-2 text-center p-4 rounded-lg bg-primary/10 border border-primary/20">
@@ -150,13 +148,15 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
                 </div>
               </CardContent>
             </Card>
+          </div>
 
-            {/* Free Keys Stats */}
+          {/* Free Keys Stats */}
+          <div className="mb-8">
             <Card className="border-2 shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="flex items-center gap-2">
-                    <Key className="h-5 w-5 text-primary" />
+                    <Activity className="h-5 w-5 text-primary" />
                     {t('freeKeysSection.title')}
                   </CardTitle>
                   <Badge variant="secondary">{freeKeys.total} {t('freeKeysSection.units.groups')}</Badge>
@@ -164,7 +164,7 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
                 <CardDescription>{t('freeKeysSection.overview')}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="text-center p-4 rounded-lg bg-green-500/10 border border-green-500/20">
                     <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                       {freeKeys.active}
@@ -174,6 +174,22 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
                       {t('freeKeysSection.active')}
                     </div>
                   </div>
+                  <div className="text-center p-4 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                      {freeKeys.claude}
+                    </div>
+                    <div className="text-sm text-muted-foreground mt-1">
+                      {t('freeKeysSection.typeClaude')}
+                    </div>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                    <div className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">
+                      {freeKeys.llm}
+                    </div>
+                    <div className="text-sm text-muted-foreground mt-1">
+                      {t('freeKeysSection.typeLlm')}
+                    </div>
+                  </div>
                   <div className="text-center p-4 rounded-lg bg-primary/10 border border-primary/20">
                     <div className="text-2xl font-bold text-primary">
                       {freeKeys.newToday.length}
@@ -181,22 +197,6 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
                     <div className="text-sm text-muted-foreground flex items-center justify-center gap-1 mt-1">
                       <Sparkles className="h-3 w-3" />
                       {t('freeKeysSection.newToday')}
-                    </div>
-                  </div>
-                  <div className="text-center p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                      {freeKeys.claude}
-                    </div>
-                    <div className="text-sm text-muted-foreground mt-1">
-                      {t('freeKeysSection.claude')}
-                    </div>
-                  </div>
-                  <div className="text-center p-4 rounded-lg bg-purple-500/10 border border-purple-500/20">
-                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                      {freeKeys.llm}
-                    </div>
-                    <div className="text-sm text-muted-foreground mt-1">
-                      {t('freeKeysSection.llm')}
                     </div>
                   </div>
                 </div>
@@ -283,7 +283,7 @@ export function DailyLogContent({ data, locale }: DailySummaryContentProps) {
             </CardContent>
           </Card>
 
-          {/* New Keys Today */}
+           New Keys Today
           <Card className="mb-8 border-2 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
