@@ -11,7 +11,7 @@ import { FreeVPN } from "@/components/free-vpn"
 import { FreeAPIKeys } from "@/components/free-api-keys"
 import { FreeLLMAPI } from "@/components/free-llm-api"
 import { FreeImageAPI } from "@/components/free-image-api"
-import { LanguageSelectorSection } from "@/components/language-selector-section"
+import { LanguageSelector } from "@/components/language-selector"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('home')
@@ -44,7 +44,7 @@ export default async function Home({
       <HowItWorks />
       <Testimonials />
       <FAQ />
-      <LanguageSelectorSection />
+      <LanguageSelector />
     </>
   )
 }
