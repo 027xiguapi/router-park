@@ -2,11 +2,11 @@ import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import Markdown from 'markdown-to-jsx/react'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { formatDate } from '@/lib/utils'
-import { Calendar, Clock, ArrowLeft } from 'lucide-react'
+import { Calendar, Clock, ArrowLeft, Terminal, Brain, ArrowRight, Sparkles } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/button'
 
@@ -184,6 +184,53 @@ const DocSlugPage = async (props: DocSlugPageProps) => {
               </div>
             </CardContent>
           </Card>
+          {/* 推荐阅读 */}
+          <div className="mt-8 sm:mt-12">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">
+              推荐阅读
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {/* 免费 Claude Code 卡片 */}
+              <Link href="/free-claude-code">
+                <Card className="h-full border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col h-full">
+                      <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                        免费 Claude Code
+                      </h3>
+                      <p className="text-sm text-muted-foreground flex-grow">
+                        探索如何免费使用 Claude Code 进行 AI 辅助编程，提升开发效率。
+                      </p>
+                      <div className="mt-4 flex items-center text-sm text-primary font-medium">
+                        了解更多
+                        <ArrowLeft className="ml-2 h-4 w-4 rotate-180 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* 免费 LLM API 卡片 */}
+              <Link href="/free-llm-api">
+                <Card className="h-full border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col h-full">
+                      <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                        免费 LLM API
+                      </h3>
+                      <p className="text-sm text-muted-foreground flex-grow">
+                        发现各种免费的大语言模型 API 服务，轻松集成 AI 能力到你的项目中。
+                      </p>
+                      <div className="mt-4 flex items-center text-sm text-primary font-medium">
+                        了解更多
+                        <ArrowLeft className="ml-2 h-4 w-4 rotate-180 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
+          </div>
         </article>
       </div>
     </div>
