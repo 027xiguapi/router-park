@@ -787,5 +787,67 @@
     "noArticles": "No articles available",
     "publishedAt": "Published at {date}",
     "readMore": "Read More"
+  },
+  "dailyLog": {
+    "metaTitle": "Daily Summary - Free LLM API Relays & API Keys",
+    "metaDescription": "View daily statistics and updates for free LLM API relays and free API keys",
+    "loading": "Loading...",
+    "title": "Daily Data Summary",
+    "subtitle": "This page summarizes the latest data on free LLM API relays and free API keys for",
+    "subtitleSuffix": ".",
+    "routersSection": {
+      "title": "API Relay Overview",
+      "overview": "Overall Data",
+      "total": "Total",
+      "online": "Online",
+      "offline": "Offline",
+      "newToday": "New Today",
+      "units": {
+        "items": "items"
+      },
+      "newTodayTitle": "New Relays Today",
+      "noNewItems": "No new relays today.",
+      "status": "Status",
+      "statusOnline": "Online",
+      "statusOffline": "Offline",
+      "responseTime": "Response Time",
+      "inviteLink": "Invite Link",
+      "visitLink": "Visit",
+      "likes": "Likes",
+      "verified": "Verified"
+    },
+    "freeKeysSection": {
+      "title": "Free API Keys Overview",
+      "overview": "Overall Data",
+      "total": "Total",
+      "active": "Active",
+      "claude": "Claude Keys",
+      "llm": "LLM Keys",
+      "newToday": "New Today",
+      "units": {
+        "groups": "groups"
+      },
+      "newTodayTitle": "New Keys Today",
+      "noNewItems": "No new keys today.",
+      "type": "Type",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "Status",
+      "statusActive": "Active",
+      "statusInactive": "Inactive",
+      "statusExhausted": "Exhausted",
+      "keyCount": "Key Count",
+      "keyList": "Key List",
+      "keyPreview": "Key Preview (showing first 3)",
+      "moreKeys": "{count} more keys..."
+    },
+    "notesSection": {
+      "title": "Notes",
+      "dataDate": "Data statistics time:",
+      "autoCheck": "Relay status is automatically detected and updated daily",
+      "realTimeUpdate": "Free key status is updated in real time",
+      "autoGenerate": "This page is automatically generated daily, data comes from the system database",
+      "lastUpdate": "Last updated:"
+    }
   }
 }

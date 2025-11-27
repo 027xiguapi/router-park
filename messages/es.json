@@ -605,5 +605,67 @@
     "metaDescription": "Explora nuestros últimos artículos sobre análisis de belleza, tecnología de IA y estética facial. Descubre conocimientos de expertos, consejos y tendencias en el mundo de la evaluación de belleza impulsada por IA.",
     "noArticles": "No hay artículos disponibles",
     "publishedAt": "Publicado el {date}"
+  },
+  "dailyLog": {
+    "metaTitle": "Resumen Diario - Retransmisiones de API LLM Gratuitas y Claves API",
+    "metaDescription": "Consulta estadísticas diarias y actualizaciones de retransmisiones de API LLM gratuitas y claves API gratuitas",
+    "loading": "Cargando...",
+    "title": "Resumen de Datos Diarios",
+    "subtitle": "Esta página resume los últimos datos sobre retransmisiones de API LLM gratuitas y claves API gratuitas para",
+    "subtitleSuffix": ".",
+    "routersSection": {
+      "title": "Resumen de Retransmisiones API",
+      "overview": "Datos Generales",
+      "total": "Total",
+      "online": "En Línea",
+      "offline": "Desconectado",
+      "newToday": "Nuevos Hoy",
+      "units": {
+        "items": "elementos"
+      },
+      "newTodayTitle": "Nuevas Retransmisiones Hoy",
+      "noNewItems": "No hay nuevas retransmisiones hoy.",
+      "status": "Estado",
+      "statusOnline": "En Línea",
+      "statusOffline": "Desconectado",
+      "responseTime": "Tiempo de Respuesta",
+      "inviteLink": "Enlace de Invitación",
+      "visitLink": "Visitar",
+      "likes": "Me gusta",
+      "verified": "Verificado"
+    },
+    "freeKeysSection": {
+      "title": "Resumen de Claves API Gratuitas",
+      "overview": "Datos Generales",
+      "total": "Total",
+      "active": "Activas",
+      "claude": "Claves Claude",
+      "llm": "Claves LLM",
+      "newToday": "Nuevos Hoy",
+      "units": {
+        "groups": "grupos"
+      },
+      "newTodayTitle": "Claves Nuevas Hoy",
+      "noNewItems": "No hay claves nuevas hoy.",
+      "type": "Tipo",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "Estado",
+      "statusActive": "Activa",
+      "statusInactive": "Inactiva",
+      "statusExhausted": "Agotada",
+      "keyCount": "Número de Claves",
+      "keyList": "Lista de Claves",
+      "keyPreview": "Vista Previa de Claves (mostrando las 3 primeras)",
+      "moreKeys": "{count} claves más..."
+    },
+    "notesSection": {
+      "title": "Notas",
+      "dataDate": "Fecha de las estadísticas:",
+      "autoCheck": "El estado de la retransmisión se detecta automáticamente y se actualiza diariamente",
+      "realTimeUpdate": "El estado de las claves gratuitas se actualiza en tiempo real",
+      "autoGenerate": "Esta página se genera automáticamente cada día, los datos provienen de la base de datos del sistema",
+      "lastUpdate": "Última actualización:"
+    }
   }
 }

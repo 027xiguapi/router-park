@@ -787,5 +787,67 @@
     "noArticles": "記事がありません",
     "publishedAt": "{date}に公開",
     "readMore": "続きを読む"
+  },
+  "dailyLog": {
+    "metaTitle": "デイリーサマリー - 無料LLM APIリレー & APIキー",
+    "metaDescription": "無料LLM APIリレーと無料APIキーの日次統計と更新情報を表示",
+    "loading": "読み込み中...",
+    "title": "日次データサマリー",
+    "subtitle": "このページは、以下の日付における無料LLM APIリレーと無料APIキーの最新データをまとめたものです：",
+    "subtitleSuffix": "",
+    "routersSection": {
+      "title": "APIリレー概要",
+      "overview": "全体データ",
+      "total": "合計",
+      "online": "オンライン",
+      "offline": "オフライン",
+      "newToday": "本日新規",
+      "units": {
+        "items": "件"
+      },
+      "newTodayTitle": "本日追加された新規リレー",
+      "noNewItems": "本日の新規リレーはありません。",
+      "status": "ステータス",
+      "statusOnline": "オンライン",
+      "statusOffline": "オフライン",
+      "responseTime": "応答時間",
+      "inviteLink": "招待リンク",
+      "visitLink": "訪問",
+      "likes": "いいね",
+      "verified": "確認済み"
+    },
+    "freeKeysSection": {
+      "title": "無料APIキー概要",
+      "overview": "全体データ",
+      "total": "合計",
+      "active": "有効",
+      "claude": "Claudeキー",
+      "llm": "LLMキー",
+      "newToday": "本日新規",
+      "units": {
+        "groups": "グループ"
+      },
+      "newTodayTitle": "本日追加された新規キー",
+      "noNewItems": "本日の新規キーはありません。",
+      "type": "タイプ",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "ステータス",
+      "statusActive": "有効",
+      "statusInactive": "無効",
+      "statusExhausted": "使用済み",
+      "keyCount": "キー数",
+      "keyList": "キー一覧",
+      "keyPreview": "キープレビュー（先頭3件を表示）",
+      "moreKeys": "さらに{count}件..."
+    },
+    "notesSection": {
+      "title": "備考",
+      "dataDate": "データ統計時刻：",
+      "autoCheck": "リレーステータスは自動検出され、日次で更新されます",
+      "realTimeUpdate": "無料キーのステータスはリアルタイムで更新されます",
+      "autoGenerate": "このページは自動的に日次生成され、データはシステムデータベースに基づきます",
+      "lastUpdate": "最終更新："
+    }
   }
 }

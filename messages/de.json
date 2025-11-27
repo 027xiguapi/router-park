@@ -605,5 +605,67 @@
     "metaDescription": "Entdecken Sie unsere neuesten Artikel über Schönheitsanalyse, AI-Technologie und Gesichtsästhetik. Entdecken Sie Experteneinblicke, Tipps und Trends in der Welt der AI-gestützten Schönheitsbewertung.",
     "noArticles": "Keine Artikel verfügbar",
     "publishedAt": "Veröffentlicht am {date}"
+  },
+  "dailyLog": {
+    "metaTitle": "Tägliche Zusammenfassung - Kostenlose LLM-API-Relays & API-Schlüssel",
+    "metaDescription": "Tägliche Statistiken und Updates zu kostenlosen LLM-API-Relays und kostenlosen API-Schlüsseln einsehen",
+    "loading": "Lädt...",
+    "title": "Tägliche Datenzusammenfassung",
+    "subtitle": "Diese Seite fasst die neuesten Daten zu kostenlosen LLM-API-Relays und kostenlosen API-Schlüsseln für",
+    "subtitleSuffix": " zusammen.",
+    "routersSection": {
+      "title": "API-Relay-Überblick",
+      "overview": "Gesamtübersicht",
+      "total": "Gesamt",
+      "online": "Online",
+      "offline": "Offline",
+      "newToday": "Neu heute",
+      "units": {
+        "items": "Einträge"
+      },
+      "newTodayTitle": "Neue Relays heute",
+      "noNewItems": "Heute keine neuen Relays.",
+      "status": "Status",
+      "statusOnline": "Online",
+      "statusOffline": "Offline",
+      "responseTime": "Antwortzeit",
+      "inviteLink": "Einladungslink",
+      "visitLink": "Besuchen",
+      "likes": "Likes",
+      "verified": "Verifiziert"
+    },
+    "freeKeysSection": {
+      "title": "Überblick kostenlose API-Schlüssel",
+      "overview": "Gesamtübersicht",
+      "total": "Gesamt",
+      "active": "Aktiv",
+      "claude": "Claude-Schlüssel",
+      "llm": "LLM-Schlüssel",
+      "newToday": "Neu heute",
+      "units": {
+        "groups": "Gruppen"
+      },
+      "newTodayTitle": "Neue Schlüssel heute",
+      "noNewItems": "Heute keine neuen Schlüssel.",
+      "type": "Typ",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "Status",
+      "statusActive": "Aktiv",
+      "statusInactive": "Inaktiv",
+      "statusExhausted": "Aufgebraucht",
+      "keyCount": "Schlüsselanzahl",
+      "keyList": "Schlüsselliste",
+      "keyPreview": "Schlüsselvorschau (zeigt die ersten 3)",
+      "moreKeys": "Noch {count} Schlüssel..."
+    },
+    "notesSection": {
+      "title": "Hinweise",
+      "dataDate": "Zeitpunkt der Datenerhebung:",
+      "autoCheck": "Der Relay-Status wird automatisch täglich geprüft und aktualisiert",
+      "realTimeUpdate": "Der Status der kostenlosen Schlüssel wird in Echtzeit aktualisiert",
+      "autoGenerate": "Diese Seite wird automatisch täglich generiert, Daten stammen aus der Systemdatenbank",
+      "lastUpdate": "Zuletzt aktualisiert:"
+    }
   }
 }

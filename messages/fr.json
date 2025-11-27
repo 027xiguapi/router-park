@@ -605,5 +605,67 @@
     "metaDescription": "Explorez nos derniers articles sur l'analyse de la beauté, la technologie IA et l'esthétique faciale. Découvrez des aperçus d'experts, des conseils et des tendances dans le monde de l'évaluation de la beauté assistée par IA.",
     "noArticles": "Aucun article disponible",
     "publishedAt": "Publié le {date}"
+  },
+  "dailyLog": {
+    "metaTitle": "Résumé Quotidien - Relais d'API LLM Gratuits et Clés d'API",
+    "metaDescription": "Consultez les statistiques quotidiennes et les mises à jour pour les relais d'API LLM gratuits et les clés d'API gratuites",
+    "loading": "Chargement...",
+    "title": "Résumé des Données Quotidiennes",
+    "subtitle": "Cette page résume les dernières données sur les relais d'API LLM gratuits et les clés d'API gratuites pour",
+    "subtitleSuffix": ".",
+    "routersSection": {
+      "title": "Aperçu des Relais d'API",
+      "overview": "Données Globales",
+      "total": "Total",
+      "online": "En ligne",
+      "offline": "Hors ligne",
+      "newToday": "Nouveaux Aujourd'hui",
+      "units": {
+        "items": "éléments"
+      },
+      "newTodayTitle": "Nouveaux Relais Aujourd'hui",
+      "noNewItems": "Aucun nouveau relai aujourd'hui.",
+      "status": "Statut",
+      "statusOnline": "En ligne",
+      "statusOffline": "Hors ligne",
+      "responseTime": "Temps de Réponse",
+      "inviteLink": "Lien d'Invitation",
+      "visitLink": "Visiter",
+      "likes": "J'aime",
+      "verified": "Vérifié"
+    },
+    "freeKeysSection": {
+      "title": "Aperçu des Clés d'API Gratuites",
+      "overview": "Données Globales",
+      "total": "Total",
+      "active": "Actives",
+      "claude": "Clés Claude",
+      "llm": "Clés LLM",
+      "newToday": "Nouvelles Aujourd'hui",
+      "units": {
+        "groups": "groupes"
+      },
+      "newTodayTitle": "Nouvelles Clés Aujourd'hui",
+      "noNewItems": "Aucune nouvelle clé aujourd'hui.",
+      "type": "Type",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "Statut",
+      "statusActive": "Active",
+      "statusInactive": "Inactive",
+      "statusExhausted": "Épuisée",
+      "keyCount": "Nombre de Clés",
+      "keyList": "Liste des Clés",
+      "keyPreview": "Aperçu des Clés (affichage des 3 premières)",
+      "moreKeys": "{count} clés supplémentaires..."
+    },
+    "notesSection": {
+      "title": "Notes",
+      "dataDate": "Date des statistiques :",
+      "autoCheck": "Le statut des relais est détecté automatiquement et mis à jour quotidiennement",
+      "realTimeUpdate": "Le statut des clés gratuites est mis à jour en temps réel",
+      "autoGenerate": "Cette page est générée automatiquement chaque jour, les données proviennent de la base de données du système",
+      "lastUpdate": "Dernière mise à jour :"
+    }
   }
 }

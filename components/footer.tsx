@@ -49,7 +49,7 @@ export function Footer() {
               <h3 className="mb-4 text-sm font-semibold">{t('resources.title')}</h3>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                  <Link href="/config-guide" className="text-muted-foreground transition-colors hover:text-foreground">
                     {t('resources.documentation')}
                   </Link>
                 </li>
@@ -59,7 +59,7 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                  <Link href="/blogs" className="text-muted-foreground transition-colors hover:text-foreground">
                     {t('resources.blog')}
                   </Link>
                 </li>

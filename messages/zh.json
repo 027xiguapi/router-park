@@ -792,5 +792,67 @@
         "description": "Lexica Aperture 高质量图片生成"
       }
     }
+  },
+  "dailyLog": {
+    "metaTitle": "每日数据总结 - 免费大模型接口中转站 & API 密钥汇总",
+    "metaDescription": "查看每日免费大模型接口中转站和免费 API 密钥的最新数据统计和新增信息",
+    "loading": "加载中...",
+    "title": "每日数据总结",
+    "subtitle": "本页面汇总了",
+    "subtitleSuffix": "的免费大模型接口中转站和免费 API 密钥的最新数据。",
+    "routersSection": {
+      "title": "API 中转站概况",
+      "overview": "总体数据",
+      "total": "总计",
+      "online": "在线",
+      "offline": "离线",
+      "newToday": "今日新增",
+      "units": {
+        "items": "个"
+      },
+      "newTodayTitle": "今日新增中转站",
+      "noNewItems": "暂无新增中转站。",
+      "status": "状态",
+      "statusOnline": "在线",
+      "statusOffline": "离线",
+      "responseTime": "响应时间",
+      "inviteLink": "邀请链接",
+      "visitLink": "点击访问",
+      "likes": "点赞数",
+      "verified": "认证"
+    },
+    "freeKeysSection": {
+      "title": "免费 API 密钥概况",
+      "overview": "总体数据",
+      "total": "总计",
+      "active": "活跃",
+      "claude": "Claude 密钥",
+      "llm": "LLM 密钥",
+      "newToday": "今日新增",
+      "units": {
+        "groups": "组"
+      },
+      "newTodayTitle": "今日新增密钥",
+      "noNewItems": "暂无新增密钥。",
+      "type": "类型",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "状态",
+      "statusActive": "活跃",
+      "statusInactive": "未激活",
+      "statusExhausted": "已耗尽",
+      "keyCount": "密钥数量",
+      "keyList": "密钥列表",
+      "keyPreview": "密钥预览（仅显示前3个）",
+      "moreKeys": "还有 {count} 个密钥..."
+    },
+    "notesSection": {
+      "title": "说明",
+      "dataDate": "数据统计时间：",
+      "autoCheck": "中转站状态每日自动检测更新",
+      "realTimeUpdate": "免费密钥状态实时更新",
+      "autoGenerate": "本页面每日自动生成，数据来源于系统数据库",
+      "lastUpdate": "最后更新时间："
+    }
   }
 }

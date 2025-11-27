@@ -787,5 +787,67 @@
     "noArticles": "사용 가능한 기사가 없습니다",
     "publishedAt": "{date}에 게시됨",
     "readMore": "더 읽기"
+  },
+  "dailyLog": {
+    "metaTitle": "일일 요약 - 무료 LLM API 중계 서버 및 API 키",
+    "metaDescription": "무료 LLM API 중계 서버와 무료 API 키에 대한 일일 통계 및 업데이트 확인",
+    "loading": "불러오는 중...",
+    "title": "일일 데이터 요약",
+    "subtitle": "이 페이지는 다음에 대한 무료 LLM API 중계 서버와 무료 API 키의 최신 데이터를 요약합니다: ",
+    "subtitleSuffix": ".",
+    "routersSection": {
+      "title": "API 중계 서버 개요",
+      "overview": "전체 데이터",
+      "total": "총계",
+      "online": "온라인",
+      "offline": "오프라인",
+      "newToday": "오늘 추가됨",
+      "units": {
+        "items": "개"
+      },
+      "newTodayTitle": "오늘 추가된 중계 서버",
+      "noNewItems": "오늘 추가된 중계 서버가 없습니다.",
+      "status": "상태",
+      "statusOnline": "온라인",
+      "statusOffline": "오프라인",
+      "responseTime": "응답 시간",
+      "inviteLink": "초대 링크",
+      "visitLink": "이동",
+      "likes": "좋아요",
+      "verified": "인증됨"
+    },
+    "freeKeysSection": {
+      "title": "무료 API 키 개요",
+      "overview": "전체 데이터",
+      "total": "총계",
+      "active": "활성",
+      "claude": "Claude 키",
+      "llm": "LLM 키",
+      "newToday": "오늘 추가됨",
+      "units": {
+        "groups": "그룹"
+      },
+      "newTodayTitle": "오늘 추가된 키",
+      "noNewItems": "오늘 추가된 키가 없습니다.",
+      "type": "유형",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "상태",
+      "statusActive": "활성",
+      "statusInactive": "비활성",
+      "statusExhausted": "소진됨",
+      "keyCount": "키 개수",
+      "keyList": "키 목록",
+      "keyPreview": "키 미리보기 (처음 3개 표시)",
+      "moreKeys": "외 {count}개..."
+    },
+    "notesSection": {
+      "title": "참고 사항",
+      "dataDate": "데이터 통계 시간:",
+      "autoCheck": "중계 서버 상태는 자동 감지되어 매일 업데이트됩니다",
+      "realTimeUpdate": "무료 키 상태는 실시간으로 업데이트됩니다",
+      "autoGenerate": "이 페이지는 매일 자동 생성되며, 데이터는 시스템 데이터베이스에서 가져옵니다",
+      "lastUpdate": "마지막 업데이트:"
+    }
   }
 }

@@ -13,7 +13,8 @@
       "Bash(cat:*)",
       "Bash(pnpm blog:import:*)",
       "Bash(pnpm docs:import:*)",
-      "Bash(node download-images.js:*)"
+      "Bash(node download-images.js:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

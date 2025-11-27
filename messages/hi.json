@@ -605,5 +605,67 @@
     "metaDescription": "सौंदर्य विश्लेषण, एआई तकनीक, और चेहरे के सौंदर्यशास्त्र पर हमारे नवीनतम लेखों का अन्वेषण करें। एआई-संचालित सौंदर्य मूल्यांकन की दुनिया में विशेषज्ञ अंतर्दृष्टि, टिप्स और रुझान खोजें।",
     "noArticles": "कोई लेख उपलब्ध नहीं है",
     "publishedAt": "प्रकाशित: {date}"
+  },
+  "dailyLog": {
+    "metaTitle": "दैनिक सारांश - मुफ्त LLM API रिले और API कुंजियाँ",
+    "metaDescription": "मुफ्त LLM API रिले और मुफ्त API कुंजियों के लिए दैनिक आँकड़े और अपडेट देखें",
+    "loading": "लोड हो रहा है...",
+    "title": "दैनिक डेटा सारांश",
+    "subtitle": "यह पृष्ठ मुफ्त LLM API रिले और मुफ्त API कुंजियों पर नवीनतम डेटा का सारांश प्रस्तुत करता है",
+    "subtitleSuffix": " के लिए।",
+    "routersSection": {
+      "title": "API रिले अवलोकन",
+      "overview": "समग्र डेटा",
+      "total": "कुल",
+      "online": "ऑनलाइन",
+      "offline": "ऑफलाइन",
+      "newToday": "आज नए",
+      "units": {
+        "items": "आइटम"
+      },
+      "newTodayTitle": "आज के नए रिले",
+      "noNewItems": "आज कोई नया रिले नहीं है।",
+      "status": "स्थिति",
+      "statusOnline": "ऑनलाइन",
+      "statusOffline": "ऑफलाइन",
+      "responseTime": "प्रतिक्रिया समय",
+      "inviteLink": "आमंत्रण लिंक",
+      "visitLink": "विज़िट करें",
+      "likes": "पसंद",
+      "verified": "सत्यापित"
+    },
+    "freeKeysSection": {
+      "title": "मुफ्त API कुंजी अवलोकन",
+      "overview": "समग्र डेटा",
+      "total": "कुल",
+      "active": "सक्रिय",
+      "claude": "क्लॉड कुंजियाँ",
+      "llm": "LLM कुंजियाँ",
+      "newToday": "आज नए",
+      "units": {
+        "groups": "समूह"
+      },
+      "newTodayTitle": "आज की नई कुंजियाँ",
+      "noNewItems": "आज कोई नई कुंजी नहीं है।",
+      "type": "प्रकार",
+      "typeClaude": "क्लॉड",
+      "typeLlm": "LLM",
+      "status": "स्थिति",
+      "statusActive": "सक्रिय",
+      "statusInactive": "निष्क्रिय",
+      "statusExhausted": "खत्म",
+      "keyCount": "कुंजी संख्या",
+      "keyList": "कुंजी सूची",
+      "keyPreview": "कुंजी पूर्वावलोकन (पहली 3 दिखाई जा रही हैं)",
+      "moreKeys": "और {count} कुंजियाँ..."
+    },
+    "notesSection": {
+      "title": "नोट्स",
+      "dataDate": "डेटा आँकड़ों का समय:",
+      "autoCheck": "रिले स्थिति स्वचालित रूप से जाँची जाती है और दैनिक अद्यतन की जाती है",
+      "realTimeUpdate": "मुफ्त कुंजी की स्थिति वास्तविक समय में अद्यतन की जाती है",
+      "autoGenerate": "यह पृष्ठ स्वचालित रूप से दैनिक जनरेट होता है, डेटा सिस्टम डेटाबेस से आता है",
+      "lastUpdate": "अंतिम अद्यतन:"
+    }
   }
 }

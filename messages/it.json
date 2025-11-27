@@ -607,5 +607,68 @@
     "metaDescription": "Esplora i nostri ultimi articoli su analisi di bellezza, tecnologia AI ed estetica facciale. Scopri approfondimenti di esperti, suggerimenti e tendenze nel mondo della valutazione di bellezza basata sull'AI.",
     "noArticles": "Nessun articolo disponibile",
     "publishedAt": "Pubblicato il {date}"
+  },
+  "dailyLog": {
+    "metaTitle": "Riepilogo Giornaliero - Relè API LLM Gratuiti e Chiavi API",
+    "metaDescription": "Visualizza statistiche e aggiornamenti giornalieri per i relè API LLM gratuiti e le chiavi API gratuite",
+    "loading": "Caricamento...",
+    "title": "Riepilogo Dati Giornalieri",
+    "subtitle": "Questa pagina riassume i dati più recenti sui relè API LLM gratuiti e sulle chiavi API gratuite per",
+    "subtitleSuffix": ".",
+    "routersSection": {
+      "title": "Panoramica dei Relè API",
+      "overview": "Dati Generali",
+      "total": "Totale",
+      "online": "In Linea",
+      "offline": "Fuori Linea",
+      "newToday": "Nuovi Oggi",
+      "units": {
+        "items": "elementi"
+      },
+      "newTodayTitle": "Nuovi Relè Oggi",
+      "noNewItems": "Nessun nuovo relè oggi.",
+      "status": "Stato",
+      "statusOnline": "In Linea",
+      "statusOffline": "Fuori Linea",
+      "responseTime": "Tempo di Risposta",
+      "inviteLink": "Link di Invito",
+      "visitLink": "Visita",
+      "likes": "Mi Piace",
+      "verified": "Verificato"
+    },
+    "freeKeysSection": {
+      "title": "Panoramica delle Chiavi API Gratuite",
+      "overview": "Dati Generali",
+      "total": "Totale",
+      "active": "Attive",
+      "claude": "Chiavi Claude",
+      "llm": "Chiavi LLM",
+      "newToday": "Nuove Oggi",
+      "units": {
+        "groups": "gruppi"
+      },
+      "newTodayTitle": "Nuove Chiavi Oggi",
+      "noNewItems": "Nessuna nuova chiave oggi.",
+      "type": "Tipo",
+      "typeClaude": "Claude",
+      "typeLlm": "LLM",
+      "status": "Stato",
+      "statusActive": "Attiva",
+      "statusInactive": "Inattiva",
+      "statusExhausted": "Esaurita",
+      "keyCount": "Numero di Chiavi",
+      "keyList": "Elenco delle Chiavi",
+      "keyPreview": "Anteprima Chiave (mostra le prime 3)",
+      "moreKeys": "{count} chiavi in più..."
+    },
+    "notesSection": {
+      "title": "Note",
+      "dataDate": "Orario statistica dati:",
+      "autoCheck": "Lo stato dei relè viene rilevato e aggiornato automaticamente giornalmente",
+      "realTimeUpdate": "Lo stato delle chiavi gratuite viene aggiornato in tempo reale",
+      "autoGenerate": "Questa pagina viene generata automaticamente giornalmente, i dati provengono dal database di sistema",
+      "lastUpdate": "Ultimo aggiornamento:"
+    }
   }
+
 }
