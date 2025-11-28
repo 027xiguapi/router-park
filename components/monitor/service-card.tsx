@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ExternalLink, Heart, Shield, User } from "lucide-react"
+import { ExternalLink, Heart, Shield, User, Info } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 import type { ServiceStatus } from "./types"
 import {useUser} from "@/contexts/user-context";
 import {formatDate} from "@/lib/utils";
@@ -15,12 +16,36 @@ interface ServiceCardProps {
   t: (key: string) => string
 }
 
+// 从 URL 生成 slug
+function generateSlug(url: string): string {
+  try {
+    const urlObj = new URL(url)
+    const domain = urlObj.hostname.replace(/^www\./, '')
+    return domain
+      .replace(/\//g, '-')
+      .replace(/[^a-z0-9-]/gi, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+      .toLowerCase()
+  } catch {
+    return url
+      .replace(/^https?:\/\//, '')
+      .replace(/^www\./, '')
+      .replace(/\//g, '-')
+      .replace(/[^a-z0-9-]/gi, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+      .toLowerCase()
+  }
+}
+
 export function ServiceCard({ service, t }: ServiceCardProps) {
   const isOnline = service.status === "online"
   const [likes, setLikes] = useState(service.likes || 0)
   const [isLiking, setIsLiking] = useState(false)
   const [isLikedByUser, setIsLikedByUser] = useState(service.isLikedByCurrentUser || false)
   const { isAuthenticated, showLoginModal, user } = useUser()
+  const slug = generateSlug(service.url)
 
   const handleLike = async () => {
     if (isLiking) return
@@ -105,6 +130,19 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
           </Button>
         )}
 
+        {/* 网站详情按钮 */}
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 dark:border-primary/30 dark:bg-primary/10 dark:text-primary dark:hover:bg-primary/20 text-xs sm:text-sm h-8 sm:h-9"
+          asChild
+        >
+          <Link href={`/proxy/${slug}`}>
+            <Info className="mr-1.5 h-3.5 w-3.5" />
+            {t('serviceCard.details')}
+          </Link>
+        </Button>
+
         {/* 错误信息 */}
         {service.error && (
           <Button
@@ -115,20 +153,6 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
             {service.error}
           </Button>
         )}
-
-        {/* 响应时间 */}
-        <div className="flex items-center justify-between border-t border-gray-200 pt-2.5 sm:pt-3 text-xs sm:text-sm dark:border-border">
-          <span className="text-gray-600 dark:text-muted-foreground">{t('serviceCard.responseTime')}</span>
-          <span
-            className={`font-mono font-semibold text-xs sm:text-sm ${
-              isOnline
-                ? "text-emerald-600 dark:text-emerald-500"
-                : "text-red-600 dark:text-red-500"
-            }`}
-          >
-            {service.responseTime} ms
-          </span>
-        </div>
 
         {/* 最后检查时间 */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0 text-xs sm:text-sm">

@@ -43,6 +43,13 @@
       "when": 1763967934909,
       "tag": "0005_left_ultimatum",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1764315329005,
+      "tag": "0006_odd_sentry",
+      "breakpoints": true
     }
   ]
 }

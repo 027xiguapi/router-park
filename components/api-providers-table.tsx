@@ -236,7 +236,6 @@ export function APIProvidersTable() {
           bValue = b.status
           break
         case "routerCount":
-          // 非合并模式下，每个路由都是 1
           aValue = 1
           bValue = 1
           break
@@ -381,6 +380,14 @@ export function APIProvidersTable() {
             >
               {mergeByDomain ? "已合并域名" : "显示全部"}
             </Button>
+            {/*<Button onClick={handleExportCSV} variant="outline">*/}
+            {/*  <Download className="mr-2 h-4 w-4" />*/}
+            {/*  导出 CSV*/}
+            {/*</Button>*/}
+            {/*<Button onClick={handleExportJSON} variant="outline">*/}
+            {/*  <Download className="mr-2 h-4 w-4" />*/}
+            {/*  导出 JSON*/}
+            {/*</Button>*/}
           </div>
         </div>
 

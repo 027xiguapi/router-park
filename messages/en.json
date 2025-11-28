@@ -393,7 +393,8 @@
       "inviteLink": "Invite Link",
       "responseTime": "Response Time",
       "lastCheck": "Last Check",
-      "verified": "Verified"
+      "verified": "Verified",
+      "details": "View Details"
     }
   },
   "siteInfo": {
@@ -850,5 +851,19 @@
       "autoGenerate": "This page is automatically generated daily, data comes from the system database",
       "lastUpdate": "Last updated:"
     }
+  },
+  "comments": {
+    "title": "User Comments",
+    "placeholder": "Share your experience or suggestions... (Markdown supported)",
+    "loginRequired": "Login to post comments",
+    "markdownSupport": "Markdown supported",
+    "submit": "Post Comment",
+    "submitting": "Submitting...",
+    "loginHint": "Please login to post comments.",
+    "loginLink": "Login Now",
+    "noComments": "No comments yet",
+    "beFirst": "Be the first to comment!",
+    "anonymousUser": "Anonymous User",
+    "submitError": "Failed to post comment, please try again"
   }
 }

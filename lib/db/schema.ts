@@ -361,6 +361,46 @@ export const docs = sqliteTable('docs', {
     .notNull()
 })
 
+// 代理评论表 - 存储用户对代理的评论
+export const proxyComments = sqliteTable('proxy_comments', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  proxyId: text('proxy_id')
+    .notNull()
+    .references(() => proxys.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  content: text('content').notNull(), // Markdown 格式的评论内容
+  likes: integer('likes').notNull().default(0), // 点赞数
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
+
+// 评论点赞记录表 - 记录用户对评论的点赞行为
+export const commentLikes = sqliteTable(
+  'comment_likes',
+  {
+    id: text('id')
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    commentId: text('comment_id')
+      .notNull()
+      .references(() => proxyComments.id, { onDelete: 'cascade' }),
+    userId: text('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    createdAt: integer('created_at', { mode: 'timestamp' })
+      .default(sql`(unixepoch())`)
+      .notNull()
+  }
+)
+
 // 大语言模型状态类型
 export type ModelStatus = 'active' | 'inactive' | 'beta' | 'deprecated'
 export type ModelProvider = 'openai' | 'anthropic' | 'google' | 'meta' | 'mistral' | 'alibaba' | 'baidu' | 'other'

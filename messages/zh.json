@@ -427,7 +427,8 @@
       "inviteLink": "邀请链接",
       "responseTime": "响应时间",
       "lastCheck": "最后检测",
-      "verified": "已认证"
+      "verified": "已认证",
+      "details": "网站详情"
     }
   },
   "siteInfo": {
@@ -855,5 +856,19 @@
       "autoGenerate": "本页面每日自动生成，数据来源于系统数据库",
       "lastUpdate": "最后更新时间："
     }
+  },
+  "comments": {
+    "title": "用户评论",
+    "placeholder": "分享你的使用体验或建议...（支持 Markdown 格式）",
+    "loginRequired": "登录后即可发表评论",
+    "markdownSupport": "支持 Markdown 格式",
+    "submit": "发表评论",
+    "submitting": "提交中...",
+    "loginHint": "需要登录才能发表评论。",
+    "loginLink": "立即登录",
+    "noComments": "暂无评论",
+    "beFirst": "成为第一个评论的人吧！",
+    "anonymousUser": "匿名用户",
+    "submitError": "评论发表失败，请重试"
   }
 }
