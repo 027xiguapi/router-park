@@ -44,6 +44,30 @@ export function LanguageSelector() {
             )
           })}
         </div>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <a href="https://fazier.com/launches/routerpark.com" target="_blank">
+                  <img
+                      src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=light"
+                      width="150" height="32" alt="Fazier badge"/>
+              </a>
+              <a href="https://twelve.tools" target="_blank">
+                  <img src="https://twelve.tools/badge0-light.svg"
+                       alt="Featured on Twelve Tools" width="130"
+                       height="32"/></a>
+              <a href="https://www.producthunt.com/products/routerpark?utm_source=badge-follow&utm_medium=badge&utm_source=badge-routerpark"
+                 target="_blank">
+                  <img
+                      src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1131691&theme=light&size=small"
+                      alt="RouterPark - Share&#0032;Free&#0032;AI&#0032;Model&#0032;API&#0032;Gateway&#0044;&#0032;Free&#0032;API&#0044;&#0032;Free&#0032;VPN | Product Hunt"
+                      width="86" height="32"/>
+              </a>
+              <a href="https://startupfa.me/s/router-park?utm_source=routerpark.com" target="_blank">
+                  <img src="https://startupfa.me/badges/featured-badge.webp" alt="Router Park - Featured on Startup Fame" width="100" height="32" />
+              </a>
+              <a href="https://www.mogudh.com" target="_blank" className="flex items-center justify-center py-2"><img
+                  src="https://www.mogudh.com/static/upload/2025/03/09/202503099918.svg" alt="蘑菇导航Logo" width="27"
+                  height="27"/><span className="text-black">蘑菇导航</span></a>
+          </div>
       </div>
     </section>
   )

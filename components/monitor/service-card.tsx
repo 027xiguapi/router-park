@@ -43,7 +43,7 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
       const data = await response.json()
       if (data.success) {
         setLikes(data.data.likes)
-        setIsLikedByUser(data.data.isLikedByCurrentUser)
+        setIsLikedByUser(true)
       }
     } catch (error) {
       console.error('Error liking router:', error)
