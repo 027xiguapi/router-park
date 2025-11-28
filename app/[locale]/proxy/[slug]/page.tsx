@@ -2,11 +2,9 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import { Button } from '@/components/ui/button'
 import Markdown from 'markdown-to-jsx/react'
 import {ArrowLeft} from "lucide-react";
 import {Card, CardContent} from "@/components/ui/card";
-import {Separator} from "@/components/ui/separator";
 import { ProxyComments } from '@/components/proxy/proxy-comments'
 
 interface ProxySlugPageProps {
@@ -119,17 +117,6 @@ const ProxySlugPage = async (props: ProxySlugPageProps) => {
                 prose-td:border-border
               ">
                   <Markdown children={content} />
-                </div>
-
-                <Separator className="mt-8 sm:mt-12" />
-
-                <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <Link href="/router-monitor">
-                    <Button variant="outline" size="sm" className="gap-2 border-primary/30 hover:bg-primary/10 hover:text-primary">
-                      <ArrowLeft className="h-4 w-4" />
-                      <span className="text-sm">{'Go Home'}</span>
-                    </Button>
-                  </Link>
                 </div>
               </CardContent>
             </Card>

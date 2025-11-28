@@ -26,7 +26,6 @@ interface Comment {
 
 interface ProxyCommentsProps {
   slug: string
-  t: (key: string) => string
 }
 
 export function ProxyComments({ slug}: ProxyCommentsProps) {
@@ -101,7 +100,7 @@ export function ProxyComments({ slug}: ProxyCommentsProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
             <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
-            {t('title')} ({length})
+            {t('title')} ({comments.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -161,7 +160,7 @@ export function ProxyComments({ slug}: ProxyCommentsProps) {
             <div className="text-center py-8 text-muted-foreground">
               {t('common.loading')}
             </div>
-          ) : length === 0 ? (
+          ) : comments.length === 0 ? (
             <div className="text-center py-12">
               <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
               <p className="text-muted-foreground">{t('noComments')}</p>
@@ -171,7 +170,7 @@ export function ProxyComments({ slug}: ProxyCommentsProps) {
             </div>
           ) : (
             <div className="space-y-4 sm:space-y-6">
-              {map((comment) => (
+              {comments.map((comment) => (
                 <div
                   key={comment.id}
                   className="border border-border rounded-lg p-4 sm:p-5 hover:border-primary/30 transition-colors"

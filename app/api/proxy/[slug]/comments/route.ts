@@ -14,7 +14,7 @@ export async function GET(
 
     // 根据 slug 查找 proxy
     const proxy = await db
-      .select({ id: proxys.id })
+      .select()
       .from(proxys)
       .where(eq(proxys.slug, slug))
       .limit(1)
@@ -91,7 +91,7 @@ export async function POST(
 
     // 根据 slug 查找 proxy
     const proxy = await db
-      .select({ id: proxys.id })
+      .select()
       .from(proxys)
       .where(eq(proxys.slug, slug))
       .limit(1)
