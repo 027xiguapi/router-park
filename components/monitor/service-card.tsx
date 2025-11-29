@@ -143,17 +143,6 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
           </Link>
         </Button>
 
-        {/* 错误信息 */}
-        {service.error && (
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-full border-red-200 bg-red-50 text-red-700 hover:bg-red-100 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-400 dark:hover:bg-red-500/20 text-xs sm:text-sm h-auto min-h-[2rem] sm:min-h-[2.25rem] whitespace-normal"
-          >
-            {service.error}
-          </Button>
-        )}
-
         {/* 最后检查时间 */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0 text-xs sm:text-sm">
           <span className="text-gray-600 dark:text-muted-foreground">{t('serviceCard.lastCheck')}</span>
@@ -175,18 +164,20 @@ export function ServiceCard({ service, t }: ServiceCardProps) {
 
           {/* 创建人信息 */}
           {service.createdByName && (
-            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
-              <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
-                {service.createdByImage ? (
-                  <AvatarImage src={service.createdByImage} alt={service.createdByName} />
-                ) : (
-                  <AvatarFallback className="bg-primary/10 text-primary">
-                    <User className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
-                  </AvatarFallback>
-                )}
-              </Avatar>
-              <span className="text-xs truncate max-w-[100px] sm:max-w-none">{service.createdByName}</span>
-            </div>
+            <Link href={`/user/${service.createdBy}`}>
+              <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
+                <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
+                  {service.createdByImage ? (
+                    <AvatarImage src={service.createdByImage} alt={service.createdByName} />
+                  ) : (
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      <User className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                    </AvatarFallback>
+                  )}
+                </Avatar>
+                <span className="text-xs truncate max-w-[100px] sm:max-w-none">{service.createdByName}</span>
+              </div>
+            </Link>
           )}
         </div>
       </div>

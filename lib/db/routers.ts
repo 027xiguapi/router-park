@@ -50,6 +50,7 @@ export interface RouterQueryOptions {
   sortBy?: 'latest' | 'likes' | 'name'
   userId?: string
   likedBy?: boolean
+  createdBy?: boolean // 是否获取用户创建的 routers
   currentUserId?: string // 当前登录用户的 ID，用于判断是否已点赞
 }
 
@@ -136,6 +137,7 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
     sortBy = 'latest',
     userId,
     likedBy = false,
+    createdBy = false,
     currentUserId
   } = options
 
@@ -197,12 +199,21 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
       .where(eq(routerLikes.userId, userId))
   }
 
+  // 如果查询用户创建的路由器
+  if (createdBy && userId && !likedBy) {
+    query = query.where(eq(routers.createdBy, userId))
+    countQuery = countQuery.where(eq(routers.createdBy, userId))
+  }
+
   // 添加搜索条件
   if (search && search.trim()) {
     const searchCondition = sql`${like(routers.name, `%${search}%`)} OR ${like(routers.url, `%${search}%`)}`
     if (likedBy && userId) {
       query = query.where(sql`${eq(routerLikes.userId, userId)} AND (${searchCondition})`)
       countQuery = countQuery.where(sql`${eq(routerLikes.userId, userId)} AND (${searchCondition})`)
+    } else if (createdBy && userId) {
+      query = query.where(sql`${eq(routers.createdBy, userId)} AND (${searchCondition})`)
+      countQuery = countQuery.where(sql`${eq(routers.createdBy, userId)} AND (${searchCondition})`)
     } else {
       query = query.where(searchCondition)
       countQuery = countQuery.where(searchCondition)

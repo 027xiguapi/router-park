@@ -9,7 +9,7 @@ const SignOutButton = () => {
   return (
     <div className="flex items-center gap-2" onClick={() => signOut()}>
       <LogOut />
-      {t('signout')}
+      {t('signOut')}
     </div>
   )
 }

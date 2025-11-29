@@ -123,11 +123,7 @@ export function Header() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`px-3 py-2.5 text-sm rounded-lg transition-colors ${
-                          link.highlight
-                            ? 'text-primary font-medium hover:bg-primary/10'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                        }`}
+                        className={`px-3 py-2.5 text-sm rounded-lg transition-colors text-muted-foreground hover:text-foreground hover:bg-muted`}
                       >
                         {link.label}
                       </Link>

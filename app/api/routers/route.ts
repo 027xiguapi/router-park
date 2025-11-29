@@ -28,6 +28,7 @@ export async function GET(request: NextRequest) {
     const sortBy = searchParams.get('sortBy') as 'latest' | 'likes' | 'name' | undefined
     const userId = searchParams.get('userId') || undefined
     const likedBy = searchParams.get('likedBy') === 'true'
+    const createdBy = searchParams.get('createdBy') === 'true'
 
     // 使用新的分页功能还是保持兼容性
     const usePagination = searchParams.has('page') || searchParams.has('pageSize') || searchParams.has('search')
@@ -43,6 +44,7 @@ export async function GET(request: NextRequest) {
         sortBy: sortBy || (likedBy ? 'latest' : (searchParams.get('sortBy') === 'likes' ? 'likes' : 'latest')),
         userId,
         likedBy,
+        createdBy,
         currentUserId
       }
 

@@ -48,3 +48,32 @@ export const { handlers, signIn, signOut, auth } = NextAuth(() => {
     }
   }
 })
+
+/**
+ * 检查用户是否是管理员
+ * @param userId - 可选，用户 ID。如果不传，则检查当前登录用户
+ * @returns 是否是管理员
+ */
+export async function isAdmin(userId?: string): Promise<boolean> {
+  // 如果没有传入 userId，则获取当前 session 的用户 ID
+  let checkUserId = userId
+
+  if (!checkUserId) {
+    const session = await auth()
+    checkUserId = session?.user?.id
+  }
+
+  // 如果没有用户 ID，返回 false
+  if (!checkUserId) {
+    return false
+  }
+
+  // 在生产环境下，检查用户 ID 是否在管理员列表中
+  if (process.env.NODE_ENV === 'production') {
+    const adminIds = process.env.PROJECT_ADMIN_ID?.split(',') || []
+    return adminIds.includes(checkUserId)
+  }
+
+  // 开发环境下，所有登录用户都是管理员
+  return true
+}

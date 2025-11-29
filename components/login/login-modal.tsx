@@ -1,6 +1,7 @@
 'use client'
 
-import { LogIn } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
+import { LogIn, User } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 
@@ -63,6 +64,14 @@ export default function LoginModal({ showIcon = true }: LoginModalProps) {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {session?.user?.id && (
+              <Link href={`/user/${session?.user?.id}`}>
+                <DropdownMenuItem className="focus:text-destructive cursor-pointer">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>{t('userProfile')}</span>
+                </DropdownMenuItem>
+              </Link>
+          )}
           <DropdownMenuItem className="text-destructive focus:text-destructive cursor-pointer">
             <SignOutButton />
           </DropdownMenuItem>

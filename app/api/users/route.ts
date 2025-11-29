@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 
 import { createDb } from '@/lib/db'
 import { createUser, getAllUsers, getUsersWithPagination } from '@/lib/db/users'
+import { isAdmin } from '@/lib/auth'
 
 import type { CreateUserInput, UserQueryOptions } from '@/lib/db/users'
 import type { NextRequest } from 'next/server'
@@ -10,7 +11,6 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
 
-    // 解析查询参数
     const page = parseInt(searchParams.get('page') || '1', 10)
     const pageSize = parseInt(searchParams.get('pageSize') || '30', 10)
     const search = searchParams.get('search') || undefined
@@ -59,6 +59,17 @@ export async function GET(request: NextRequest) {
 // POST /api/users - 创建新用户
 export async function POST(request: NextRequest) {
   try {
+    // 权限控制：生产环境下只允许管理员创建用户
+    if (!(await isAdmin())) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Forbidden: Admin access required'
+        },
+        { status: 403 }
+      )
+    }
+
     const body = (await request.json()) as CreateUserInput
 
     // 验证必填字段
