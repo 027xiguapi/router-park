@@ -256,15 +256,15 @@ export async function getProxysWithPagination(db: Db, options: ProxyQueryOptions
   }
 
   // 添加状态过滤
-  if (status) {
-    if (likedBy && userId) {
-      query = query.where(sql` AND ${eq(proxys.status, status)}`)
-      countQuery = countQuery.where(sql` AND ${eq(proxys.status, status)}`)
-    } else {
-      query = query.where(eq(proxys.status, status))
-      countQuery = countQuery.where(eq(proxys.status, status))
-    }
-  }
+  // if (status) {
+  //   if (likedBy && userId) {
+  //     query = query.where(sql` AND ${eq(proxys.status, status)}`)
+  //     countQuery = countQuery.where(sql` AND ${eq(proxys.status, status)}`)
+  //   } else {
+  //     query = query.where(eq(proxys.status, status))
+  //     countQuery = countQuery.where(eq(proxys.status, status))
+  //   }
+  // }
 
   // 添加排序
   switch (sortBy) {

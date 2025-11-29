@@ -6,12 +6,14 @@ import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ProxysTable } from '@/components/proxys-table'
 import { ProxyDialog } from '@/components/proxy-dialog'
+import { AddProxyUrlDialog } from '@/components/add-proxy-url-dialog'
 import { Toaster } from '@/components/ui/sonner'
 
 import type { Proxy } from '@/lib/db/proxys'
 
 export default function ProxysAdminPage() {
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false)
   const [editProxy, setEditProxy] = useState<Proxy | null>(null)
   const [refreshKey, setRefreshKey] = useState(0)
 
@@ -21,8 +23,7 @@ export default function ProxysAdminPage() {
   }
 
   const handleAdd = () => {
-    setEditProxy(null)
-    setDialogOpen(true)
+    setAddUrlDialogOpen(true)
   }
 
   const handleSuccess = () => {
@@ -45,6 +46,12 @@ export default function ProxysAdminPage() {
       </div>
 
       <ProxysTable key={refreshKey} onEdit={handleEdit} />
+
+      <AddProxyUrlDialog
+        open={addUrlDialogOpen}
+        onOpenChange={setAddUrlDialogOpen}
+        onSuccess={handleSuccess}
+      />
 
       <ProxyDialog
         open={dialogOpen}
