@@ -14,7 +14,9 @@
       "Bash(pnpm blog:import:*)",
       "Bash(pnpm docs:import:*)",
       "Bash(node download-images.js:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(node scripts/remove-duplicate-blog-files.js:*)",
+      "Bash(tsx scripts/convert-blog-images.ts:*)"
     ],
     "deny": [],
     "ask": []

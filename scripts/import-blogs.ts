@@ -41,7 +41,7 @@ function extractCoverImageUrl(content: string): string | undefined {
 }
 
 async function importBlogs() {
-  const blogDir = path.join(process.cwd(), 'blog')
+  const blogDir = path.join(process.cwd(), 'blog', 'all', 'en')
 
   if (!fs.existsSync(blogDir)) {
     console.error('Blog directory not found:', blogDir)
@@ -50,7 +50,7 @@ async function importBlogs() {
 
   const files = fs.readdirSync(blogDir).filter(file => file.endsWith('.md'))
 
-  console.log(`Found ${files.length} markdown files in blog directory`)
+  console.log(`Found ${files.length} markdown files in blog/all/en directory`)
 
   let successCount = 0
   let skipCount = 0
@@ -63,7 +63,9 @@ async function importBlogs() {
 
       // 使用 gray-matter 解析 frontmatter
       const { data: frontmatter, content } = matter(fileContent)
-      const slug = generateSlug(file)
+
+      // 优先使用 frontmatter 中的 url 或 slug 字段，否则从文件名生成
+      const slug = frontmatter.url || frontmatter.slug || generateSlug(file)
 
       // 检查是否已存在
       const existingPost = await db.select().from(posts).where(eq(posts.slug, slug)).limit(1)

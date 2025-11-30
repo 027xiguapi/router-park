@@ -4,22 +4,11 @@ import path from 'path'
 // 支持的语言列表
 const locales = [
   { code: 'en', name: 'English', dir: 'ltr' },
-  { code: 'zh', name: '中文', dir: 'ltr' },
-  { code: 'ja', name: '日本語', dir: 'ltr' },
-  { code: 'ko', name: '한국어', dir: 'ltr' },
-  { code: 'es', name: 'Español', dir: 'ltr' },
-  { code: 'fr', name: 'Français', dir: 'ltr' },
-  { code: 'de', name: 'Deutsch', dir: 'ltr' },
-  { code: 'it', name: 'Italiano', dir: 'ltr' },
-  { code: 'ru', name: 'Русский', dir: 'ltr' },
-  { code: 'pt', name: 'Português', dir: 'ltr' },
-  { code: 'ar', name: 'العربية', dir: 'rtl' },
-  { code: 'hi', name: 'हिन्दी', dir: 'ltr' }
 ]
 
 // 源语言和目标语言
-const SOURCE_LOCALE = 'en'
-const SOURCE_DIR = path.join(process.cwd(), 'doc', SOURCE_LOCALE)
+const SOURCE_LOCALE = 'zh'
+const SOURCE_DIR = path.join(process.cwd(), 'blog', SOURCE_LOCALE)
 
 /**
  * 使用 GMI API 翻译文本
@@ -31,7 +20,7 @@ async function translateText(text: string, targetLang: string, langName: string)
     throw new Error('GMI_API_KEY 环境变量未设置')
   }
 
-  const systemPrompt = `You are a professional technical document translator. Translate the following technical documentation from English to ${langName}.
+  const systemPrompt = `You are a professional technical document translator. Translate the following technical documentation from Chinese to ${langName}.
 
 Rules:
 1. Preserve all Markdown formatting (headers, lists, code blocks, links, images, etc.)
@@ -150,7 +139,7 @@ async function translateFile(
     const translatedContent = await translateLongText(sourceContent, targetLocale, langName)
 
     // 创建目标目录
-    const targetDir = path.join(process.cwd(), 'doc', targetLocale)
+    const targetDir = path.join(process.cwd(), 'blog', targetLocale)
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true })
       console.log(`   ✅ 创建目录: ${targetDir}`)
@@ -187,7 +176,7 @@ async function translateAllFiles() {
   console.log('🌍 开始批量翻译 Markdown 文件\n')
   console.log('=' .repeat(60))
   console.log(`📂 源目录: ${SOURCE_DIR}`)
-  console.log(`🔤 源语言: English (${SOURCE_LOCALE})`)
+  console.log(`🔤 源语言: 中文 (${SOURCE_LOCALE})`)
   console.log('=' .repeat(60))
 
   // 获取所有 markdown 文件
@@ -204,8 +193,8 @@ async function translateAllFiles() {
     console.log(`   ${index + 1}. ${file}`)
   })
 
-  // 目标语言（排除源语言和中文，因为中文已经存在）
-  const targetLocales = locales.filter((l) => l.code !== SOURCE_LOCALE && l.code !== 'zh')
+  // 目标语言（排除源语言）
+  const targetLocales = locales.filter((l) => l.code !== SOURCE_LOCALE)
 
   console.log(`\n🎯 目标语言: ${targetLocales.map((l) => l.name).join(', ')}`)
   console.log(`📊 预计任务: ${markdownFiles.length} 个文件 × ${targetLocales.length} 种语言 = ${markdownFiles.length * targetLocales.length} 个任务`)
