@@ -227,7 +227,7 @@ export function ModelConfigDialog({ open, onOpenChange, config, onSuccess }: Mod
                 </Label>
                 <Input
                   id="name"
-                  placeholder="例如：cjack"
+                  placeholder="例如：router park"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   disabled={loading || !!config}

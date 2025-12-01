@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { createDb } from '@/lib/db'
+import { validateApiKey, incrementApiKeyUsage } from '@/lib/db/api-keys'
 import { findModelConfig, getDefaultConfig, getAllSupportedModels } from '@/lib/models-config'
 
 // 定义请求体类型
@@ -18,9 +20,74 @@ interface ChatCompletionRequest {
   [key: string]: unknown
 }
 
+// 从请求头中提取 Bearer Token
+function extractBearerToken(request: NextRequest): string | null {
+  const authHeader = request.headers.get('Authorization')
+  if (!authHeader) {
+    return null
+  }
+
+  const parts = authHeader.split(' ')
+  if (parts.length !== 2 || parts[0].toLowerCase() !== 'bearer') {
+    return null
+  }
+
+  return parts[1]
+}
+
+// 获取客户端 IP 地址
+function getClientIp(request: NextRequest): string {
+  // 尝试从各种 header 中获取真实 IP
+  const forwardedFor = request.headers.get('x-forwarded-for')
+  if (forwardedFor) {
+    // x-forwarded-for 可能包含多个 IP，取第一个
+    return forwardedFor.split(',')[0].trim()
+  }
+
+  const realIp = request.headers.get('x-real-ip')
+  if (realIp) {
+    return realIp
+  }
+
+  // 如果都没有，返回默认值
+  return '127.0.0.1'
+}
+
 // POST /v1/chat/completions - AI 聊天接口转发（支持多模型动态配置）
 export async function POST(request: NextRequest) {
+  const db = createDb()
+  let validatedApiKey: { id: string } | null = null
+
   try {
+    // 1. 验证 Authorization Header
+    const token = extractBearerToken(request)
+    if (!token) {
+      return NextResponse.json(
+        {
+          error: {
+            message: 'Missing or invalid Authorization header. Expected: Bearer sk-...',
+            type: 'authentication_error',
+            code: 'missing_api_key'
+          }
+        },
+        { status: 401 }
+      )
+    }
+
+    // 验证 token 格式
+    if (!token.startsWith('sk-')) {
+      return NextResponse.json(
+        {
+          error: {
+            message: 'Invalid API key format. API key must start with "sk-"',
+            type: 'authentication_error',
+            code: 'invalid_api_key_format'
+          }
+        },
+        { status: 401 }
+      )
+    }
+
     // 解析请求体
     const body = (await request.json()) as ChatCompletionRequest
 
@@ -54,6 +121,26 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // 2. 验证 API Key（包括模型限制和 IP 白名单）
+    const clientIp = getClientIp(request)
+    const validation = await validateApiKey(db, token, body.model, clientIp)
+
+    if (!validation.valid) {
+      return NextResponse.json(
+        {
+          error: {
+            message: validation.error || 'API key validation failed',
+            type: 'authentication_error',
+            code: 'invalid_api_key'
+          }
+        },
+        { status: 401 }
+      )
+    }
+
+    // 保存验证通过的 API Key ID 用于后续更新使用量
+    validatedApiKey = validation.apiKey ? { id: validation.apiKey.id } : null
+
     // 根据模型名称查找配置
     let modelConfig = await findModelConfig(body.model)
 
@@ -79,7 +166,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 验证 API Key
+    // 验证模型配置的 API Key
     if (!modelConfig.apiKey) {
       return NextResponse.json(
         {
@@ -118,6 +205,13 @@ export async function POST(request: NextRequest) {
       contentType?.includes('text/event-stream') ||
       contentType?.includes('application/stream')
     ) {
+      // 流式响应时也要更新使用量（使用估算值）
+      if (validatedApiKey) {
+        // 对于流式响应，使用输入 tokens 的估算值
+        const estimatedTokens = JSON.stringify(body.messages).length / 4
+        await incrementApiKeyUsage(db, validatedApiKey.id, Math.ceil(estimatedTokens))
+      }
+
       return new Response(response.body, {
         status: response.status,
         headers: {
@@ -144,6 +238,13 @@ export async function POST(request: NextRequest) {
         },
         { status: response.status }
       )
+    }
+
+    // 3. 请求成功后更新 API Key 使用量
+    if (validatedApiKey) {
+      // 从响应中获取实际使用的 tokens
+      const usedTokens = data.usage?.total_tokens || 0
+      await incrementApiKeyUsage(db, validatedApiKey.id, usedTokens)
     }
 
     // 返回成功响应
@@ -193,7 +294,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET /api/v1/chat/completions - 获取支持的模型列表
+// GET /v1/chat/completions - 获取支持的模型列表
 export async function GET() {
   try {
     const supportedModels = await getAllSupportedModels()

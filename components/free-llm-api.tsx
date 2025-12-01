@@ -10,29 +10,38 @@ import { toast } from 'sonner'
 import { useUser } from '@/contexts/user-context'
 import { useTranslations } from 'next-intl'
 
+interface ApiKey {
+  id: string
+  key: string
+  name: string
+  status: string
+  quota: number
+  usedQuota: number
+  unlimitedQuota: boolean
+  updatedAt: string
+}
+
 export function FreeLLMAPI() {
   const t = useTranslations('freeLlmApi')
   const [copiedField, setCopiedField] = useState<string | null>(null)
-  const [apiKeys, setApiKeys] = useState<string[]>([])
+  const [apiKeys, setApiKeys] = useState<ApiKey[]>([])
   const [loading, setLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState<string>('')
   const [selectedTab, setSelectedTab] = useState<{ [key: string]: string }>({})
   const { user, showLoginModal, status } = useUser()
 
-  // 从数据库获取 LLM 密钥
+  // 从数据库获取公开的 API 密钥
   useEffect(() => {
     const fetchApiKeys = async () => {
       try {
-        const response = await fetch('/api/freeKeys?type=llm&activeOnly=true')
+        const response = await fetch('/api/api-keys?publicOnly=true')
         const data = await response.json()
 
-        if (data.success && data.data) {
-          // 解析密钥值数组
-          const keys = JSON.parse(data.data.keyValues) as string[]
-          setApiKeys(keys)
-          // 设置最后更新时间
-          const updateTime = new Date(data.data.updatedAt).toLocaleString('zh-CN')
-          setLastUpdated(updateTime)
+        if (data.success && data.data && data.data.length > 0) {
+          setApiKeys(data.data)
+          // 设置最后更新时间（使用最新的密钥更新时间）
+          const latestUpdate = new Date(data.data[0].updatedAt).toLocaleString('zh-CN')
+          setLastUpdated(latestUpdate)
         } else {
           // 使用当前时间作为默认更新时间
           setLastUpdated(new Date().toLocaleString('zh-CN'))
@@ -53,7 +62,7 @@ export function FreeLLMAPI() {
       name: "gpt-4.1-nano",
       description: t('models.gpt4nano.description'),
       endpoint: "/v1/chat/completions",
-      baseUrl: "https://cjack.routerpark.com",
+      baseUrl: "https://routerpark.com",
       method: "POST",
       color: "blue"
     },
@@ -61,7 +70,7 @@ export function FreeLLMAPI() {
       name: "gemini-2.5-flash-lite",
       description: t('models.geminiFlash.description'),
       endpoint: "/v1/chat/completions",
-      baseUrl: "https://cjack.routerpark.com",
+      baseUrl: "https://routerpark.com",
       method: "POST",
       color: "green"
     }
@@ -113,7 +122,7 @@ export function FreeLLMAPI() {
 
   // 生成不同语言的代码示例
   const getCodeExample = (model: string, baseUrl: string, endpoint: string, lang: string) => {
-    const apiKey = apiKeys[0] || 'YOUR_API_KEY'
+    const apiKey = apiKeys.length > 0 ? apiKeys[0].key : 'YOUR_API_KEY'
 
     switch (lang) {
       case 'curl':
@@ -197,6 +206,28 @@ console.log(data);`
     window.location.href = cherryUrl
 
     toast.success(t('launchingCherry'))
+  }
+
+  // 计算使用百分比
+  const getUsagePercentage = (apiKey: ApiKey) => {
+    if (apiKey.unlimitedQuota) {
+      return 100 // 无限额度显示为 0%
+    }
+    if (apiKey.quota === 0) {
+      return 100
+    }
+    return Math.min(100, Math.round((apiKey.usedQuota / apiKey.quota) * 100))
+  }
+
+  // 格式化额度显示
+  const formatQuota = (quota: number) => {
+    if (quota >= 1000000) {
+      return `${(quota / 1000000).toFixed(1)}M`
+    }
+    if (quota >= 1000) {
+      return `${(quota / 1000).toFixed(1)}K`
+    }
+    return quota.toString()
   }
 
   // 如果正在加载，显示加载状态
@@ -327,7 +358,6 @@ console.log(data);`
           <Card className="border-2 border-primary/20 shadow-lg">
             <CardContent className="py-8">
               {!user ? (
-                // 未登录时显示登录提示
                 <div className="text-center space-y-4">
                   <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Lock className="h-6 w-6 text-primary" />
@@ -359,41 +389,63 @@ console.log(data);`
                   </div>
 
                   <div className="grid gap-3 max-h-96 overflow-y-auto">
-                    {apiKeys.map((key, index) => (
+                    {apiKeys.map((apiKeyObj, index) => (
                       <div
-                        key={index}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                        key={apiKeyObj.id}
+                        className="flex flex-col gap-3 p-4 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors border border-border"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                          <span className="text-xs font-bold text-primary">{index + 1}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span className="text-xs font-bold text-primary">{index + 1}</span>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-mono truncate">
+                              {user ? apiKeyObj.key : maskApiKey(apiKeyObj.key)}
+                            </div>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCopyKey(apiKeyObj.key, index)}
+                            className="flex-shrink-0"
+                            title={t('copyApiKey')}
+                          >
+                            {copiedField === `key-${index}` ? (
+                              <Check className="h-4 w-4 text-green-500" />
+                            ) : (
+                              <Copy className="h-4 w-4" />
+                            )}
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleImportToCherryStudio(apiKeyObj.key)}
+                            className="flex-shrink-0"
+                            title={t('importToCherry')}
+                          >
+                            <Cherry className="h-4 w-4 text-pink-500" />
+                          </Button>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-mono truncate">
-                            {user ? key : maskApiKey(key)}
+
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-muted-foreground">
+                              剩余额度
+                            </span>
+                            <span className="font-medium">
+                              {formatQuota(apiKeyObj.quota - apiKeyObj.usedQuota)} / {formatQuota(apiKeyObj.quota)}
+                              <span className="text-muted-foreground ml-1">
+                                (剩余 {100 - getUsagePercentage(apiKeyObj)}%)
+                              </span>
+                            </span>
+                          </div>
+                          <div className="relative h-2 w-full overflow-hidden rounded-full bg-secondary">
+                            <div
+                              className="h-full bg-primary transition-all duration-300 ease-in-out"
+                              style={{ width: `${getUsagePercentage(apiKeyObj)}%` }}
+                            />
                           </div>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleCopyKey(key, index)}
-                          className="flex-shrink-0"
-                          title={t('copyApiKey')}
-                        >
-                          {copiedField === `key-${index}` ? (
-                            <Check className="h-4 w-4 text-green-500" />
-                          ) : (
-                            <Copy className="h-4 w-4" />
-                          )}
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleImportToCherryStudio(key)}
-                          className="flex-shrink-0"
-                          title={t('importToCherry')}
-                        >
-                          <MessageSquare className="h-4 w-4 text-pink-500" />
-                        </Button>
                       </div>
                     ))}
                   </div>

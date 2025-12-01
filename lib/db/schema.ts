@@ -430,6 +430,40 @@ export const modelConfigs = sqliteTable('model_configs', {
     .notNull()
 })
 
+// API 密钥状态类型
+export type ApiKeyStatus = 'active' | 'inactive' | 'expired' | 'exhausted'
+
+// API 密钥表 - 存储用户 API 密钥
+export const apiKeys = sqliteTable('api_keys', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  key: text('key').notNull().unique(), // sk-... 格式的密钥
+  name: text('name').notNull(), // 密钥名称
+  userId: text('user_id').references(() => users.id, { onDelete: 'cascade' }), // 关联用户（可选）
+  group: text('group'), // 令牌分组
+  status: text('status').$type<ApiKeyStatus>().notNull().default('active'), // 状态
+  expiresAt: integer('expires_at', { mode: 'timestamp' }), // 过期时间（null 表示永不过期）
+  quota: integer('quota').notNull().default(0), // 额度（tokens 或请求次数）
+  usedQuota: integer('used_quota').notNull().default(0), // 已使用额度
+  unlimitedQuota: integer('unlimited_quota', { mode: 'boolean' }).notNull().default(false), // 是否无限额度
+  requestCount: integer('request_count').notNull().default(0), // 请求次数统计
+  allowedModels: text('allowed_models'), // 允许的模型列表（JSON 数组，null 表示不限制）
+  ipWhitelist: text('ip_whitelist'), // IP 白名单（JSON 数组，null 表示不限制）
+  rateLimit: integer('rate_limit'), // 每分钟请求限制（null 表示不限制）
+  isPublic: integer('is_public', { mode: 'boolean' }).notNull().default(false), // 是否公开给用户免费使用
+  description: text('description'), // 描述
+  lastUsedAt: integer('last_used_at', { mode: 'timestamp' }), // 最后使用时间
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
+
 // 大语言模型表 - 存储 AI 大语言模型信息
 export const models = sqliteTable('models', {
   id: text('id')

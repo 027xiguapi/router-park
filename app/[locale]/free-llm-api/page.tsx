@@ -25,7 +25,7 @@ export default function FreeLLMAPIPage() {
       name: "gpt-4.1-nano",
       description: "轻量级 GPT-4 模型，响应快速，适合日常对话和代码辅助",
       endpoint: "/v1/chat/completions",
-      baseUrl: "https://cjack.routerpark.com",
+      baseUrl: "https://routerpark.com",
       method: "POST",
       color: "blue",
       features: ["高速响应", "低延迟", "通用任务"]
@@ -34,7 +34,7 @@ export default function FreeLLMAPIPage() {
       name: "gemini-2.5-flash-lite",
       description: "Google Gemini 轻量版，擅长多语言理解和创意生成",
       endpoint: "/v1/chat/completions",
-      baseUrl: "https://cjack.routerpark.com",
+      baseUrl: "https://routerpark.com",
       method: "POST",
       color: "green",
       features: ["多语言", "创意写作", "快速生成"]

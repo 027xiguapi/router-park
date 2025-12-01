@@ -50,6 +50,13 @@
       "when": 1764315329005,
       "tag": "0006_odd_sentry",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1764663012677,
+      "tag": "0007_many_living_mummy",
+      "breakpoints": true
     }
   ]
 }
