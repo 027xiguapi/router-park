@@ -19,7 +19,7 @@ interface MonitorDashboardProps {
   locale: string
   currentPage: number
   pageSize?: number
-  activeTab?: 'latest' | 'my-likes' | 'most-liked'
+  activeTab?: 'latest' | 'my-likes' | 'most-liked' | 'verified'
   searchQuery?: string
 }
 
@@ -66,6 +66,8 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
           return
         }
         params.set('likedBy', 'true')
+      } else if (tab === 'verified') {
+        params.set('verified', 'true')
       } else {
         params.set('sortBy', 'latest')
       }
@@ -101,7 +103,7 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
     loadServices()
   }, [activeTab, currentPage, searchQuery, pageSize])
 
-  const handleSearch = (searchInput: string, tab?: 'latest' | 'my-likes' | 'most-liked', resetPage: boolean = true) => {
+  const handleSearch = (searchInput: string, tab?: 'latest' | 'my-likes' | 'most-liked' | 'verified', resetPage: boolean = true) => {
     const selectedTab = tab || activeTab
     const search = searchInput.trim()
     const page = resetPage ? 1 : currentPage
@@ -154,12 +156,13 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
 
         <Tabs
           value={activeTab}
-          onValueChange={(value) => handleSearch(searchQuery, value as 'latest' | 'my-likes' | 'most-liked')}
+          onValueChange={(value) => handleSearch(searchQuery, value as 'latest' | 'my-likes' | 'most-liked' | 'verified')}
           className="mt-8"
         >
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-4">
             <TabsTrigger value="latest">最新</TabsTrigger>
             <TabsTrigger value="most-liked">点赞最多</TabsTrigger>
+            <TabsTrigger value="verified">认证</TabsTrigger>
             <TabsTrigger value="my-likes">我的点赞</TabsTrigger>
           </TabsList>
 
@@ -254,6 +257,44 @@ export function MonitorDashboard({ locale, currentPage, pageSize = 12, activeTab
               <div className="text-center py-12">
                 <p className="text-muted-foreground">
                   {searchQuery ? `未找到包含 "${searchQuery}" 的路由器` : '暂无路由器数据'}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {services.map((service) => (
+                    <ServiceCard key={service.id} service={service} t={t} />
+                  ))}
+                </div>
+
+                {/* 分页组件 */}
+                <div className="mt-8">
+                  <MonitorPagination
+                    currentPage={pagination.page}
+                    totalPages={pagination.totalPages}
+                  />
+                  {pagination.totalPages > 1 && (
+                    <div className="mt-4 text-center text-sm text-muted-foreground">
+                      第 {pagination.page} / {pagination.totalPages} 页，共 {pagination.total} 个结果
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </TabsContent>
+
+          <TabsContent value="verified" className="mt-6">
+            {loading && services.length === 0 ? (
+              <div className="flex justify-center items-center py-12">
+                <div className="text-center">
+                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
+                  <p className="mt-4 text-muted-foreground">加载认证路由器中...</p>
+                </div>
+              </div>
+            ) : services.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">
+                  {searchQuery ? `未找到包含 "${searchQuery}" 的认证路由器` : '暂无认证路由器数据'}
                 </p>
               </div>
             ) : (

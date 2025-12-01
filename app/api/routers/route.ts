@@ -29,6 +29,7 @@ export async function GET(request: NextRequest) {
     const userId = searchParams.get('userId') || undefined
     const likedBy = searchParams.get('likedBy') === 'true'
     const createdBy = searchParams.get('createdBy') === 'true'
+    const verified = searchParams.get('verified') === 'true'
 
     // 使用新的分页功能还是保持兼容性
     const usePagination = searchParams.has('page') || searchParams.has('pageSize') || searchParams.has('search')
@@ -36,7 +37,6 @@ export async function GET(request: NextRequest) {
     const db = createDb()
 
     if (usePagination) {
-      // 使用新的分页API
       const options: RouterQueryOptions = {
         page: Math.max(1, page),
         pageSize: Math.min(100, Math.max(1, pageSize)), // 限制页面大小在1-100之间
@@ -45,6 +45,7 @@ export async function GET(request: NextRequest) {
         userId,
         likedBy,
         createdBy,
+        verified,
         currentUserId
       }
 

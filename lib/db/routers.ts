@@ -51,6 +51,7 @@ export interface RouterQueryOptions {
   userId?: string
   likedBy?: boolean
   createdBy?: boolean // 是否获取用户创建的 routers
+  verified?: boolean // 是否只获取认证的 routers
   currentUserId?: string // 当前登录用户的 ID，用于判断是否已点赞
 }
 
@@ -138,6 +139,7 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
     userId,
     likedBy = false,
     createdBy = false,
+    verified = false,
     currentUserId
   } = options
 
@@ -205,6 +207,12 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
     countQuery = countQuery.where(eq(routers.createdBy, userId))
   }
 
+  // 如果只查询认证的路由器
+  if (verified && !likedBy && !createdBy) {
+    query = query.where(eq(routers.isVerified, true))
+    countQuery = countQuery.where(eq(routers.isVerified, true))
+  }
+
   // 添加搜索条件
   if (search && search.trim()) {
     const searchCondition = sql`${like(routers.name, `%${search}%`)} OR ${like(routers.url, `%${search}%`)}`
@@ -214,6 +222,9 @@ export async function getRoutersWithPagination(db: Db, options: RouterQueryOptio
     } else if (createdBy && userId) {
       query = query.where(sql`${eq(routers.createdBy, userId)} AND (${searchCondition})`)
       countQuery = countQuery.where(sql`${eq(routers.createdBy, userId)} AND (${searchCondition})`)
+    } else if (verified) {
+      query = query.where(sql`${eq(routers.isVerified, true)} AND (${searchCondition})`)
+      countQuery = countQuery.where(sql`${eq(routers.isVerified, true)} AND (${searchCondition})`)
     } else {
       query = query.where(searchCondition)
       countQuery = countQuery.where(searchCondition)
