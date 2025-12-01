@@ -405,6 +405,31 @@ export const commentLikes = sqliteTable(
 export type ModelStatus = 'active' | 'inactive' | 'beta' | 'deprecated'
 export type ModelProvider = 'openai' | 'anthropic' | 'google' | 'meta' | 'mistral' | 'alibaba' | 'baidu' | 'other'
 
+// AI 模型配置表 - 存储 API 转发配置
+export const modelConfigs = sqliteTable('model_configs', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text('name').notNull().unique(), // 配置名称 (唯一标识，如 'cjack', 'gmi')
+  provider: text('provider').notNull(), // 提供商显示名称 (如 'CJack API')
+  apiUrl: text('api_url').notNull(), // API 转发地址
+  apiKey: text('api_key').notNull(), // API Key (应考虑加密存储)
+  models: text('models').notNull(), // 支持的模型列表 (JSON 数组字符串)
+  defaultModel: text('default_model'), // 默认模型
+  isActive: integer('is_active', { mode: 'boolean' }).notNull().default(true), // 是否启用
+  priority: integer('priority').notNull().default(0), // 优先级 (数字越大优先级越高)
+  description: text('description'), // 配置描述
+  metadata: text('metadata'), // 其他元数据 (JSON 格式)
+  createdBy: text('created_by').references(() => users.id), // 创建人
+  updatedBy: text('updated_by').references(() => users.id), // 修改人
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
+
 // 大语言模型表 - 存储 AI 大语言模型信息
 export const models = sqliteTable('models', {
   id: text('id')
