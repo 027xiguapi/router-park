@@ -4,6 +4,9 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const nextConfig: NextConfig = {
   devIndicators: false,
   images: {
+    dangerouslyAllowSVG: true,          // 允许 SVG
+    contentDispositionType: 'attachment', // 可选：强制下载，减少 XSS 风险
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;", // 可选：CSP 沙箱
     remotePatterns: [
       {
         protocol: 'https',

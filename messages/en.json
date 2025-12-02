@@ -408,6 +408,7 @@
   "login": {
     "signOut": "Sign Out",
     "login": "Login",
+    "userProfile": "User Profile",
     "modal": {
       "description": "Sign in to continue your journey",
       "triggerText": "Login"

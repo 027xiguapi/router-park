@@ -9,6 +9,8 @@ import { formatDate } from '@/lib/utils'
 import { Calendar, Clock, ArrowLeft, Eye, Heart, ExternalLink, Code2 } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/button'
+import ModelChat from "@/components/model/model-chat";
+import MarkdownRender from "@/components/markdown/mark-down-render";
 
 interface ModelSlugPageProps {
   params: Promise<{
@@ -251,53 +253,7 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                 <Separator className="mt-6 sm:mt-8" />
               </div>
 
-              {/* !��� */}
-              <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none
-                prose-headings:font-bold
-                prose-headings:text-foreground
-                prose-h1:text-2xl sm:prose-h1:text-3xl lg:prose-h1:text-4xl
-                prose-h2:text-xl sm:prose-h2:text-2xl lg:prose-h2:text-3xl
-                prose-h3:text-lg sm:prose-h3:text-xl lg:prose-h3:text-2xl
-                prose-h1:bg-gradient-to-r prose-h1:from-primary prose-h1:via-orange-500 prose-h1:to-amber-500
-                prose-h1:bg-clip-text prose-h1:text-transparent
-                prose-h2:text-primary
-                prose-p:text-foreground
-                prose-p:leading-relaxed
-                prose-a:text-primary
-                prose-a:no-underline
-                prose-a:font-medium
-                hover:prose-a:text-orange-500
-                hover:prose-a:underline
-                prose-strong:text-foreground
-                prose-strong:font-semibold
-                prose-code:text-primary
-                prose-code:bg-muted
-                prose-code:px-1.5
-                prose-code:py-0.5
-                prose-code:rounded
-                prose-code:before:content-none
-                prose-code:after:content-none
-                prose-pre:bg-muted
-                prose-pre:border
-                prose-pre:border-border
-                prose-img:rounded-lg
-                prose-img:shadow-md
-                prose-blockquote:border-l-primary
-                prose-blockquote:bg-muted/50
-                prose-blockquote:py-1
-                prose-blockquote:px-4
-                prose-ul:list-disc
-                prose-ol:list-decimal
-                prose-li:text-foreground
-                prose-table:border-collapse
-                prose-th:bg-muted
-                prose-th:border
-                prose-th:border-border
-                prose-td:border
-                prose-td:border-border
-              ">
-                <Markdown children={content} />
-              </div>
+              <MarkdownRender content={content} />
 
               {/* ���o */}
               {pricing && (
@@ -312,10 +268,8 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                 </>
               )}
 
-              {/* !���� */}
               <Separator className="mt-8 sm:mt-12" />
 
-              {/* ���\: */}
               <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="text-xs sm:text-sm text-muted-foreground">
                   {t('publishedAt', { date: formatDate(publishedAt) })}
@@ -324,7 +278,7 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                 <Link href="/models">
                   <Button variant="outline" size="sm" className="gap-2 border-primary/30 hover:bg-primary/10 hover:text-primary">
                     <ArrowLeft className="h-4 w-4" />
-                    <span className="text-sm">{t('backToModels') || '��!�h'}</span>
+                    <span className="text-sm">{t('backToModels') || '返回'}</span>
                   </Button>
                 </Link>
               </div>
@@ -332,6 +286,7 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
           </Card>
         </article>
       </div>
+      <ModelChat />
     </div>
   )
 }
