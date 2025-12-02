@@ -486,6 +486,34 @@
     "publishedAt": "发布于 {date}",
     "readMore": "阅读更多"
   },
+  "modelsPage": {
+    "title": "AI 大模型导航",
+    "description": "探索主流 AI 大语言模型，了解各模型特性、能力和定价，选择最适合您需求的 AI 模型",
+    "searchPlaceholder": "搜索模型名称、提供商...",
+    "contextWindow": "上下文窗口",
+    "maxOutputTokens": "最大输出",
+    "totalCount": "共收录 {count} 个模型",
+    "showingCount": " · 当前显示 {count} 个",
+    "noResultsTitle": "未找到相关模型",
+    "noResultsDescription": "试试调整搜索关键词或选择其他分类",
+    "providers": {
+      "all": "全部",
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "google": "Google",
+      "meta": "Meta",
+      "mistral": "Mistral",
+      "alibaba": "阿里巴巴",
+      "baidu": "百度",
+      "other": "其他"
+    },
+    "status": {
+      "active": "可用",
+      "beta": "测试中",
+      "deprecated": "已弃用",
+      "inactive": "停用"
+    }
+  },
   "plan": {
     "notFound": "未找到计划",
     "priceUnit": "/ 月",
@@ -681,6 +709,9 @@
       },
       "geminiFlash": {
         "description": "Google Gemini 兼容接口"
+      },
+      "default": {
+        "description": "OpenAI 兼容接口"
       }
     }
   },

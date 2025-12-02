@@ -29,12 +29,6 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true
   },
   reactStrictMode: false,
-  experimental: {
-    staleTimes: {
-      dynamic: 3600,
-      static: 3600
-    }
-  }
 }
 
 const withNextIntl = createNextIntlPlugin({

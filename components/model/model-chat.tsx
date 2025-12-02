@@ -37,7 +37,11 @@ interface ModelInfo {
     slug: string
 }
 
-const ModelChat = () => {
+interface ModelChatProps {
+    embedded?: boolean
+}
+
+const ModelChat = ({ embedded = false }: ModelChatProps) => {
     const params = useParams()
     const slug = params?.slug as string
     const locale = params?.locale as string
@@ -274,7 +278,10 @@ const ModelChat = () => {
 
     if (isLoadingModel) {
         return (
-            <div className="min-h-screen bg-background flex items-center justify-center">
+            <div className={cn(
+                "flex items-center justify-center",
+                embedded ? "h-[400px]" : "min-h-screen bg-background"
+            )}>
                 <div className="flex items-center gap-2">
                     <Loader2 className="h-6 w-6 animate-spin text-primary" />
                     <span className="text-muted-foreground">加载模型信息中...</span>
@@ -284,16 +291,29 @@ const ModelChat = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex flex-col">
+        <div className={cn(
+            "flex flex-col",
+            embedded
+                ? "h-[600px] border rounded-lg overflow-hidden"
+                : "min-h-screen bg-gradient-to-br from-background via-background to-muted/20"
+        )}>
             {/* 顶部导航栏 */}
-            <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            <header className={cn(
+                "border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+                embedded ? "sticky top-0 z-10" : "sticky top-0 z-50"
+            )}>
+                <div className={cn(
+                    "flex items-center justify-between",
+                    embedded ? "px-4 h-12" : "container mx-auto px-4 h-16"
+                )}>
                     <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
-                            <Bot className="h-6 w-6 text-primary" />
+                            <Bot className={cn("text-primary", embedded ? "h-5 w-5" : "h-6 w-6")} />
                             <div>
-                                <h1 className="text-lg font-bold">{modelInfo?.name || slug}</h1>
-                                {modelInfo?.provider && (
+                                <h1 className={cn("font-bold", embedded ? "text-base" : "text-lg")}>
+                                    {modelInfo?.name || slug}
+                                </h1>
+                                {modelInfo?.provider && !embedded && (
                                     <p className="text-xs text-muted-foreground">{modelInfo.provider}</p>
                                 )}
                             </div>
@@ -320,27 +340,46 @@ const ModelChat = () => {
             {/* 聊天内容区 */}
             <div className="flex-1 overflow-hidden">
                 <ScrollArea className="h-full">
-                    <div className="container mx-auto max-w-4xl px-4 py-6">
+                    <div className={cn(
+                        "py-6",
+                        embedded ? "px-4" : "container mx-auto max-w-4xl px-4"
+                    )}>
                         {messages.length === 0 ? (
-                            <div className="flex flex-col items-center justify-center h-[calc(100vh-16rem)] text-center">
-                                <Bot className="h-16 w-16 text-muted-foreground/50 mb-4" />
-                                <h2 className="text-2xl font-bold mb-2">开始对话</h2>
-                                <p className="text-muted-foreground mb-6 max-w-md">
+                            <div className={cn(
+                                "flex flex-col items-center justify-center text-center",
+                                embedded ? "h-[350px]" : "h-[calc(100vh-16rem)]"
+                            )}>
+                                <Bot className={cn(
+                                    "text-muted-foreground/50 mb-4",
+                                    embedded ? "h-12 w-12" : "h-16 w-16"
+                                )} />
+                                <h2 className={cn("font-bold mb-2", embedded ? "text-xl" : "text-2xl")}>开始对话</h2>
+                                <p className={cn(
+                                    "text-muted-foreground mb-6",
+                                    embedded ? "text-sm max-w-sm" : "max-w-md"
+                                )}>
                                     您可以发送文字或图片与 {modelInfo?.name || '模型'} 进行对话
                                 </p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl">
-                                    <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors">
+                                <div className={cn(
+                                    "grid gap-3 w-full",
+                                    embedded ? "grid-cols-1 max-w-sm" : "grid-cols-1 sm:grid-cols-2 max-w-2xl"
+                                )}>
+                                    <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => setInput('解释一下量子计算的基本原理')}>
                                         <p className="text-sm text-muted-foreground">💡 "解释一下量子计算的基本原理"</p>
                                     </Card>
-                                    <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors">
+                                    <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => setInput('帮我写一个React组件')}>
                                         <p className="text-sm text-muted-foreground">🎨 "帮我写一个React组件"</p>
                                     </Card>
-                                    <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors">
-                                        <p className="text-sm text-muted-foreground">📝 "分析这段代码的性能问题"</p>
-                                    </Card>
-                                    <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors">
-                                        <p className="text-sm text-muted-foreground">🔍 "这张图片里有什么内容?"</p>
-                                    </Card>
+                                    {!embedded && (
+                                        <>
+                                            <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => setInput('分析这段代码的性能问题')}>
+                                                <p className="text-sm text-muted-foreground">📝 "分析这段代码的性能问题"</p>
+                                            </Card>
+                                            <Card className="p-4 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => setInput('这张图片里有什么内容?')}>
+                                                <p className="text-sm text-muted-foreground">🔍 "这张图片里有什么内容?"</p>
+                                            </Card>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         ) : (
@@ -441,7 +480,10 @@ const ModelChat = () => {
 
             {/* 输入区域 */}
             <div className="border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="container mx-auto max-w-4xl px-4 py-4">
+                <div className={cn(
+                    "py-4",
+                    embedded ? "px-4" : "container mx-auto max-w-4xl px-4"
+                )}>
                     {/* 图片预览 */}
                     {selectedImages.length > 0 && (
                         <div className="mb-3 flex gap-2 flex-wrap">
@@ -450,7 +492,10 @@ const ModelChat = () => {
                                     <img
                                         src={img}
                                         alt={`预览 ${index + 1}`}
-                                        className="h-20 w-20 object-cover rounded-lg border-2 border-border"
+                                        className={cn(
+                                            "object-cover rounded-lg border-2 border-border",
+                                            embedded ? "h-16 w-16" : "h-20 w-20"
+                                        )}
                                     />
                                     <button
                                         onClick={() => removeImage(index)}
@@ -471,8 +516,11 @@ const ModelChat = () => {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                placeholder="输入消息... (Shift + Enter 换行)"
-                                className="min-h-[52px] max-h-[200px] resize-none pr-12"
+                                placeholder={embedded ? "输入消息..." : "输入消息... (Shift + Enter 换行)"}
+                                className={cn(
+                                    "resize-none pr-12",
+                                    embedded ? "min-h-[44px] max-h-[120px]" : "min-h-[52px] max-h-[200px]"
+                                )}
                                 disabled={isLoading}
                             />
 
@@ -502,7 +550,7 @@ const ModelChat = () => {
                         <Button
                             onClick={handleSendMessage}
                             disabled={(!input.trim() && selectedImages.length === 0) || isLoading}
-                            className="h-[52px] px-6"
+                            className={cn("px-6", embedded ? "h-[44px]" : "h-[52px]")}
                         >
                             {isLoading ? (
                                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -513,9 +561,11 @@ const ModelChat = () => {
                     </div>
 
                     {/* 提示文字 */}
-                    <p className="text-xs text-muted-foreground mt-2 text-center">
-                        对话内容将自动保存在浏览器中 · 按 Enter 发送,Shift + Enter 换行
-                    </p>
+                    {!embedded && (
+                        <p className="text-xs text-muted-foreground mt-2 text-center">
+                            对话内容将自动保存在浏览器中 · 按 Enter 发送,Shift + Enter 换行
+                        </p>
+                    )}
                 </div>
             </div>
         </div>

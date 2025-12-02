@@ -10,7 +10,6 @@ import { FAQ } from "@/components/faq"
 import { FreeVPN } from "@/components/free-vpn"
 import { FreeAPIKeys } from "@/components/free-api-keys"
 import { FreeLLMAPI } from "@/components/free-llm-api"
-import { FreeImageAPI } from "@/components/free-image-api"
 import { LanguageSelector } from "@/components/language-selector"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -38,7 +37,6 @@ export default async function Home({
       <MonitorDashboard locale={locale} currentPage={currentPage} />
       <FreeAPIKeys />
       <FreeLLMAPI />
-      <FreeImageAPI />
       <FreeVPN />
       <Features />
       <HowItWorks />

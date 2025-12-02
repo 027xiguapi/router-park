@@ -616,6 +616,9 @@
       },
       "geminiFlash": {
         "description": "Google Gemini Compatible Interface"
+      },
+      "default": {
+        "description": "OpenAI Compatible Interface"
       }
     }
   },
@@ -789,6 +792,34 @@
     "noArticles": "No articles available",
     "publishedAt": "Published at {date}",
     "readMore": "Read More"
+  },
+  "modelsPage": {
+    "title": "AI Models Directory",
+    "description": "Explore popular AI large language models, understand their features, capabilities and pricing, and choose the best AI model for your needs",
+    "searchPlaceholder": "Search model name, provider...",
+    "contextWindow": "Context Window",
+    "maxOutputTokens": "Max Output",
+    "totalCount": "{count} models in total",
+    "showingCount": " · Showing {count}",
+    "noResultsTitle": "No models found",
+    "noResultsDescription": "Try adjusting your search keywords or select a different category",
+    "providers": {
+      "all": "All",
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "google": "Google",
+      "meta": "Meta",
+      "mistral": "Mistral",
+      "alibaba": "Alibaba",
+      "baidu": "Baidu",
+      "other": "Other"
+    },
+    "status": {
+      "active": "Active",
+      "beta": "Beta",
+      "deprecated": "Deprecated",
+      "inactive": "Inactive"
+    }
   },
   "dailyLog": {
     "metaTitle": "Daily Summary - Free LLM API Relays & API Keys",

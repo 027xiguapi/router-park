@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import Markdown from 'markdown-to-jsx/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -9,8 +8,7 @@ import { formatDate } from '@/lib/utils'
 import { Calendar, Clock, ArrowLeft, Eye, Heart, ExternalLink, Code2 } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/button'
-import ModelChat from "@/components/model/model-chat";
-import MarkdownRender from "@/components/markdown/mark-down-render";
+import ModelContentTabs from '@/components/model/model-content-tabs'
 
 interface ModelSlugPageProps {
   params: Promise<{
@@ -253,20 +251,17 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                 <Separator className="mt-6 sm:mt-8" />
               </div>
 
-              <MarkdownRender content={content} />
-
-              {/* ���o */}
-              {pricing && (
-                <>
-                  <Separator className="mt-8 sm:mt-12" />
-                  <div className="mt-6 sm:mt-8 p-4 bg-muted/50 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-3">{t('pricing') || '���o'}</h3>
-                    <div className="prose prose-sm dark:prose-invert max-w-none">
-                      <Markdown children={pricing} />
-                    </div>
-                  </div>
-                </>
-              )}
+              {/* 使用 Tabs 展示内容和聊天 */}
+              <ModelContentTabs
+                content={content}
+                modelSlug={slug}
+                modelName={name}
+                pricing={pricing}
+                pricingLabel={t('pricing') || '定价信息'}
+                introLabel={t('modelIntro') || '模型介绍'}
+                chatLabel={t('onlineChat') || '在线体验'}
+                codeLabel={t('apiUsage') || 'API 调用'}
+              />
 
               <Separator className="mt-8 sm:mt-12" />
 
@@ -286,7 +281,6 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
           </Card>
         </article>
       </div>
-      <ModelChat />
     </div>
   )
 }
