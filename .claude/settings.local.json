@@ -16,7 +16,8 @@
       "Bash(node download-images.js:*)",
       "Bash(find:*)",
       "Bash(node scripts/remove-duplicate-blog-files.js:*)",
-      "Bash(tsx scripts/convert-blog-images.ts:*)"
+      "Bash(tsx scripts/convert-blog-images.ts:*)",
+      "Bash(npx tsx:*)"
     ],
     "deny": [],
     "ask": []

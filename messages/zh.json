@@ -30,6 +30,27 @@
       "emailPlaceholder": "输入您的电子邮件",
       "signInWithEmail": "使用电子邮件登录"
     },
+    "page": {
+      "welcomeBack": "欢迎回来",
+      "subtitle": "登录开始您的 AI 之旅",
+      "inviteReceived": "您收到了邀请！",
+      "limitedOffer": "限时福利",
+      "youWillGet": "您将获得",
+      "signupBonus": "注册奖励",
+      "inviterWillGet": "邀请人将获得",
+      "inviteReward": "邀请奖励",
+      "newUserBenefits": "新用户福利",
+      "signupBonusTitle": "注册即送 $100",
+      "signupBonusDesc": "立即可用，无需等待",
+      "inviteRewardTitle": "邀请好友得 $20",
+      "inviteRewardDesc": "每邀请一位好友注册",
+      "balanceUsageTitle": "余额多用途",
+      "balanceUsageDesc": "购买 API 额度等服务",
+      "termsPrefix": "登录即表示您同意我们的",
+      "termsOfService": "服务条款",
+      "and": "和",
+      "privacyPolicy": "隐私政策"
+    },
     "signOut": "退出登录",
     "login": "登录",
     "userProfile": "用户配置"
@@ -469,14 +490,28 @@
     "postNotFoundDescription": "您寻找的博客文章不存在。",
     "publishedAt": "在 {date} 发布",
     "backToBlogs": "返回博客",
-    "readTime": "{minutes} 分钟阅读"
+    "readTime": "{minutes} 分钟阅读",
+    "wordCount": "字",
+    "recommendedReading": "推荐阅读",
+    "freeClaudeCodeTitle": "免费 Claude Code",
+    "freeClaudeCodeDesc": "探索如何免费使用 Claude Code 进行 AI 辅助编程，提升开发效率。",
+    "freeLlmApiTitle": "免费 LLM API",
+    "freeLlmApiDesc": "发现各种免费的大语言模型 API 服务，轻松集成 AI 能力到你的项目中。",
+    "learnMore": "了解更多"
   },
   "docs": {
     "postNotFound": "找不到文章",
     "postNotFoundDescription": "您寻找的博客文章不存在。",
     "publishedAt": "在 {date} 发布",
     "backToDocs": "返回文档",
-    "readTime": "{minutes} 分钟阅读"
+    "readTime": "{minutes} 分钟阅读",
+    "wordCount": "字",
+    "recommendedReading": "推荐阅读",
+    "freeClaudeCodeTitle": "免费 Claude Code",
+    "freeClaudeCodeDesc": "探索如何免费使用 Claude Code 进行 AI 辅助编程，提升开发效率。",
+    "freeLlmApiTitle": "免费 LLM API",
+    "freeLlmApiDesc": "发现各种免费的大语言模型 API 服务，轻松集成 AI 能力到你的项目中。",
+    "learnMore": "了解更多"
   },
   "blogs": {
     "pageTitle": "博客文章",
@@ -513,6 +548,21 @@
       "deprecated": "已弃用",
       "inactive": "停用"
     }
+  },
+  "models": {
+    "pricing": "定价信息",
+    "modelIntro": "模型介绍",
+    "onlineChat": "在线体验",
+    "apiUsage": "API 调用",
+    "officialWebsite": "官方网站",
+    "apiDocumentation": "API 文档",
+    "provider": "提供商",
+    "readTime": "{minutes} 分钟阅读",
+    "publishedAt": "发布于 {date}",
+    "backToModels": "返回模型列表",
+    "contextWindow": "上下文窗口",
+    "maxOutputTokens": "最大输出令牌",
+    "capabilities": "能力"
   },
   "plan": {
     "notFound": "未找到计划",

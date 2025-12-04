@@ -416,6 +416,27 @@
       "orContinueWith": "Ou continuer avec",
       "emailPlaceholder": "Entrez votre e-mail",
       "signInWithEmail": "Se connecter avec l'e-mail"
+    },
+    "page": {
+      "welcomeBack": "Bienvenue",
+      "subtitle": "Connectez-vous pour commencer votre voyage dans l'IA",
+      "inviteReceived": "Vous avez reçu une invitation !",
+      "limitedOffer": "Offre Limitée",
+      "youWillGet": "Vous recevrez",
+      "signupBonus": "bonus d'inscription",
+      "inviterWillGet": "L'inviteur recevra",
+      "inviteReward": "récompense d'invitation",
+      "newUserBenefits": "Avantages pour les Nouveaux Utilisateurs",
+      "signupBonusTitle": "Obtenez 100 $ à l'Inscription",
+      "signupBonusDesc": "Disponible immédiatement, sans attente",
+      "inviteRewardTitle": "Gagnez 20 $ par Parrainage",
+      "inviteRewardDesc": "Pour chaque ami que vous invitez",
+      "balanceUsageTitle": "Utilisations Multiples",
+      "balanceUsageDesc": "Achat de crédits API et plus",
+      "termsPrefix": "En vous connectant, vous acceptez nos",
+      "termsOfService": "Conditions d'Utilisation",
+      "and": "et",
+      "privacyPolicy": "Politique de Confidentialité"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "Explorez nos derniers articles sur l'analyse de la beauté, la technologie IA et l'esthétique faciale. Découvrez des aperçus d'experts, des conseils et des tendances dans le monde de l'évaluation de la beauté assistée par IA.",
     "noArticles": "Aucun article disponible",
     "publishedAt": "Publié le {date}"
+  },
+  "models": {
+    "pricing": "Tarification",
+    "modelIntro": "Présentation du modèle",
+    "onlineChat": "Essayer en ligne",
+    "apiUsage": "Utilisation de l'API",
+    "officialWebsite": "Site officiel",
+    "apiDocumentation": "Documentation de l'API",
+    "provider": "Fournisseur",
+    "readTime": "{minutes} min de lecture",
+    "publishedAt": "Publié le {date}",
+    "backToModels": "Retour aux modèles",
+    "contextWindow": "Fenêtre de contexte",
+    "maxOutputTokens": "Tokens de sortie max.",
+    "capabilities": "Capacités"
   },
   "dailyLog": {
     "metaTitle": "Résumé Quotidien - Relais d'API LLM Gratuits et Clés d'API",

@@ -219,7 +219,6 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                   </div>
                 )}
 
-                {/* ��� */}
                 {(officialUrl || apiDocUrl) && (
                   <div className="flex flex-wrap gap-3 mb-4">
                     {officialUrl && (
@@ -230,7 +229,7 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary/10 hover:bg-primary/20 text-primary text-sm font-medium transition-colors"
                       >
                         <ExternalLink className="h-4 w-4" />
-                        {t('officialWebsite') || '��Q�'}
+                        {t('officialWebsite')}
                       </a>
                     )}
 
@@ -242,7 +241,7 @@ const ModelSlugPage = async (props: ModelSlugPageProps) => {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary/10 hover:bg-primary/20 text-primary text-sm font-medium transition-colors"
                       >
                         <Code2 className="h-4 w-4" />
-                        {t('apiDocumentation') || 'API �c'}
+                        {t('apiDocumentation')}
                       </a>
                     )}
                   </div>

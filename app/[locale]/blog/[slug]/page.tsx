@@ -9,6 +9,7 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/button'
 import MarkdownRender from "@/components/markdown/mark-down-render";
+import { BlogNav } from '@/components/blog/blog-nav'
 
 interface PostSlugPageProps {
   params: Promise<{
@@ -71,18 +72,9 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        {/* 返回按钮 */}
-        <div className="mb-6 sm:mb-8">
-          <Link href="/blogs">
-            <Button variant="ghost" size="sm" className="gap-2 hover:text-primary">
-              <ArrowLeft className="h-4 w-4" />
-              <span className="text-sm">{t('backToBlogs') || '返回博客列表'}</span>
-            </Button>
-          </Link>
-        </div>
-
-        {/* 主内容卡片 */}
-        <article className="max-w-4xl mx-auto">
+        <div className="flex gap-8 max-w-7xl mx-auto mt-12">
+          {/* 主内容卡片 */}
+          <article className="flex-1 min-w-0 max-w-4xl">
           <Card className="border-border/50 shadow-lg overflow-hidden">
             {/* 封面图片 */}
             {/*{coverImageUrl && (*/}
@@ -135,7 +127,7 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
                       <span className="text-border">•</span>
                       <div className="flex items-center gap-1.5 sm:gap-2">
                         <Clock className="h-4 w-4 text-primary" />
-                        <span>{t('readTime', { minutes: readTime }) || `${readTime} 分钟阅读`}</span>
+                        <span>{t('readTime', { minutes: readTime })}</span>
                       </div>
                     </>
                   )}
@@ -144,7 +136,7 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
                     <>
                       <span className="hidden sm:inline text-border">•</span>
                       <Badge variant="secondary" className="hidden sm:inline-flex text-xs">
-                        {wordCount.toLocaleString()} 字
+                        {wordCount.toLocaleString()} {t('wordCount')}
                       </Badge>
                     </>
                   )}
@@ -168,7 +160,7 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
                 <Link href="/blogs">
                   <Button variant="outline" size="sm" className="gap-2 border-primary/30 hover:bg-primary/10 hover:text-primary">
                     <ArrowLeft className="h-4 w-4" />
-                    <span className="text-sm">{t('backToBlogs') || '返回博客列表'}</span>
+                    <span className="text-sm">{t('backToBlogs')}</span>
                   </Button>
                 </Link>
               </div>
@@ -178,7 +170,7 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
           {/* 推荐阅读 */}
           <div className="mt-8 sm:mt-12">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">
-              推荐阅读
+              {t('recommendedReading')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {/* 免费 Claude Code 卡片 */}
@@ -187,13 +179,13 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
                   <CardContent className="p-6">
                     <div className="flex flex-col h-full">
                       <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                        免费 Claude Code
+                        {t('freeClaudeCodeTitle')}
                       </h3>
                       <p className="text-sm text-muted-foreground flex-grow">
-                        探索如何免费使用 Claude Code 进行 AI 辅助编程，提升开发效率。
+                        {t('freeClaudeCodeDesc')}
                       </p>
                       <div className="mt-4 flex items-center text-sm text-primary font-medium">
-                        了解更多
+                        {t('learnMore')}
                         <ArrowLeft className="ml-2 h-4 w-4 rotate-180 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -207,13 +199,13 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
                   <CardContent className="p-6">
                     <div className="flex flex-col h-full">
                       <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                        免费 LLM API
+                        {t('freeLlmApiTitle')}
                       </h3>
                       <p className="text-sm text-muted-foreground flex-grow">
-                        发现各种免费的大语言模型 API 服务，轻松集成 AI 能力到你的项目中。
+                        {t('freeLlmApiDesc')}
                       </p>
                       <div className="mt-4 flex items-center text-sm text-primary font-medium">
-                        了解更多
+                        {t('learnMore')}
                         <ArrowLeft className="ml-2 h-4 w-4 rotate-180 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -223,6 +215,12 @@ const PostSlugPage = async (props: PostSlugPageProps) => {
             </div>
           </div>
         </article>
+
+        {/* 右侧目录导航 - 仅在桌面端显示 */}
+        <aside className="hidden xl:block w-64 shrink-0">
+          <BlogNav content={content} />
+        </aside>
+      </div>
       </div>
     </div>
   )

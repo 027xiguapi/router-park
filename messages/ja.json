@@ -407,6 +407,7 @@
   "login": {
     "signOut": "ログアウト",
     "login": "ログイン",
+    "userProfile": "ユーザープロフィール",
     "modal": {
       "description": "サインインして旅を続けましょう",
       "triggerText": "ログイン"
@@ -417,6 +418,27 @@
       "orContinueWith": "または以下で続行",
       "emailPlaceholder": "メールアドレスを入力",
       "signInWithEmail": "メールでサインイン"
+    },
+    "page": {
+      "welcomeBack": "おかえりなさい",
+      "subtitle": "AIの旅を始めるためにサインイン",
+      "inviteReceived": "招待を受け取りました！",
+      "limitedOffer": "期間限定特典",
+      "youWillGet": "あなたは",
+      "signupBonus": "の登録ボーナスを受け取ります",
+      "inviterWillGet": "招待者は",
+      "inviteReward": "の招待報酬を受け取ります",
+      "newUserBenefits": "新規ユーザー特典",
+      "signupBonusTitle": "登録で$100プレゼント",
+      "signupBonusDesc": "すぐに利用可能、待ち時間なし",
+      "inviteRewardTitle": "友達紹介で$20獲得",
+      "inviteRewardDesc": "友達を招待するたびに",
+      "balanceUsageTitle": "残高の多目的利用",
+      "balanceUsageDesc": "APIクレジットなどの購入に使用",
+      "termsPrefix": "サインインすることで、",
+      "termsOfService": "利用規約",
+      "and": "と",
+      "privacyPolicy": "プライバシーポリシー"
     }
   },
   "pricing": {
@@ -771,14 +793,28 @@
     "postNotFoundDescription": "お探しのブログ投稿が見つかりませんでした。",
     "publishedAt": "{date}に公開",
     "backToBlogs": "ブログに戻る",
-    "readTime": "読書時間：{minutes}"
+    "readTime": "{minutes}分で読める",
+    "wordCount": "文字",
+    "recommendedReading": "おすすめの記事",
+    "freeClaudeCodeTitle": "無料 Claude Code",
+    "freeClaudeCodeDesc": "Claude Codeを無料で使用してAI支援プログラミングを行い、開発効率を向上させる方法を探ります。",
+    "freeLlmApiTitle": "無料 LLM API",
+    "freeLlmApiDesc": "さまざまな無料の大規模言語モデルAPIサービスを発見し、プロジェクトにAI機能を簡単に統合できます。",
+    "learnMore": "詳しく見る"
   },
   "docs": {
     "postNotFound": "投稿が見つかりません",
     "postNotFoundDescription": "お探しのブログ投稿が見つかりませんでした。",
     "publishedAt": "{date}に公開",
     "backToDocs": "ドキュメントに戻る",
-    "readTime": "読書時間：{minutes}"
+    "readTime": "{minutes}分で読める",
+    "wordCount": "文字",
+    "recommendedReading": "おすすめの記事",
+    "freeClaudeCodeTitle": "無料 Claude Code",
+    "freeClaudeCodeDesc": "Claude Codeを無料で使用してAI支援プログラミングを行い、開発効率を向上させる方法を探ります。",
+    "freeLlmApiTitle": "無料 LLM API",
+    "freeLlmApiDesc": "さまざまな無料の大規模言語モデルAPIサービスを発見し、プロジェクトにAI機能を簡単に統合できます。",
+    "learnMore": "詳しく見る"
   },
   "blogs": {
     "pageTitle": "ブログ投稿",
@@ -787,6 +823,21 @@
     "noArticles": "記事がありません",
     "publishedAt": "{date}に公開",
     "readMore": "続きを読む"
+  },
+  "models": {
+    "pricing": "価格",
+    "modelIntro": "モデル紹介",
+    "onlineChat": "オンラインで試す",
+    "apiUsage": "API使用",
+    "officialWebsite": "公式サイト",
+    "apiDocumentation": "APIドキュメント",
+    "provider": "プロバイダー",
+    "readTime": "{minutes}分で読む",
+    "publishedAt": "{date}に公開",
+    "backToModels": "モデル一覧に戻る",
+    "contextWindow": "コンテキストウィンドウ",
+    "maxOutputTokens": "最大出力トークン数",
+    "capabilities": "機能"
   },
   "dailyLog": {
     "metaTitle": "デイリーサマリー - 無料LLM APIリレー & APIキー",

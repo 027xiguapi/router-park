@@ -3,6 +3,7 @@ import { unstable_noStore } from 'next/cache'
 import { getAllArticles } from '@/actions/ai-content'
 import { createDb } from '@/lib/db'
 import { getAllDocs } from '@/lib/db/docs'
+import { getAllModels } from '@/lib/db/models'
 import { locales } from '@/i18n/routing'
 
 import type { MetadataRoute } from 'next'
@@ -10,7 +11,7 @@ import type { MetadataRoute } from 'next'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   unstable_noStore()
 
-  const routes = ['', '/blogs', '/ai-tools', '/api-monitor', '/backlinks', '/chatgpt-mirrors', '/keyword-tool', '/vpn', '/pricing', '/config-guide', '/log', '/free-claude-code', '/free-llm-api']
+  const routes = ['', '/blogs', '/ai-tools', '/api-monitor', '/backlinks', '/chatgpt-mirrors', '/keyword-tool', '/vpn', '/pricing', '/config-guide', '/log', '/models', '/free-claude-code', '/free-llm-api']
 
   const entries: MetadataRoute.Sitemap = []
 
@@ -59,5 +60,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   })
 
-  return [...entries, ...publishedArticles, ...docsPages]
+  // 获取所有模型页面
+  const allModels = await getAllModels(db)
+
+  // 去重 - 只获取唯一的 slug（因为每个 slug 可能有多个 locale）
+  const uniqueModelSlugs = [...new Set(allModels.map(model => model.slug))]
+
+  const modelPages: MetadataRoute.Sitemap = uniqueModelSlugs.map((slug) => {
+    return {
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/model/${slug}`,
+      alternates: {
+        languages: Object.fromEntries(
+          locales
+            .filter((locale) => locale.code !== 'en')
+            .map((locale) => [locale.code, `${process.env.NEXT_PUBLIC_BASE_URL}/${locale.code}/model/${slug}`])
+        )
+      }
+    }
+  })
+
+  return [...entries, ...publishedArticles, ...docsPages, ...modelPages]
 }

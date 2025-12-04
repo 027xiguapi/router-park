@@ -416,6 +416,27 @@
       "orContinueWith": "Oder fahren Sie fort mit",
       "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
       "signInWithEmail": "Mit E-Mail anmelden"
+    },
+    "page": {
+      "welcomeBack": "Willkommen Zurück",
+      "subtitle": "Melden Sie sich an, um Ihre KI-Reise zu beginnen",
+      "inviteReceived": "Sie haben eine Einladung erhalten!",
+      "limitedOffer": "Begrenztes Angebot",
+      "youWillGet": "Sie erhalten",
+      "signupBonus": "Anmeldebonus",
+      "inviterWillGet": "Der Einlader erhält",
+      "inviteReward": "Einladungsprämie",
+      "newUserBenefits": "Vorteile für neue Benutzer",
+      "signupBonusTitle": "Erhalten Sie 100 $ bei der Anmeldung",
+      "signupBonusDesc": "Sofort verfügbar, keine Wartezeit",
+      "inviteRewardTitle": "Verdienen Sie 20 $ pro Empfehlung",
+      "inviteRewardDesc": "Für jeden Freund, den Sie einladen",
+      "balanceUsageTitle": "Mehrere Verwendungszwecke",
+      "balanceUsageDesc": "Kauf von API-Guthaben und mehr",
+      "termsPrefix": "Mit der Anmeldung stimmen Sie unseren",
+      "termsOfService": "Nutzungsbedingungen",
+      "and": "und",
+      "privacyPolicy": "Datenschutzbestimmungen"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "Entdecken Sie unsere neuesten Artikel über Schönheitsanalyse, AI-Technologie und Gesichtsästhetik. Entdecken Sie Experteneinblicke, Tipps und Trends in der Welt der AI-gestützten Schönheitsbewertung.",
     "noArticles": "Keine Artikel verfügbar",
     "publishedAt": "Veröffentlicht am {date}"
+  },
+  "models": {
+    "pricing": "Preise",
+    "modelIntro": "Modell-Einführung",
+    "onlineChat": "Online testen",
+    "apiUsage": "API-Nutzung",
+    "officialWebsite": "Offizielle Website",
+    "apiDocumentation": "API-Dokumentation",
+    "provider": "Anbieter",
+    "readTime": "{minutes} Min. Lesezeit",
+    "publishedAt": "Veröffentlicht am {date}",
+    "backToModels": "Zurück zu Modelle",
+    "contextWindow": "Kontextfenster",
+    "maxOutputTokens": "Max. Ausgabe-Tokens",
+    "capabilities": "Funktionen"
   },
   "dailyLog": {
     "metaTitle": "Tägliche Zusammenfassung - Kostenlose LLM-API-Relays & API-Schlüssel",

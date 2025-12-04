@@ -1,16 +1,17 @@
 import {
   Card,
-  CardDescription,
   CardHeader,
   CardTitle,
-  CardContent
 } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { notFound } from 'next/navigation'
 import { UserRouters } from '@/components/user-routers'
+import { ApiKeyManager } from '@/components/user/api-key-manager'
+import { InviteManager } from '@/components/user/invite-manager'
 import { createDb } from '@/lib/db'
 import { getUserById } from '@/lib/db/users'
+import { auth } from '@/lib/auth'
 
 export default async function UserProfile({ params }: any) {
   const { id: userId, locale } = await params
@@ -23,6 +24,10 @@ export default async function UserProfile({ params }: any) {
   if (!user) {
     notFound()
   }
+
+  // 检查当前登录用户是否是页面所有者
+  const session = await auth()
+  const isOwner = session?.user?.id === userId
 
   return (
     <div className="container mx-auto p-4 pt-20 pb-16">
@@ -45,9 +50,11 @@ export default async function UserProfile({ params }: any) {
         </Card>
 
         <Tabs defaultValue="submitted" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className={`grid w-full ${isOwner ? 'grid-cols-4' : 'grid-cols-2'}`}>
             <TabsTrigger value="submitted">我的提交</TabsTrigger>
             <TabsTrigger value="liked">我的点赞</TabsTrigger>
+            {isOwner && <TabsTrigger value="invite">邀请奖励</TabsTrigger>}
+            {isOwner && <TabsTrigger value="apikeys">API Keys</TabsTrigger>}
           </TabsList>
           <TabsContent value="submitted" className="mt-6">
             <UserRouters userId={userId} type="created" />
@@ -55,6 +62,16 @@ export default async function UserProfile({ params }: any) {
           <TabsContent value="liked" className="mt-6">
             <UserRouters userId={userId} type="liked" />
           </TabsContent>
+          {isOwner && (
+            <>
+              <TabsContent value="invite" className="mt-6">
+                <InviteManager userId={userId} />
+              </TabsContent>
+              <TabsContent value="apikeys" className="mt-6">
+                <ApiKeyManager userId={userId} />
+              </TabsContent>
+            </>
+          )}
         </Tabs>
       </div>
     </div>

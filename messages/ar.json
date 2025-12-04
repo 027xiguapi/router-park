@@ -416,6 +416,27 @@
       "orContinueWith": "أو المتابعة باستخدام",
       "emailPlaceholder": "أدخل بريدك الإلكتروني",
       "signInWithEmail": "تسجيل الدخول باستخدام البريد الإلكتروني"
+    },
+    "page": {
+      "welcomeBack": "أهلاً بك مرة أخرى",
+      "subtitle": "سجّل الدخول لبدء رحلتك في الذكاء الاصطناعي",
+      "inviteReceived": "لقد تلقيت دعوة!",
+      "limitedOffer": "عرض محدود",
+      "youWillGet": "ستحصل على",
+      "signupBonus": "مكافأة التسجيل",
+      "inviterWillGet": "سيحصل الداعي على",
+      "inviteReward": "مكافأة الدعوة",
+      "newUserBenefits": "مزايا المستخدم الجديد",
+      "signupBonusTitle": "احصل على 100 دولار عند التسجيل",
+      "signupBonusDesc": "متاح فورًا، بدون انتظار",
+      "inviteRewardTitle": "اكسب 20 دولارًا لكل إحالة",
+      "inviteRewardDesc": "مقابل كل صديق تدعوه",
+      "balanceUsageTitle": "استخدامات متعددة",
+      "balanceUsageDesc": "شراء أرصدة API والمزيد",
+      "termsPrefix": "بتسجيل الدخول، فإنك توافق على",
+      "termsOfService": "شروط الخدمة",
+      "and": "و",
+      "privacyPolicy": "سياسة الخصوصية"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "استكشف أحدث مقالاتنا حول تحليل الجمال، وتقنية الذكاء الاصطناعي، وجماليات الوجه. اكتشف رؤى الخبراء، والنصائح، والاتجاهات في عالم تقييم الجمال المدعوم بالذكاء الاصطناعي.",
     "noArticles": "لا توجد مقالات متاحة",
     "publishedAt": "نشر في {date}"
+  },
+  "models": {
+    "pricing": "التسعير",
+    "modelIntro": "مقدمة النموذج",
+    "onlineChat": "جرب عبر الإنترنت",
+    "apiUsage": "استخدام واجهة برمجة التطبيقات (API)",
+    "officialWebsite": "الموقع الرسمي",
+    "apiDocumentation": "وثائق واجهة برمجة التطبيقات (API)",
+    "provider": "المزود",
+    "readTime": "{minutes} دقيقة قراءة",
+    "publishedAt": "نشر في {date}",
+    "backToModels": "العودة إلى النماذج",
+    "contextWindow": "نافذة السياق",
+    "maxOutputTokens": "الحد الأقصى لرموز الإخراج",
+    "capabilities": "الإمكانيات"
   },
   "dailyLog": {
     "metaTitle": "ملخص يومي - واجهات برمجة تطبيقات LLM المجانية وموفات API",

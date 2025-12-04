@@ -416,6 +416,27 @@
       "orContinueWith": "Или продолжить через",
       "emailPlaceholder": "Введите ваш email",
       "signInWithEmail": "Войти через Email"
+    },
+    "page": {
+      "welcomeBack": "С возвращением",
+      "subtitle": "Войдите, чтобы начать свое AI-путешествие",
+      "inviteReceived": "Вы получили приглашение!",
+      "limitedOffer": "Ограниченное предложение",
+      "youWillGet": "Вы получите",
+      "signupBonus": "бонус за регистрацию",
+      "inviterWillGet": "Приглашающий получит",
+      "inviteReward": "вознаграждение за приглашение",
+      "newUserBenefits": "Преимущества для Новых Пользователей",
+      "signupBonusTitle": "Получите 100 $ при Регистрации",
+      "signupBonusDesc": "Доступно немедленно, без ожидания",
+      "inviteRewardTitle": "Зарабатывайте 20 $ за Каждого Приглашенного",
+      "inviteRewardDesc": "За каждого приглашенного вами друга",
+      "balanceUsageTitle": "Различные Варианты Использования",
+      "balanceUsageDesc": "Покупка кредитов API и многое другое",
+      "termsPrefix": "Входя в систему, вы соглашаетесь с нашими",
+      "termsOfService": "Условиями Обслуживания",
+      "and": "и",
+      "privacyPolicy": "Политикой Конфиденциальности"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "Изучите наши последние статьи об анализе красоты, технологиях ИИ и эстетике лица. Откройте для себя экспертные инсайты, советы и тенденции в мире оценки красоты с помощью ИИ.",
     "noArticles": "Нет доступных статей",
     "publishedAt": "Опубликовано {date}"
+  },
+  "models": {
+    "pricing": "Цены",
+    "modelIntro": "Представление модели",
+    "onlineChat": "Попробовать онлайн",
+    "apiUsage": "Использование API",
+    "officialWebsite": "Официальный сайт",
+    "apiDocumentation": "Документация API",
+    "provider": "Провайдер",
+    "readTime": "Время чтения: {minutes} мин",
+    "publishedAt": "Опубликовано {date}",
+    "backToModels": "Назад к моделям",
+    "contextWindow": "Окно контекста",
+    "maxOutputTokens": "Макс. выходные токены",
+    "capabilities": "Возможности"
   },
   "dailyLog": {
     "metaTitle": "Ежедневный отчет - Бесплатные LLM API Ретрансляторы и API Ключи",

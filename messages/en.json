@@ -419,6 +419,27 @@
       "orContinueWith": "Or continue with",
       "emailPlaceholder": "Enter your email",
       "signInWithEmail": "Sign in with Email"
+    },
+    "page": {
+      "welcomeBack": "Welcome Back",
+      "subtitle": "Sign in to start your AI journey",
+      "inviteReceived": "You've received an invitation!",
+      "limitedOffer": "Limited Offer",
+      "youWillGet": "You will receive",
+      "signupBonus": "signup bonus",
+      "inviterWillGet": "Inviter will receive",
+      "inviteReward": "invite reward",
+      "newUserBenefits": "New User Benefits",
+      "signupBonusTitle": "Get $100 on Signup",
+      "signupBonusDesc": "Available immediately, no waiting",
+      "inviteRewardTitle": "Earn $20 per Referral",
+      "inviteRewardDesc": "For each friend you invite",
+      "balanceUsageTitle": "Multiple Uses",
+      "balanceUsageDesc": "Purchase API credits and more",
+      "termsPrefix": "By signing in, you agree to our",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy"
     }
   },
   "pricing": {
@@ -776,14 +797,28 @@
     "postNotFoundDescription": "The blog post you're looking for could not be found.",
     "publishedAt": "Published at {date}",
     "backToBlogs": "Back To Blogs",
-    "readTime": "Read Time: {minutes} "
+    "readTime": "{minutes} min read",
+    "wordCount": "words",
+    "recommendedReading": "Recommended Reading",
+    "freeClaudeCodeTitle": "Free Claude Code",
+    "freeClaudeCodeDesc": "Explore how to use Claude Code for free for AI-assisted programming and boost your development efficiency.",
+    "freeLlmApiTitle": "Free LLM API",
+    "freeLlmApiDesc": "Discover various free large language model API services and easily integrate AI capabilities into your projects.",
+    "learnMore": "Learn More"
   },
   "docs": {
     "postNotFound": "Post Not Found",
     "postNotFoundDescription": "The blog post you're looking for could not be found.",
     "publishedAt": "Published at {date}",
-    "backToDocs": "Back To Blogs",
-    "readTime": "Read Time: {minutes} "
+    "backToDocs": "Back To Docs",
+    "readTime": "{minutes} min read",
+    "wordCount": "words",
+    "recommendedReading": "Recommended Reading",
+    "freeClaudeCodeTitle": "Free Claude Code",
+    "freeClaudeCodeDesc": "Explore how to use Claude Code for free for AI-assisted programming and boost your development efficiency.",
+    "freeLlmApiTitle": "Free LLM API",
+    "freeLlmApiDesc": "Discover various free large language model API services and easily integrate AI capabilities into your projects.",
+    "learnMore": "Learn More"
   },
   "blogs": {
     "pageTitle": "Blog Posts",
@@ -820,6 +855,21 @@
       "deprecated": "Deprecated",
       "inactive": "Inactive"
     }
+  },
+  "models": {
+    "pricing": "Pricing",
+    "modelIntro": "Model Introduction",
+    "onlineChat": "Try Online",
+    "apiUsage": "API Usage",
+    "officialWebsite": "Official Website",
+    "apiDocumentation": "API Documentation",
+    "provider": "Provider",
+    "readTime": "{minutes} min read",
+    "publishedAt": "Published on {date}",
+    "backToModels": "Back to Models",
+    "contextWindow": "Context Window",
+    "maxOutputTokens": "Max Output Tokens",
+    "capabilities": "Capabilities"
   },
   "dailyLog": {
     "metaTitle": "Daily Summary - Free LLM API Relays & API Keys",

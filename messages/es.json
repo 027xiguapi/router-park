@@ -416,6 +416,27 @@
       "orContinueWith": "O continuar con",
       "emailPlaceholder": "Introduce tu correo electrónico",
       "signInWithEmail": "Iniciar Sesión con Correo Electrónico"
+    },
+    "page": {
+      "welcomeBack": "Bienvenido de Nuevo",
+      "subtitle": "Inicia sesión para comenzar tu viaje de IA",
+      "inviteReceived": "¡Has recibido una invitación!",
+      "limitedOffer": "Oferta Limitada",
+      "youWillGet": "Recibirás",
+      "signupBonus": "bono por registro",
+      "inviterWillGet": "El invitador recibirá",
+      "inviteReward": "recompensa por invitación",
+      "newUserBenefits": "Beneficios para Nuevos Usuarios",
+      "signupBonusTitle": "Obtén $100 al Registrarte",
+      "signupBonusDesc": "Disponible inmediatamente, sin esperas",
+      "inviteRewardTitle": "Gana $20 por Referido",
+      "inviteRewardDesc": "Por cada amigo que invites",
+      "balanceUsageTitle": "Múltiples Usos",
+      "balanceUsageDesc": "Compra créditos de API y más",
+      "termsPrefix": "Al iniciar sesión, aceptas nuestros",
+      "termsOfService": "Términos de Servicio",
+      "and": "y",
+      "privacyPolicy": "Política de Privacidad"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "Explora nuestros últimos artículos sobre análisis de belleza, tecnología de IA y estética facial. Descubre conocimientos de expertos, consejos y tendencias en el mundo de la evaluación de belleza impulsada por IA.",
     "noArticles": "No hay artículos disponibles",
     "publishedAt": "Publicado el {date}"
+  },
+  "models": {
+    "pricing": "Precios",
+    "modelIntro": "Introducción al modelo",
+    "onlineChat": "Probar en línea",
+    "apiUsage": "Uso de la API",
+    "officialWebsite": "Sitio web oficial",
+    "apiDocumentation": "Documentación de la API",
+    "provider": "Proveedor",
+    "readTime": "Lectura de {minutes} min",
+    "publishedAt": "Publicado el {date}",
+    "backToModels": "Volver a modelos",
+    "contextWindow": "Ventana de contexto",
+    "maxOutputTokens": "Tokens de salida máx.",
+    "capabilities": "Capacidades"
   },
   "dailyLog": {
     "metaTitle": "Resumen Diario - Retransmisiones de API LLM Gratuitas y Claves API",

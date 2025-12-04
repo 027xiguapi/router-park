@@ -69,7 +69,7 @@ function processFile(filePath: string): { success: boolean; changes: number } {
  * 主函数
  */
 async function convertAllImages() {
-  const blogDir = path.join(process.cwd(), 'blog', 'all', 'en')
+  const blogDir = path.join(process.cwd(), 'blog', 'all', 'zh')
 
   if (!fs.existsSync(blogDir)) {
     console.error(`❌ Directory not found: ${blogDir}`)

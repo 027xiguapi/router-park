@@ -416,6 +416,27 @@
       "orContinueWith": "Ou continuar com",
       "emailPlaceholder": "Introduza o seu email",
       "signInWithEmail": "Iniciar sessão com Email"
+    },
+    "page": {
+      "welcomeBack": "Bem-vindo de Volta",
+      "subtitle": "Faça login para começar sua jornada de IA",
+      "inviteReceived": "Você recebeu um convite!",
+      "limitedOffer": "Oferta Limitada",
+      "youWillGet": "Você receberá",
+      "signupBonus": "bônus de inscrição",
+      "inviterWillGet": "O convidante receberá",
+      "inviteReward": "recompensa por convite",
+      "newUserBenefits": "Benefícios para Novos Usuários",
+      "signupBonusTitle": "Ganhe $100 no Cadastro",
+      "signupBonusDesc": "Disponível imediatamente, sem espera",
+      "inviteRewardTitle": "Ganhe $20 por Indicação",
+      "inviteRewardDesc": "Para cada amigo que você convidar",
+      "balanceUsageTitle": "Usos Múltiplos",
+      "balanceUsageDesc": "Compre créditos de API e mais",
+      "termsPrefix": "Ao fazer login, você concorda com nossos",
+      "termsOfService": "Termos de Serviço",
+      "and": "e",
+      "privacyPolicy": "Política de Privacidade"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "Explore os nossos últimos artigos sobre análise de beleza, tecnologia de IA e estética facial. Descubra insights de especialistas, dicas e tendências no mundo da avaliação de beleza impulsionada pela IA.",
     "noArticles": "Nenhum artigo disponível",
     "publishedAt": "Publicado em {date}"
+  },
+  "models": {
+    "pricing": "Preços",
+    "modelIntro": "Introdução ao Modelo",
+    "onlineChat": "Experimente Online",
+    "apiUsage": "Uso da API",
+    "officialWebsite": "Website Oficial",
+    "apiDocumentation": "Documentação da API",
+    "provider": "Provedor",
+    "readTime": "Leitura de {minutes} min",
+    "publishedAt": "Publicado em {date}",
+    "backToModels": "Voltar aos Modelos",
+    "contextWindow": "Janela de Contexto",
+    "maxOutputTokens": "Tokens de Saída Máx.",
+    "capabilities": "Capacidades"
   },
   "dailyLog": {
     "metaTitle": "Resumo Diário - Retransmissões de API de LLM Gratuitas e Chaves de API",

@@ -416,6 +416,27 @@
       "orContinueWith": "O continua con",
       "emailPlaceholder": "Inserisci la tua email",
       "signInWithEmail": "Accedi con Email"
+    },
+    "page": {
+      "welcomeBack": "Bentornato",
+      "subtitle": "Accedi per iniziare il tuo viaggio nell'IA",
+      "inviteReceived": "Hai ricevuto un invito!",
+      "limitedOffer": "Offerta Limitata",
+      "youWillGet": "Riceverai",
+      "signupBonus": "bonus di iscrizione",
+      "inviterWillGet": "L'invitante riceverà",
+      "inviteReward": "ricompensa per invito",
+      "newUserBenefits": "Vantaggi per i Nuovi Utenti",
+      "signupBonusTitle": "Ottieni 100 $ all'Iscrizione",
+      "signupBonusDesc": "Disponibile immediatamente, senza attese",
+      "inviteRewardTitle": "Guadagna 20 $ per Segnalazione",
+      "inviteRewardDesc": "Per ogni amico che inviti",
+      "balanceUsageTitle": "Usi Multipli",
+      "balanceUsageDesc": "Acquisto di crediti API e altro",
+      "termsPrefix": "Accedendo, accetti i nostri",
+      "termsOfService": "Termini di Servizio",
+      "and": "e",
+      "privacyPolicy": "Informativa sulla Privacy"
     }
   },
   "pricing": {
@@ -607,6 +628,21 @@
     "metaDescription": "Esplora i nostri ultimi articoli su analisi di bellezza, tecnologia AI ed estetica facciale. Scopri approfondimenti di esperti, suggerimenti e tendenze nel mondo della valutazione di bellezza basata sull'AI.",
     "noArticles": "Nessun articolo disponibile",
     "publishedAt": "Pubblicato il {date}"
+  },
+  "models": {
+    "pricing": "Prezzi",
+    "modelIntro": "Introduzione al modello",
+    "onlineChat": "Prova online",
+    "apiUsage": "Uso dell'API",
+    "officialWebsite": "Sito Ufficiale",
+    "apiDocumentation": "Documentazione API",
+    "provider": "Fornitore",
+    "readTime": "{minutes} min di lettura",
+    "publishedAt": "Pubblicato il {date}",
+    "backToModels": "Torna ai modelli",
+    "contextWindow": "Finestra di contesto",
+    "maxOutputTokens": "Token di output max.",
+    "capabilities": "Capacità"
   },
   "dailyLog": {
     "metaTitle": "Riepilogo Giornaliero - Relè API LLM Gratuiti e Chiavi API",
