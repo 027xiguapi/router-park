@@ -417,6 +417,27 @@
       "orContinueWith": "또는 다음으로 계속",
       "emailPlaceholder": "이메일을 입력하세요",
       "signInWithEmail": "이메일로 로그인"
+    },
+    "page": {
+      "welcomeBack": "다시 오신 것을 환영합니다",
+      "subtitle": "로그인하여 AI 여정을 시작하세요",
+      "inviteReceived": "초대를 받으셨습니다!",
+      "limitedOffer": "한정 특가",
+      "youWillGet": "귀하는 받게 됩니다",
+      "signupBonus": "가입 보너스",
+      "inviterWillGet": "초대자는 받게 됩니다",
+      "inviteReward": "초대 보상",
+      "newUserBenefits": "신규 사용자 혜택",
+      "signupBonusTitle": "가입 시 $100 받기",
+      "signupBonusDesc": "즉시 사용 가능, 대기 시간 없음",
+      "inviteRewardTitle": "추천당 $20 적립",
+      "inviteRewardDesc": "초대한 친구 한 명당",
+      "balanceUsageTitle": "다양한 용도",
+      "balanceUsageDesc": "API 크레딧 구매 등",
+      "termsPrefix": "로그인함으로써 귀하는 당사의",
+      "termsOfService": "서비스 약관",
+      "and": "및",
+      "privacyPolicy": "개인정보 처리방침"
     }
   },
   "pricing": {
@@ -787,6 +808,21 @@
     "noArticles": "사용 가능한 기사가 없습니다",
     "publishedAt": "{date}에 게시됨",
     "readMore": "더 읽기"
+  },
+  "models": {
+    "pricing": "가격",
+    "modelIntro": "모델 소개",
+    "onlineChat": "온라인 체험",
+    "apiUsage": "API 사용",
+    "officialWebsite": "공식 웹사이트",
+    "apiDocumentation": "API 문서",
+    "provider": "제공업체",
+    "readTime": "{minutes}분 읽기",
+    "publishedAt": "{date}에 게시됨",
+    "backToModels": "모델 목록으로 돌아가기",
+    "contextWindow": "컨텍스트 창",
+    "maxOutputTokens": "최대 출력 토큰",
+    "capabilities": "기능"
   },
   "dailyLog": {
     "metaTitle": "일일 요약 - 무료 LLM API 중계 서버 및 API 키",

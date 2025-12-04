@@ -44,6 +44,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth(() => {
           usedTokens: 0,
           totalTokens: FREE_USER_TOKENS
         })
+        
+        // 动态导入以避免循环依赖
+        const { createInviteCodeForUser, handleSignupBonus } = await import('@/lib/db/invitations')
+        
+        // 为新用户生成邀请码
+        await createInviteCodeForUser(user.id!)
+        
+        // 发放注册奖励
+        await handleSignupBonus(user.id!)
       }
     }
   }

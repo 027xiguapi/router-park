@@ -62,11 +62,21 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as CreateFreeKeyInput
 
     // 验证必填字段
-    if (!body.keyValues || !Array.isArray(body.keyValues) || body.keyValues.length === 0) {
+    if (!body.keyCount || typeof body.keyCount !== 'number' || body.keyCount <= 0) {
       return NextResponse.json(
         {
           success: false,
-          error: 'keyValues array is required and cannot be empty'
+          error: 'keyCount is required and must be a positive number'
+        },
+        { status: 400 }
+      )
+    }
+
+    if (body.keyCount > 100) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'keyCount cannot exceed 100'
         },
         { status: 400 }
       )
@@ -82,25 +92,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 验证所有密钥格式（应该以sk-开头）
-    const invalidKeys = body.keyValues.filter(key => !key.startsWith('sk-'))
-    if (invalidKeys.length > 0) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: `Invalid key format: ${invalidKeys.join(', ')}`
-        },
-        { status: 400 }
-      )
-    }
-
     const db = createDb()
     const freeKey = await createFreeKey(db, body)
 
     return NextResponse.json(
       {
         success: true,
-        data: freeKey
+        data: freeKey,
+        message: `Successfully created ${body.keyCount} API keys`
       },
       { status: 201 }
     )

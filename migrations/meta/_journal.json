@@ -57,6 +57,13 @@
       "when": 1764663012677,
       "tag": "0007_many_living_mummy",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1764833373487,
+      "tag": "0008_cute_red_wolf",
+      "breakpoints": true
     }
   ]
 }

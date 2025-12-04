@@ -15,7 +15,7 @@ export interface FreeKey {
 }
 
 export interface CreateFreeKeyInput {
-  keyValues: string[] // 密钥数组
+  keyCount: number // 要生成的密钥数量
   keyType: FreeKeyType
   status?: FreeKeyStatus
   createdBy?: string
@@ -55,10 +55,35 @@ export async function getFreeKeyById(db: Db, id: string): Promise<FreeKey | null
   return results[0] || null
 }
 
+// 生成 API Key
+function generateApiKey(): string {
+  const prefix = 'sk-'
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let key = prefix
+  for (let i = 0; i < 48; i++) {
+    key += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return key
+}
+
+// 生成多个唯一的 API Keys
+function generateMultipleApiKeys(count: number): string[] {
+  const keys = new Set<string>()
+  
+  while (keys.size < count) {
+    keys.add(generateApiKey())
+  }
+  
+  return Array.from(keys)
+}
+
 // 创建免费密钥
 export async function createFreeKey(db: Db, data: CreateFreeKeyInput): Promise<FreeKey> {
+  // 自动生成指定数量的密钥
+  const generatedKeys = generateMultipleApiKeys(data.keyCount)
+  
   const result = await db.insert(freeKeys).values({
-    keyValues: JSON.stringify(data.keyValues),
+    keyValues: JSON.stringify(generatedKeys),
     keyType: data.keyType,
     status: data.status || 'active',
     createdBy: data.createdBy || null,

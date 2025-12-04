@@ -10,7 +10,12 @@ export const users = sqliteTable('user', {
   name: text('name'),
   email: text('email').unique(),
   emailVerified: integer('emailVerified', { mode: 'timestamp_ms' }),
-  image: text('image')
+  image: text('image'),
+  balance: integer('balance').notNull().default(10000), // 用户余额（单位：分，100 = $1）
+  inviteCode: text('invite_code').unique(), // 用户的邀请码
+  invitedBy: text('invited_by'), // 邀请人 ID（避免循环引用，不使用 references）
+  totalEarned: integer('total_earned').notNull().default(0), // 累计邀请奖励
+  inviteCount: integer('invite_count').notNull().default(0) // 邀请人数
 })
 
 export const accounts = sqliteTable(
@@ -494,6 +499,43 @@ export const models = sqliteTable('models', {
     .default(sql`(unixepoch())`)
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
+
+// 邀请记录表 - 记录用户邀请关系和奖励
+export const invitations = sqliteTable('invitations', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  inviterId: text('inviter_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }), // 邀请人
+  inviteeId: text('invitee_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }), // 被邀请人
+  reward: integer('reward').notNull().default(2000), // 奖励金额（单位：分，2000 = $20）
+  status: text('status').$type<'pending' | 'completed' | 'cancelled'>().notNull().default('completed'), // 状态
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .default(sql`(unixepoch())`)
+    .notNull()
+})
+
+// 余额变动记录表 - 记录用户余额的所有变动
+export const balanceTransactions = sqliteTable('balance_transactions', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  amount: integer('amount').notNull(), // 变动金额（正数为增加，负数为减少）
+  type: text('type').$type<'signup_bonus' | 'invite_reward' | 'purchase' | 'usage' | 'refund' | 'admin_adjustment'>().notNull(),
+  description: text('description'), // 描述
+  relatedId: text('related_id'), // 关联 ID（如邀请记录 ID、订单 ID 等）
+  balanceBefore: integer('balance_before').notNull(), // 变动前余额
+  balanceAfter: integer('balance_after').notNull(), // 变动后余额
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .default(sql`(unixepoch())`)
     .notNull()
 })

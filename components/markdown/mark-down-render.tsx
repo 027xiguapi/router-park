@@ -8,6 +8,14 @@ interface MarkdownRenderProps {
 }
 
 const MarkdownRender = ({ content }: MarkdownRenderProps) => {
+  // 为标题生成 id
+  const generateId = (text: string) => {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\u4e00-\u9fa5]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  }
+
   return (
     <Markdown
       className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none
@@ -56,7 +64,37 @@ const MarkdownRender = ({ content }: MarkdownRenderProps) => {
       options={{
         overrides: {
           img: ({ src, alt }) => <ImageBlock src={src} alt={alt} />,
-          CustomVideo: ({ src, title }) => <VideoBlock src={src} title={title} />
+          CustomVideo: ({ src, title }) => <VideoBlock src={src} title={title} />,
+          h1: ({ children, ...props }) => (
+            <h1 id={generateId(String(children))} {...props}>
+              {children}
+            </h1>
+          ),
+          h2: ({ children, ...props }) => (
+            <h2 id={generateId(String(children))} {...props}>
+              {children}
+            </h2>
+          ),
+          h3: ({ children, ...props }) => (
+            <h3 id={generateId(String(children))} {...props}>
+              {children}
+            </h3>
+          ),
+          h4: ({ children, ...props }) => (
+            <h4 id={generateId(String(children))} {...props}>
+              {children}
+            </h4>
+          ),
+          h5: ({ children, ...props }) => (
+            <h5 id={generateId(String(children))} {...props}>
+              {children}
+            </h5>
+          ),
+          h6: ({ children, ...props }) => (
+            <h6 id={generateId(String(children))} {...props}>
+              {children}
+            </h6>
+          )
         }
       }}
     >

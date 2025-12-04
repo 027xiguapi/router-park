@@ -416,6 +416,27 @@
       "orContinueWith": "या इसके साथ जारी रखें",
       "emailPlaceholder": "अपना ईमेल दर्ज करें",
       "signInWithEmail": "ईमेल के साथ साइन इन करें"
+    },
+    "page": {
+      "welcomeBack": "वापस स्वागत है",
+      "subtitle": "अपनी AI यात्रा शुरू करने के लिए साइन इन करें",
+      "inviteReceived": "आपको एक आमंत्रण प्राप्त हुआ है!",
+      "limitedOffer": "सीमित प्रस्ताव",
+      "youWillGet": "आपको प्राप्त होगा",
+      "signupBonus": "साइनअप बोनस",
+      "inviterWillGet": "आमंत्रित करने वाले को प्राप्त होगा",
+      "inviteReward": "आमंत्रण इनाम",
+      "newUserBenefits": "नए उपयोगकर्ता लाभ",
+      "signupBonusTitle": "साइनअप पर $100 प्राप्त करें",
+      "signupBonusDesc": "तुरंत उपलब्ध, कोई प्रतीक्षा नहीं",
+      "inviteRewardTitle": "प्रति रेफरल $20 कमाएं",
+      "inviteRewardDesc": "आपके द्वारा आमंत्रित किए गए प्रत्येक मित्र के लिए",
+      "balanceUsageTitle": "बहुविध उपयोग",
+      "balanceUsageDesc": "एपीआई क्रेडिट और बहुत कुछ खरीदें",
+      "termsPrefix": "साइन इन करके, आप हमारी",
+      "termsOfService": "सेवा की शर्तें",
+      "and": "और",
+      "privacyPolicy": "गोपनीयता नीति"
     }
   },
   "pricing": {
@@ -605,6 +626,21 @@
     "metaDescription": "सौंदर्य विश्लेषण, एआई तकनीक, और चेहरे के सौंदर्यशास्त्र पर हमारे नवीनतम लेखों का अन्वेषण करें। एआई-संचालित सौंदर्य मूल्यांकन की दुनिया में विशेषज्ञ अंतर्दृष्टि, टिप्स और रुझान खोजें।",
     "noArticles": "कोई लेख उपलब्ध नहीं है",
     "publishedAt": "प्रकाशित: {date}"
+  },
+  "models": {
+    "pricing": "मूल्य निर्धारण",
+    "modelIntro": "मॉडल परिचय",
+    "onlineChat": "ऑनलाइन आज़माएँ",
+    "apiUsage": "एपीआई उपयोग",
+    "officialWebsite": "आधिकारिक वेबसाइट",
+    "apiDocumentation": "एपीआई दस्तावेज़",
+    "provider": "प्रदाता",
+    "readTime": "{minutes} मिनट पढ़ें",
+    "publishedAt": "{date} को प्रकाशित",
+    "backToModels": "मॉडल पर वापस जाएँ",
+    "contextWindow": "संदर्भ विंडो",
+    "maxOutputTokens": "अधिकतम आउटपुट टोकन",
+    "capabilities": "क्षमताएँ"
   },
   "dailyLog": {
     "metaTitle": "दैनिक सारांश - मुफ्त LLM API रिले और API कुंजियाँ",
